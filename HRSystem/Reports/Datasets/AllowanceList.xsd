@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AllowanceList" targetNamespace="http://tempuri.org/AllowanceList.xsd" xmlns:mstns="http://tempuri.org/AllowanceList.xsd" xmlns="http://tempuri.org/AllowanceList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AllowanceList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AllowanceList" msprop:Generator_UserDSName="AllowanceList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AllowanceList" msprop:Generator_TableClassName="AllowanceListDataTable" msprop:Generator_TableVarName="tableAllowanceList" msprop:Generator_RowChangedName="AllowanceListRowChanged" msprop:Generator_TablePropName="_AllowanceList" msprop:Generator_RowDeletingName="AllowanceListRowDeleting" msprop:Generator_RowChangingName="AllowanceListRowChanging" msprop:Generator_RowEvHandlerName="AllowanceListRowChangeEventHandler" msprop:Generator_RowDeletedName="AllowanceListRowDeleted" msprop:Generator_RowClassName="AllowanceListRow" msprop:Generator_UserTableName="AllowanceList" msprop:Generator_RowEvArgName="AllowanceListRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Previous" msprop:Generator_ColumnVarNameInTable="columnPrevious" msprop:Generator_ColumnPropNameInRow="Previous" msprop:Generator_ColumnPropNameInTable="PreviousColumn" msprop:Generator_UserColumnName="Previous" type="xs:string" minOccurs="0" />
+              <xs:element name="Current" msprop:Generator_ColumnVarNameInTable="columnCurrent" msprop:Generator_ColumnPropNameInRow="Current" msprop:Generator_ColumnPropNameInTable="CurrentColumn" msprop:Generator_UserColumnName="Current" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AllowanceIndi" msprop:Generator_TableClassName="AllowanceIndiDataTable" msprop:Generator_TableVarName="tableAllowanceIndi" msprop:Generator_TablePropName="AllowanceIndi" msprop:Generator_RowDeletingName="AllowanceIndiRowDeleting" msprop:Generator_RowChangingName="AllowanceIndiRowChanging" msprop:Generator_RowEvHandlerName="AllowanceIndiRowChangeEventHandler" msprop:Generator_RowDeletedName="AllowanceIndiRowDeleted" msprop:Generator_UserTableName="AllowanceIndi" msprop:Generator_RowChangedName="AllowanceIndiRowChanged" msprop:Generator_RowEvArgName="AllowanceIndiRowChangeEvent" msprop:Generator_RowClassName="AllowanceIndiRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Bhouse" msprop:Generator_ColumnVarNameInTable="columnBhouse" msprop:Generator_ColumnPropNameInRow="Bhouse" msprop:Generator_ColumnPropNameInTable="BhouseColumn" msprop:Generator_UserColumnName="Bhouse" type="xs:string" minOccurs="0" />
+              <xs:element name="Carekit" msprop:Generator_ColumnVarNameInTable="columnCarekit" msprop:Generator_ColumnPropNameInRow="Carekit" msprop:Generator_ColumnPropNameInTable="CarekitColumn" msprop:Generator_UserColumnName="Carekit" type="xs:string" minOccurs="0" />
+              <xs:element name="Other" msprop:Generator_ColumnVarNameInTable="columnOther" msprop:Generator_ColumnPropNameInRow="Other" msprop:Generator_ColumnPropNameInTable="OtherColumn" msprop:Generator_UserColumnName="Other" type="xs:string" minOccurs="0" />
+              <xs:element name="Bhouse1" msprop:Generator_ColumnVarNameInTable="columnBhouse1" msprop:Generator_ColumnPropNameInRow="Bhouse1" msprop:Generator_ColumnPropNameInTable="Bhouse1Column" msprop:Generator_UserColumnName="Bhouse1" type="xs:string" minOccurs="0" />
+              <xs:element name="Carekit1" msprop:Generator_ColumnVarNameInTable="columnCarekit1" msprop:Generator_ColumnPropNameInRow="Carekit1" msprop:Generator_ColumnPropNameInTable="Carekit1Column" msprop:Generator_UserColumnName="Carekit1" type="xs:string" minOccurs="0" />
+              <xs:element name="Other1" msprop:Generator_ColumnVarNameInTable="columnOther1" msprop:Generator_ColumnPropNameInRow="Other1" msprop:Generator_ColumnPropNameInTable="Other1Column" msprop:Generator_UserColumnName="Other1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

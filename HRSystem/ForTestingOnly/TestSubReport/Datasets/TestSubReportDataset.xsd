@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TestSubReportDataset" targetNamespace="http://tempuri.org/TestSubReportDataset.xsd" xmlns:mstns="http://tempuri.org/TestSubReportDataset.xsd" xmlns="http://tempuri.org/TestSubReportDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="TestForSubReportUsingFireBird" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TestForSubReportUsingFireBird (MySettings)" PropertyReference="ApplicationSettings.HRSystem.My.MySettings.GlobalReference.Default.TestForSubReportUsingFireBird" Provider="System.Data.Odbc" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ManPowerTableAdapter" GeneratorDataComponentClassName="ManPowerTableAdapter" Name="ManPower" UserDataComponentName="ManPowerTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TestForSubReportUsingFireBird (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TBLMANNING.*
+FROM            TBLMANNING</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="EMP_ID" DataSetColumn="EMP_ID" />
+              <Mapping SourceColumn="EMP_POSITION" DataSetColumn="EMP_POSITION" />
+              <Mapping SourceColumn="BRANCH_ID" DataSetColumn="BRANCH_ID" />
+              <Mapping SourceColumn="ASSIGN_DATE" DataSetColumn="ASSIGN_DATE" />
+              <Mapping SourceColumn="REMARKS" DataSetColumn="REMARKS" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+              <Mapping SourceColumn="DATE_CREATED" DataSetColumn="DATE_CREATED" />
+              <Mapping SourceColumn="WORK_STATUS" DataSetColumn="WORK_STATUS" />
+              <Mapping SourceColumn="SIGNSTATUS" DataSetColumn="SIGNSTATUS" />
+              <Mapping SourceColumn="REASON" DataSetColumn="REASON" />
+              <Mapping SourceColumn="WEEK_NOTIFY" DataSetColumn="WEEK_NOTIFY" />
+              <Mapping SourceColumn="MONTH_NOTIFY" DataSetColumn="MONTH_NOTIFY" />
+              <Mapping SourceColumn="APPOINTED_STATUS" DataSetColumn="APPOINTED_STATUS" />
+              <Mapping SourceColumn="VOID" DataSetColumn="VOID" />
+              <Mapping SourceColumn="RATE_STATUS" DataSetColumn="RATE_STATUS" />
+              <Mapping SourceColumn="RE_ASSIGN_STATUS" DataSetColumn="RE_ASSIGN_STATUS" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BranchTableAdapter" GeneratorDataComponentClassName="BranchTableAdapter" Name="Branch" UserDataComponentName="BranchTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TestForSubReportUsingFireBird (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TBL_BRANCH.*
+FROM            TBL_BRANCH</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="COMPANYNAME" DataSetColumn="COMPANYNAME" />
+              <Mapping SourceColumn="BRANCHNAME" DataSetColumn="BRANCHNAME" />
+              <Mapping SourceColumn="BRANCHCODE" DataSetColumn="BRANCHCODE" />
+              <Mapping SourceColumn="BRANCHAREA" DataSetColumn="BRANCHAREA" />
+              <Mapping SourceColumn="REMARKS" DataSetColumn="REMARKS" />
+              <Mapping SourceColumn="STATUS" DataSetColumn="STATUS" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EmployeeTableAdapter" GeneratorDataComponentClassName="EmployeeTableAdapter" Name="Employee" UserDataComponentName="EmployeeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TestForSubReportUsingFireBird (MySettings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID, LASTNAME||', '||FIRSTNAME||' '||MIDDLENAME||' '||SUFFIX AS FULLNAME, GENDER, CIVILSTATUS
+FROM            TBL_EMPLOYEE</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TestSubReportDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TestSubReportDataset" msprop:Generator_UserDSName="TestSubReportDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ManPower" msprop:Generator_TableClassName="ManPowerDataTable" msprop:Generator_TableVarName="tableManPower" msprop:Generator_RowChangedName="ManPowerRowChanged" msprop:Generator_TablePropName="ManPower" msprop:Generator_RowDeletingName="ManPowerRowDeleting" msprop:Generator_RowChangingName="ManPowerRowChanging" msprop:Generator_RowEvHandlerName="ManPowerRowChangeEventHandler" msprop:Generator_RowDeletedName="ManPowerRowDeleted" msprop:Generator_RowClassName="ManPowerRow" msprop:Generator_UserTableName="ManPower" msprop:Generator_RowEvArgName="ManPowerRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:long" />
+              <xs:element name="EMP_ID" msprop:Generator_ColumnVarNameInTable="columnEMP_ID" msprop:Generator_ColumnPropNameInRow="EMP_ID" msprop:Generator_ColumnPropNameInTable="EMP_IDColumn" msprop:Generator_UserColumnName="EMP_ID" type="xs:long" />
+              <xs:element name="EMP_POSITION" msprop:Generator_ColumnVarNameInTable="columnEMP_POSITION" msprop:Generator_ColumnPropNameInRow="EMP_POSITION" msprop:Generator_ColumnPropNameInTable="EMP_POSITIONColumn" msprop:Generator_UserColumnName="EMP_POSITION">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BRANCH_ID" msprop:Generator_ColumnVarNameInTable="columnBRANCH_ID" msprop:Generator_ColumnPropNameInRow="BRANCH_ID" msprop:Generator_ColumnPropNameInTable="BRANCH_IDColumn" msprop:Generator_UserColumnName="BRANCH_ID" type="xs:short" />
+              <xs:element name="ASSIGN_DATE" msprop:Generator_ColumnVarNameInTable="columnASSIGN_DATE" msprop:Generator_ColumnPropNameInRow="ASSIGN_DATE" msprop:Generator_ColumnPropNameInTable="ASSIGN_DATEColumn" msprop:Generator_UserColumnName="ASSIGN_DATE" type="xs:dateTime" />
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:short" />
+              <xs:element name="DATE_CREATED" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATED" msprop:Generator_ColumnPropNameInRow="DATE_CREATED" msprop:Generator_ColumnPropNameInTable="DATE_CREATEDColumn" msprop:Generator_UserColumnName="DATE_CREATED" type="xs:dateTime" />
+              <xs:element name="WORK_STATUS" msprop:Generator_ColumnVarNameInTable="columnWORK_STATUS" msprop:Generator_ColumnPropNameInRow="WORK_STATUS" msprop:Generator_ColumnPropNameInTable="WORK_STATUSColumn" msprop:Generator_UserColumnName="WORK_STATUS" type="xs:short" minOccurs="0" />
+              <xs:element name="SIGNSTATUS" msprop:Generator_ColumnVarNameInTable="columnSIGNSTATUS" msprop:Generator_ColumnPropNameInRow="SIGNSTATUS" msprop:Generator_ColumnPropNameInTable="SIGNSTATUSColumn" msprop:Generator_UserColumnName="SIGNSTATUS" type="xs:short" minOccurs="0" />
+              <xs:element name="REASON" msprop:Generator_ColumnVarNameInTable="columnREASON" msprop:Generator_ColumnPropNameInRow="REASON" msprop:Generator_ColumnPropNameInTable="REASONColumn" msprop:Generator_UserColumnName="REASON" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WEEK_NOTIFY" msprop:Generator_ColumnVarNameInTable="columnWEEK_NOTIFY" msprop:Generator_ColumnPropNameInRow="WEEK_NOTIFY" msprop:Generator_ColumnPropNameInTable="WEEK_NOTIFYColumn" msprop:Generator_UserColumnName="WEEK_NOTIFY" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MONTH_NOTIFY" msprop:Generator_ColumnVarNameInTable="columnMONTH_NOTIFY" msprop:Generator_ColumnPropNameInRow="MONTH_NOTIFY" msprop:Generator_ColumnPropNameInTable="MONTH_NOTIFYColumn" msprop:Generator_UserColumnName="MONTH_NOTIFY" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="APPOINTED_STATUS" msprop:Generator_ColumnVarNameInTable="columnAPPOINTED_STATUS" msprop:Generator_ColumnPropNameInRow="APPOINTED_STATUS" msprop:Generator_ColumnPropNameInTable="APPOINTED_STATUSColumn" msprop:Generator_UserColumnName="APPOINTED_STATUS" type="xs:int" />
+              <xs:element name="VOID" msprop:Generator_ColumnVarNameInTable="columnVOID" msprop:Generator_ColumnPropNameInRow="VOID" msprop:Generator_ColumnPropNameInTable="VOIDColumn" msprop:Generator_UserColumnName="VOID" type="xs:int" />
+              <xs:element name="RATE_STATUS" msprop:Generator_ColumnVarNameInTable="columnRATE_STATUS" msprop:Generator_ColumnPropNameInRow="RATE_STATUS" msprop:Generator_ColumnPropNameInTable="RATE_STATUSColumn" msprop:Generator_UserColumnName="RATE_STATUS" type="xs:short" />
+              <xs:element name="RE_ASSIGN_STATUS" msprop:Generator_ColumnVarNameInTable="columnRE_ASSIGN_STATUS" msprop:Generator_ColumnPropNameInRow="RE_ASSIGN_STATUS" msprop:Generator_ColumnPropNameInTable="RE_ASSIGN_STATUSColumn" msprop:Generator_UserColumnName="RE_ASSIGN_STATUS" type="xs:short" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Branch" msprop:Generator_TableClassName="BranchDataTable" msprop:Generator_TableVarName="tableBranch" msprop:Generator_TablePropName="Branch" msprop:Generator_RowDeletingName="BranchRowDeleting" msprop:Generator_RowChangingName="BranchRowChanging" msprop:Generator_RowEvHandlerName="BranchRowChangeEventHandler" msprop:Generator_RowDeletedName="BranchRowDeleted" msprop:Generator_UserTableName="Branch" msprop:Generator_RowChangedName="BranchRowChanged" msprop:Generator_RowEvArgName="BranchRowChangeEvent" msprop:Generator_RowClassName="BranchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:short" />
+              <xs:element name="COMPANYNAME" msprop:Generator_ColumnVarNameInTable="columnCOMPANYNAME" msprop:Generator_ColumnPropNameInRow="COMPANYNAME" msprop:Generator_ColumnPropNameInTable="COMPANYNAMEColumn" msprop:Generator_UserColumnName="COMPANYNAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BRANCHNAME" msprop:Generator_ColumnVarNameInTable="columnBRANCHNAME" msprop:Generator_ColumnPropNameInRow="BRANCHNAME" msprop:Generator_ColumnPropNameInTable="BRANCHNAMEColumn" msprop:Generator_UserColumnName="BRANCHNAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BRANCHCODE" msprop:Generator_ColumnVarNameInTable="columnBRANCHCODE" msprop:Generator_ColumnPropNameInRow="BRANCHCODE" msprop:Generator_ColumnPropNameInTable="BRANCHCODEColumn" msprop:Generator_UserColumnName="BRANCHCODE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BRANCHAREA" msprop:Generator_ColumnVarNameInTable="columnBRANCHAREA" msprop:Generator_ColumnPropNameInRow="BRANCHAREA" msprop:Generator_ColumnPropNameInTable="BRANCHAREAColumn" msprop:Generator_UserColumnName="BRANCHAREA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="125" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:short" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Employee" msprop:Generator_TableClassName="EmployeeDataTable" msprop:Generator_TableVarName="tableEmployee" msprop:Generator_TablePropName="Employee" msprop:Generator_RowDeletingName="EmployeeRowDeleting" msprop:Generator_RowChangingName="EmployeeRowChanging" msprop:Generator_RowEvHandlerName="EmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployeeRowDeleted" msprop:Generator_UserTableName="Employee" msprop:Generator_RowChangedName="EmployeeRowChanged" msprop:Generator_RowEvArgName="EmployeeRowChangeEvent" msprop:Generator_RowClassName="EmployeeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="GENDER" msprop:Generator_ColumnVarNameInTable="columnGENDER" msprop:Generator_ColumnPropNameInRow="GENDER" msprop:Generator_ColumnPropNameInTable="GENDERColumn" msprop:Generator_UserColumnName="GENDER" type="xs:string" minOccurs="0" />
+              <xs:element name="CIVILSTATUS" msprop:Generator_ColumnVarNameInTable="columnCIVILSTATUS" msprop:Generator_ColumnPropNameInRow="CIVILSTATUS" msprop:Generator_ColumnPropNameInTable="CIVILSTATUSColumn" msprop:Generator_UserColumnName="CIVILSTATUS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ManPower" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="Branch_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Branch" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

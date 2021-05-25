@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Rules_Sections" targetNamespace="http://tempuri.org/Rules_Sections.xsd" xmlns:mstns="http://tempuri.org/Rules_Sections.xsd" xmlns="http://tempuri.org/Rules_Sections.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Rules_Sections" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Rules_Sections" msprop:Generator_UserDSName="Rules_Sections">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RS_DataTable" msprop:Generator_TableClassName="RS_DataTableDataTable" msprop:Generator_TableVarName="tableRS_DataTable" msprop:Generator_TablePropName="RS_DataTable" msprop:Generator_RowDeletingName="RS_DataTableRowDeleting" msprop:Generator_RowChangingName="RS_DataTableRowChanging" msprop:Generator_RowEvHandlerName="RS_DataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="RS_DataTableRowDeleted" msprop:Generator_UserTableName="RS_DataTable" msprop:Generator_RowChangedName="RS_DataTableRowChanged" msprop:Generator_RowEvArgName="RS_DataTableRowChangeEvent" msprop:Generator_RowClassName="RS_DataTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RULE_NUMBER" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="RULE_NUMBER" msprop:Generator_ColumnVarNameInTable="columnRULE_NUMBER" msprop:Generator_ColumnPropNameInTable="RULE_NUMBERColumn" msprop:Generator_UserColumnName="RULE_NUMBER" type="xs:string" minOccurs="0" />
+              <xs:element name="RULE_DEFINITION" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="RULE_DEFINITION" msprop:Generator_ColumnVarNameInTable="columnRULE_DEFINITION" msprop:Generator_ColumnPropNameInTable="RULE_DEFINITIONColumn" msprop:Generator_UserColumnName="RULE_DEFINITION" type="xs:string" minOccurs="0" />
+              <xs:element name="SECTION" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="SECTION" type="xs:string" minOccurs="0" />
+              <xs:element name="NATURE_OF_OFFENSES" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="NATURE_OF_OFFENSES" msprop:Generator_ColumnVarNameInTable="columnNATURE_OF_OFFENSES" msprop:Generator_ColumnPropNameInTable="NATURE_OF_OFFENSESColumn" msprop:Generator_UserColumnName="NATURE_OF_OFFENSES" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

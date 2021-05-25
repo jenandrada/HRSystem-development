@@ -1,0 +1,1021 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C469C43-3A03-4DA7-BC4F-23C3D3147213}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>HRSystem.My.MyApplication</StartupObject>
+    <RootNamespace>HRSystem</RootNamespace>
+    <AssemblyName>HRSystem</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>HRSystem.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>HRSystem.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>false</DebugSymbols>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>PGC LOGO copy.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DeathCodez, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\DeathCodez.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=6.7.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.6.7.0\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.Reporting.WinForms" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Classes\Address.vb" />
+    <Compile Include="Classes\appointment.vb" />
+    <Compile Include="Classes\ArchiveClass.vb" />
+    <Compile Include="Classes\BhouseAllowance.vb" />
+    <Compile Include="Classes\Branch.vb" />
+    <Compile Include="Classes\EMPLIST_BRANCH.vb" />
+    <Compile Include="Classes\Employee.vb" />
+    <Compile Include="Classes\EmpUser.vb" />
+    <Compile Include="Classes\HeadCount.vb" />
+    <Compile Include="Classes\LeaveMngt.vb" />
+    <Compile Include="Classes\ManPower.vb" />
+    <Compile Include="Classes\notify.vb" />
+    <Compile Include="Classes\RulesList.vb" />
+    <Compile Include="CustomControls\WaterMarkTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\DeveloperCode.Designer.vb">
+      <DependentUpon>DeveloperCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DeveloperCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCompensation.Designer.vb">
+      <DependentUpon>frmCompensation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCompensation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Importer\ImportEmpFromFile.Designer.vb">
+      <DependentUpon>ImportEmpFromFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Importer\ImportEmpFromFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Monitoring\FrmAttendanceList.Designer.vb">
+      <DependentUpon>FrmAttendanceList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Monitoring\FrmAttendanceList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recruitment\frmRecruitmentDashboard.Designer.vb">
+      <DependentUpon>frmRecruitmentDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Recruitment\frmRecruitmentDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recruitment\SubForms\AddNewApplicants.Designer.vb">
+      <DependentUpon>AddNewApplicants.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Recruitment\SubForms\AddNewApplicants.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recruitment\SubForms\ReviewApplicants.Designer.vb">
+      <DependentUpon>ReviewApplicants.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Recruitment\SubForms\ReviewApplicants.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForTestingOnly\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ForTestingOnly\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Monitoring\FrmMonitoring.Designer.vb">
+      <DependentUpon>FrmMonitoring.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Monitoring\FrmMonitoring.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLetter.Designer.vb">
+      <DependentUpon>frmLetter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLetter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageDatabaseToFolder.vb" />
+    <Compile Include="Modules\FileDirectory.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\AllowanceList.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AllowanceList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\AllowanceList.vb">
+      <DependentUpon>AllowanceList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\ManPowerRV.Designer.vb">
+      <DependentUpon>ManPowerRV.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\ManPowerRV.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForTestingOnly\Form3.Designer.vb">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ForTestingOnly\Form3.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutUs.Designer.vb">
+      <DependentUpon>AboutUs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AboutUs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Records\Archive.Designer.vb">
+      <DependentUpon>Archive.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Records\Archive.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddress.Designer.vb">
+      <DependentUpon>frmAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddress.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAllowance.Designer.vb">
+      <DependentUpon>frmAllowance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAllowance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAllowanceList.Designer.vb">
+      <DependentUpon>frmAllowanceList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAllowanceList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAllowanceNotify.Designer.vb">
+      <DependentUpon>frmAllowanceNotify.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAllowanceNotify.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmappointlist.Designer.vb">
+      <DependentUpon>frmappointlist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmappointlist.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmappointment.Designer.vb">
+      <DependentUpon>frmappointment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmappointment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmApproval.Designer.vb">
+      <DependentUpon>frmApproval.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmApproval.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBranch.Designer.vb">
+      <DependentUpon>frmBranch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBranch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBranchList.Designer.vb">
+      <DependentUpon>frmBranchList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBranchList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEmployee.Designer.vb">
+      <DependentUpon>frmEmployee.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEmployee.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Records\frmEmployeeDetails.Designer.vb">
+      <DependentUpon>frmEmployeeDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Records\frmEmployeeDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Records\frmEmployeeList.Designer.vb">
+      <DependentUpon>frmEmployeeList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Records\frmEmployeeList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEmployeeListForRating.Designer.vb">
+      <DependentUpon>frmEmployeeListForRating.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEmployeeListForRating.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMainForm.Designer.vb">
+      <DependentUpon>frmMainForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmManpower.Designer.vb">
+      <DependentUpon>frmManpower.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmManpower.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmnotify.Designer.vb">
+      <DependentUpon>frmnotify.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmnotify.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPrintRatings.Designer.vb">
+      <DependentUpon>frmPrintRatings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPrintRatings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRateEmp.Designer.vb">
+      <DependentUpon>frmRateEmp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRateEmp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUploadAddress.Designer.vb">
+      <DependentUpon>frmUploadAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmUploadAddress.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLogin.Designer.vb">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUser.Designer.vb">
+      <DependentUpon>frmUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUserLogs.Designer.vb">
+      <DependentUpon>frmUserLogs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmUserLogs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmworklist.Designer.vb">
+      <DependentUpon>frmworklist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmworklist.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManPower\FormManagement.Designer.vb">
+      <DependentUpon>FormManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManPower\FormManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\database.vb" />
+    <Compile Include="Modules\Extensions.vb" />
+    <Compile Include="Modules\formSwitch.vb" />
+    <Compile Include="Modules\HardCoded.vb" />
+    <Compile Include="Modules\mod_system.vb" />
+    <Compile Include="Modules\security.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Reports\Datasets\BHouse_AllowanceDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BHouse_AllowanceDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\BHouse_AllowanceDataSet.vb">
+      <DependentUpon>BHouse_AllowanceDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\dsappointment.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsappointment.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\dsappointment.vb">
+      <DependentUpon>dsappointment.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\dsRating.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRating.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\dsRating.vb">
+      <DependentUpon>dsRating.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\dsReports.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsReports.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\dsReports.vb">
+      <DependentUpon>dsReports.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\dsReports1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsReports1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\frmCoorective.Designer.vb">
+      <DependentUpon>frmCoorective.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\frmCoorective.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Forms\frmGenerate.Designer.vb">
+      <DependentUpon>frmGenerate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\frmGenerate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Forms\frmBhAllowanceMonthly.Designer.vb">
+      <DependentUpon>frmBhAllowanceMonthly.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\frmBhAllowanceMonthly.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Forms\frmrelieverreport.Designer.vb">
+      <DependentUpon>frmrelieverreport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\frmrelieverreport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Forms\frmReport.Designer.vb">
+      <DependentUpon>frmReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Forms\frmReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Datasets\ManPowerV1DataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManPowerV1DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\ManPowerV1DataSet.vb">
+      <DependentUpon>ManPowerV1DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\Rules_Sections.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rules_Sections.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\Rules_Sections.vb">
+      <DependentUpon>Rules_Sections.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\WorkList.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\WorkList.vb">
+      <DependentUpon>WorkList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.vb">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForTestingOnly\TestSubReport\Datasets\TestSubReportDataset.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestSubReportDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ForTestingOnly\TestSubReport\Datasets\TestSubReportDataset.vb">
+      <DependentUpon>TestSubReportDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ForTestingOnly\TestSubReport\TestSubReport.Designer.vb">
+      <DependentUpon>TestSubReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ForTestingOnly\TestSubReport\TestSubReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomControls\WaterMarkTextBox.resx">
+      <DependentUpon>WaterMarkTextBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeveloperCode.resx">
+      <DependentUpon>DeveloperCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCompensation.resx">
+      <DependentUpon>frmCompensation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Importer\ImportEmpFromFile.resx">
+      <DependentUpon>ImportEmpFromFile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Monitoring\FrmAttendanceList.resx">
+      <DependentUpon>FrmAttendanceList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Recruitment\frmRecruitmentDashboard.resx">
+      <DependentUpon>frmRecruitmentDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Recruitment\SubForms\AddNewApplicants.resx">
+      <DependentUpon>AddNewApplicants.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Recruitment\SubForms\ReviewApplicants.resx">
+      <DependentUpon>ReviewApplicants.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForTestingOnly\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Monitoring\FrmMonitoring.resx">
+      <DependentUpon>FrmMonitoring.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLetter.resx">
+      <DependentUpon>frmLetter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MainReports\Letter_List.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\Letter_SD.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\Appointment.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\Reassignment.rdlc" />
+    <EmbeddedResource Include="Reports\Forms\ManPowerRV.resx">
+      <DependentUpon>ManPowerRV.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForTestingOnly\Form3.resx">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AboutUs.resx">
+      <DependentUpon>AboutUs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Records\Archive.resx">
+      <DependentUpon>Archive.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddress.resx">
+      <DependentUpon>frmAddress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAllowance.resx">
+      <DependentUpon>frmAllowance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAllowanceList.resx">
+      <DependentUpon>frmAllowanceList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAllowanceNotify.resx">
+      <DependentUpon>frmAllowanceNotify.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmappointlist.resx">
+      <DependentUpon>frmappointlist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmappointment.resx">
+      <DependentUpon>frmappointment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmApproval.resx">
+      <DependentUpon>frmApproval.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBranch.resx">
+      <DependentUpon>frmBranch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBranchList.resx">
+      <DependentUpon>frmBranchList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEmployee.resx">
+      <DependentUpon>frmEmployee.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Records\frmEmployeeDetails.resx">
+      <DependentUpon>frmEmployeeDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Records\frmEmployeeList.resx">
+      <DependentUpon>frmEmployeeList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEmployeeListForRating.resx">
+      <DependentUpon>frmEmployeeListForRating.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMainForm.resx">
+      <DependentUpon>frmMainForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmManpower.resx">
+      <DependentUpon>frmManpower.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmnotify.resx">
+      <DependentUpon>frmnotify.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPrintRatings.resx">
+      <DependentUpon>frmPrintRatings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRateEmp.resx">
+      <DependentUpon>frmRateEmp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUploadAddress.resx">
+      <DependentUpon>frmUploadAddress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLogin.resx">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUser.resx">
+      <DependentUpon>frmUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUserLogs.resx">
+      <DependentUpon>frmUserLogs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmworklist.resx">
+      <DependentUpon>frmworklist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManPower\FormManagement.resx">
+      <DependentUpon>FormManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Forms\frmCoorective.resx">
+      <DependentUpon>frmCoorective.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Forms\frmGenerate.resx">
+      <DependentUpon>frmGenerate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Forms\frmBhAllowanceMonthly.resx">
+      <DependentUpon>frmBhAllowanceMonthly.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Forms\frmrelieverreport.resx">
+      <DependentUpon>frmrelieverreport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Forms\frmReport.resx">
+      <DependentUpon>frmReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MainReports\ManPowerV2.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\Ratings.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MainReports\rpt_agreementrelieved.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rptReliever.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rptManpower.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rpt_aggreement.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rpt_appointment.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rpt_BHAllowanceReport.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rpt_BHouseAllowance.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rpt_PrintWorkList.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rpt_PrintWorklist_Relieved.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MainReports\rpt_Rating.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rpt_ShowCause.rdlc" />
+    <EmbeddedResource Include="Reports\MainReports\rpt_WrittenReprimand.rdlc" />
+    <EmbeddedResource Include="Reports\SubReports\BHallowanceRpt.rdlc" />
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForTestingOnly\TestSubReport\Reports\Employee.rdlc" />
+    <EmbeddedResource Include="ForTestingOnly\TestSubReport\Reports\Subreports\RSub_Branch.rdlc" />
+    <EmbeddedResource Include="ForTestingOnly\TestSubReport\Reports\Subreports\RSub_ManPower.rdlc" />
+    <EmbeddedResource Include="ForTestingOnly\TestSubReport\TestSubReport.resx">
+      <DependentUpon>TestSubReport.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="1M4N4G3YU0.FDB" />
+    <None Include="App.config" />
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\AboutUs.datasource" />
+    <None Include="My Project\DataSources\Address.datasource" />
+    <None Include="My Project\DataSources\Branch.datasource" />
+    <None Include="My Project\DataSources\DeathCodez.Security.datasource" />
+    <None Include="My Project\DataSources\dsReports.AGREEMENTYESDataTable.datasource" />
+    <None Include="My Project\DataSources\dsReports.AGREEMENTYESRow.datasource" />
+    <None Include="My Project\DataSources\dsReports.AGREEMENTYESRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\dsReports.AGREEMENTYESRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\dsReports.datasource" />
+    <None Include="My Project\DataSources\dsReports.ManpowerDataTable.datasource" />
+    <None Include="My Project\DataSources\dsReports.ManpowerRow.datasource" />
+    <None Include="My Project\DataSources\dsReports.ManpowerRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\dsReports.ManpowerRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\dsReports.RelieverDataTable.datasource" />
+    <None Include="My Project\DataSources\dsReports.RelieverRow.datasource" />
+    <None Include="My Project\DataSources\dsReports.RelieverRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\dsReports.RelieverRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\dsReports1.datasource" />
+    <None Include="My Project\DataSources\Employee.datasource" />
+    <None Include="My Project\DataSources\EmpUser.datasource" />
+    <None Include="My Project\DataSources\frmAddress.datasource" />
+    <None Include="My Project\DataSources\frmagreement.datasource" />
+    <None Include="My Project\DataSources\frmBranch.datasource" />
+    <None Include="My Project\DataSources\frmBranchList.datasource" />
+    <None Include="My Project\DataSources\frmEmployee.datasource" />
+    <None Include="My Project\DataSources\frmEmployeeList.datasource" />
+    <None Include="My Project\DataSources\frmGenerate.datasource" />
+    <None Include="My Project\DataSources\frmGenerate.ReportType.datasource" />
+    <None Include="My Project\DataSources\frmLogin.datasource" />
+    <None Include="My Project\DataSources\frmMainForm.datasource" />
+    <None Include="My Project\DataSources\frmManpower.datasource" />
+    <None Include="My Project\DataSources\frmrelieverreport.datasource" />
+    <None Include="My Project\DataSources\frmrelieverreport.ReportType.datasource" />
+    <None Include="My Project\DataSources\frmReport.datasource" />
+    <None Include="My Project\DataSources\frmUploadAddress.datasource" />
+    <None Include="My Project\DataSources\frmUser.datasource" />
+    <None Include="My Project\DataSources\frmworklist.datasource" />
+    <None Include="My Project\DataSources\HRSystem.My.MyApplication.datasource" />
+    <None Include="My Project\DataSources\HRSystem.My.MySettings.datasource" />
+    <None Include="My Project\DataSources\ManPower.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Reports\Datasets\AllowanceList.xsc">
+      <DependentUpon>AllowanceList.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\AllowanceList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AllowanceList.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\AllowanceList.xss">
+      <DependentUpon>AllowanceList.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\BHouse_AllowanceDataSet.xsc">
+      <DependentUpon>BHouse_AllowanceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\BHouse_AllowanceDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BHouse_AllowanceDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\BHouse_AllowanceDataSet.xss">
+      <DependentUpon>BHouse_AllowanceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\dsappointment.xsc">
+      <DependentUpon>dsappointment.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\dsappointment.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsappointment.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\dsappointment.xss">
+      <DependentUpon>dsappointment.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\dsRating.xsc">
+      <DependentUpon>dsRating.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\dsRating.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRating.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\dsRating.xss">
+      <DependentUpon>dsRating.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\dsReports.xsc">
+      <DependentUpon>dsReports.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\dsReports.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsReports.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\dsReports.xss">
+      <DependentUpon>dsReports.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\dsReports1.xsc">
+      <DependentUpon>dsReports1.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\dsReports1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsReports1.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\dsReports1.xss">
+      <DependentUpon>dsReports1.xsd</DependentUpon>
+    </None>
+    <None Include="ForTestingOnly\TestSubReport\Datasets\TestSubReportDataset.xsc">
+      <DependentUpon>TestSubReportDataset.xsd</DependentUpon>
+    </None>
+    <None Include="ForTestingOnly\TestSubReport\Datasets\TestSubReportDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestSubReportDataset.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ForTestingOnly\TestSubReport\Datasets\TestSubReportDataset.xss">
+      <DependentUpon>TestSubReportDataset.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DeathCodez.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PGC LOGO copy.ico" />
+    <None Include="Resources\Screenshot 2021-03-26 100042.png" />
+    <None Include="Resources\1.jpg" />
+    <None Include="Resources\employee_card_50px1.png" />
+    <None Include="Resources\id.png" />
+    <None Include="Resources\management.png" />
+    <None Include="Resources\management1.png" />
+    <None Include="Resources\manage.png" />
+    <None Include="Resources\records.png" />
+    <None Include="Resources\records1.png" />
+    <None Include="Resources\id1.png" />
+    <None Include="Resources\a.png" />
+    <None Include="Resources\reports.png" />
+    <None Include="Resources\reports2.png" />
+    <None Include="Resources\135-1354846_delivery-of-report-icon-report-icon-png.png" />
+    <None Include="Resources\a1.png" />
+    <None Include="Resources\id2.png" />
+    <None Include="Resources\report3.png" />
+    <None Include="Resources\records2.png" />
+    <None Include="Resources\report31.png" />
+    <None Include="Resources\reports1.png" />
+    <None Include="Resources\1.png" />
+    <None Include="Resources\11.png" />
+    <None Include="Resources\2.png" />
+    <None Include="Resources\12.png" />
+    <None Include="Resources\13.png" />
+    <None Include="Resources\14.png" />
+    <None Include="Resources\15.png" />
+    <None Include="Resources\16.png" />
+    <None Include="Resources\21.png" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\home1.png" />
+    <None Include="Resources\home2.png" />
+    <Content Include="System.Windows.Forms.Calendar.dll" />
+    <None Include="Reports\Datasets\ManPowerV1DataSet.xsc">
+      <DependentUpon>ManPowerV1DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\ManPowerV1DataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ManPowerV1DataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\ManPowerV1DataSet.xss">
+      <DependentUpon>ManPowerV1DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\Rules_Sections.xsc">
+      <DependentUpon>Rules_Sections.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\Rules_Sections.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Rules_Sections.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\Rules_Sections.xss">
+      <DependentUpon>Rules_Sections.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\report_card_50px.png" />
+    <None Include="Resources\details_50px.png" />
+    <None Include="Resources\image_file_50px.png" />
+    <None Include="Resources\add_image_50px.png" />
+    <None Include="Resources\attendance_mark_50px.png" />
+    <Content Include="SqlServerTypes\Loader.cs" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\event_accepted_50px.png" />
+    <None Include="Resources\receive_cash_50px1.png" />
+    <None Include="Reports\Datasets\WorkList.xsc">
+      <DependentUpon>WorkList.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\WorkList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WorkList.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\WorkList.xss">
+      <DependentUpon>WorkList.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\close_window_50px.png" />
+    <None Include="Resources\business_50px.png" />
+    <None Include="Resources\employee_card_50px.png" />
+    <None Include="Resources\combo_chart_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomPrinting\CustomPrinting.csproj">
+      <Project>{e8c31189-cf03-45fd-859d-c9656ea3dbae}</Project>
+      <Name>CustomPrinting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBConnect\DBConnect.csproj">
+      <Project>{2c60b504-7598-4974-962a-211102e87aa6}</Project>
+      <Name>DBConnect</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\vb\Humanizer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\vb\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\vb\Microsoft.CodeQuality.VisualBasic.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\vb\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\vb\Microsoft.NetCore.VisualBasic.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\vb\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\vb\Microsoft.NetFramework.VisualBasic.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Recruitment\UserControls\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BHouse_AllowanceDataSet" targetNamespace="http://tempuri.org/BHouseAllowance.xsd" xmlns:mstns="http://tempuri.org/BHouseAllowance.xsd" xmlns="http://tempuri.org/BHouseAllowance.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BHouse_AllowanceDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BHouse_AllowanceDataSet" msprop:Generator_UserDSName="BHouse_AllowanceDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AllowanceDetails" msprop:Generator_TableClassName="AllowanceDetailsDataTable" msprop:Generator_TableVarName="tableAllowanceDetails" msprop:Generator_RowChangedName="AllowanceDetailsRowChanged" msprop:Generator_TablePropName="AllowanceDetails" msprop:Generator_RowDeletingName="AllowanceDetailsRowDeleting" msprop:Generator_RowChangingName="AllowanceDetailsRowChanging" msprop:Generator_RowEvHandlerName="AllowanceDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="AllowanceDetailsRowDeleted" msprop:Generator_RowClassName="AllowanceDetailsRow" msprop:Generator_UserTableName="AllowanceDetails" msprop:Generator_RowEvArgName="AllowanceDetailsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="MANNING_ID" msprop:Generator_ColumnVarNameInTable="columnMANNING_ID" msprop:Generator_ColumnPropNameInRow="MANNING_ID" msprop:Generator_ColumnPropNameInTable="MANNING_IDColumn" msprop:Generator_UserColumnName="MANNING_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="ALLOWANCE" msprop:Generator_ColumnVarNameInTable="columnALLOWANCE" msprop:Generator_ColumnPropNameInRow="ALLOWANCE" msprop:Generator_ColumnPropNameInTable="ALLOWANCEColumn" msprop:Generator_UserColumnName="ALLOWANCE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_UserColumnName="AMOUNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="OTHER_ALLOWANCE" msprop:Generator_ColumnVarNameInTable="columnOTHER_ALLOWANCE" msprop:Generator_ColumnPropNameInRow="OTHER_ALLOWANCE" msprop:Generator_ColumnPropNameInTable="OTHER_ALLOWANCEColumn" msprop:Generator_UserColumnName="OTHER_ALLOWANCE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COMPANYNAME" msprop:Generator_ColumnVarNameInTable="columnCOMPANYNAME" msprop:Generator_ColumnPropNameInRow="COMPANYNAME" msprop:Generator_ColumnPropNameInTable="COMPANYNAMEColumn" msprop:Generator_UserColumnName="COMPANYNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHAREA" msprop:Generator_ColumnVarNameInTable="columnBRANCHAREA" msprop:Generator_ColumnPropNameInRow="BRANCHAREA" msprop:Generator_ColumnPropNameInTable="BRANCHAREAColumn" msprop:Generator_UserColumnName="BRANCHAREA" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHNAME" msprop:Generator_ColumnVarNameInTable="columnBRANCHNAME" msprop:Generator_ColumnPropNameInRow="BRANCHNAME" msprop:Generator_ColumnPropNameInTable="BRANCHNAMEColumn" msprop:Generator_UserColumnName="BRANCHNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE_NOTIFY" msprop:Generator_ColumnVarNameInTable="columnDATE_NOTIFY" msprop:Generator_ColumnPropNameInRow="DATE_NOTIFY" msprop:Generator_ColumnPropNameInTable="DATE_NOTIFYColumn" msprop:Generator_UserColumnName="DATE_NOTIFY" type="xs:string" minOccurs="0" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="PARTICULARS" msprop:Generator_ColumnVarNameInTable="columnPARTICULARS" msprop:Generator_ColumnPropNameInRow="PARTICULARS" msprop:Generator_ColumnPropNameInTable="PARTICULARSColumn" msprop:Generator_UserColumnName="PARTICULARS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MonthlyAllowance" msprop:Generator_TableClassName="MonthlyAllowanceDataTable" msprop:Generator_TableVarName="tableMonthlyAllowance" msprop:Generator_RowChangedName="MonthlyAllowanceRowChanged" msprop:Generator_TablePropName="MonthlyAllowance" msprop:Generator_RowDeletingName="MonthlyAllowanceRowDeleting" msprop:Generator_RowChangingName="MonthlyAllowanceRowChanging" msprop:Generator_RowEvHandlerName="MonthlyAllowanceRowChangeEventHandler" msprop:Generator_RowDeletedName="MonthlyAllowanceRowDeleted" msprop:Generator_RowClassName="MonthlyAllowanceRow" msprop:Generator_UserTableName="MonthlyAllowance" msprop:Generator_RowEvArgName="MonthlyAllowanceRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="EMP_POSITION" msprop:Generator_ColumnVarNameInTable="columnEMP_POSITION" msprop:Generator_ColumnPropNameInRow="EMP_POSITION" msprop:Generator_ColumnPropNameInTable="EMP_POSITIONColumn" msprop:Generator_UserColumnName="EMP_POSITION" type="xs:string" minOccurs="0" />
+              <xs:element name="DATEAPPOINTED" msprop:Generator_ColumnVarNameInTable="columnDATEAPPOINTED" msprop:Generator_ColumnPropNameInRow="DATEAPPOINTED" msprop:Generator_ColumnPropNameInTable="DATEAPPOINTEDColumn" msprop:Generator_UserColumnName="DATEAPPOINTED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="STARTDATE" msdata:DateTimeMode="Unspecified" msprop:Generator_ColumnVarNameInTable="columnSTARTDATE" msprop:Generator_ColumnPropNameInRow="STARTDATE" msprop:Generator_ColumnPropNameInTable="STARTDATEColumn" msprop:Generator_UserColumnName="STARTDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BRANCHNAME" msprop:Generator_ColumnVarNameInTable="columnBRANCHNAME" msprop:Generator_ColumnPropNameInRow="BRANCHNAME" msprop:Generator_ColumnPropNameInTable="BRANCHNAMEColumn" msprop:Generator_UserColumnName="BRANCHNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="CITYMUN" msprop:Generator_ColumnVarNameInTable="columnCITYMUN" msprop:Generator_ColumnPropNameInRow="CITYMUN" msprop:Generator_ColumnPropNameInTable="CITYMUNColumn" msprop:Generator_UserColumnName="CITYMUN" type="xs:string" minOccurs="0" />
+              <xs:element name="ALLOWANCE" msprop:Generator_ColumnVarNameInTable="columnALLOWANCE" msprop:Generator_ColumnPropNameInRow="ALLOWANCE" msprop:Generator_ColumnPropNameInTable="ALLOWANCEColumn" msprop:Generator_UserColumnName="ALLOWANCE" type="xs:int" minOccurs="0" />
+              <xs:element name="PARTICULARS" msprop:Generator_ColumnVarNameInTable="columnPARTICULARS" msprop:Generator_ColumnPropNameInRow="PARTICULARS" msprop:Generator_ColumnPropNameInTable="PARTICULARSColumn" msprop:Generator_UserColumnName="PARTICULARS" type="xs:string" minOccurs="0" />
+              <xs:element name="OTHER_ALLOWANCE" msprop:Generator_ColumnVarNameInTable="columnOTHER_ALLOWANCE" msprop:Generator_ColumnPropNameInRow="OTHER_ALLOWANCE" msprop:Generator_ColumnPropNameInTable="OTHER_ALLOWANCEColumn" msprop:Generator_UserColumnName="OTHER_ALLOWANCE" type="xs:int" minOccurs="0" />
+              <xs:element name="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_UserColumnName="AMOUNT" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

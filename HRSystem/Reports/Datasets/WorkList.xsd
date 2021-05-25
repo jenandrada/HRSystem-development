@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="WorkList" targetNamespace="http://tempuri.org/WorkList.xsd" xmlns:mstns="http://tempuri.org/WorkList.xsd" xmlns="http://tempuri.org/WorkList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (MySettings)" PropertyReference="ApplicationSettings.HRSystem.My.MySettings.GlobalReference.Default.ConnectionString" Provider="System.Data.Odbc" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="WorkList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="WorkList" msprop:Generator_UserDSName="WorkList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="WorkList_TBL" msprop:Generator_TableClassName="WorkList_TBLDataTable" msprop:Generator_TableVarName="tableWorkList_TBL" msprop:Generator_RowChangedName="WorkList_TBLRowChanged" msprop:Generator_TablePropName="WorkList_TBL" msprop:Generator_RowDeletingName="WorkList_TBLRowDeleting" msprop:Generator_RowChangingName="WorkList_TBLRowChanging" msprop:Generator_RowEvHandlerName="WorkList_TBLRowChangeEventHandler" msprop:Generator_RowDeletedName="WorkList_TBLRowDeleted" msprop:Generator_RowClassName="WorkList_TBLRow" msprop:Generator_UserTableName="WorkList_TBL" msprop:Generator_RowEvArgName="WorkList_TBLRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FULLNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="WHO" msprop:Generator_ColumnVarNameInTable="columnWho" msprop:Generator_ColumnPropNameInRow="Who" msprop:Generator_ColumnPropNameInTable="WhoColumn" msprop:Generator_UserColumnName="WHO" type="xs:string" minOccurs="0" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="EMP_POSITION" msprop:Generator_ColumnVarNameInTable="columnEMP_POSITION" msprop:Generator_ColumnPropNameInRow="EMP_POSITION" msprop:Generator_ColumnPropNameInTable="EMP_POSITIONColumn" msprop:Generator_UserColumnName="EMP_POSITION" type="xs:string" minOccurs="0" />
+              <xs:element name="COMPANYNAME" msprop:Generator_ColumnVarNameInTable="columnCOMPANYNAME" msprop:Generator_ColumnPropNameInRow="COMPANYNAME" msprop:Generator_ColumnPropNameInTable="COMPANYNAMEColumn" msprop:Generator_UserColumnName="COMPANYNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHNAME" msprop:Generator_ColumnVarNameInTable="columnBRANCHNAME" msprop:Generator_ColumnPropNameInRow="BRANCHNAME" msprop:Generator_ColumnPropNameInTable="BRANCHNAMEColumn" msprop:Generator_UserColumnName="BRANCHNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHAREA" msprop:Generator_ColumnVarNameInTable="columnBRANCHAREA" msprop:Generator_ColumnPropNameInRow="BRANCHAREA" msprop:Generator_ColumnPropNameInTable="BRANCHAREAColumn" msprop:Generator_UserColumnName="BRANCHAREA" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHCODE" msprop:Generator_ColumnVarNameInTable="columnBRANCHCODE" msprop:Generator_ColumnPropNameInRow="BRANCHCODE" msprop:Generator_ColumnPropNameInTable="BRANCHCODEColumn" msprop:Generator_UserColumnName="BRANCHCODE" type="xs:string" minOccurs="0" />
+              <xs:element name="ASSIGN_DATE" msprop:Generator_ColumnVarNameInTable="columnASSIGN_DATE" msprop:Generator_ColumnPropNameInRow="ASSIGN_DATE" msprop:Generator_ColumnPropNameInTable="ASSIGN_DATEColumn" msprop:Generator_UserColumnName="ASSIGN_DATE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="WorkList_Relieved_TBL" msprop:Generator_TableClassName="WorkList_Relieved_TBLDataTable" msprop:Generator_TableVarName="tableWorkList_Relieved_TBL" msprop:Generator_RowChangedName="WorkList_Relieved_TBLRowChanged" msprop:Generator_TablePropName="WorkList_Relieved_TBL" msprop:Generator_RowDeletingName="WorkList_Relieved_TBLRowDeleting" msprop:Generator_RowChangingName="WorkList_Relieved_TBLRowChanging" msprop:Generator_RowEvHandlerName="WorkList_Relieved_TBLRowChangeEventHandler" msprop:Generator_RowDeletedName="WorkList_Relieved_TBLRowDeleted" msprop:Generator_RowClassName="WorkList_Relieved_TBLRow" msprop:Generator_UserTableName="WorkList_Relieved_TBL" msprop:Generator_RowEvArgName="WorkList_Relieved_TBLRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="CURRENT_BRANCH" msprop:Generator_ColumnVarNameInTable="columnCURRENT_BRANCH" msprop:Generator_ColumnPropNameInRow="CURRENT_BRANCH" msprop:Generator_ColumnPropNameInTable="CURRENT_BRANCHColumn" msprop:Generator_UserColumnName="CURRENT_BRANCH" type="xs:string" minOccurs="0" />
+              <xs:element name="WHO" msprop:Generator_ColumnVarNameInTable="columnWHO" msprop:Generator_ColumnPropNameInRow="WHO" msprop:Generator_ColumnPropNameInTable="WHOColumn" msprop:Generator_UserColumnName="WHO" type="xs:string" minOccurs="0" />
+              <xs:element name="STATUS" msprop:Generator_ColumnVarNameInTable="columnSTATUS" msprop:Generator_ColumnPropNameInRow="STATUS" msprop:Generator_ColumnPropNameInTable="STATUSColumn" msprop:Generator_UserColumnName="STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="R_POSITION" msprop:Generator_ColumnVarNameInTable="columnR_POSITION" msprop:Generator_ColumnPropNameInRow="R_POSITION" msprop:Generator_ColumnPropNameInTable="R_POSITIONColumn" msprop:Generator_UserColumnName="R_POSITION" type="xs:string" minOccurs="0" />
+              <xs:element name="COMPANYNAME" msprop:Generator_ColumnVarNameInTable="columnCOMPANYNAME" msprop:Generator_ColumnPropNameInRow="COMPANYNAME" msprop:Generator_ColumnPropNameInTable="COMPANYNAMEColumn" msprop:Generator_UserColumnName="COMPANYNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHNAME" msprop:Generator_ColumnVarNameInTable="columnBRANCHNAME" msprop:Generator_ColumnPropNameInRow="BRANCHNAME" msprop:Generator_ColumnPropNameInTable="BRANCHNAMEColumn" msprop:Generator_UserColumnName="BRANCHNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHAREA" msprop:Generator_ColumnVarNameInTable="columnBRANCHAREA" msprop:Generator_ColumnPropNameInRow="BRANCHAREA" msprop:Generator_ColumnPropNameInTable="BRANCHAREAColumn" msprop:Generator_UserColumnName="BRANCHAREA" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHCODE" msprop:Generator_ColumnVarNameInTable="columnBRANCHCODE" msprop:Generator_ColumnPropNameInRow="BRANCHCODE" msprop:Generator_ColumnPropNameInTable="BRANCHCODEColumn" msprop:Generator_UserColumnName="BRANCHCODE" type="xs:string" minOccurs="0" />
+              <xs:element name="ASSIGN_DATE" msprop:Generator_ColumnVarNameInTable="columnASSIGN_DATE" msprop:Generator_ColumnPropNameInRow="ASSIGN_DATE" msprop:Generator_ColumnPropNameInTable="ASSIGN_DATEColumn" msprop:Generator_UserColumnName="ASSIGN_DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="NUMBER_OF_DAYS_ASSIGNED" msprop:Generator_ColumnVarNameInTable="columnNUMBER_OF_DAYS_ASSIGNED" msprop:Generator_ColumnPropNameInRow="NUMBER_OF_DAYS_ASSIGNED" msprop:Generator_ColumnPropNameInTable="NUMBER_OF_DAYS_ASSIGNEDColumn" msprop:Generator_UserColumnName="NUMBER_OF_DAYS_ASSIGNED" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

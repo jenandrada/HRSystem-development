@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsRating" targetNamespace="http://tempuri.org/dsRating.xsd" xmlns:mstns="http://tempuri.org/dsRating.xsd" xmlns="http://tempuri.org/dsRating.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (MySettings)" PropertyReference="ApplicationSettings.HRSystem.My.MySettings.GlobalReference.Default.ConnectionString" Provider="System.Data.Odbc" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RATINGS_ALLTableAdapter" GeneratorDataComponentClassName="RATINGS_ALLTableAdapter" Name="RATINGS_ALL" UserDataComponentName="RATINGS_ALLTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        A.ID, C.FIRSTNAME || ' ' || C.MIDDLENAME || '. ' || C.LASTNAME AS EMPLOYEENAME, A.RATE, D .COMPANYNAME, D .BRANCHNAME, D .BRANCHCODE,
+                         D .BRANCHAREA, B.DATE_CREATED
+FROM            TBL_RATE A INNER JOIN
+                         TBLMANNING B ON A.MANNING_ID = B.ID INNER JOIN
+                         TBL_EMPLOYEE C ON B.EMP_ID = C.ID INNER JOIN
+                         TBL_BRANCH D ON B.BRANCH_ID = D .ID;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsRating" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsRating" msprop:Generator_UserDSName="dsRating">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RATING" msprop:Generator_TableClassName="RATINGDataTable" msprop:Generator_TableVarName="tableRATING" msprop:Generator_TablePropName="RATING" msprop:Generator_RowDeletingName="RATINGRowDeleting" msprop:Generator_RowChangingName="RATINGRowChanging" msprop:Generator_RowEvHandlerName="RATINGRowChangeEventHandler" msprop:Generator_RowDeletedName="RATINGRowDeleted" msprop:Generator_UserTableName="RATING" msprop:Generator_RowChangedName="RATINGRowChanged" msprop:Generator_RowEvArgName="RATINGRowChangeEvent" msprop:Generator_RowClassName="RATINGRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="EMPLOYEE" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE" msprop:Generator_ColumnPropNameInRow="EMPLOYEE" msprop:Generator_ColumnPropNameInTable="EMPLOYEEColumn" msprop:Generator_UserColumnName="EMPLOYEE" type="xs:string" minOccurs="0" />
+              <xs:element name="RATING" msprop:Generator_ColumnVarNameInTable="columnRating" msprop:Generator_ColumnPropNameInRow="Rating" msprop:Generator_ColumnPropNameInTable="RatingColumn" msprop:Generator_UserColumnName="RATING" type="xs:string" minOccurs="0" />
+              <xs:element name="COMPANYNAME" msprop:Generator_ColumnVarNameInTable="columnCompanyname" msprop:Generator_ColumnPropNameInRow="Companyname" msprop:Generator_ColumnPropNameInTable="CompanynameColumn" msprop:Generator_UserColumnName="COMPANYNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHNAME" msprop:Generator_ColumnVarNameInTable="columnBranchname" msprop:Generator_ColumnPropNameInRow="Branchname" msprop:Generator_ColumnPropNameInTable="BranchnameColumn" msprop:Generator_UserColumnName="BRANCHNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="CODE" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="CODE" type="xs:string" minOccurs="0" />
+              <xs:element name="AREA" msprop:Generator_ColumnVarNameInTable="columnArea" msprop:Generator_ColumnPropNameInRow="Area" msprop:Generator_ColumnPropNameInTable="AreaColumn" msprop:Generator_UserColumnName="AREA" type="xs:string" minOccurs="0" />
+              <xs:element name="DATEENCODED" msprop:Generator_ColumnVarNameInTable="columnDateencoded" msprop:Generator_ColumnPropNameInRow="Dateencoded" msprop:Generator_ColumnPropNameInTable="DateencodedColumn" msprop:Generator_UserColumnName="DATEENCODED" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RATINGS_ALL" msprop:Generator_TableClassName="RATINGS_ALLDataTable" msprop:Generator_TableVarName="tableRATINGS_ALL" msprop:Generator_RowChangedName="RATINGS_ALLRowChanged" msprop:Generator_TablePropName="RATINGS_ALL" msprop:Generator_RowDeletingName="RATINGS_ALLRowDeleting" msprop:Generator_RowChangingName="RATINGS_ALLRowChanging" msprop:Generator_RowEvHandlerName="RATINGS_ALLRowChangeEventHandler" msprop:Generator_RowDeletedName="RATINGS_ALLRowDeleted" msprop:Generator_RowClassName="RATINGS_ALLRow" msprop:Generator_UserTableName="RATINGS_ALL" msprop:Generator_RowEvArgName="RATINGS_ALLRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="EMPLOYEENAME" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEENAME" msprop:Generator_ColumnPropNameInRow="EMPLOYEENAME" msprop:Generator_ColumnPropNameInTable="EMPLOYEENAMEColumn" msprop:Generator_UserColumnName="EMPLOYEENAME" type="xs:string" minOccurs="0" />
+              <xs:element name="RATE" msprop:Generator_ColumnVarNameInTable="columnRATE" msprop:Generator_ColumnPropNameInRow="RATE" msprop:Generator_ColumnPropNameInTable="RATEColumn" msprop:Generator_UserColumnName="RATE" type="xs:string" minOccurs="0" />
+              <xs:element name="COMPANYNAME" msprop:Generator_ColumnVarNameInTable="columnCOMPANYNAME" msprop:Generator_ColumnPropNameInRow="COMPANYNAME" msprop:Generator_ColumnPropNameInTable="COMPANYNAMEColumn" msprop:Generator_UserColumnName="COMPANYNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHNAME" msprop:Generator_ColumnVarNameInTable="columnBRANCHNAME" msprop:Generator_ColumnPropNameInRow="BRANCHNAME" msprop:Generator_ColumnPropNameInTable="BRANCHNAMEColumn" msprop:Generator_UserColumnName="BRANCHNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHCODE" msprop:Generator_ColumnVarNameInTable="columnBRANCHCODE" msprop:Generator_ColumnPropNameInRow="BRANCHCODE" msprop:Generator_ColumnPropNameInTable="BRANCHCODEColumn" msprop:Generator_UserColumnName="BRANCHCODE" type="xs:string" minOccurs="0" />
+              <xs:element name="BRANCHAREA" msprop:Generator_ColumnVarNameInTable="columnBRANCHAREA" msprop:Generator_ColumnPropNameInRow="BRANCHAREA" msprop:Generator_ColumnPropNameInTable="BRANCHAREAColumn" msprop:Generator_UserColumnName="BRANCHAREA" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE_CREATED" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATED" msprop:Generator_ColumnPropNameInRow="DATE_CREATED" msprop:Generator_ColumnPropNameInTable="DATE_CREATEDColumn" msprop:Generator_UserColumnName="DATE_CREATED" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
