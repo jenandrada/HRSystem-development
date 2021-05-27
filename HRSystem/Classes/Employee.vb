@@ -828,8 +828,7 @@ Public Class Employee
 
             If ds.Tables(0).Rows.Count > 0 Then
 
-                Dim dr As DataRow
-                dr = ds.Tables(0).Rows(0)
+                Dim dr As DataRow = ds.Tables(0).Rows(0)
                 With dr
                     ID = .Item("id")
                     FirstName = .Item("FIRSTNAME")

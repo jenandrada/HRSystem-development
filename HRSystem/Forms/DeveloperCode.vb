@@ -140,18 +140,8 @@ Public Class DeveloperCode
 
             For Each dr In ds.Tables(0).Rows
 
-                'Dim name As String = dr("Lastname") & ", " & dr("Firstname") & " " & dr("Middlename")
-
-                Dim name As String = ""
-
-                If dr("Middlename") = "" Then
-                    name = dr("Lastname") & ", " & dr("Firstname") & " -"
-                Else
-                    name = dr("Lastname") & ", " & dr("Firstname") & " " & dr("Middlename")
-                End If
-
-
-                Console.WriteLine("NAME === " & name & " Req_ID === " & dr("REQ_ID") & "     ID === " & dr("emp_id"))
+                Dim name As String = dr("Lastname") & ", " & dr("Firstname") & " " & dr("Middlename")
+                name = name.ToString.TrimEnd()
 
                 FromDatabaseToFolder(IIf(IsDBNull(dr("PROFILE_PIC")), emptyByte, dr("PROFILE_PIC")), "Profile", name)
                 FromDatabaseToFolder(IIf(IsDBNull(dr("SSS")), emptyByte, dr("SSS")), "SSS", name)

@@ -10,7 +10,9 @@ Public Class frmCoorective
 
     Private Sub FrmCoorective_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        GetSCNo(SCNo_LBL)
+        If ThisHasRow("SHOWCAUSE_RECORDS") Then
+            GetSCNo(SCNo_LBL)
+        End If
 
         Dim tmpRule As New Lists
         'tmpRule.RuleDataTable()
@@ -54,6 +56,7 @@ Public Class frmCoorective
         End If
 
         Close()
+
     End Sub
 
 
@@ -130,6 +133,7 @@ Public Class frmCoorective
             New ReportParameter("paramPosition1", Position1_TXT.Text),
             New ReportParameter("paramPosition3", Position3_TXT.Text),
             New ReportParameter("paramReplySent", datesent),
+            New ReportParameter("paramSCNO", SCNo_LBL.Text),
             New ReportParameter("paramSentVia", SentVia_TXT.Text)
         }
 
@@ -437,6 +441,8 @@ Public Class frmCoorective
 
     Friend Sub ToPDF(ByRef Name As String, ByRef Folder As String, ByRef report As ReportViewer, ByRef listview As ListView)
 
+        Name = Name.ToString.TrimEnd()
+
         Dim DirFolderToCreate As String = "D:\HR Records\" & Folder & ""
         Dim folderName As DirectoryInfo = New DirectoryInfo(DirFolderToCreate)
 
@@ -479,7 +485,7 @@ Public Class frmCoorective
 
         Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf"
 
-        SaveShowCause(EmpName_TXT.Tag, DateSent_DTP.Value, DateSent_DTP.Value.AddDays(5), str, "NO", Company_TXT.Text)
+        SaveShowCause(EmpName_TXT.Tag, DateSent_DTP.Value, DateSent_DTP.Value.AddDays(5), str, "NO", Company_TXT.Text, SCNo_LBL.Text)
 
         MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -642,6 +648,25 @@ Public Class frmCoorective
     Private Sub Explaination_TXT_TextChanged(sender As Object, e As EventArgs) Handles Explaination_TXT.TextChanged
         Alert()
     End Sub
+
+    Private Sub CorrectiveWindow_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CorrectiveWindow.SelectedIndexChanged
+
+        If CorrectiveWindow.SelectedIndex = 2 Then
+            Attachment(DataGridView1, "NO")
+        End If
+
+    End Sub
+
+    Private Sub Pending_RB_Click(sender As Object, e As EventArgs) Handles Pending_RB.Click
+        DataGridView1.Rows.Clear()
+        Attachment(DataGridView1, "NO")
+    End Sub
+
+    Private Sub Finish_RB_Click(sender As Object, e As EventArgs) Handles Finish_RB.Click
+        DataGridView1.Rows.Clear()
+        Attachment(DataGridView1, "YES")
+    End Sub
+
 
     'Private ReadOnly _section As New RichTextBox
 

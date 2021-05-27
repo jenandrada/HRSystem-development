@@ -72,7 +72,6 @@ Partial Class frmCoorective
         Me.Company_TXT = New System.Windows.Forms.TextBox()
         Me.SearchEMP_BTN = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Close_BTN = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Splitter1 = New System.Windows.Forms.Splitter()
         Me.RptViewer_ShowCause = New Microsoft.Reporting.WinForms.ReportViewer()
@@ -128,7 +127,21 @@ Partial Class frmCoorective
         Me.WP_Name_TXT = New System.Windows.Forms.TextBox()
         Me.Splitter2 = New System.Windows.Forms.Splitter()
         Me.RptViewer_WrittenReprimand = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.Attachment_Page = New System.Windows.Forms.TabPage()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Finish_RB = New System.Windows.Forms.RadioButton()
+        Me.Pending_RB = New System.Windows.Forms.RadioButton()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Close_BTN = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.FbDataAdapter1 = New FirebirdSql.Data.FirebirdClient.FbDataAdapter()
+        Me.SCNO_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Name_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Company_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Deadline_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.File_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Explain_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Panel1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.Optional_Group.SuspendLayout()
@@ -149,6 +162,8 @@ Partial Class frmCoorective
         Me.RulesTabPage.SuspendLayout()
         Me.SectionsTabPage.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
+        Me.Attachment_Page.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -164,25 +179,25 @@ Partial Class frmCoorective
         Me.Panel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel1.Location = New System.Drawing.Point(518, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(649, 677)
+        Me.Panel1.Size = New System.Drawing.Size(649, 667)
         Me.Panel1.TabIndex = 0
         '
         'SCNo_LBL
         '
         Me.SCNo_LBL.AutoSize = True
         Me.SCNo_LBL.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SCNo_LBL.Location = New System.Drawing.Point(525, 12)
+        Me.SCNo_LBL.Location = New System.Drawing.Point(525, 20)
         Me.SCNo_LBL.Name = "SCNo_LBL"
-        Me.SCNo_LBL.Size = New System.Drawing.Size(19, 21)
+        Me.SCNo_LBL.Size = New System.Drawing.Size(55, 21)
         Me.SCNo_LBL.TabIndex = 16
-        Me.SCNo_LBL.Text = "0"
+        Me.SCNo_LBL.Text = "00001"
         Me.SCNo_LBL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label17
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(389, 12)
+        Me.Label17.Location = New System.Drawing.Point(389, 20)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(123, 21)
         Me.Label17.TabIndex = 15
@@ -204,9 +219,9 @@ Partial Class frmCoorective
         Me.GroupBox3.Controls.Add(Me.BusinessUnitHead_TXT)
         Me.GroupBox3.Controls.Add(Me.HRSupervisor_TXT)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(27, 776)
+        Me.GroupBox3.Location = New System.Drawing.Point(27, 784)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(582, 460)
+        Me.GroupBox3.Size = New System.Drawing.Size(582, 488)
         Me.GroupBox3.TabIndex = 14
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Explanation"
@@ -294,7 +309,7 @@ Partial Class frmCoorective
         '
         'Save_BTN
         '
-        Me.Save_BTN.Location = New System.Drawing.Point(270, 398)
+        Me.Save_BTN.Location = New System.Drawing.Point(270, 423)
         Me.Save_BTN.Name = "Save_BTN"
         Me.Save_BTN.Size = New System.Drawing.Size(139, 46)
         Me.Save_BTN.TabIndex = 21
@@ -312,7 +327,7 @@ Partial Class frmCoorective
         '
         'OK_BTN
         '
-        Me.OK_BTN.Location = New System.Drawing.Point(437, 398)
+        Me.OK_BTN.Location = New System.Drawing.Point(437, 423)
         Me.OK_BTN.Name = "OK_BTN"
         Me.OK_BTN.Size = New System.Drawing.Size(139, 46)
         Me.OK_BTN.TabIndex = 14
@@ -370,7 +385,7 @@ Partial Class frmCoorective
         Me.GroupBox2.Controls.Add(Me.FromAuditDate_DTP)
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(27, 236)
+        Me.GroupBox2.Location = New System.Drawing.Point(27, 244)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(582, 517)
         Me.GroupBox2.TabIndex = 13
@@ -533,7 +548,7 @@ Partial Class frmCoorective
         Me.GroupBox1.Controls.Add(Me.SearchEMP_BTN)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(27, 46)
+        Me.GroupBox1.Location = New System.Drawing.Point(27, 54)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(582, 164)
         Me.GroupBox1.TabIndex = 12
@@ -626,16 +641,6 @@ Partial Class frmCoorective
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Company:"
         '
-        'Close_BTN
-        '
-        Me.Close_BTN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Close_BTN.Image = CType(resources.GetObject("Close_BTN.Image"), System.Drawing.Image)
-        Me.Close_BTN.Location = New System.Drawing.Point(1151, 0)
-        Me.Close_BTN.Name = "Close_BTN"
-        Me.Close_BTN.Size = New System.Drawing.Size(30, 30)
-        Me.Close_BTN.TabIndex = 0
-        Me.Close_BTN.UseVisualStyleBackColor = True
-        '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.Splitter1)
@@ -644,14 +649,14 @@ Partial Class frmCoorective
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1167, 677)
+        Me.Panel2.Size = New System.Drawing.Size(1167, 667)
         Me.Panel2.TabIndex = 1
         '
         'Splitter1
         '
         Me.Splitter1.Location = New System.Drawing.Point(518, 0)
         Me.Splitter1.Name = "Splitter1"
-        Me.Splitter1.Size = New System.Drawing.Size(3, 677)
+        Me.Splitter1.Size = New System.Drawing.Size(3, 667)
         Me.Splitter1.TabIndex = 1
         Me.Splitter1.TabStop = False
         '
@@ -663,31 +668,31 @@ Partial Class frmCoorective
         Me.RptViewer_ShowCause.Location = New System.Drawing.Point(0, 0)
         Me.RptViewer_ShowCause.Name = "RptViewer_ShowCause"
         Me.RptViewer_ShowCause.ServerReport.BearerToken = Nothing
-        Me.RptViewer_ShowCause.Size = New System.Drawing.Size(518, 677)
+        Me.RptViewer_ShowCause.Size = New System.Drawing.Size(518, 667)
         Me.RptViewer_ShowCause.TabIndex = 0
         '
         'CorrectiveWindow
         '
-        Me.CorrectiveWindow.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.CorrectiveWindow.Controls.Add(Me.ShowCause_Page)
         Me.CorrectiveWindow.Controls.Add(Me.WrittenReprimand_Page)
+        Me.CorrectiveWindow.Controls.Add(Me.Attachment_Page)
         Me.CorrectiveWindow.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CorrectiveWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CorrectiveWindow.Location = New System.Drawing.Point(0, 30)
+        Me.CorrectiveWindow.Location = New System.Drawing.Point(0, 43)
         Me.CorrectiveWindow.Name = "CorrectiveWindow"
         Me.CorrectiveWindow.SelectedIndex = 0
-        Me.CorrectiveWindow.Size = New System.Drawing.Size(1181, 719)
+        Me.CorrectiveWindow.Size = New System.Drawing.Size(1181, 706)
         Me.CorrectiveWindow.TabIndex = 2
         '
         'ShowCause_Page
         '
         Me.ShowCause_Page.Controls.Add(Me.Panel2)
-        Me.ShowCause_Page.Location = New System.Drawing.Point(4, 32)
+        Me.ShowCause_Page.Location = New System.Drawing.Point(4, 29)
         Me.ShowCause_Page.Name = "ShowCause_Page"
         Me.ShowCause_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.ShowCause_Page.Size = New System.Drawing.Size(1173, 683)
+        Me.ShowCause_Page.Size = New System.Drawing.Size(1173, 673)
         Me.ShowCause_Page.TabIndex = 0
-        Me.ShowCause_Page.Text = "Show Cause Notice"
+        Me.ShowCause_Page.Text = "   Show Cause Notice   "
         Me.ShowCause_Page.UseVisualStyleBackColor = True
         '
         'WrittenReprimand_Page
@@ -695,12 +700,12 @@ Partial Class frmCoorective
         Me.WrittenReprimand_Page.Controls.Add(Me.Panel4)
         Me.WrittenReprimand_Page.Controls.Add(Me.Splitter2)
         Me.WrittenReprimand_Page.Controls.Add(Me.RptViewer_WrittenReprimand)
-        Me.WrittenReprimand_Page.Location = New System.Drawing.Point(4, 32)
+        Me.WrittenReprimand_Page.Location = New System.Drawing.Point(4, 29)
         Me.WrittenReprimand_Page.Name = "WrittenReprimand_Page"
         Me.WrittenReprimand_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.WrittenReprimand_Page.Size = New System.Drawing.Size(1173, 683)
+        Me.WrittenReprimand_Page.Size = New System.Drawing.Size(1173, 673)
         Me.WrittenReprimand_Page.TabIndex = 1
-        Me.WrittenReprimand_Page.Text = "Written Reprimand Notice"
+        Me.WrittenReprimand_Page.Text = "   Written Reprimand Notice   "
         Me.WrittenReprimand_Page.UseVisualStyleBackColor = True
         '
         'Panel4
@@ -711,7 +716,7 @@ Partial Class frmCoorective
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel4.Location = New System.Drawing.Point(548, 3)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(622, 677)
+        Me.Panel4.Size = New System.Drawing.Size(622, 667)
         Me.Panel4.TabIndex = 2
         '
         'GroupBox5
@@ -1160,7 +1165,7 @@ Partial Class frmCoorective
         '
         Me.Splitter2.Location = New System.Drawing.Point(545, 3)
         Me.Splitter2.Name = "Splitter2"
-        Me.Splitter2.Size = New System.Drawing.Size(3, 677)
+        Me.Splitter2.Size = New System.Drawing.Size(3, 667)
         Me.Splitter2.TabIndex = 1
         Me.Splitter2.TabStop = False
         '
@@ -1171,17 +1176,138 @@ Partial Class frmCoorective
         Me.RptViewer_WrittenReprimand.Location = New System.Drawing.Point(3, 3)
         Me.RptViewer_WrittenReprimand.Name = "RptViewer_WrittenReprimand"
         Me.RptViewer_WrittenReprimand.ServerReport.BearerToken = Nothing
-        Me.RptViewer_WrittenReprimand.Size = New System.Drawing.Size(542, 677)
+        Me.RptViewer_WrittenReprimand.Size = New System.Drawing.Size(542, 667)
         Me.RptViewer_WrittenReprimand.TabIndex = 0
+        '
+        'Attachment_Page
+        '
+        Me.Attachment_Page.Controls.Add(Me.Button2)
+        Me.Attachment_Page.Controls.Add(Me.Finish_RB)
+        Me.Attachment_Page.Controls.Add(Me.Pending_RB)
+        Me.Attachment_Page.Controls.Add(Me.DataGridView1)
+        Me.Attachment_Page.Location = New System.Drawing.Point(4, 29)
+        Me.Attachment_Page.Name = "Attachment_Page"
+        Me.Attachment_Page.Padding = New System.Windows.Forms.Padding(3)
+        Me.Attachment_Page.Size = New System.Drawing.Size(1173, 673)
+        Me.Attachment_Page.TabIndex = 2
+        Me.Attachment_Page.Text = "   Attachment   "
+        Me.Attachment_Page.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(1014, 290)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(118, 54)
+        Me.Button2.TabIndex = 10
+        Me.Button2.Text = "Save"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Finish_RB
+        '
+        Me.Finish_RB.AutoSize = True
+        Me.Finish_RB.Location = New System.Drawing.Point(1084, 16)
+        Me.Finish_RB.Name = "Finish_RB"
+        Me.Finish_RB.Size = New System.Drawing.Size(69, 24)
+        Me.Finish_RB.TabIndex = 8
+        Me.Finish_RB.Text = "Finish"
+        Me.Finish_RB.UseVisualStyleBackColor = True
+        '
+        'Pending_RB
+        '
+        Me.Pending_RB.AutoSize = True
+        Me.Pending_RB.Checked = True
+        Me.Pending_RB.Location = New System.Drawing.Point(981, 16)
+        Me.Pending_RB.Name = "Pending_RB"
+        Me.Pending_RB.Size = New System.Drawing.Size(85, 24)
+        Me.Pending_RB.TabIndex = 7
+        Me.Pending_RB.TabStop = True
+        Me.Pending_RB.Text = "Pending"
+        Me.Pending_RB.UseVisualStyleBackColor = True
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace
+        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SCNO_DGV, Me.Name_DGV, Me.Company_DGV, Me.Deadline_DGV, Me.File_DGV, Me.Explain_DGV})
+        Me.DataGridView1.Location = New System.Drawing.Point(9, 67)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowHeadersVisible = False
+        Me.DataGridView1.Size = New System.Drawing.Size(974, 611)
+        Me.DataGridView1.TabIndex = 6
+        '
+        'Close_BTN
+        '
+        Me.Close_BTN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Close_BTN.Image = CType(resources.GetObject("Close_BTN.Image"), System.Drawing.Image)
+        Me.Close_BTN.Location = New System.Drawing.Point(1151, 0)
+        Me.Close_BTN.Name = "Close_BTN"
+        Me.Close_BTN.Size = New System.Drawing.Size(30, 30)
+        Me.Close_BTN.TabIndex = 0
+        Me.Close_BTN.UseVisualStyleBackColor = True
         '
         'Panel3
         '
+        Me.Panel3.Controls.Add(Me.Label21)
         Me.Panel3.Controls.Add(Me.Close_BTN)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1181, 30)
+        Me.Panel3.Size = New System.Drawing.Size(1181, 43)
         Me.Panel3.TabIndex = 3
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Segoe UI", 18.0!)
+        Me.Label21.Location = New System.Drawing.Point(3, 6)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(130, 32)
+        Me.Label21.TabIndex = 9
+        Me.Label21.Text = "Dashboard"
+        '
+        'SCNO_DGV
+        '
+        Me.SCNO_DGV.HeaderText = "SC No."
+        Me.SCNO_DGV.Name = "SCNO_DGV"
+        Me.SCNO_DGV.ReadOnly = True
+        '
+        'Name_DGV
+        '
+        Me.Name_DGV.HeaderText = "Name"
+        Me.Name_DGV.Name = "Name_DGV"
+        Me.Name_DGV.ReadOnly = True
+        Me.Name_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Name_DGV.Width = 250
+        '
+        'Company_DGV
+        '
+        Me.Company_DGV.HeaderText = "Company"
+        Me.Company_DGV.Name = "Company_DGV"
+        Me.Company_DGV.ReadOnly = True
+        Me.Company_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Company_DGV.Width = 200
+        '
+        'Deadline_DGV
+        '
+        Me.Deadline_DGV.HeaderText = "Deadline"
+        Me.Deadline_DGV.Name = "Deadline_DGV"
+        Me.Deadline_DGV.ReadOnly = True
+        Me.Deadline_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Deadline_DGV.Width = 200
+        '
+        'File_DGV
+        '
+        Me.File_DGV.HeaderText = "   File Path"
+        Me.File_DGV.Name = "File_DGV"
+        '
+        'Explain_DGV
+        '
+        Me.Explain_DGV.HeaderText = "   Explaination"
+        Me.Explain_DGV.Name = "Explain_DGV"
+        Me.Explain_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Explain_DGV.Width = 120
         '
         'frmCoorective
         '
@@ -1221,7 +1347,11 @@ Partial Class frmCoorective
         Me.SectionsTabPage.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.Attachment_Page.ResumeLayout(False)
+        Me.Attachment_Page.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1251,7 +1381,6 @@ Partial Class frmCoorective
     Friend WithEvents CorrectiveWindow As TabControl
     Friend WithEvents ShowCause_Page As TabPage
     Friend WithEvents WrittenReprimand_Page As TabPage
-    Friend WithEvents Panel3 As Panel
     Friend WithEvents Splitter1 As Splitter
     Friend WithEvents Audit_CHK As CheckBox
     Friend WithEvents BusinessUnitHead_TXT As TextBox
@@ -1332,4 +1461,18 @@ Partial Class frmCoorective
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents SCNo_LBL As Label
     Friend WithEvents Label17 As Label
+    Friend WithEvents Attachment_Page As TabPage
+    Friend WithEvents Finish_RB As RadioButton
+    Friend WithEvents Pending_RB As RadioButton
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents FbDataAdapter1 As FirebirdSql.Data.FirebirdClient.FbDataAdapter
+    Friend WithEvents SCNO_DGV As DataGridViewTextBoxColumn
+    Friend WithEvents Name_DGV As DataGridViewTextBoxColumn
+    Friend WithEvents Company_DGV As DataGridViewTextBoxColumn
+    Friend WithEvents Deadline_DGV As DataGridViewTextBoxColumn
+    Friend WithEvents File_DGV As DataGridViewButtonColumn
+    Friend WithEvents Explain_DGV As DataGridViewButtonColumn
 End Class

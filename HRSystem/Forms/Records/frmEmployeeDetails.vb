@@ -149,32 +149,13 @@ Public Class frmEmployeeDetails
         PopulateComboBox(Position_combo, "tbl_employee", "EMP_POSITION")
         PopulateComboBox(Branch_combo, "tbl_branch", "BRANCHNAME")
 
-        GreatestBiometric()
+        If ThisHasRow("tbl_employee") Then
+            GreatestBiometric(BioNumber_TXT)
+        End If
+
 
     End Sub
 
-    Public Sub GreatestBiometric()
-
-        Dim mysql As String = "Select MAX(BIOMETRICID) + 1  As Greatest FROM tbl_Employee"
-        Using ds As DataSet = LoadSQL(mysql)
-
-            Dim dr As DataRow = ds.Tables(0).Rows(0)
-            If dr.Table.Rows.Count > 0 Then
-                With dr
-
-                    'Dim year As String = DateHired_DTP.Value.ToString("yy")
-                    'Dim month As String = DateHired_DTP.Value.ToString("MM")
-                    'BioNumber_TXT.Text = year & "-0" & month & "-" & .Item("Greatest")
-                    'BioNumber_TXT.Tag = .Item("Greatest")
-
-                    BioNumber_TXT.Text = .Item("Greatest")
-                End With
-            Else
-                Exit Sub
-            End If
-        End Using
-
-    End Sub
 
     Private Sub EmpProfile_Pic_DoubleClick(sender As Object, e As EventArgs) Handles EmpProfile_Pic.DoubleClick
         Using openF As New OpenFileDialog()
@@ -306,12 +287,14 @@ Public Class frmEmployeeDetails
 
         Dim namePic As String = ""
 
-        If MiddleName_TXT.Text = "" Then
-            namePic = LastName_TXT.Text & ", " & FirstName_TXT.Text & " -"
-        Else
-            namePic = LastName_TXT.Text & ", " & FirstName_TXT.Text & " " & MiddleName_TXT.Text
-        End If
+        'If MiddleName_TXT.Text = "" Then
+        '    namePic = LastName_TXT.Text & ", " & FirstName_TXT.Text & " -"
+        'Else
+        '    namePic = LastName_TXT.Text & ", " & FirstName_TXT.Text & " " & MiddleName_TXT.Text
+        'End If
 
+        namePic = LastName_TXT.Text & ", " & FirstName_TXT.Text & " " & MiddleName_TXT.Text
+        namePic = namePic.ToString.TrimEnd()
 
         emp.LoadImage(namePic, EmpProfile_Pic, "Profile")
         emp.LoadImage(namePic, SSSID_PB, "SSS")
@@ -392,7 +375,7 @@ Public Class frmEmployeeDetails
             End If
         Next
 
-        GreatestBiometric()
+        GreatestBiometric(BioNumber_TXT)
     End Sub
 
     Private Sub Disable(ByVal st As Boolean)
@@ -600,6 +583,8 @@ Public Class frmEmployeeDetails
 
     Friend Sub ToFOLDER(ByVal Name As String, ByVal Folder As String, ByVal ImageName As String, ByVal picture As PictureBox)
 
+        Name = Name.ToString.TrimEnd()
+
         Dim folderName As DirectoryInfo = New DirectoryInfo("D:\HR Records\" & Folder)
         Dim employee As DirectoryInfo = New DirectoryInfo("D:\HR Records\" & Folder & "\" & Name)
 
@@ -631,13 +616,8 @@ Public Class frmEmployeeDetails
 
     Friend Sub IfImageNothing(ByVal picture As PictureBox, ByVal nameOfPicture As String)
 
-        Dim name As String = ""
-
-        If MiddleName_TXT.Text = "" Then
-            name = LastName_TXT.Text & ", " & FirstName_TXT.Text & " -"
-        Else
-            name = LastName_TXT.Text & ", " & FirstName_TXT.Text & " " & MiddleName_TXT.Text
-        End If
+        Dim name As String = LastName_TXT.Text & ", " & FirstName_TXT.Text & " " & MiddleName_TXT.Text
+        name = name.ToString.TrimEnd()
 
         If Not picture.Image Is Nothing Then
             ToFOLDER(name, "201", nameOfPicture, picture)
@@ -705,7 +685,6 @@ Public Class frmEmployeeDetails
 
                 .SaveEmployee()
 
-                Console.WriteLine("NAMEEEE = " & LastName_TXT.Text & ", " & FirstName_TXT.Text & " " & MiddleName_TXT.Text)
                 saveImage()
                 '=============================== SAVE CHECK REQ LIST ================================================='
 

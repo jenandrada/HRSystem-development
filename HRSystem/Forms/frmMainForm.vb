@@ -2,7 +2,6 @@
 Imports System.IO
 Imports DBConnect
 Imports DBConnect.Tools
-Imports FirebirdSql.Data.FirebirdClient
 
 Public Class frmMainForm
     Dim mPower As ManPower
@@ -251,6 +250,7 @@ Public Class frmMainForm
 
     Private Sub Dashboard_BTN_Click(sender As Object, e As EventArgs) Handles Dashboard_BTN.Click
         'OpenWindowsForm("frmRecruitmentDashboard")
+        OpenWindowsForm("frmDashboard")
     End Sub
 
     Private Sub ManPowerReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManPowerReportToolStripMenuItem.Click

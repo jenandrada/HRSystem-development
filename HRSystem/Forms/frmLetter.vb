@@ -163,6 +163,7 @@ Public Class frmLetter
     End Function
 
     Friend Sub ToPDF(Name As String, Folder As String, letterOF As String, report As ReportViewer)
+
         Dim DirFolderToCreate As String = "D:\HR Records\" & Folder & "\" & letterOF & ""
         Dim folderName As DirectoryInfo = New DirectoryInfo(DirFolderToCreate)
 

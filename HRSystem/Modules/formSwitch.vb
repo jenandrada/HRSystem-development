@@ -161,6 +161,7 @@
                 frmMainForm.pNavigate.Controls.Add(frmCoorective)
                 frmMainForm.pNavigate.Tag = frmCoorective
                 frmCoorective.Show()
+
                 If tab = 1 Then
                     frmCoorective.CorrectiveWindow.SelectedIndex = 0
                     frmCoorective.LoadEmployeeShowCause(cus)
