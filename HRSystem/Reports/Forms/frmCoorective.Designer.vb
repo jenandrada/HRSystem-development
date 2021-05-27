@@ -1205,7 +1205,7 @@ Partial Class frmCoorective
         Me.Modify_Panel.Controls.Add(Me.PictureBox1)
         Me.Modify_Panel.Controls.Add(Me.Close_Modify_BTN)
         Me.Modify_Panel.Controls.Add(Me.Check_BTN)
-        Me.Modify_Panel.Location = New System.Drawing.Point(334, 119)
+        Me.Modify_Panel.Location = New System.Drawing.Point(322, 108)
         Me.Modify_Panel.Name = "Modify_Panel"
         Me.Modify_Panel.Size = New System.Drawing.Size(412, 367)
         Me.Modify_Panel.TabIndex = 75
