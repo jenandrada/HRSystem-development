@@ -48,7 +48,6 @@
             Dim dr As DataRow = ds.Tables(0).Rows(0)
             If dr.Table.Rows.Count > 0 Then
                 With dr
-                    'Dim idx As Long = Format(.Item("Greatest"), "00000")
                     SCNO.Text = Format(.Item("Greatest"), "00000")
 
                 End With

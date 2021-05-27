@@ -158,6 +158,7 @@ Public Class frmEmployeeDetails
 
 
     Private Sub EmpProfile_Pic_DoubleClick(sender As Object, e As EventArgs) Handles EmpProfile_Pic.DoubleClick
+
         Using openF As New OpenFileDialog()
             Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
             Dim sep As String = String.Empty
@@ -187,6 +188,7 @@ Public Class frmEmployeeDetails
                 End If
             End If
         End Using
+
     End Sub
 
     Friend Sub LoadEmployees(emp As Employee)

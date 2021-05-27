@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Drawing.Imaging
+Imports System.IO
 Imports FirebirdSql.Data.FirebirdClient
 
 Public Class frmCoorective
@@ -489,7 +490,6 @@ Public Class frmCoorective
 
         MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        Process.Start(str)
     End Sub
 
     Private Sub Save_BTN_Click(sender As Object, e As EventArgs) Handles Save_BTN.Click
@@ -667,6 +667,122 @@ Public Class frmCoorective
         Attachment(DataGridView1, "YES")
     End Sub
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+        Dim grid = DirectCast(sender, DataGridView)
+        Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+        'Dim pic As PictureBox = row.Cells("Explain_DGV").Value
+
+        If TypeOf grid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn Then
+            If grid.Columns(e.ColumnIndex).Name = "File_DGV" Then
+
+                Process.Start(row.Cells("File_DGV").Tag)
+            End If
+        End If
+    End Sub
+
+    'Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
+    '    Using openF As New OpenFileDialog()
+    '        Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
+    '        Dim sep As String = String.Empty
+    '        With openF
+    '            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+    '            .Title = "Save As Image"
+    '            .DefaultExt = ".JPG"
+    '            .Filter = ""
+    '            .FilterIndex = 2
+    '            .RestoreDirectory = True
+    '            .FileName = "*.JPG"
+    '        End With
+    '        For Each c As ImageCodecInfo In codecs
+    '            Dim codecName As String = c.CodecName.Substring(8).Replace("Codec", "Files").Trim()
+    '            openF.Filter = $"{openF.Filter }{sep }{codecName } ({c.FilenameExtension })|{c.FilenameExtension }"
+    '            sep = "|"
+    '        Next
+    '        If openF.ShowDialog = DialogResult.OK Then
+    '            If Not Image.FromFile(openF.FileName).Size = PictureBox1.InitialImage.Size Then
+    '                PictureBox1.Image = Image.FromFile(openF.FileName)
+    '                PictureBox1.Tag = openF.FileName
+    '                PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+    '            Else
+    '                PictureBox1.Image = Image.FromFile(openF.FileName)
+    '                PictureBox1.Tag = openF.FileName
+    '                PictureBox1.SizeMode = PictureBoxSizeMode.CenterImage
+    '            End If
+    '        End If
+    '    End Using
+    'End Sub
+
+    Private Sub DataGridView1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles DataGridView1.MouseDoubleClick
+
+        Using openF As New OpenFileDialog()
+            Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
+            Dim sep As String = String.Empty
+            With openF
+                .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+                .Title = "Save As Image"
+                .DefaultExt = ".JPG"
+                .Filter = ""
+                .FilterIndex = 2
+                .RestoreDirectory = True
+                .FileName = "*.JPG"
+            End With
+            For Each c As ImageCodecInfo In codecs
+                Dim codecName As String = c.CodecName.Substring(8).Replace("Codec", "Files").Trim()
+                openF.Filter = $"{openF.Filter }{sep }{codecName } ({c.FilenameExtension })|{c.FilenameExtension }"
+                sep = "|"
+            Next
+            If openF.ShowDialog = DialogResult.OK Then
+                If Not Image.FromFile(openF.FileName).Size = PictureBox1.InitialImage.Size Then
+                    PictureBox1.Image = Image.FromFile(openF.FileName)
+                    PictureBox1.Tag = openF.FileName
+                    PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+                Else
+                    PictureBox1.Image = Image.FromFile(openF.FileName)
+                    PictureBox1.Tag = openF.FileName
+                    PictureBox1.SizeMode = PictureBoxSizeMode.CenterImage
+                End If
+            End If
+        End Using
+
+
+        Modify_Panel.Location = New Point(e.X, e.Y)
+        Modify_Panel.Visible = True
+    End Sub
+
+    'Private Sub OpenExplorer()
+
+    '    Using openF As New OpenFileDialog()
+    '        Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
+    '        Dim sep As String = String.Empty
+    '        With openF
+    '            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+    '            .Title = "Save As Image"
+    '            .DefaultExt = ".JPG"
+    '            .Filter = ""
+    '            .FilterIndex = 2
+    '            .RestoreDirectory = True
+    '            .FileName = "*.JPG"
+    '        End With
+    '        For Each c As ImageCodecInfo In codecs
+    '            Dim codecName As String = c.CodecName.Substring(8).Replace("Codec", "Files").Trim()
+    '            openF.Filter = $"{openF.Filter }{sep }{codecName } ({c.FilenameExtension })|{c.FilenameExtension }"
+    '            sep = "|"
+    '        Next
+    '        If openF.ShowDialog = DialogResult.OK Then
+    '            If Not Image.FromFile(openF.FileName).Size = pic.InitialImage.Size Then
+    '                pic.Image = Image.FromFile(openF.FileName)
+    '                pic.Tag = openF.FileName
+    '                pic.SizeMode = PictureBoxSizeMode.StretchImage
+    '            Else
+    '                pic.Image = Image.FromFile(openF.FileName)
+    '                pic.Tag = openF.FileName
+    '                pic.SizeMode = PictureBoxSizeMode.CenterImage
+    '            End If
+    '        End If
+    '    End Using
+
+    'End Sub
 
     'Private ReadOnly _section As New RichTextBox
 

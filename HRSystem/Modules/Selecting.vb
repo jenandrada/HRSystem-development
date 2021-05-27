@@ -22,6 +22,7 @@
 
     End Sub
 
+
     Public Sub AddItem(ByVal dr As DataRow, datagrid As DataGridView)
 
         With dr
@@ -32,27 +33,26 @@
                 MI = .Item("MIDDLENAME").Substring(0, 1) & "."
             End If
 
-            Dim str As String = .Item("DATE_DEADLINE").ToString
-            'Console.WriteLine("AAAA =" & str.ToString("d"))
-
-            'Dim datee As DateTime = .ToString("d")
+            Dim datee As DateTime = CDate(.Item("DATE_DEADLINE"))
+            'Dim num As Integer = .Item("SCNO")
 
             Dim rowId As Integer = datagrid.Rows.Add()
             Dim row As DataGridViewRow = datagrid.Rows(rowId)
-            row.Cells("SCNO_DGV").Value = .Item("SCNO")
+            row.Cells("SCNO_DGV").Value = Format(.Item("SCNO"), "00000")
             row.Cells("Name_DGV").Value = .Item("LASTNAME") & ", " & .Item("FIRSTNAME") & " " & MI
             row.Cells("Company_DGV").Value = .Item("COMPANY")
-            row.Cells("Deadline_DGV").Value = str
+            row.Cells("Deadline_DGV").Value = datee.ToString("D")
             row.Cells("File_DGV").Value = "Open"
             row.Cells("File_DGV").Tag = .Item("PATH")
+            row.Cells("Explain_DGV").Value = .Item("IMAGEEXPLAIN")
 
         End With
 
         For i = 0 To datagrid.Rows.Count - 1
             Dim r As DataGridViewRow = datagrid.Rows(i)
-            r.Height = 28
+            r.Height = 35
         Next
-    End Sub
 
+    End Sub
 
 End Module

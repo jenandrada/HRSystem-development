@@ -128,20 +128,23 @@ Partial Class frmCoorective
         Me.Splitter2 = New System.Windows.Forms.Splitter()
         Me.RptViewer_WrittenReprimand = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.Attachment_Page = New System.Windows.Forms.TabPage()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Modify_Panel = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Close_Modify_BTN = New System.Windows.Forms.Button()
+        Me.Check_BTN = New System.Windows.Forms.Button()
         Me.Finish_RB = New System.Windows.Forms.RadioButton()
         Me.Pending_RB = New System.Windows.Forms.RadioButton()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Close_BTN = New System.Windows.Forms.Button()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.FbDataAdapter1 = New FirebirdSql.Data.FirebirdClient.FbDataAdapter()
         Me.SCNO_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Name_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Company_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Deadline_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.File_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Explain_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Explain_DGV = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Close_BTN = New System.Windows.Forms.Button()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.FbDataAdapter1 = New FirebirdSql.Data.FirebirdClient.FbDataAdapter()
         Me.Panel1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.Optional_Group.SuspendLayout()
@@ -163,6 +166,8 @@ Partial Class frmCoorective
         Me.SectionsTabPage.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.Attachment_Page.SuspendLayout()
+        Me.Modify_Panel.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
@@ -1181,7 +1186,7 @@ Partial Class frmCoorective
         '
         'Attachment_Page
         '
-        Me.Attachment_Page.Controls.Add(Me.Button2)
+        Me.Attachment_Page.Controls.Add(Me.Modify_Panel)
         Me.Attachment_Page.Controls.Add(Me.Finish_RB)
         Me.Attachment_Page.Controls.Add(Me.Pending_RB)
         Me.Attachment_Page.Controls.Add(Me.DataGridView1)
@@ -1193,14 +1198,46 @@ Partial Class frmCoorective
         Me.Attachment_Page.Text = "   Attachment   "
         Me.Attachment_Page.UseVisualStyleBackColor = True
         '
-        'Button2
+        'Modify_Panel
         '
-        Me.Button2.Location = New System.Drawing.Point(1014, 290)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(118, 54)
-        Me.Button2.TabIndex = 10
-        Me.Button2.Text = "Save"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Modify_Panel.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Modify_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Modify_Panel.Controls.Add(Me.PictureBox1)
+        Me.Modify_Panel.Controls.Add(Me.Close_Modify_BTN)
+        Me.Modify_Panel.Controls.Add(Me.Check_BTN)
+        Me.Modify_Panel.Location = New System.Drawing.Point(334, 119)
+        Me.Modify_Panel.Name = "Modify_Panel"
+        Me.Modify_Panel.Size = New System.Drawing.Size(412, 367)
+        Me.Modify_Panel.TabIndex = 75
+        Me.Modify_Panel.Visible = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(15, 18)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(379, 297)
+        Me.PictureBox1.TabIndex = 9
+        Me.PictureBox1.TabStop = False
+        '
+        'Close_Modify_BTN
+        '
+        Me.Close_Modify_BTN.Font = New System.Drawing.Font("Dubai", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Close_Modify_BTN.Location = New System.Drawing.Point(15, 324)
+        Me.Close_Modify_BTN.Name = "Close_Modify_BTN"
+        Me.Close_Modify_BTN.Size = New System.Drawing.Size(60, 35)
+        Me.Close_Modify_BTN.TabIndex = 80
+        Me.Close_Modify_BTN.Text = "X"
+        Me.Close_Modify_BTN.UseVisualStyleBackColor = True
+        '
+        'Check_BTN
+        '
+        Me.Check_BTN.Font = New System.Drawing.Font("Dubai", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Check_BTN.Location = New System.Drawing.Point(334, 324)
+        Me.Check_BTN.Name = "Check_BTN"
+        Me.Check_BTN.Size = New System.Drawing.Size(60, 35)
+        Me.Check_BTN.TabIndex = 79
+        Me.Check_BTN.Text = "√"
+        Me.Check_BTN.UseVisualStyleBackColor = True
         '
         'Finish_RB
         '
@@ -1234,8 +1271,53 @@ Partial Class frmCoorective
         Me.DataGridView1.Location = New System.Drawing.Point(9, 67)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(974, 611)
+        Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DataGridView1.Size = New System.Drawing.Size(1156, 611)
         Me.DataGridView1.TabIndex = 6
+        '
+        'SCNO_DGV
+        '
+        Me.SCNO_DGV.HeaderText = "SC No."
+        Me.SCNO_DGV.Name = "SCNO_DGV"
+        Me.SCNO_DGV.ReadOnly = True
+        Me.SCNO_DGV.Width = 130
+        '
+        'Name_DGV
+        '
+        Me.Name_DGV.HeaderText = "Name"
+        Me.Name_DGV.Name = "Name_DGV"
+        Me.Name_DGV.ReadOnly = True
+        Me.Name_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Name_DGV.Width = 300
+        '
+        'Company_DGV
+        '
+        Me.Company_DGV.HeaderText = "Company"
+        Me.Company_DGV.Name = "Company_DGV"
+        Me.Company_DGV.ReadOnly = True
+        Me.Company_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Company_DGV.Width = 230
+        '
+        'Deadline_DGV
+        '
+        Me.Deadline_DGV.HeaderText = "Deadline"
+        Me.Deadline_DGV.Name = "Deadline_DGV"
+        Me.Deadline_DGV.ReadOnly = True
+        Me.Deadline_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Deadline_DGV.Width = 220
+        '
+        'File_DGV
+        '
+        Me.File_DGV.HeaderText = "   File Path"
+        Me.File_DGV.Name = "File_DGV"
+        Me.File_DGV.Width = 130
+        '
+        'Explain_DGV
+        '
+        Me.Explain_DGV.HeaderText = ""
+        Me.Explain_DGV.Name = "Explain_DGV"
+        Me.Explain_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Explain_DGV.Width = 140
         '
         'Close_BTN
         '
@@ -1263,51 +1345,9 @@ Partial Class frmCoorective
         Me.Label21.Font = New System.Drawing.Font("Segoe UI", 18.0!)
         Me.Label21.Location = New System.Drawing.Point(3, 6)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(130, 32)
+        Me.Label21.Size = New System.Drawing.Size(123, 32)
         Me.Label21.TabIndex = 9
-        Me.Label21.Text = "Dashboard"
-        '
-        'SCNO_DGV
-        '
-        Me.SCNO_DGV.HeaderText = "SC No."
-        Me.SCNO_DGV.Name = "SCNO_DGV"
-        Me.SCNO_DGV.ReadOnly = True
-        '
-        'Name_DGV
-        '
-        Me.Name_DGV.HeaderText = "Name"
-        Me.Name_DGV.Name = "Name_DGV"
-        Me.Name_DGV.ReadOnly = True
-        Me.Name_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Name_DGV.Width = 250
-        '
-        'Company_DGV
-        '
-        Me.Company_DGV.HeaderText = "Company"
-        Me.Company_DGV.Name = "Company_DGV"
-        Me.Company_DGV.ReadOnly = True
-        Me.Company_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Company_DGV.Width = 200
-        '
-        'Deadline_DGV
-        '
-        Me.Deadline_DGV.HeaderText = "Deadline"
-        Me.Deadline_DGV.Name = "Deadline_DGV"
-        Me.Deadline_DGV.ReadOnly = True
-        Me.Deadline_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Deadline_DGV.Width = 200
-        '
-        'File_DGV
-        '
-        Me.File_DGV.HeaderText = "   File Path"
-        Me.File_DGV.Name = "File_DGV"
-        '
-        'Explain_DGV
-        '
-        Me.Explain_DGV.HeaderText = "   Explaination"
-        Me.Explain_DGV.Name = "Explain_DGV"
-        Me.Explain_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Explain_DGV.Width = 120
+        Me.Label21.Text = "Corrective"
         '
         'frmCoorective
         '
@@ -1349,6 +1389,8 @@ Partial Class frmCoorective
         Me.GroupBox4.PerformLayout()
         Me.Attachment_Page.ResumeLayout(False)
         Me.Attachment_Page.PerformLayout()
+        Me.Modify_Panel.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
@@ -1467,12 +1509,15 @@ Partial Class frmCoorective
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label21 As Label
-    Friend WithEvents Button2 As Button
     Friend WithEvents FbDataAdapter1 As FirebirdSql.Data.FirebirdClient.FbDataAdapter
     Friend WithEvents SCNO_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Name_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Company_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Deadline_DGV As DataGridViewTextBoxColumn
     Friend WithEvents File_DGV As DataGridViewButtonColumn
-    Friend WithEvents Explain_DGV As DataGridViewButtonColumn
+    Friend WithEvents Explain_DGV As DataGridViewImageColumn
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Modify_Panel As Panel
+    Friend WithEvents Close_Modify_BTN As Button
+    Friend WithEvents Check_BTN As Button
 End Class
