@@ -122,10 +122,6 @@ Partial Class frmLetter
         Me.Allow_Select_List = New System.Windows.Forms.Button()
         Me.GroupBox_Datagrid = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Name_DataGrid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Previous_DataGrid = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Current_DataGrid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Amount_DataGrid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Allow_Clear_List = New System.Windows.Forms.Button()
         Me.Allow_total_List = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
@@ -192,6 +188,10 @@ Partial Class frmLetter
         Me.rpt_Allowance = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.ContextMenu_Remove = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Name_DataGrid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Previous_DataGrid = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Current_DataGrid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Amount_DataGrid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -1263,34 +1263,6 @@ Partial Class frmLetter
         Me.DataGridView1.Size = New System.Drawing.Size(559, 279)
         Me.DataGridView1.TabIndex = 41
         '
-        'Name_DataGrid
-        '
-        Me.Name_DataGrid.HeaderText = "Name"
-        Me.Name_DataGrid.Name = "Name_DataGrid"
-        Me.Name_DataGrid.ReadOnly = True
-        Me.Name_DataGrid.Width = 195
-        '
-        'Previous_DataGrid
-        '
-        Me.Previous_DataGrid.HeaderText = "Previous Branch"
-        Me.Previous_DataGrid.Name = "Previous_DataGrid"
-        Me.Previous_DataGrid.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Previous_DataGrid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Previous_DataGrid.Width = 135
-        '
-        'Current_DataGrid
-        '
-        Me.Current_DataGrid.HeaderText = "Current Branch"
-        Me.Current_DataGrid.Name = "Current_DataGrid"
-        Me.Current_DataGrid.ReadOnly = True
-        Me.Current_DataGrid.Width = 135
-        '
-        'Amount_DataGrid
-        '
-        Me.Amount_DataGrid.HeaderText = "Amount"
-        Me.Amount_DataGrid.Name = "Amount_DataGrid"
-        Me.Amount_DataGrid.Width = 90
-        '
         'Allow_Clear_List
         '
         Me.Allow_Clear_List.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1965,6 +1937,32 @@ Partial Class frmLetter
         Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
         Me.RemoveToolStripMenuItem.Text = "Remove"
         '
+        'Name_DataGrid
+        '
+        Me.Name_DataGrid.HeaderText = "Name"
+        Me.Name_DataGrid.Name = "Name_DataGrid"
+        Me.Name_DataGrid.Width = 195
+        '
+        'Previous_DataGrid
+        '
+        Me.Previous_DataGrid.HeaderText = "Previous Branch"
+        Me.Previous_DataGrid.Name = "Previous_DataGrid"
+        Me.Previous_DataGrid.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Previous_DataGrid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Previous_DataGrid.Width = 135
+        '
+        'Current_DataGrid
+        '
+        Me.Current_DataGrid.HeaderText = "Current Branch"
+        Me.Current_DataGrid.Name = "Current_DataGrid"
+        Me.Current_DataGrid.Width = 135
+        '
+        'Amount_DataGrid
+        '
+        Me.Amount_DataGrid.HeaderText = "Amount"
+        Me.Amount_DataGrid.Name = "Amount_DataGrid"
+        Me.Amount_DataGrid.Width = 90
+        '
         'frmLetter
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2181,10 +2179,6 @@ Partial Class frmLetter
     Friend WithEvents RemoveToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GroupBox_Subject As GroupBox
     Friend WithEvents GroupBox_Datagrid As GroupBox
-    Friend WithEvents Name_DataGrid As DataGridViewTextBoxColumn
-    Friend WithEvents Previous_DataGrid As DataGridViewComboBoxColumn
-    Friend WithEvents Current_DataGrid As DataGridViewTextBoxColumn
-    Friend WithEvents Amount_DataGrid As DataGridViewTextBoxColumn
     Friend WithEvents Label34 As Label
     Friend WithEvents R_Remarks_RichText As RichTextBox
     Friend WithEvents Other_TXT As TextBox
@@ -2193,4 +2187,8 @@ Partial Class frmLetter
     Friend WithEvents Other_TXT1 As TextBox
     Friend WithEvents CareKit_TXT1 As TextBox
     Friend WithEvents BH_TXT1 As TextBox
+    Friend WithEvents Name_DataGrid As DataGridViewTextBoxColumn
+    Friend WithEvents Previous_DataGrid As DataGridViewComboBoxColumn
+    Friend WithEvents Current_DataGrid As DataGridViewTextBoxColumn
+    Friend WithEvents Amount_DataGrid As DataGridViewTextBoxColumn
 End Class

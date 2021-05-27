@@ -1,8 +1,5 @@
-﻿Imports System.Drawing.Imaging
-Imports System.Configuration
-Imports System.IO
+﻿Imports System.IO
 Imports FirebirdSql.Data.FirebirdClient
-Imports System.Globalization
 
 
 Public Class frmLetter
@@ -86,9 +83,9 @@ Public Class frmLetter
 
     Private Sub frmLetter_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        PopulateComboBox(R_PositionAs_CB, "tblmanning", "EMP_POSITION")
+        PopulateComboBox(R_PositionAs_CB, "tbl_Employee", "EMP_POSITION")
         PopulateComboBox(R_ToBranch_CB, "tbl_branch", "BRANCHNAME")
-        PopulateComboBox(AP_PositionAs_CB, "tblmanning", "EMP_POSITION")
+        PopulateComboBox(AP_PositionAs_CB, "tbl_Employee", "EMP_POSITION")
         PopulateComboBox(AP_ToBranch_CB, "tbl_branch", "BRANCHNAME")
         AP_DateIssued_DP.Value = DateTime.Now
         R_DateIssued_DTP.Value = DateTime.Now
@@ -166,11 +163,10 @@ Public Class frmLetter
     End Function
 
     Friend Sub ToPDF(Name As String, Folder As String, letterOF As String, report As ReportViewer)
-        Dim DirFolderToCreate As String = "D:\" & Folder & "\" & letterOF & ""
+        Dim DirFolderToCreate As String = "D:\HR Records\" & Folder & "\" & letterOF & ""
         Dim folderName As DirectoryInfo = New DirectoryInfo(DirFolderToCreate)
 
-        'Dim DirEmployeeToCreate As String = "D:\" & Folder & "\" & Name
-        Dim DirEmployeeToCreate As String = "D:\" & Folder & "\" & letterOF
+        Dim DirEmployeeToCreate As String = "D:\HR Records\" & Folder & "\" & letterOF
         Dim employee As DirectoryInfo = New DirectoryInfo(DirEmployeeToCreate)
 
         Dim byteViewer As Byte() = report.LocalReport.Render("PDF")
@@ -184,12 +180,12 @@ Public Class frmLetter
             If employee.Exists Then
                 'Dim newFile As New FileStream("D:\" & Folder & "\" & Name & "\" & dt & ".pdf", FileMode.Create)
 
-                Dim newFile As New FileStream("D:\" & Folder & "\" & letterOF & "\" & Name & ".pdf", FileMode.Create)
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & letterOF & "\" & Name & ".pdf", FileMode.Create)
                 newFile.Write(byteViewer, 0, byteViewer.Length)
                 newFile.Close()
             Else
                 employee.Create()
-                Dim newFile As New FileStream("D:\" & Folder & "\" & letterOF & "\" & Name & ".pdf", FileMode.Create)
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & letterOF & "\" & Name & ".pdf", FileMode.Create)
                 newFile.Write(byteViewer, 0, byteViewer.Length)
                 newFile.Close()
             End If
@@ -197,19 +193,19 @@ Public Class frmLetter
         Else
             folderName.Create()
             If employee.Exists Then
-                Dim newFile As New FileStream("D:\" & Folder & "\" & letterOF & "\" & Name & ".pdf", FileMode.Create)
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & letterOF & "\" & Name & ".pdf", FileMode.Create)
                 newFile.Write(byteViewer, 0, byteViewer.Length)
                 newFile.Close()
             Else
                 employee.Create()
-                Dim newFile As New FileStream("D:\" & Folder & "\" & letterOF & "\" & Name & ".pdf", FileMode.Create)
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & letterOF & "\" & Name & ".pdf", FileMode.Create)
                 newFile.Write(byteViewer, 0, byteViewer.Length)
                 newFile.Close()
             End If
 
         End If
 
-        MessageBox.Show($"{Name} successfully saved to D:\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
 
@@ -403,7 +399,6 @@ Public Class frmLetter
                 gender = "Mr"
             End If
 
-            'i.Tag = .BranchID
         End With
     End Sub
 

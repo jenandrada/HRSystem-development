@@ -72,15 +72,15 @@ Partial Class frmMainForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ID_LBL = New System.Windows.Forms.Label()
         Me.UserName_LBL = New System.Windows.Forms.Label()
+        Me.Coorective_BTN = New System.Windows.Forms.Button()
         Me.btn_Letter = New System.Windows.Forms.Button()
         Me.btnWorkManage = New System.Windows.Forms.Button()
         Me.btn_Maintenance_Panel = New System.Windows.Forms.Button()
         Me.btnManageEmployee = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Monitoring_BTN = New System.Windows.Forms.Button()
         Me.Compensation_BTN = New System.Windows.Forms.Button()
         Me.Dashboard_BTN = New System.Windows.Forms.Button()
         Me.RateEMP_BTN = New System.Windows.Forms.Button()
-        Me.Coorective_BTN = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.pNavigate.SuspendLayout()
@@ -436,7 +436,7 @@ Partial Class frmMainForm
         Me.NavagationPanel.Controls.Add(Me.btnWorkManage)
         Me.NavagationPanel.Controls.Add(Me.btn_Maintenance_Panel)
         Me.NavagationPanel.Controls.Add(Me.btnManageEmployee)
-        Me.NavagationPanel.Controls.Add(Me.Button2)
+        Me.NavagationPanel.Controls.Add(Me.Monitoring_BTN)
         Me.NavagationPanel.Controls.Add(Me.Compensation_BTN)
         Me.NavagationPanel.Controls.Add(Me.Dashboard_BTN)
         Me.NavagationPanel.Controls.Add(Me.RateEMP_BTN)
@@ -490,6 +490,23 @@ Partial Class frmMainForm
         Me.UserName_LBL.TabIndex = 17
         Me.UserName_LBL.Text = "   "
         '
+        'Coorective_BTN
+        '
+        Me.Coorective_BTN.BackColor = System.Drawing.Color.Black
+        Me.Coorective_BTN.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Coorective_BTN.FlatAppearance.BorderSize = 0
+        Me.Coorective_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Coorective_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coorective_BTN.ForeColor = System.Drawing.Color.White
+        Me.Coorective_BTN.Image = Global.HRSystem.My.Resources.Resources.report_card_50px
+        Me.Coorective_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Coorective_BTN.Location = New System.Drawing.Point(0, 306)
+        Me.Coorective_BTN.Name = "Coorective_BTN"
+        Me.Coorective_BTN.Size = New System.Drawing.Size(177, 75)
+        Me.Coorective_BTN.TabIndex = 12
+        Me.Coorective_BTN.Text = "         &Corrective"
+        Me.Coorective_BTN.UseVisualStyleBackColor = False
+        '
         'btn_Letter
         '
         Me.btn_Letter.BackColor = System.Drawing.Color.Black
@@ -521,7 +538,7 @@ Partial Class frmMainForm
         Me.btnWorkManage.Name = "btnWorkManage"
         Me.btnWorkManage.Size = New System.Drawing.Size(177, 75)
         Me.btnWorkManage.TabIndex = 4
-        Me.btnWorkManage.Text = "              &Management"
+        Me.btnWorkManage.Text = "               Under Deve.."
         Me.btnWorkManage.UseVisualStyleBackColor = False
         '
         'btn_Maintenance_Panel
@@ -558,22 +575,22 @@ Partial Class frmMainForm
         Me.btnManageEmployee.Text = "       &Records"
         Me.btnManageEmployee.UseVisualStyleBackColor = False
         '
-        'Button2
+        'Monitoring_BTN
         '
-        Me.Button2.BackColor = System.Drawing.Color.Black
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Image = Global.HRSystem.My.Resources.Resources.attendance_mark_50px
-        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button2.Location = New System.Drawing.Point(0, 382)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(177, 75)
-        Me.Button2.TabIndex = 13
-        Me.Button2.Text = "       Monitoring"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.Monitoring_BTN.BackColor = System.Drawing.Color.Black
+        Me.Monitoring_BTN.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Monitoring_BTN.FlatAppearance.BorderSize = 0
+        Me.Monitoring_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Monitoring_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Monitoring_BTN.ForeColor = System.Drawing.Color.White
+        Me.Monitoring_BTN.Image = Global.HRSystem.My.Resources.Resources.attendance_mark_50px
+        Me.Monitoring_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Monitoring_BTN.Location = New System.Drawing.Point(0, 382)
+        Me.Monitoring_BTN.Name = "Monitoring_BTN"
+        Me.Monitoring_BTN.Size = New System.Drawing.Size(177, 75)
+        Me.Monitoring_BTN.TabIndex = 13
+        Me.Monitoring_BTN.Text = "               Under Deve.."
+        Me.Monitoring_BTN.UseVisualStyleBackColor = False
         '
         'Compensation_BTN
         '
@@ -589,7 +606,7 @@ Partial Class frmMainForm
         Me.Compensation_BTN.Name = "Compensation_BTN"
         Me.Compensation_BTN.Size = New System.Drawing.Size(177, 75)
         Me.Compensation_BTN.TabIndex = 8
-        Me.Compensation_BTN.Text = "                &Compensation"
+        Me.Compensation_BTN.Text = "               Under Deve.."
         Me.Compensation_BTN.UseVisualStyleBackColor = False
         '
         'Dashboard_BTN
@@ -606,7 +623,7 @@ Partial Class frmMainForm
         Me.Dashboard_BTN.Name = "Dashboard_BTN"
         Me.Dashboard_BTN.Size = New System.Drawing.Size(177, 75)
         Me.Dashboard_BTN.TabIndex = 10
-        Me.Dashboard_BTN.Text = "           R&ecruitment"
+        Me.Dashboard_BTN.Text = "               Under Deve.."
         Me.Dashboard_BTN.UseVisualStyleBackColor = False
         '
         'RateEMP_BTN
@@ -623,25 +640,8 @@ Partial Class frmMainForm
         Me.RateEMP_BTN.Name = "RateEMP_BTN"
         Me.RateEMP_BTN.Size = New System.Drawing.Size(177, 75)
         Me.RateEMP_BTN.TabIndex = 7
-        Me.RateEMP_BTN.Text = "     Ra&ting"
+        Me.RateEMP_BTN.Text = "               Under Deve.."
         Me.RateEMP_BTN.UseVisualStyleBackColor = False
-        '
-        'Coorective_BTN
-        '
-        Me.Coorective_BTN.BackColor = System.Drawing.Color.Black
-        Me.Coorective_BTN.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Coorective_BTN.FlatAppearance.BorderSize = 0
-        Me.Coorective_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Coorective_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Coorective_BTN.ForeColor = System.Drawing.Color.White
-        Me.Coorective_BTN.Image = Global.HRSystem.My.Resources.Resources.report_card_50px
-        Me.Coorective_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Coorective_BTN.Location = New System.Drawing.Point(0, 306)
-        Me.Coorective_BTN.Name = "Coorective_BTN"
-        Me.Coorective_BTN.Size = New System.Drawing.Size(177, 75)
-        Me.Coorective_BTN.TabIndex = 12
-        Me.Coorective_BTN.Text = "         &Corrective"
-        Me.Coorective_BTN.UseVisualStyleBackColor = False
         '
         'frmMainForm
         '
@@ -688,7 +688,7 @@ Partial Class frmMainForm
     Friend WithEvents Dashboard_BTN As System.Windows.Forms.Button
     Friend WithEvents Coorective_BTN As System.Windows.Forms.Button
     Friend WithEvents AppTimer As System.Windows.Forms.Timer
-    Friend WithEvents Button2 As Button
+    Friend WithEvents Monitoring_BTN As Button
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoginToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConnectToDatabaseToolStripMenuItem As ToolStripMenuItem

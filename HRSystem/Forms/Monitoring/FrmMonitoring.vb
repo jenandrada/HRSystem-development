@@ -379,6 +379,7 @@ Public Class FrmMonitoring
     End Sub
 
     Private Sub Emp_Leave_LV_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Emp_Leave_LV.SelectedIndexChanged
+
         If Emp_Leave_LV.SelectedItems.Count > 0 Then
             For Each item As ListViewItem In Emp_Leave_LV.SelectedItems
                 L_ID = item.SubItems(0).Text
@@ -398,6 +399,7 @@ Public Class FrmMonitoring
                         End If
                     End While
                 End Using
+
                 Dim sqlx As String = $"select ID from tbl_employee where LASTNAME||', '||FIRSTNAME||' '||MIDDLENAME||' '||SUFFIX AS FULLNAME = '{item.SubItems(2).Text}'"
                 Using rdrx As FbDataReader = LoadSQL_byDataReader(sql)
                     While rdrx.Read()

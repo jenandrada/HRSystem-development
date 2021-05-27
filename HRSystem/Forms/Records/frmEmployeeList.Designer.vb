@@ -39,6 +39,7 @@ Partial Class frmEmployeeList
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.Previous_BTN = New System.Windows.Forms.Button()
         Me.Next_BTN = New System.Windows.Forms.Button()
@@ -68,7 +69,7 @@ Partial Class frmEmployeeList
         '
         Me.btnSelect.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelect.Location = New System.Drawing.Point(1059, 628)
+        Me.btnSelect.Location = New System.Drawing.Point(820, 628)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(99, 52)
         Me.btnSelect.TabIndex = 58
@@ -123,7 +124,7 @@ Partial Class frmEmployeeList
         Me.lvEmployee.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvEmployee.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader6})
+        Me.lvEmployee.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader6, Me.ColumnHeader5})
         Me.lvEmployee.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lvEmployee.FullRowSelect = True
         Me.lvEmployee.GridLines = True
@@ -140,7 +141,7 @@ Partial Class frmEmployeeList
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "ID"
-        Me.ColumnHeader1.Width = 79
+        Me.ColumnHeader1.Width = 80
         '
         'ColumnHeader2
         '
@@ -162,11 +163,16 @@ Partial Class frmEmployeeList
         Me.ColumnHeader6.Text = "Address"
         Me.ColumnHeader6.Width = 405
         '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "Biometric"
+        Me.ColumnHeader5.Width = 100
+        '
         'btnAdd
         '
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAdd.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdd.Location = New System.Drawing.Point(935, 628)
+        Me.btnAdd.Location = New System.Drawing.Point(938, 628)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(99, 52)
         Me.btnAdd.TabIndex = 57
@@ -305,4 +311,5 @@ Partial Class frmEmployeeList
     Friend WithEvents Label2 As Label
     Friend WithEvents AppProgressBar As ProgressBar
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents ColumnHeader5 As ColumnHeader
 End Class

@@ -1,6 +1,4 @@
-﻿Imports System.Drawing.Imaging
-Imports System.Configuration
-Imports System.IO
+﻿Imports System.IO
 Imports FirebirdSql.Data.FirebirdClient
 
 Public Class frmCoorective
@@ -8,8 +6,12 @@ Public Class frmCoorective
     Friend isPage1 As Integer
     Dim chkStatus As Integer
     Dim dateIssued As String = Now.ToShortDateString
+    'Dim Sectionlist As New ArrayList
 
     Private Sub FrmCoorective_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        GetSCNo(SCNo_LBL)
+
         Dim tmpRule As New Lists
         'tmpRule.RuleDataTable()
         _console.Clear()
@@ -131,6 +133,7 @@ Public Class frmCoorective
             New ReportParameter("paramSentVia", SentVia_TXT.Text)
         }
 
+
         Try
             For Each itemsec As ListViewItem In LV_Sections.SelectedItems
                 Dim sql As String = "select * from TBL_RULESECTIONLIST where SECTION = '" & itemsec.SubItems(0).Text & "';"
@@ -138,7 +141,6 @@ Public Class frmCoorective
                     adapter.Fill(tbl)
                 End Using
             Next
-
 
             Dim datasource As New ReportDataSource With
             {
@@ -216,7 +218,7 @@ Public Class frmCoorective
                 MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             ElseIf IsNothing(Me.LV_Sections.FocusedItem) Then
                 MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If 
+            End If
         Else
             LoadShowCauseReport()
         End If
@@ -257,6 +259,7 @@ Public Class frmCoorective
     End Sub
 
     Private Sub LV_Rules_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LV_Rules.SelectedIndexChanged
+        'RuleNoList.Add(LV_Rules.Items(LV_Rules.FocusedItem.Index).SubItems(0).Text)
         Dim tmp As New Lists
         LV_Sections.Items.Clear()
         For Each i As ListViewItem In LV_Rules.SelectedItems
@@ -433,10 +436,11 @@ Public Class frmCoorective
     End Function
 
     Friend Sub ToPDF(ByRef Name As String, ByRef Folder As String, ByRef report As ReportViewer, ByRef listview As ListView)
-        Dim DirFolderToCreate As String = "D:\" & Folder & ""
+
+        Dim DirFolderToCreate As String = "D:\HR Records\" & Folder & ""
         Dim folderName As DirectoryInfo = New DirectoryInfo(DirFolderToCreate)
 
-        Dim DirEmployeeToCreate As String = "D:\" & Folder & "\" & Name
+        Dim DirEmployeeToCreate As String = "D:\HR Records\" & Folder & "\" & Name
         Dim employee As DirectoryInfo = New DirectoryInfo(DirEmployeeToCreate)
 
         Dim byteViewer As Byte() = report.LocalReport.Render("PDF")
@@ -448,12 +452,12 @@ Public Class frmCoorective
         If folderName.Exists Then
 
             If employee.Exists Then
-                Dim newFile As New FileStream("D:\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf", FileMode.Create)
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf", FileMode.Create)
                 newFile.Write(byteViewer, 0, byteViewer.Length)
                 newFile.Close()
             Else
                 employee.Create()
-                Dim newFile As New FileStream("D:\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf", FileMode.Create)
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf", FileMode.Create)
                 newFile.Write(byteViewer, 0, byteViewer.Length)
                 newFile.Close()
             End If
@@ -461,26 +465,40 @@ Public Class frmCoorective
         Else
             folderName.Create()
             If employee.Exists Then
-                Dim newFile As New FileStream("D:\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf", FileMode.Create)
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf", FileMode.Create)
                 newFile.Write(byteViewer, 0, byteViewer.Length)
                 newFile.Close()
             Else
                 employee.Create()
-                Dim newFile As New FileStream("D:\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf", FileMode.Create)
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf", FileMode.Create)
                 newFile.Write(byteViewer, 0, byteViewer.Length)
                 newFile.Close()
             End If
 
         End If
 
-        MessageBox.Show($"{Name} successfully saved to D:\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf"
 
+        SaveShowCause(EmpName_TXT.Tag, DateSent_DTP.Value, DateSent_DTP.Value.AddDays(5), str, "NO", Company_TXT.Text)
+
+        MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Process.Start(str)
     End Sub
 
     Private Sub Save_BTN_Click(sender As Object, e As EventArgs) Handles Save_BTN.Click
 
         If Not EmpName_TXT.Text = "" Then
-            ToPDF(EmpName_TXT.Text, "Show Cause Notice", RptViewer_ShowCause, LV_Sections)
+
+            ToPDF(EmpName_TXT.Text, "Show Cause Notice", RptViewer_ShowCause, LV_Rules)
+
+            For Each itemsec As ListViewItem In LV_Sections.SelectedItems
+                Dim sql As String = "select * from TBL_RULESECTIONLIST where SECTION = '" & itemsec.SubItems(0).Text & "';"
+                Using adapter As New FbDataAdapter(sql, con)
+                    SaveRuleNoSectionnO(EmpName_TXT.Tag, LV_Rules.FocusedItem.SubItems(0).Text, itemsec.SubItems(0).Text)
+                End Using
+            Next
+
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
@@ -490,7 +508,7 @@ Public Class frmCoorective
     Private Sub WP_Save_Btn_Click(sender As Object, e As EventArgs) Handles WP_Save_Btn.Click
 
         If Not WP_Name_TXT.Text = "" Then
-            ToPDF(WP_Name_TXT.Text, "Written Reprimand Notice", RptViewer_WrittenReprimand, WP_SectionsList)
+            ToPDF(WP_Name_TXT.Text, "Written Reprimand Notice", RptViewer_WrittenReprimand, WP_RulesList)
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
@@ -579,5 +597,56 @@ Public Class frmCoorective
     Private Sub FromAuditDate_DTP_CloseUp(sender As Object, e As EventArgs) Handles FromAuditDate_DTP.CloseUp
         _console.AppendText(FromAuditDate_DTP.Value & ", ")
     End Sub
+
+    Private Sub LV_Rules_Click(sender As Object, e As EventArgs)
+        Alert()
+    End Sub
+
+
+    Private Sub GroupBox6_Paint(sender As Object, e As PaintEventArgs) Handles GroupBox6.Paint
+        Dim p As New Pen(Color.Red, 2)
+        e.Graphics.DrawRectangle(p, New Rectangle(EmpName_TXT.Location + New Size(1, 1), EmpName_TXT.Size - New Size(2, 2)))
+        p.Dispose()
+    End Sub
+
+
+    Private Sub EmpName_TXT_TextChanged(sender As Object, e As EventArgs) Handles EmpName_TXT.TextChanged
+        If EmpName_TXT.Text = "" Then
+            EmpName_TXT.Region = New Region(New Rectangle(2, 2, EmpName_TXT.Width - 4, EmpName_TXT.Height - 4))
+        Else
+            EmpName_TXT.Region = Nothing
+        End If
+    End Sub
+
+
+    Private Sub LV_Sections_Click(sender As Object, e As EventArgs) Handles LV_Sections.Click
+        Alert()
+    End Sub
+
+    Private Sub Alert()
+        If EmpName_TXT.Text = "" Then
+            MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf IsNothing(Me.LV_Sections.FocusedItem) Then
+            MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+    End Sub
+
+    Private Sub AuditFindings_TXT_TextChanged(sender As Object, e As EventArgs) Handles AuditFindings_TXT.TextChanged
+        Alert()
+    End Sub
+
+    Private Sub Location_TXT_TextChanged(sender As Object, e As EventArgs) Handles Location_TXT.TextChanged
+        Alert()
+    End Sub
+
+    Private Sub Explaination_TXT_TextChanged(sender As Object, e As EventArgs) Handles Explaination_TXT.TextChanged
+        Alert()
+    End Sub
+
+    'Private ReadOnly _section As New RichTextBox
+
+    'Private Sub LV_Sections_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LV_Sections.SelectedIndexChanged, LV_Rules.Click
+    '    Sectionlist.Add(LV_Sections.Items(LV_Sections.FocusedItem.Index).SubItems(0).Text)
+    'End Sub
 
 End Class

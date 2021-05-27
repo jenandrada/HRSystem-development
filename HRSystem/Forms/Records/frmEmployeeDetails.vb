@@ -1,7 +1,6 @@
 ﻿Imports System.Drawing.Imaging
 Imports System.Globalization
 Imports System.IO
-Imports System.ComponentModel
 
 Imports FirebirdSql.Data.FirebirdClient
 
@@ -147,7 +146,7 @@ Public Class frmEmployeeDetails
         BioNumber_TXT.Region = New Region(New Rectangle(2, 2, BioNumber_TXT.Width - 4, BioNumber_TXT.Height - 4))
 
         LoadAddressPro()
-        PopulateComboBox(Position_combo, "tblmanning", "EMP_POSITION")
+        PopulateComboBox(Position_combo, "tbl_employee", "EMP_POSITION")
         PopulateComboBox(Branch_combo, "tbl_branch", "BRANCHNAME")
 
         GreatestBiometric()
@@ -162,10 +161,11 @@ Public Class frmEmployeeDetails
             Dim dr As DataRow = ds.Tables(0).Rows(0)
             If dr.Table.Rows.Count > 0 Then
                 With dr
+
                     'Dim year As String = DateHired_DTP.Value.ToString("yy")
                     'Dim month As String = DateHired_DTP.Value.ToString("MM")
                     'BioNumber_TXT.Text = year & "-0" & month & "-" & .Item("Greatest")
-                    'BioNumber_TXT.Tag = .Item("Greatest") 
+                    'BioNumber_TXT.Tag = .Item("Greatest")
 
                     BioNumber_TXT.Text = .Item("Greatest")
                 End With
@@ -275,25 +275,6 @@ Public Class frmEmployeeDetails
             Status_LBL.Text = "NEW"
             Status_LBL.BackColor = Color.LightGreen
         End If
-
-        Select Case emp.Status
-            Case "RPO"
-                Status_CB.SelectedIndex = 1
-            Case "REG"
-                Status_CB.SelectedIndex = 2
-            Case "AWO"
-                Status_CB.SelectedIndex = 6
-            Case "RES"
-                Status_CB.SelectedIndex = 5
-            Case "TER"
-                Status_CB.SelectedIndex = 7
-            Case "SUS"
-                Status_CB.SelectedIndex = 3
-            Case "APP"
-                Status_CB.SelectedIndex = 4
-            Case "END"
-                Status_CB.SelectedIndex = 8
-        End Select
 
         Status_CB.SelectedItem = emp.Status
 
@@ -619,29 +600,29 @@ Public Class frmEmployeeDetails
 
     Friend Sub ToFOLDER(ByVal Name As String, ByVal Folder As String, ByVal ImageName As String, ByVal picture As PictureBox)
 
-        Dim folderName As DirectoryInfo = New DirectoryInfo("D:\" & Folder)
-        Dim employee As DirectoryInfo = New DirectoryInfo("D:\" & Folder & "\" & Name)
+        Dim folderName As DirectoryInfo = New DirectoryInfo("D:\HR Records\" & Folder)
+        Dim employee As DirectoryInfo = New DirectoryInfo("D:\HR Records\" & Folder & "\" & Name)
 
         If folderName.Exists Then
 
             If employee.Exists Then
 
-                picture.Image.Save("D:\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
                 picture.Dispose()
             Else
                 employee.Create()
-                picture.Image.Save("D:\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
                 picture.Dispose()
             End If
 
         Else
             folderName.Create()
             If employee.Exists Then
-                picture.Image.Save("D:\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
                 picture.Dispose()
             Else
                 employee.Create()
-                picture.Image.Save("D:\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
                 picture.Dispose()
             End If
 
@@ -876,6 +857,7 @@ Public Class frmEmployeeDetails
             ClearText()
             Save_BTN.Text = "&Save"
             MsgBox("Record Successfully Updated", MsgBoxStyle.Information, "Information")
+            Close()
         End If
     End Sub
 
@@ -1479,11 +1461,4 @@ Public Class frmEmployeeDetails
         End If
     End Sub
 
-
-    'Private Sub Save_BTN_TextChanged(sender As Object, e As EventArgs) Handles Save_BTN.TextChanged
-    '    If Save_BTN.Text = "&Save" Then
-    '        Position_combo.Enabled = False
-    '        Branch_combo.Enabled = False
-    '    End If
-    'End Sub
 End Class

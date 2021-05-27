@@ -258,7 +258,7 @@ Public Class frmMainForm
         mpr.Show()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Monitoring_BTN.Click
         'OpenWindowsForm("FrmMonitoring")
     End Sub
 
@@ -300,13 +300,13 @@ Public Class frmMainForm
         btnWorkManage.BackColor = Color.Black
     End Sub
 
-    Private Sub Button2_MouseEnter(sender As Object, e As EventArgs) Handles Button2.MouseEnter
-        Button2.BackColor = Color.DimGray
+    Private Sub Button2_MouseEnter(sender As Object, e As EventArgs) Handles Monitoring_BTN.MouseEnter
+        Monitoring_BTN.BackColor = Color.DimGray
         Panel_Maintenance.Visible = False
     End Sub
 
-    Private Sub Button2_MouseLeave(sender As Object, e As EventArgs) Handles Button2.MouseLeave
-        Button2.BackColor = Color.Black
+    Private Sub Button2_MouseLeave(sender As Object, e As EventArgs) Handles Monitoring_BTN.MouseLeave
+        Monitoring_BTN.BackColor = Color.Black
     End Sub
 
     Private Sub BHouseAllowance_BTN_MouseEnter(sender As Object, e As EventArgs) Handles Compensation_BTN.MouseEnter

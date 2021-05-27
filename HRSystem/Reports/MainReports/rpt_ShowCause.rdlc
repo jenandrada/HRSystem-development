@@ -428,7 +428,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>You are hereby directed to explain in writing within two (2) days upon receipt of this memorandum as to why no disciplinary action shall be meted against you for grave misconduct, specifically:</Value>
+                        <Value>You are hereby directed to explain in writing within two (5) days upon receipt of this memorandum as to why no disciplinary action shall be meted against you for grave misconduct, specifically:</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>Calibri</FontFamily>
@@ -994,7 +994,7 @@
                       </TextRun>
                       <TextRun>
                         <Label>submisionDate</Label>
-                        <Value>=DateAdd("d", 2, Parameters!paramDate.Value)</Value>
+                        <Value>=DateAdd("d", 5, Parameters!paramDate.Value)</Value>
                         <Style>
                           <FontStyle>Italic</FontStyle>
                           <FontFamily>Calibri</FontFamily>

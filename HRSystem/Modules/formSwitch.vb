@@ -147,14 +147,14 @@
                 frmLetter.Dock = DockStyle.Fill
                 frmLetter.BringToFront()
 
-            Case FormName.compensation
-                frmCompensation.MdiParent = frmMainForm
-                frmMainForm.pNavigate.Controls.Add(frmCompensation)
-                frmMainForm.pNavigate.Tag = frmCompensation
-                frmCompensation.Show()
-                frmCompensation.LoadEmpDETAILS(cus)
-                frmCompensation.Dock = DockStyle.Fill
-                frmCompensation.BringToFront()
+            'Case FormName.compensation
+            '    frmCompensation.MdiParent = frmMainForm
+            '    frmMainForm.pNavigate.Controls.Add(frmCompensation)
+            '    frmMainForm.pNavigate.Tag = frmCompensation
+            '    frmCompensation.Show()
+            '    frmCompensation.LoadEmpDETAILS(cus)
+            '    frmCompensation.Dock = DockStyle.Fill
+            '    frmCompensation.BringToFront()
 
             Case FormName.corrective
                 frmCoorective.MdiParent = frmMainForm

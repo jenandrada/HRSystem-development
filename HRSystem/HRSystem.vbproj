@@ -243,6 +243,7 @@
     </Compile>
     <Compile Include="ImageDatabaseToFolder.vb" />
     <Compile Include="Modules\FileDirectory.vb" />
+    <Compile Include="Modules\Saving.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

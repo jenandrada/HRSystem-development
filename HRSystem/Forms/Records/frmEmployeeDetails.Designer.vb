@@ -258,10 +258,10 @@ Partial Class frmEmployeeDetails
         '
         'FirstName_TXT
         '
-        Me.FirstName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.FirstName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FirstName_TXT.Location = New System.Drawing.Point(4, 13)
         Me.FirstName_TXT.Name = "FirstName_TXT"
-        Me.FirstName_TXT.Size = New System.Drawing.Size(274, 24)
+        Me.FirstName_TXT.Size = New System.Drawing.Size(274, 26)
         Me.FirstName_TXT.TabIndex = 2
         Me.FirstName_TXT.WaterMarkColor = System.Drawing.Color.Gray
         Me.FirstName_TXT.WaterMarkText = "First Name"
@@ -557,10 +557,10 @@ Partial Class frmEmployeeDetails
         '
         'LastName_TXT
         '
-        Me.LastName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.LastName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LastName_TXT.Location = New System.Drawing.Point(6, 12)
         Me.LastName_TXT.Name = "LastName_TXT"
-        Me.LastName_TXT.Size = New System.Drawing.Size(274, 24)
+        Me.LastName_TXT.Size = New System.Drawing.Size(274, 26)
         Me.LastName_TXT.TabIndex = 4
         Me.LastName_TXT.WaterMarkColor = System.Drawing.Color.Gray
         Me.LastName_TXT.WaterMarkText = "Last Name"
@@ -578,20 +578,20 @@ Partial Class frmEmployeeDetails
         '
         'MiddleName_TXT
         '
-        Me.MiddleName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.MiddleName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MiddleName_TXT.Location = New System.Drawing.Point(165, 70)
         Me.MiddleName_TXT.Name = "MiddleName_TXT"
-        Me.MiddleName_TXT.Size = New System.Drawing.Size(274, 24)
+        Me.MiddleName_TXT.Size = New System.Drawing.Size(274, 26)
         Me.MiddleName_TXT.TabIndex = 3
         Me.MiddleName_TXT.WaterMarkColor = System.Drawing.Color.Gray
         Me.MiddleName_TXT.WaterMarkText = "Middle Name"
         '
         'Extension_TXT
         '
-        Me.Extension_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.Extension_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Extension_TXT.Location = New System.Drawing.Point(165, 164)
         Me.Extension_TXT.Name = "Extension_TXT"
-        Me.Extension_TXT.Size = New System.Drawing.Size(274, 24)
+        Me.Extension_TXT.Size = New System.Drawing.Size(274, 26)
         Me.Extension_TXT.TabIndex = 5
         Me.Extension_TXT.WaterMarkColor = System.Drawing.Color.Gray
         Me.Extension_TXT.WaterMarkText = "Extension"
@@ -722,7 +722,7 @@ Partial Class frmEmployeeDetails
         '
         Me.Status_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Status_CB.FormattingEnabled = True
-        Me.Status_CB.Items.AddRange(New Object() {"", "Probationary", "Regular", "Suspended", "Appointed", "Resigned", "Awol", "Terminated", "End of Probationary"})
+        Me.Status_CB.Items.AddRange(New Object() {"", "PROBATIONARY", "REGULAR", "SUSPENDED", "APPOINTED", "RESIGNED", "AWOL", "TERMINATED", "END OF PROBATIONARY"})
         Me.Status_CB.Location = New System.Drawing.Point(4, 2)
         Me.Status_CB.Name = "Status_CB"
         Me.Status_CB.Size = New System.Drawing.Size(173, 26)

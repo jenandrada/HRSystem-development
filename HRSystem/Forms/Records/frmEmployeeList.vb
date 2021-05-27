@@ -156,6 +156,8 @@
                     lv.SubItems.Add(drx.Item("CITYMUN"))
                 Next
 
+                lv.SubItems.Add(.Item("BIOMETRICID"))
+
             End With
         Else
             Exit Sub
@@ -198,13 +200,6 @@
             frm.Dock = DockStyle.Fill
             frm.Show()
             frm.LoadEmployees(tmpEmp)
-            'If Not IfExistMAnning() Then
-            '    frm.Position_combo.Enabled = True
-            '    frm.Branch_combo.Enabled = True
-            'Else
-            '    frm.Position_combo.Enabled = False
-            '    frm.Branch_combo.Enabled = False
-            'End If
             frm.BringToFront()
         Else
             instForm.Select()
@@ -266,15 +261,10 @@
             tmpEmp.LoadEmpLetter(idx)
             ReloadFormFromSearch(FormName.letter, tmpEmp, 2)
 
-        ElseIf txtSearch.Tag = "Compensation" Then
+            'ElseIf txtSearch.Tag = "Compensation" Then
 
-            tmpEmp.LoadCompensationALLOWDEDUC(idx)
-            ReloadFormFromSearch(FormName.compensation, tmpEmp)
-
-            'ElseIf txtSearch.Tag = "Compensation2" Then
-
-            '    tmpEmp.LoadCompensationDeduction(idx)
-            '    ReloadFormFromSearch(FormName.compensation, tmpEmp, 2)
+            '    tmpEmp.LoadCompensationALLOWDEDUC(idx)
+            '    ReloadFormFromSearch(FormName.compensation, tmpEmp)
 
         ElseIf txtSearch.Tag = "Corrective1" Then
 
@@ -289,10 +279,6 @@
         End If
 
         Close()
-    End Sub
-
-    Private Sub lvEmployee_SelectedIndexChanged(sender As Object, e As EventArgs)
-        'SelectedCount_LBL.Text = lvEmployee.SelectedItems.Count()
     End Sub
 
     Private Sub Next_BTN_Click(sender As Object, e As EventArgs) Handles Next_BTN.Click
@@ -386,15 +372,6 @@
 
     End Sub
 
-    Public Function IfExistMAnning()
-        Dim mysql As String = "SELECT * FROM tblmanning Where  emp_id = '" & idx & "'"
-        Dim ds As DataSet = LoadSQL(mysql, "tbl_employee")
-        If ds.Tables(0).Rows.Count > 0 Then
-            Return False
-        End If
-        Return True
-    End Function
-
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
 
         progressBar.Increment(50)
@@ -413,4 +390,5 @@
     Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress
         If IsEnter(e) Then btnSearch.PerformClick()
     End Sub
+
 End Class

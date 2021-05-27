@@ -111,38 +111,7 @@ Public Class DeveloperCode
             LoadREquirementsPictures()  'THIS IS TO FETCH IMAGES REQUIREMENTS FROM TBL_REQARCHIVE  
             MessageBox.Show("Images Succesfully save to D: \201.")
 
-            'TableManningToEmployee()
-
-            'RunCommand("CREATE TABLE TBL_LEAVE (
-            '        ID SMALLINT NOT NULL,
-            '          EMP_ID BIGINT NOT NULL,
-            '          BRANCH_ID SMALLINT NOT NULL,
-            '          LEAVE_TYPE VARCHAR(50) NOT NULL,
-            '          L_DATE_STARTED DATE NOT NULL,
-            '          L_DATE_ENDED DATE NOT NULL,
-            '          DATE_ENCODED DATE NOT NULL,
-            '          NOTES VARCHAR(200),
-            '          STATUS SMALLINT) ")
-
-            'RunCommand("CREATE TABLE TBL_LASTDATE (
-            '          EMP_ID BIGINT NOT NULL,
-            '          LASTDATE DATE NOT NULL,
-            '          REASON VARCHAR(300))")
-
-            'RunCommand("CREATE TABLE TBL_ATTENDANCE (
-            '          EMP_ID SMALLINT NOT NULL,
-            '          BRANCH_ID INTEGER NOT NULL,
-            '          ATTENDANCE VARCHAR(20) NOT NULL,
-            '          DATE_ENCODED DATE NOT NULL,
-            '          REMARKS VARCHAR(200),
-            '          NOTE VARCHAR(150),
-            '          STATUS INTEGER NOT NULL,
-            '          ID SMALLINT NOT NULL)") 
-
-            'RunCommand("CREATE TABLE TBL_LASTDATE (
-            '          EMP_ID BIGINT NOT NULL,
-            '          LASTDATE DATE NOT NULL,
-            '          REASON VARCHAR(300))")
+            'TableManningToEmployee() 
 
             'MessageBox.Show("Tables CREATED to DATABASE successfully!")
 
@@ -210,8 +179,8 @@ Public Class DeveloperCode
 
         Dim folder As String = "201"
         Dim ms As New MemoryStream(emp)
-        Dim folderName As DirectoryInfo = New DirectoryInfo("D:\" & folder)
-        Dim employee As DirectoryInfo = New DirectoryInfo("D:\" & folder & "\" & name)
+        Dim folderName As DirectoryInfo = New DirectoryInfo("D:\HR Records\" & folder)
+        Dim employee As DirectoryInfo = New DirectoryInfo("D:\HR Records\" & folder & "\" & name)
 
         Dim key As Integer = emp.Length
         Try
@@ -229,13 +198,13 @@ Public Class DeveloperCode
                         employee.Create()
 
                         Using img As Image = New Bitmap(Image.FromStream(ms))
-                            img.Save("D:\201\" & name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                            img.Save("D:\HR Records\201\" & name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
                         End Using
 
                     Else
 
                         Using img As Image = New Bitmap(Image.FromStream(ms))
-                            img.Save("D:\201\" & name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                            img.Save("D:\HR Records\201\" & name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
                         End Using
 
                     End If
@@ -246,13 +215,13 @@ Public Class DeveloperCode
                         employee.Create()
 
                         Using img As Image = New Bitmap(Image.FromStream(ms))
-                            img.Save("D:\201\" & name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                            img.Save("D:\HR Records\201\" & name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
                         End Using
 
                     Else
 
                         Using img As Image = New Bitmap(Image.FromStream(ms))
-                            img.Save("D:\201\" & name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                            img.Save("D:\HR Records\201\" & name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
                         End Using
                     End If
 

@@ -1,6 +1,5 @@
 ﻿Imports System.Drawing.Imaging
 Imports System.IO
-Imports FirebirdSql.Data.FirebirdClient
 
 Public Class Employee
 
@@ -200,39 +199,9 @@ Public Class Employee
         Return tmpData
     End Function
 
-    'Friend Sub SaveProfilePic(ID As Integer, p As Byte())
-
-    'Dim sql As String = "select * from TBL_PROFILEPIC rows 1"
-    'Using ds As DataSet = LoadSQL(sql, "TBL_PROFILEPIC")
-    '    Dim dsNew As DataRow = ds.Tables(0).NewRow
-
-    '    With dsNew
-    '        .Item("EMP_ID") = ID
-    '        .Item("PROFILE_PIC") = p
-    '    End With
-    '    ds.Tables(0).Rows.Add(dsNew)
-    '    SaveEntry(ds)
-    'End Using
-    'End Sub
-
-    'Friend Sub UpdateProfilePic(ID As Integer, p As Byte())
-
-    'Dim sql As String = $"select * from TBL_PROFILEPIC where EMP_ID = '{ID}'"
-    'Using ds As DataSet = LoadSQL(sql, "TBL_PROFILEPIC")
-    '    If ds.Tables(0).Rows.Count <= 0 Then
-    '        SaveProfilePic(ID, p)
-    '    Else
-    '        With ds.Tables(0).Rows(0)
-    '            .Item("PROFILE_PIC") = p
-    '        End With
-    '        SaveEntry(ds, False)
-    '    End If
-    'End Using
-    'End Sub
-
     Friend Sub LoadImage(EpmName As String, pb As PictureBox, PictureName As String)
 
-        Dim folder As String = "D:\201\" & EpmName
+        Dim folder As String = "D:\HR Records\201\" & EpmName
         Dim filename As String = System.IO.Path.Combine(folder, PictureName & ".jpeg")
 
         Dim fileFolderDir As DirectoryInfo = New DirectoryInfo(folder)
@@ -262,58 +231,6 @@ Public Class Employee
             Exit Sub
         End If
     End Sub
-
-    'Friend Sub LoadREquirementsPictures()
-    '    Dim imgData As Byte()
-    '    Dim pb As New PictureBox
-    '    Dim img As Image
-    '    img = pb.ErrorImage
-    '    imgData = ImgToByteArray(img, ImageFormat.Jpeg)
-    '    Dim sql As String = "select * from TBL_REQARCHIVE A inner join tbl_employee B on A.REQ_ID = B.ID where A.REQ_ID = B.ID "
-    '    DbReaderOpen()
-    '    Dim rdr As FbDataReader = LoadSQL_byDataReader(sql)
-    '    If rdr.Read() Then
-
-    '        If rdr.HasRows Then
-    '            With rdr
-    '                SSS1 = IIf(IsDBNull(.Item("SSS")), imgData, .Item("SSS"))
-    '                PhilHealth1 = IIf(IsDBNull(.Item("PHILHEALTH")), imgData, .Item("PHILHEALTH"))
-    '                PagIbig1 = IIf(IsDBNull(.Item("PAGIBIG")), imgData, .Item("PAGIBIG"))
-    '                TIN1 = IIf(IsDBNull(.Item("TIN")), imgData, .Item("TIN"))
-    '                BarangayClearance1 = IIf(IsDBNull(.Item("BARANGAYCLEARANCE")), imgData, .Item("BARANGAYCLEARANCE"))
-    '                Cedula1 = IIf(IsDBNull(.Item("CEDULA")), imgData, .Item("CEDULA"))
-    '                PoliceClearance1 = IIf(IsDBNull(.Item("POLICECLEARANCE")), imgData, .Item("POLICECLEARANCE"))
-    '                NBICLEARANCE1 = IIf(IsDBNull(.Item("NBICLEARANCE")), imgData, .Item("NBICLEARANCE"))
-    '                HEALTHCARD1 = IIf(IsDBNull(.Item("HEALTHCARD")), imgData, .Item("HEALTHCARD"))
-    '                MAYORSPERMIT1 = IIf(IsDBNull(.Item("MAYORSPERMIT")), imgData, .Item("MAYORSPERMIT"))
-    '                PDS1 = IIf(IsDBNull(.Item("PDS")), imgData, .Item("PDS"))
-    '                PROBA1 = IIf(IsDBNull(.Item("PROBA")), imgData, .Item("PROBA"))
-    '                MOA1 = IIf(IsDBNull(.Item("MOA")), imgData, .Item("MOA"))
-    '                IDFORM1 = IIf(IsDBNull(.Item("IDFORM")), imgData, .Item("IDFORM"))
-    '                ACKNOWLEDGEMENTLETTER1 = IIf(IsDBNull(.Item("ACKNOWLEDGEMENTLETTER")), imgData, .Item("ACKNOWLEDGEMENTLETTER"))
-    '                ENDORSEMENTLETTER1 = IIf(IsDBNull(.Item("ENDORSEMENTLETTER")), imgData, .Item("ENDORSEMENTLETTER"))
-    '            End With
-
-    '        End If
-    '    Else
-    '        SSS1 = imgData
-    '        PhilHealth1 = imgData
-    '        PagIbig1 = imgData
-    '        TIN1 = imgData
-    '        BarangayClearance1 = imgData
-    '        Cedula1 = imgData
-    '        PoliceClearance1 = imgData
-    '        NBICLEARANCE1 = imgData
-    '        HEALTHCARD1 = imgData
-    '        MAYORSPERMIT1 = imgData
-    '        PDS1 = imgData
-    '        PROBA1 = imgData
-    '        MOA1 = imgData
-    '        IDFORM1 = imgData
-    '        ACKNOWLEDGEMENTLETTER1 = imgData
-    '        ENDORSEMENTLETTER1 = imgData
-    '    End If
-    'End Sub
 
     Friend Sub SaveEmployee()
         Dim mysql As String = "Select * From tbl_Employee Rows 1"
@@ -366,24 +283,6 @@ Public Class Employee
             End If
         End Using
 
-        '-----------------TBLMANNING ---------------
-        'Console.WriteLine("iddddddddd=== " & ID)
-        'mysql = "Select * From tblmanning Rows 1"
-        'Using ds As DataSet = LoadSQL(mysql, "tblmanning")
-
-        '    Dim dsNewRow As DataRow
-        '    dsNewRow = ds.Tables(0).NewRow
-        '    With dsNewRow
-
-        '        .Item("EMP_ID") = ID
-        '        .Item("Emp_Position") = Position
-        '        .Item("Branch_ID") = BranchID
-        '        .Item("ASSIGN_DATE") = DateHired
-
-        '    End With
-        '    ds.Tables(0).Rows.Add(dsNewRow)
-        '    SaveEntry(ds)
-        'End Using
     End Sub
 
     Friend Sub SaveAllowanceDeduction()
@@ -393,16 +292,6 @@ Public Class Employee
             Dim dsNewRow As DataRow
             dsNewRow = ds.Tables(0).NewRow
             With dsNewRow
-                '.Item("EMP_ID") = ID
-                '.Item("MONTHLY_SALARY") = Monthly
-                '.Item("DAILY_SALARY") = Daily
-                '.Item("BOARDING_ALLOWANCE") = Boarding
-                '.Item("CAREKIT_ALLOWANCE") = Carekit
-                '.Item("TRANSPO_ALLOWANCE") = Transportation
-                '.Item("MEDICAL_ALLOWANCE") = Medical
-                '.Item("POSITIONAL_ALLOWANCE") = Positional
-                '.Item("OTHER_ALLOWANCE") = OtherAllowance
-                '.Item("FIX_RATE") = Fix
 
                 .Item("EMP_ID") = ID
                 .Item("MONTHLY_SALARY") = Monthly
@@ -432,16 +321,6 @@ Public Class Employee
         Using ds As DataSet = LoadSQL(mysql, "PAYROLL_ALLOW_DEDUC")
 
             With ds.Tables(0).Rows(0)
-                '.Item("MONTHLY_SALARY") = Monthly
-                '.Item("DAILY_SALARY") = Daily
-                '.Item("BOARDING_ALLOWANCE") = Boarding
-                '.Item("CAREKIT_ALLOWANCE") = Carekit
-                '.Item("TRANSPO_ALLOWANCE") = Transportation
-                '.Item("MEDICAL_ALLOWANCE") = Medical
-                '.Item("POSITIONAL_ALLOWANCE") = Positional
-                '.Item("OTHER_ALLOWANCE") = OtherAllowance
-                '.Item("FIX_RATE") = Fix
-
                 .Item("MONTHLY_SALARY") = Monthly
                 .Item("DAILY_SALARY") = Daily
                 .Item("BOARDING_ALLOWANCE") = Boarding
@@ -532,99 +411,6 @@ Public Class Employee
         End Using
     End Sub
 
-
-    'Friend Sub SaveReqArchive()
-    '    'Dim req_id As Integer
-    '    Dim sql As String = "select MAX(REQ_ID) from TBL_REQ rows 1"
-    '    DbReaderOpen()
-    '    Using dr As FbDataReader = LoadSQL_byDataReader(sql)
-    '        While dr.Read()
-    '            If dr.HasRows Then
-    '                With dr
-    '                    ReqID = .Item(0).ToString
-    '                End With
-    '            End If
-    '        End While
-    '    End Using
-    '    Dim ssql As String = "select * from TBL_REQARCHIVE"
-    '    Dim ds As DataSet = LoadSQL(ssql, "TBL_REQARCHIVE")
-
-    '    Dim data As DataRow = ds.Tables(0).NewRow
-    '    With data
-    '        .Item("REQ_ID") = ReqID
-    '        .Item("SSS") = SSS1
-    '        .Item("PHILHEALTH") = PhilHealth1
-    '        .Item("PAGIBIG") = PagIbig1
-    '        .Item("TIN") = TIN1
-    '        .Item("BARANGAYCLEARANCE") = BarangayClearance1
-    '        .Item("CEDULA") = Cedula1
-    '        .Item("POLICECLEARANCE") = PoliceClearance1
-    '        .Item("NBICLEARANCE") = NBICLEARANCE1
-    '        .Item("HEALTHCARD") = HEALTHCARD1
-    '        .Item("MAYORSPERMIT") = MAYORSPERMIT1
-    '        .Item("PDS") = PDS1
-    '        .Item("PROBA") = PROBA1
-    '        .Item("MOA") = MOA1
-    '        .Item("IDFORM") = IDFORM1
-    '        .Item("ACKNOWLEDGEMENTLETTER") = ACKNOWLEDGEMENTLETTER1
-    '        .Item("ENDORSEMENTLETTER") = ENDORSEMENTLETTER1
-    '    End With
-    '    ds.Tables(0).Rows.Add(data)
-    '    SaveEntry(ds)
-    'End Sub
-
-    'Friend Sub UpdateReqArchive()
-    '    Dim sql As String = $"select * from TBL_REQARCHIVE where REQ_ID = '{ReqID}'"
-    '    Using ds As DataSet = LoadSQL(sql, "TBL_REQARCHIVE")
-    '        If ds.Tables(0).Rows.Count <= 0 Then
-    '            Dim data As DataRow = ds.Tables(0).NewRow
-    '            With data
-    '                .Item("REQ_ID") = ReqID
-    '                .Item("SSS") = SSS1
-    '                .Item("PHILHEALTH") = PhilHealth1
-    '                .Item("PAGIBIG") = PagIbig1
-    '                .Item("TIN") = TIN1
-    '                .Item("BARANGAYCLEARANCE") = BarangayClearance1
-    '                .Item("CEDULA") = Cedula1
-    '                .Item("POLICECLEARANCE") = PoliceClearance1
-    '                .Item("NBICLEARANCE") = NBICLEARANCE1
-    '                .Item("HEALTHCARD") = HEALTHCARD1
-    '                .Item("MAYORSPERMIT") = MAYORSPERMIT1
-    '                .Item("PDS") = PDS1
-    '                .Item("PROBA") = PROBA1
-    '                .Item("MOA") = MOA1
-    '                .Item("IDFORM") = IDFORM1
-    '                .Item("ACKNOWLEDGEMENTLETTER") = ACKNOWLEDGEMENTLETTER1
-    '                .Item("ENDORSEMENTLETTER") = ENDORSEMENTLETTER1
-    '            End With
-    '            ds.Tables(0).Rows.Add(data)
-
-    '            SaveEntry(ds)
-    '        Else
-    '            With ds.Tables(0).Rows(0)
-    '                .Item("SSS") = SSS1
-    '                .Item("PHILHEALTH") = PhilHealth1
-    '                .Item("PAGIBIG") = PagIbig1
-    '                .Item("TIN") = TIN1
-    '                .Item("BARANGAYCLEARANCE") = BarangayClearance1
-    '                .Item("CEDULA") = Cedula1
-    '                .Item("POLICECLEARANCE") = PoliceClearance1
-    '                .Item("NBICLEARANCE") = NBICLEARANCE1
-    '                .Item("HEALTHCARD") = HEALTHCARD1
-    '                .Item("MAYORSPERMIT") = MAYORSPERMIT1
-    '                .Item("PDS") = PDS1
-    '                .Item("PROBA") = PROBA1
-    '                .Item("MOA") = MOA1
-    '                .Item("IDFORM") = IDFORM1
-    '                .Item("ACKNOWLEDGEMENTLETTER") = ACKNOWLEDGEMENTLETTER1
-    '                .Item("ENDORSEMENTLETTER") = ENDORSEMENTLETTER1
-    '            End With
-
-    '            SaveEntry(ds, False)
-    '        End If
-    '    End Using
-    'End Sub 
-
     Friend Sub UpdateEmployee()
         Dim mysql As String = "Select * From tbl_Employee Where ID = '" & ID & "'"
         Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")
@@ -653,31 +439,20 @@ Public Class Employee
             SaveEntry(ds, False)
         End Using
 
-        mysql = "Select * From TBLMANNING Where  EMP_ID = '" & ID & "'"
-        Using ds As DataSet = LoadSQL(mysql, "TBLMANNING")
+        'mysql = "Select * From TBLMANNING Where  EMP_ID = '" & ID & "'"
+        'Using ds As DataSet = LoadSQL(mysql, "TBLMANNING")
 
-            If ds.Tables(0).Rows.Count > 0 Then
-                With ds.Tables(0).Rows(0)
-                    .Item("Emp_Position") = Position
-                    .Item("Branch_ID") = BranchID
-                End With
-                SaveEntry(ds, False)
-            End If
+        '    If ds.Tables(0).Rows.Count > 0 Then
+        '        With ds.Tables(0).Rows(0)
+        '            .Item("Emp_Position") = Position
+        '            .Item("Branch_ID") = BranchID
+        '        End With
+        '        SaveEntry(ds, False)
+        '    End If
 
-        End Using
+        'End Using
 
     End Sub
-
-    'Friend Sub UpdateEmpLASTDATE()
-    '    Dim mysql As String = "Select * From tbl_Employee Where ID = '" & ID & "'"
-    '    Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")
-
-    '        With ds.Tables(0).Rows(0)
-    '            .Item("LASTDATE") = LastDate
-    '        End With
-    '        SaveEntry(ds, False)
-    '    End Using 
-    'End Sub
 
     Friend Sub SaveTOLASTDATE()
         Dim sql As String = "select * from tbl_lastdate rows 1"
@@ -786,10 +561,8 @@ Public Class Employee
             pagibignumber = .Item("PAGIBIG").ToString
             assignstatus = .Item("ASSIGN_STATUS")
 
-            Position = .Item("Emp_Position")
-            BranchID = .Item("Branch_id")
-            'Company_Name = .Item("COMPANYNAME")
-            'Branch = .Item("Branchname")
+            Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
+            BranchID = IIf(IsDBNull(.Item("Branch_id")), "", .Item("Branch_id"))
 
         End With
     End Sub
@@ -923,7 +696,6 @@ Public Class Employee
     End Sub
 
     Friend Sub LoadEmployee(ByVal idx As Integer)
-        ''Console.WriteLine("idsssssssss== " & idx)
         Dim mysql As String = "Select * From tbl_Employee WHERE tbl_Employee.id= '" & idx & "'"
         Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")
             If ds.Tables(0).Rows.Count > 0 Then
@@ -955,16 +727,12 @@ Public Class Employee
     End Sub
 
     Friend Sub LoadEmpLetter(ByVal idx As Integer)
-        Dim mysql As String = "Select * From tbl_Employee 
-                            INNER JOIN TBL_BRANCH ON tbl_Employee.BRANCH_ID = TBL_BRANCH.ID 
-                            WHERE tbl_Employee.id = '" & idx & "'"
-
+        Dim mysql As String = "Select * From tbl_Employee  where id = '" & idx & "'"
         Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")
 
             If ds.Tables(0).Rows.Count > 0 Then
 
-                Dim dr As DataRow
-                dr = ds.Tables(0).Rows(0)
+                Dim dr As DataRow = ds.Tables(0).Rows(0)
                 With dr
                     ID = .Item("id")
                     FirstName = .Item("FIRSTNAME")
@@ -972,15 +740,27 @@ Public Class Employee
                     Console.WriteLine("IDDDDDD=== " & MiddleName)
                     LastName = .Item("LASTNAME")
                     Suffix = .Item("SUFFIX")
-                    Position = .Item("EMP_POSITION")
-                    Company_Name = .Item("COMPANYNAME")
-                    Branch_Name = .Item("BRANCHNAME")
                     Sex = .Item("GENDER")
-                    'BranchID = .Item("BranchID")
+                    Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
+                    BranchID = IIf(IsDBNull(.Item("BRANCH_ID")), "", .Item("BRANCH_ID"))
                 End With
-
             End If
         End Using
+
+        If Not BranchID = Nothing Then
+            Dim sql As String = "Select * From TBL_BRANCH  where id = '" & BranchID & "'"
+            Using dss As DataSet = LoadSQL(sql, "TBL_BRANCH")
+
+                If dss.Tables(0).Rows.Count > 0 Then
+                    Dim drr As DataRow = dss.Tables(0).Rows(0)
+                    With drr
+                        Company_Name = .Item("COMPANYNAME")
+                        Branch_Name = .Item("BRANCHNAME")
+                    End With
+                End If
+
+            End Using
+        End If
 
     End Sub
 
@@ -1039,51 +819,6 @@ Public Class Employee
         End Using
 
     End Sub
-
-    'Friend Sub LoadCompensationDeduction(ByVal idx As Integer)
-    '    Dim mysql As String
-
-    '    mysql = "Select * From tbl_employee INNER JOIN TBL_BRANCH ON tbl_Employee.BRANCH_id=TBL_BRANCH.ID WHERE tbl_Employee.id = '" & idx & "'"
-    '    Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
-
-    '        If ds.Tables(0).Rows.Count > 0 Then
-
-    '            Dim dr As DataRow
-    '            dr = ds.Tables(0).Rows(0)
-    '            With dr
-    '                ID = .Item("id")
-    '                FirstName = .Item("FIRSTNAME")
-    '                MiddleName = .Item("MIDDLENAME")
-    '                LastName = .Item("LASTNAME")
-    '                Suffix = .Item("SUFFIX")
-    '                DateHired = .Item("DATEHIRED")
-    '                Position = .Item("EMP_POSITION")
-    '                Company_Name = .Item("COMPANYNAME")
-    '                Branch_Name = .Item("BRANCHNAME")
-    '            End With
-
-    '        End If
-    '    End Using
-
-    '    mysql = "Select * From PAYROLL_DEDUCTION WHERE EMP_ID = '" & idx & "'"
-    '    Using ds As DataSet = LoadSQL(mysql, "PAYROLL_DEDUCTION")
-    '        If ds.Tables(0).Rows.Count > 0 Then
-
-    '            Dim dr As DataRow
-    '            dr = ds.Tables(0).Rows(0)
-    '            With dr
-    '                CashAdvance = .Item("CASH_ADVANCE")
-    '                Savings = .Item("SAVINGS_DEDUCTION")
-    '                Loans = .Item("LOANS_DEDUCTION")
-    '                Charges = .Item("CHARGES_DEDUCTION")
-    '                Meal = .Item("MEAL_DEDUCTION")
-    '                OtherDeduction = .Item("OTHER_DEDUCTION")
-    '                IDExist = "YES"
-    '            End With
-    '        End If
-    '    End Using
-
-    'End Sub
 
     Friend Sub LoadCorrectiveDetails(ByVal idx As Integer)
         Dim mysql As String
