@@ -264,7 +264,7 @@
             'ElseIf txtSearch.Tag = "Compensation" Then
 
             '    tmpEmp.LoadCompensationALLOWDEDUC(idx)
-            '    ReloadFormFromSearch(FormName.compensation, tmpEmp)
+            '    ReloadFormFromSearch(FormName.compensation, tmpEmp)  
 
         ElseIf txtSearch.Tag = "Corrective1" Then
 
@@ -275,6 +275,16 @@
 
             tmpEmp.LoadCorrectiveDetails(idx)
             ReloadFormFromSearch(FormName.corrective, tmpEmp, 2)
+
+        ElseIf txtSearch.Tag = "IR-Supervisor" Then
+
+            tmpEmp.LoadIRSupervisor(idx)
+            ReloadFormFromSearch(FormName.corrective, tmpEmp, 3)
+
+        ElseIf txtSearch.Tag = "IR-Person" Then
+
+            tmpEmp.LoadIRPerson(idx)
+            ReloadFormFromSearch(FormName.corrective, tmpEmp, 3, "person")
 
         End If
 

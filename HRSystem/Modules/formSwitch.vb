@@ -163,12 +163,21 @@
                 frmCoorective.Show()
 
                 If tab = 1 Then
-                    frmCoorective.CorrectiveWindow.SelectedIndex = 0
+                    frmCoorective.CorrectiveWindow.SelectedIndex = 1
                     frmCoorective.LoadEmployeeShowCause(cus)
 
                 ElseIf tab = 2 Then
-                    frmCoorective.CorrectiveWindow.SelectedIndex = 1
+                    frmCoorective.CorrectiveWindow.SelectedIndex = 2
                     frmCoorective.LoadEmployeeWritten(cus)
+
+                ElseIf tab = 3 Then
+                    If edit = "person" Then
+                        frmCoorective.CorrectiveWindow.SelectedIndex = 0
+                        frmCoorective.LoadIRPerson(cus)
+                    Else
+                        frmCoorective.CorrectiveWindow.SelectedIndex = 0
+                        frmCoorective.LoadIRSupervisor(cus)
+                    End If
                 End If
 
                 frmCoorective.Dock = DockStyle.Fill

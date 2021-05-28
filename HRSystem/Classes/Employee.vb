@@ -845,6 +845,55 @@ Public Class Employee
 
     End Sub
 
+    Friend Sub LoadIRSupervisor(ByVal idx As Integer)
+        Dim mysql As String
+
+        mysql = "Select * From tbl_employee where id = '" & idx & "'"
+        Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
+
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                Dim dr As DataRow = ds.Tables(0).Rows(0)
+                With dr
+                    ID = .Item("id")
+                    FirstName = .Item("FIRSTNAME")
+                    MiddleName = .Item("MIDDLENAME")
+                    LastName = .Item("LASTNAME")
+                    Suffix = .Item("SUFFIX")
+                    Position = .Item("EMP_POSITION")
+                End With
+
+            End If
+        End Using
+
+    End Sub
+
+    Friend Sub LoadIRPerson(ByVal idx As Integer)
+        Dim mysql As String
+
+        mysql = "Select * From tbl_employee INNER JOIN TBL_BRANCH ON tbl_Employee.BRANCH_id=TBL_BRANCH.ID WHERE tbl_Employee.id = '" & idx & "'"
+        Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
+
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                Dim dr As DataRow = ds.Tables(0).Rows(0)
+                With dr
+                    ID = .Item("id")
+                    FirstName = .Item("FIRSTNAME")
+                    MiddleName = .Item("MIDDLENAME")
+                    LastName = .Item("LASTNAME")
+                    Suffix = .Item("SUFFIX")
+                    Position = .Item("EMP_POSITION")
+                    Branch_Name = .Item("BRANCHNAME")
+                    Company_Name = .Item("COMPANYNAME")
+                End With
+
+            End If
+        End Using
+
+    End Sub
+
+
     Friend Sub LoadEmployeeAssigned(ByVal idx As Integer)
         Dim mysql As String = "Select * From tbl_Employee INNER JOIN TBL_REQ ON tbl_Employee.id=TBL_REQ.EMPLOYEE_ID WHERE tbl_Employee.id= '" & idx & "'"
         Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")

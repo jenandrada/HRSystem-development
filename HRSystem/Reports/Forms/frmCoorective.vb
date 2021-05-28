@@ -31,13 +31,16 @@ Public Class frmCoorective
             Next
         End With
         chkStatus = 0
+        'Me.ReportViewer1.RefreshReport()
+        Me.RptViewer_IncidentReport.RefreshReport()
+        Me.RptViewer_IncidentReport.RefreshReport()
     End Sub
 
     Private Sub Close_BTN_Click(sender As Object, e As EventArgs) Handles Close_BTN.Click
         Close()
     End Sub
 
-    Private Sub SearchEMP_BTN_Click(sender As Object, e As EventArgs) Handles SearchEMP_BTN.Click
+    Private Sub SearchEMP_BTN_Click(sender As Object, e As EventArgs)
 
         If frmEmployeeList Is Nothing Then
             Dim frm As New frmEmployeeList With {
@@ -86,6 +89,28 @@ Public Class frmCoorective
 
     End Sub
 
+    Friend Sub LoadIRSupervisor(mPower As Employee)
+
+        With mPower
+            Supervisor_TXT.Text = String.Format($"{ .LastName}, { .FirstName} { .MiddleName}")
+            Supervisor_TXT.Tag = .ID
+            PositionS_TXT.Text = .Position
+        End With
+
+    End Sub
+
+    Friend Sub LoadIRPerson(mPower As Employee)
+
+        With mPower
+            Person_TXT.Text = String.Format($"{ .LastName}, { .FirstName} { .MiddleName}")
+            Person_TXT.Tag = .ID
+            PositionP_TXT.Text = .Position
+            Department_TXT.Text = .Branch_Name
+            PositionP_TXT.Tag = .Company_Name
+        End With
+
+    End Sub
+
     'Friend Sub LoadEmpRelieve(mPower As ManPower)
     '    With mPower
     '        If isPage1 = 0 Then
@@ -106,7 +131,29 @@ Public Class frmCoorective
     '        End If
     '    End With
 
-    'End Sub
+    'End Sub 
+
+    Private Sub OK_BTN_Click_1(sender As Object, e As EventArgs) Handles OK_BTN.Click
+        If EmpName_TXT.Text = "" Or IsNothing(Me.LV_Sections.FocusedItem) Then
+            If EmpName_TXT.Text = "" Then
+                MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ElseIf IsNothing(Me.LV_Sections.FocusedItem) Then
+                MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Else
+            LoadShowCauseReport()
+        End If
+    End Sub
+
+    Private Sub Save_BTN_Click_1(sender As Object, e As EventArgs) Handles Save_BTN.Click
+
+        If Not EmpName_TXT.Text = "" Then
+            ToPDF(EmpName_TXT.Text, "Show Cause Notice", RptViewer_ShowCause, LV_Sections)
+        Else
+            MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+    End Sub
 
     Private Sub LoadShowCauseReport()
         Dim datesent As String
@@ -218,7 +265,45 @@ Public Class frmCoorective
 
     End Sub
 
-    Private Sub OK_BTN_Click(sender As Object, e As EventArgs) Handles OK_BTN.Click
+    Private Sub LoadIncidentReport()
+
+        Dim DateIncident, DateReceive As String
+        DateIncident = DateIncident_DTP.Value.ToString("MMMM dd, yyyy")
+        DateReceive = DateReceive_DTP.Value.ToString("MMMM dd, yyyy")
+        Dim company As String = PositionP_TXT.Tag
+
+        RptViewer_IncidentReport.LocalReport.DataSources.Clear()
+
+        Dim paramList As New List(Of ReportParameter) From {
+            New ReportParameter("paramCompany", company, True),
+            New ReportParameter("paramSupervisor", Supervisor_TXT.Text, True),
+            New ReportParameter("paramPositionS", PositionS_TXT.Text, True),
+            New ReportParameter("paramPerson", Person_TXT.Text),
+            New ReportParameter("paramPositionP", PositionP_TXT.Text),
+            New ReportParameter("paramBranch", Department_TXT.Text),
+            New ReportParameter("paramDateReceived", DateReceive),
+            New ReportParameter("paramLocation", IncidentLoc_TXT.Text),
+            New ReportParameter("paramDateIncident", DateIncident),
+            New ReportParameter("paramDescription", Description_RichText.Text),
+            New ReportParameter("paramActionTaken", Action_CB.Text),
+            New ReportParameter("paramIRNo", IRNo_LBL.Text),
+            New ReportParameter("paramPreparedBy", PreparedBy_TXT.Text),
+            New ReportParameter("paramReceivedBy", Received_TXT.Text),
+            New ReportParameter("paramReviewedBy", ReviewedBy_TXT.Text)
+        }
+
+        Try
+            RptViewer_IncidentReport.LocalReport.SetParameters(paramList)
+            RptViewer_IncidentReport.RefreshReport()
+
+        Catch ex As Exception
+            Log_Report(ex.ToString)
+            MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+    Private Sub OK_BTN_Click(sender As Object, e As EventArgs)
         If EmpName_TXT.Text = "" Or IsNothing(Me.LV_Sections.FocusedItem) Then
             If EmpName_TXT.Text = "" Then
                 MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -231,7 +316,7 @@ Public Class frmCoorective
 
     End Sub
 
-    Private Sub Audit_CHK_CheckedChanged(sender As Object, e As EventArgs) Handles Audit_CHK.CheckedChanged
+    Private Sub Audit_CHK_CheckedChanged(sender As Object, e As EventArgs)
         If Audit_CHK.Checked = True Then
             chkStatus = 1
         ElseIf Audit_CHK.Checked = False Then
@@ -264,7 +349,7 @@ Public Class frmCoorective
         Close()
     End Sub
 
-    Private Sub LV_Rules_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LV_Rules.SelectedIndexChanged
+    Private Sub LV_Rules_SelectedIndexChanged(sender As Object, e As EventArgs)
         'RuleNoList.Add(LV_Rules.Items(LV_Rules.FocusedItem.Index).SubItems(0).Text)
         Dim tmp As New Lists
         LV_Sections.Items.Clear()
@@ -493,7 +578,7 @@ Public Class frmCoorective
 
     End Sub
 
-    Private Sub Save_BTN_Click(sender As Object, e As EventArgs) Handles Save_BTN.Click
+    Private Sub Save_BTN_Click(sender As Object, e As EventArgs)
 
         If Not EmpName_TXT.Text = "" Then
 
@@ -522,11 +607,11 @@ Public Class frmCoorective
 
     End Sub
 
-    Private Sub PS1_Btn_Click(sender As Object, e As EventArgs) Handles PS1_Btn.Click
+    Private Sub PS1_Btn_Click(sender As Object, e As EventArgs)
         Position1_TXT.ReadOnly = False
     End Sub
 
-    Private Sub PS3_Btn_Click(sender As Object, e As EventArgs) Handles PS3_Btn.Click
+    Private Sub PS3_Btn_Click(sender As Object, e As EventArgs)
         Position3_TXT.ReadOnly = False
     End Sub
 
@@ -587,7 +672,7 @@ Public Class frmCoorective
         End If
     End Sub
 
-    Private Sub Optional_CHK_CheckedChanged(sender As Object, e As EventArgs) Handles Optional_CHK.CheckedChanged
+    Private Sub Optional_CHK_CheckedChanged(sender As Object, e As EventArgs)
         If Optional_CHK.Checked Then
             Optional_Group.Enabled = True
         Else
@@ -597,11 +682,11 @@ Public Class frmCoorective
 
     Private ReadOnly _console As New RichTextBox
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         _console.Clear()
     End Sub
 
-    Private Sub FromAuditDate_DTP_CloseUp(sender As Object, e As EventArgs) Handles FromAuditDate_DTP.CloseUp
+    Private Sub FromAuditDate_DTP_CloseUp(sender As Object, e As EventArgs)
         _console.AppendText(FromAuditDate_DTP.Value & ", ")
     End Sub
 
@@ -610,14 +695,14 @@ Public Class frmCoorective
     End Sub
 
 
-    Private Sub GroupBox6_Paint(sender As Object, e As PaintEventArgs) Handles GroupBox6.Paint
+    Private Sub GroupBox6_Paint(sender As Object, e As PaintEventArgs)
         Dim p As New Pen(Color.Red, 2)
         e.Graphics.DrawRectangle(p, New Rectangle(EmpName_TXT.Location + New Size(1, 1), EmpName_TXT.Size - New Size(2, 2)))
         p.Dispose()
     End Sub
 
 
-    Private Sub EmpName_TXT_TextChanged(sender As Object, e As EventArgs) Handles EmpName_TXT.TextChanged
+    Private Sub EmpName_TXT_TextChanged(sender As Object, e As EventArgs)
         If EmpName_TXT.Text = "" Then
             EmpName_TXT.Region = New Region(New Rectangle(2, 2, EmpName_TXT.Width - 4, EmpName_TXT.Height - 4))
         Else
@@ -626,7 +711,7 @@ Public Class frmCoorective
     End Sub
 
 
-    Private Sub LV_Sections_Click(sender As Object, e As EventArgs) Handles LV_Sections.Click
+    Private Sub LV_Sections_Click(sender As Object, e As EventArgs)
         Alert()
     End Sub
 
@@ -638,15 +723,15 @@ Public Class frmCoorective
         End If
     End Sub
 
-    Private Sub AuditFindings_TXT_TextChanged(sender As Object, e As EventArgs) Handles AuditFindings_TXT.TextChanged
+    Private Sub AuditFindings_TXT_TextChanged(sender As Object, e As EventArgs)
         Alert()
     End Sub
 
-    Private Sub Location_TXT_TextChanged(sender As Object, e As EventArgs) Handles Location_TXT.TextChanged
+    Private Sub Location_TXT_TextChanged(sender As Object, e As EventArgs)
         Alert()
     End Sub
 
-    Private Sub Explaination_TXT_TextChanged(sender As Object, e As EventArgs) Handles Explaination_TXT.TextChanged
+    Private Sub Explaination_TXT_TextChanged(sender As Object, e As EventArgs)
         Alert()
     End Sub
 
@@ -668,7 +753,6 @@ Public Class frmCoorective
         Attachment(DataGridView1, "YES")
     End Sub
 
-
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
         Dim grid = DirectCast(sender, DataGridView)
@@ -683,15 +767,26 @@ Public Class frmCoorective
 
     Private Sub DataGridView1_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseDoubleClick
 
-        Dim row = DataGridView1.Rows(e.RowIndex)
-
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-            Modify_Panel.Visible = True
+            'Modify_Panel.Visible = True
 
-            Dim bytes As Byte() = DataGridView1.CurrentRow.Cells(5).Value
-            Using ms As New MemoryStream(bytes)
-                PictureBox1.Image = Image.FromStream(ms)
-                PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+            'Dim bytes As Byte() = DataGridView1.CurrentRow.Cells(5).Value
+            'Using ms As New MemoryStream(bytes)
+            '    PictureBox1.Image = Image.FromStream(ms)
+            '    PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+            'End Using
+
+            Using explainImage As New Explaination
+
+                Dim bytes As Byte() = DataGridView1.CurrentRow.Cells(5).Value
+                Using ms As New MemoryStream(bytes)
+
+                    explainImage.PictureBox1.Image = Image.FromStream(ms)
+                    explainImage.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+                    explainImage.datagridd = DataGridView1
+                    explainImage.ShowDialog()
+
+                End Using
             End Using
 
         End If
@@ -742,6 +837,13 @@ Public Class frmCoorective
         PictureBox1.Image = Nothing
     End Sub
 
+    'Private ReadOnly _section As New RichTextBox
+
+    'Private Sub LV_Sections_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LV_Sections.SelectedIndexChanged, LV_Rules.Click
+    '    Sectionlist.Add(LV_Sections.Items(LV_Sections.FocusedItem.Index).SubItems(0).Text)
+    'End Sub
+
+
     Private Sub Check_BTN_Click(sender As Object, e As EventArgs) Handles Check_BTN.Click
 
         Dim i As Integer = DataGridView1.CurrentRow.Index
@@ -752,8 +854,8 @@ Public Class frmCoorective
             imgData = ImgToByteArray(PictureBox1.InitialImage, ImageFormat.Jpeg)
         End If
 
-        Modify_Panel.Visible = False
-        PictureBox1.Image = Nothing
+        'Modify_Panel.Visible = False
+        'PictureBox1.Image = Nothing
 
         ExplainationSave(DataGridView1.Item(0, i).Value, imgData, "YES")
 
@@ -765,10 +867,60 @@ Public Class frmCoorective
 
     End Sub
 
-    'Private ReadOnly _section As New RichTextBox
+    Private Sub Supervisor_BTN_Click(sender As Object, e As EventArgs) Handles Supervisor_BTN.Click
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "IR-Supervisor"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
 
-    'Private Sub LV_Sections_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LV_Sections.SelectedIndexChanged, LV_Rules.Click
-    '    Sectionlist.Add(LV_Sections.Items(LV_Sections.FocusedItem.Index).SubItems(0).Text)
-    'End Sub
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+        Close()
+    End Sub
+
+    Private Sub Person_BTN_Click(sender As Object, e As EventArgs) Handles Person_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "IR-Person"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub SaveIR_BTN_Click(sender As Object, e As EventArgs) Handles SaveIR_BTN.Click
+
+    End Sub
+
+    Private Sub PreviewIR_BTN_Click(sender As Object, e As EventArgs) Handles PreviewIR_BTN.Click
+
+        If Supervisor_TXT.Text = "" Or Person_TXT.Text = "" Then
+            MessageBox.Show($"Please Complete employee's name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            LoadIncidentReport()
+        End If
+    End Sub
 
 End Class
