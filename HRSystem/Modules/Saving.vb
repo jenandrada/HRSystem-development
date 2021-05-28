@@ -94,4 +94,37 @@
 
     End Sub
 
+    'Friend Sub SaveExplaination(ID As Integer, p As Byte())
+
+    '    Dim sql As String = "select * from TBL_PROFILEPIC rows 1"
+    '    Using ds As DataSet = LoadSQL(sql, "TBL_PROFILEPIC")
+    '        Dim dsNew As DataRow = ds.Tables(0).NewRow
+
+    '        With dsNew
+    '            .Item("EMP_ID") = ID
+    '            .Item("PROFILE_PIC") = p
+    '        End With
+    '        ds.Tables(0).Rows.Add(dsNew)
+    '        SaveEntry(ds)
+    '    End Using
+    'End Sub
+
+    Friend Sub ExplainationSave(scno As String, pic As Byte(), status As String)
+        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS Where SCNO = '" & scno & "'"
+        Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
+
+            With ds.Tables(0).Rows(0)
+                .Item("STATUS") = status
+                .Item("IMAGEEXPLAIN") = pic
+            End With
+            SaveEntry(ds, False)
+        End Using
+
+        MsgBox("Succesfully Saved!", MsgBoxStyle.Information, "Information")
+
+        If ThisHasRow("SHOWCAUSE_RECORDS") Then
+            SCPendings(frmMainForm.PendingNo_LBL)
+        End If
+    End Sub
+
 End Module

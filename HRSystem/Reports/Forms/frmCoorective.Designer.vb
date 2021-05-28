@@ -1200,6 +1200,7 @@ Partial Class frmCoorective
         '
         'Modify_Panel
         '
+        Me.Modify_Panel.AutoSize = True
         Me.Modify_Panel.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Modify_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Modify_Panel.Controls.Add(Me.PictureBox1)
@@ -1510,14 +1511,14 @@ Partial Class frmCoorective
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label21 As Label
     Friend WithEvents FbDataAdapter1 As FirebirdSql.Data.FirebirdClient.FbDataAdapter
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Modify_Panel As Panel
+    Friend WithEvents Close_Modify_BTN As Button
+    Friend WithEvents Check_BTN As Button
     Friend WithEvents SCNO_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Name_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Company_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Deadline_DGV As DataGridViewTextBoxColumn
     Friend WithEvents File_DGV As DataGridViewButtonColumn
     Friend WithEvents Explain_DGV As DataGridViewImageColumn
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Modify_Panel As Panel
-    Friend WithEvents Close_Modify_BTN As Button
-    Friend WithEvents Check_BTN As Button
 End Class

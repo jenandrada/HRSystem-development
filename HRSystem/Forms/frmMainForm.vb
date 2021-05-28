@@ -24,6 +24,10 @@ Public Class frmMainForm
             NavagationPanel.Width = 176
         End If
 
+        If ThisHasRow("SHOWCAUSE_RECORDS") Then
+            SCPendings(PendingNo_LBL)
+        End If
+
     End Sub
 
     Private Sub AddressToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
@@ -67,6 +71,8 @@ Public Class frmMainForm
                 NotifyRatings()
                 NotifyBhAllowance()
             End If
+            Dashboard_LBL.Visible = True
+            Pending_Panel.Visible = True
         End If
         ID_LBL.Text = idx
         UserName_LBL.Text = username
@@ -615,5 +621,23 @@ Public Class frmMainForm
 
     Private Sub pNavigate_Paint(sender As Object, e As PaintEventArgs) Handles pNavigate.Paint
 
+    End Sub
+
+    Private Sub Pending_Panel_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Pending_Panel.MouseDoubleClick
+        If frmCoorective Is Nothing Then
+            Dim frm As New frmCoorective With {
+                .MdiParent = Me
+            }
+            pNavigate.Controls.Add(frm)
+            pNavigate.Tag = frm
+            frm.Show()
+            frm.CorrectiveWindow.SelectedIndex = 2
+            frm.Pending_RB.Checked = True
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
     End Sub
 End Class

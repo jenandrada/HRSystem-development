@@ -7,6 +7,7 @@ Public Class frmCoorective
     Friend isPage1 As Integer
     Dim chkStatus As Integer
     Dim dateIssued As String = Now.ToShortDateString
+    Dim imgData As Byte()
     'Dim Sectionlist As New ArrayList
 
     Private Sub FrmCoorective_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -667,53 +668,43 @@ Public Class frmCoorective
         Attachment(DataGridView1, "YES")
     End Sub
 
+
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
         Dim grid = DirectCast(sender, DataGridView)
         Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
-        'Dim pic As PictureBox = row.Cells("Explain_DGV").Value
 
         If TypeOf grid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn Then
             If grid.Columns(e.ColumnIndex).Name = "File_DGV" Then
-
                 Process.Start(row.Cells("File_DGV").Tag)
             End If
         End If
     End Sub
 
-    'Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
-    '    Using openF As New OpenFileDialog()
-    '        Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
-    '        Dim sep As String = String.Empty
-    '        With openF
-    '            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-    '            .Title = "Save As Image"
-    '            .DefaultExt = ".JPG"
-    '            .Filter = ""
-    '            .FilterIndex = 2
-    '            .RestoreDirectory = True
-    '            .FileName = "*.JPG"
-    '        End With
-    '        For Each c As ImageCodecInfo In codecs
-    '            Dim codecName As String = c.CodecName.Substring(8).Replace("Codec", "Files").Trim()
-    '            openF.Filter = $"{openF.Filter }{sep }{codecName } ({c.FilenameExtension })|{c.FilenameExtension }"
-    '            sep = "|"
-    '        Next
-    '        If openF.ShowDialog = DialogResult.OK Then
-    '            If Not Image.FromFile(openF.FileName).Size = PictureBox1.InitialImage.Size Then
-    '                PictureBox1.Image = Image.FromFile(openF.FileName)
-    '                PictureBox1.Tag = openF.FileName
-    '                PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-    '            Else
-    '                PictureBox1.Image = Image.FromFile(openF.FileName)
-    '                PictureBox1.Tag = openF.FileName
-    '                PictureBox1.SizeMode = PictureBoxSizeMode.CenterImage
-    '            End If
-    '        End If
-    '    End Using
+    Private Sub DataGridView1_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseDoubleClick
+
+        Dim row = DataGridView1.Rows(e.RowIndex)
+
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            Modify_Panel.Visible = True
+
+            Dim bytes As Byte() = DataGridView1.CurrentRow.Cells(5).Value
+            Using ms As New MemoryStream(bytes)
+                PictureBox1.Image = Image.FromStream(ms)
+                PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+            End Using
+
+        End If
+
+    End Sub
+
+    'Private Sub DataGridView1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles DataGridView1.MouseDoubleClick
+    '    'Modify_Panel.Location = New Point(e.X, e.Y)
+    '    Modify_Panel.Visible = True
+    '    Dim row As DataGridViewRow = DataGridView1.Rows(e.)
     'End Sub
 
-    Private Sub DataGridView1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles DataGridView1.MouseDoubleClick
+    Private Sub PictureBox1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDoubleClick
 
         Using openF As New OpenFileDialog()
             Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
@@ -744,45 +735,35 @@ Public Class frmCoorective
                 End If
             End If
         End Using
-
-
-        Modify_Panel.Location = New Point(e.X, e.Y)
-        Modify_Panel.Visible = True
     End Sub
 
-    'Private Sub OpenExplorer()
+    Private Sub Close_Modify_BTN_Click(sender As Object, e As EventArgs) Handles Close_Modify_BTN.Click
+        Modify_Panel.Visible = False
+        PictureBox1.Image = Nothing
+    End Sub
 
-    '    Using openF As New OpenFileDialog()
-    '        Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
-    '        Dim sep As String = String.Empty
-    '        With openF
-    '            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-    '            .Title = "Save As Image"
-    '            .DefaultExt = ".JPG"
-    '            .Filter = ""
-    '            .FilterIndex = 2
-    '            .RestoreDirectory = True
-    '            .FileName = "*.JPG"
-    '        End With
-    '        For Each c As ImageCodecInfo In codecs
-    '            Dim codecName As String = c.CodecName.Substring(8).Replace("Codec", "Files").Trim()
-    '            openF.Filter = $"{openF.Filter }{sep }{codecName } ({c.FilenameExtension })|{c.FilenameExtension }"
-    '            sep = "|"
-    '        Next
-    '        If openF.ShowDialog = DialogResult.OK Then
-    '            If Not Image.FromFile(openF.FileName).Size = pic.InitialImage.Size Then
-    '                pic.Image = Image.FromFile(openF.FileName)
-    '                pic.Tag = openF.FileName
-    '                pic.SizeMode = PictureBoxSizeMode.StretchImage
-    '            Else
-    '                pic.Image = Image.FromFile(openF.FileName)
-    '                pic.Tag = openF.FileName
-    '                pic.SizeMode = PictureBoxSizeMode.CenterImage
-    '            End If
-    '        End If
-    '    End Using
+    Private Sub Check_BTN_Click(sender As Object, e As EventArgs) Handles Check_BTN.Click
 
-    'End Sub
+        Dim i As Integer = DataGridView1.CurrentRow.Index
+
+        If Not PictureBox1.Tag = Nothing Then
+            imgData = ImgToByteArray(Image.FromFile(PictureBox1.Tag), ImageFormat.Jpeg)
+        Else
+            imgData = ImgToByteArray(PictureBox1.InitialImage, ImageFormat.Jpeg)
+        End If
+
+        Modify_Panel.Visible = False
+        PictureBox1.Image = Nothing
+
+        ExplainationSave(DataGridView1.Item(0, i).Value, imgData, "YES")
+
+        If Pending_RB.Checked = True Then
+            Attachment(DataGridView1, "NO")
+        ElseIf Pending_RB.Checked = True Then
+            Attachment(DataGridView1, "YES")
+        End If
+
+    End Sub
 
     'Private ReadOnly _section As New RichTextBox
 
