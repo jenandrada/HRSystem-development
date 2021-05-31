@@ -22,6 +22,35 @@
 
     End Sub
 
+    Friend Sub SaveIncidentReport(IRNo As String, suprvisor_ID As String, person_ID As String, incidentLoc As String,
+                                  incidentDate As String, ReceivedDate As String, actionTaken As String, Description As String,
+                                  preparedby As String, receivedby As String, reviewedby As String, path As String)
+
+        Dim mysql As String = "Select * From IR_RECORDS Rows 1"
+        Using ds As DataSet = LoadSQL(mysql, "IR_RECORDS")
+
+            Dim dsNewRow As DataRow = ds.Tables(0).NewRow
+            With dsNewRow
+
+                .Item("IRNo") = IRNo
+                .Item("suprvisor_ID") = suprvisor_ID
+                .Item("person_ID") = person_ID
+                .Item("incidentLoc") = incidentLoc
+                .Item("incidentDate") = incidentDate
+                .Item("ReceivedDate") = ReceivedDate
+                .Item("actionTaken") = actionTaken
+                .Item("Description") = Description
+                .Item("preparedby") = preparedby
+                .Item("receivedby") = receivedby
+                .Item("path") = path
+
+            End With
+            ds.Tables(0).Rows.Add(dsNewRow)
+            SaveEntry(ds)
+        End Using
+
+    End Sub
+
     Friend Sub SaveRuleNoSectionnO(emp_id As String, rule As String, section As String)
         Dim mysql As String = "Select * From SHOWCAUSE_COUNT Rows 1"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_COUNT")
@@ -40,59 +69,6 @@
 
     End Sub
 
-    Public Sub GetSCNo(SCNO As Label)
-
-        Dim mysql As String = "Select MAX(ID) + 1  As Greatest FROM SHOWCAUSE_RECORDS"
-        Using ds As DataSet = LoadSQL(mysql)
-
-            Dim dr As DataRow = ds.Tables(0).Rows(0)
-            If dr.Table.Rows.Count > 0 Then
-                With dr
-                    SCNO.Text = Format(.Item("Greatest"), "00000")
-
-                End With
-            End If
-        End Using
-    End Sub
-
-
-    Public Sub GreatestBiometric(textbox As TextBox)
-
-        Dim mysql As String = "Select MAX(BIOMETRICID) + 1  As Greatest FROM tbl_Employee"
-        Using ds As DataSet = LoadSQL(mysql)
-
-            Dim dr As DataRow = ds.Tables(0).Rows(0)
-            If dr.Table.Rows.Count > 0 Then
-                With dr
-
-                    'Dim year As String = DateHired_DTP.Value.ToString("yy")
-                    'Dim month As String = DateHired_DTP.Value.ToString("MM")
-                    'BioNumber_TXT.Text = year & "-0" & month & "-" & .Item("Greatest")
-                    'BioNumber_TXT.Tag = .Item("Greatest")
-
-                    textbox.Text = .Item("Greatest")
-                End With
-            Else
-                Exit Sub
-            End If
-        End Using
-    End Sub
-    Public Sub SCPendings(SCNO As Label)
-
-        Dim mysql As String = "Select Count(ID) as CountME FROM SHOWCAUSE_RECORDS where status = 'NO'"
-        Using ds As DataSet = LoadSQL(mysql)
-
-            Dim dr As DataRow = ds.Tables(0).Rows(0)
-            If dr.Table.Rows.Count > 0 Then
-                With dr
-                    'Dim idx As Long = Format(.Item("Greatest"), "00000")
-                    SCNO.Text = .Item("CountME")
-
-                End With
-            End If
-        End Using
-
-    End Sub
 
     'Friend Sub SaveExplaination(ID As Integer, p As Byte())
 
@@ -110,7 +86,7 @@
     'End Sub
 
     Friend Sub ExplainationSave(scno As String, pic As Byte(), status As String)
-        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS Where SCNO = '" & scno & "'"
+        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS "
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
 
             With ds.Tables(0).Rows(0)

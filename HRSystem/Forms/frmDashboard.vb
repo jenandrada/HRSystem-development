@@ -1,4 +1,5 @@
 ﻿Public Class frmDashboard
+
     Private Sub Close_BTN_Click(sender As Object, e As EventArgs) Handles Close_BTN.Click
         Close()
     End Sub
@@ -28,7 +29,6 @@
             frmMainForm.pNavigate.Tag = frm
             frm.Show()
             frm.CorrectiveWindow.SelectedIndex = 2
-            frm.Pending_RB.Checked = True
             frm.Dock = DockStyle.Fill
             frm.BringToFront()
 

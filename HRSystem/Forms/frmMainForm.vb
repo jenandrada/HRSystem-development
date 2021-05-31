@@ -632,7 +632,6 @@ Public Class frmMainForm
             pNavigate.Tag = frm
             frm.Show()
             frm.CorrectiveWindow.SelectedIndex = 2
-            frm.Pending_RB.Checked = True
             frm.Dock = DockStyle.Fill
             frm.BringToFront()
 

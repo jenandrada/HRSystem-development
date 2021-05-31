@@ -28,6 +28,62 @@ Module Selecting
     End Function
 
 
+    Public Sub GetLastNo(lastNo As Label, table As String, column As String)
+
+        Dim mysql As String = $"Select MAX({column}) + 1  As Greatest FROM  { table }"
+        Using ds As DataSet = LoadSQL(mysql)
+
+            Dim dr As DataRow = ds.Tables(0).Rows(0)
+            If dr.Table.Rows.Count > 0 Then
+                With dr
+                    lastNo.Text = Format(.Item("Greatest"), "00000")
+
+                End With
+            End If
+        End Using
+    End Sub
+
+
+    Public Sub GreatestBiometric(textbox As TextBox)
+
+        Dim mysql As String = "Select MAX(BIOMETRICID) + 1  As Greatest FROM tbl_Employee"
+        Using ds As DataSet = LoadSQL(mysql)
+
+            Dim dr As DataRow = ds.Tables(0).Rows(0)
+            If dr.Table.Rows.Count > 0 Then
+                With dr
+
+                    'Dim year As String = DateHired_DTP.Value.ToString("yy")
+                    'Dim month As String = DateHired_DTP.Value.ToString("MM")
+                    'BioNumber_TXT.Text = year & "-0" & month & "-" & .Item("Greatest")
+                    'BioNumber_TXT.Tag = .Item("Greatest")
+
+                    textbox.Text = .Item("Greatest")
+                End With
+            Else
+                Exit Sub
+            End If
+        End Using
+    End Sub
+
+    Public Sub SCPendings(SCNO As Label)
+
+        Dim mysql As String = "Select Count(ID) as CountME FROM SHOWCAUSE_RECORDS where status = 'NO'"
+        Using ds As DataSet = LoadSQL(mysql)
+
+            Dim dr As DataRow = ds.Tables(0).Rows(0)
+            If dr.Table.Rows.Count > 0 Then
+                With dr
+                    'Dim idx As Long = Format(.Item("Greatest"), "00000")
+                    SCNO.Text = .Item("CountME")
+
+                End With
+            End If
+        End Using
+
+    End Sub
+
+
     Friend Sub Attachment(datagrid As DataGridView, status As String)
         datagrid.Rows.Clear()
         Dim mysql As String = "Select * From SHOWCAUSE_RECORDS inner join TBL_EMPLOYEE on TBL_EMPLOYEE.id = SHOWCAUSE_RECORDS.emp_id where SHOWCAUSE_RECORDS.status = '" & status & "'"

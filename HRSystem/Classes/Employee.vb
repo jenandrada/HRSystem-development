@@ -45,6 +45,8 @@ Public Class Employee
 
 #Region "Properties"
 
+    Public Property IRNo() As Integer
+
     Public Property ID() As Integer
 
     Public Property FirstName() As String
@@ -764,66 +766,66 @@ Public Class Employee
 
     End Sub
 
-    Friend Sub LoadCompensationALLOWDEDUC(ByVal idx As Integer)
+    'Friend Sub LoadCompensationALLOWDEDUC(ByVal idx As Integer)
+    'Dim mysql As String
+
+    'mysql = "Select * From tbl_employee INNER JOIN TBL_BRANCH ON tbl_Employee.BRANCH_id=TBL_BRANCH.ID WHERE tbl_Employee.id = '" & idx & "'"
+    'Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
+
+    '    If ds.Tables(0).Rows.Count > 0 Then
+
+    '        Dim dr As DataRow
+    '        dr = ds.Tables(0).Rows(0)
+    '        With dr
+    '            ID = .Item("id")
+    '            FirstName = .Item("FIRSTNAME")
+    '            MiddleName = .Item("MIDDLENAME")
+    '            LastName = .Item("LASTNAME")
+    '            Suffix = .Item("SUFFIX")
+    '            DateHired = .Item("DATEHIRED")
+    '            Position = .Item("EMP_POSITION")
+    '            Company_Name = .Item("COMPANYNAME")
+    '            Branch_Name = .Item("BRANCHNAME")
+    '        End With
+
+    '    End If
+    'End Using
+
+    'mysql = "Select * From PAYROLL_ALLOW_DEDUC WHERE EMP_ID = '" & idx & "'"
+    'Using ds As DataSet = LoadSQL(mysql, "PAYROLL_ALLOW_DEDUC")
+    '    If ds.Tables(0).Rows.Count > 0 Then
+
+    '        Dim dr As DataRow
+    '        dr = ds.Tables(0).Rows(0)
+    '        With dr
+    '            Monthly = .Item("MONTHLY_SALARY")
+    '            Daily = .Item("DAILY_SALARY")
+    '            Boarding = .Item("BOARDING_ALLOWANCE")
+    '            Carekit = .Item("CAREKIT_ALLOWANCE")
+    '            Transportation = .Item("TRANSPO_ALLOWANCE")
+    '            Medical = .Item("MEDICAL_ALLOWANCE")
+    '            Positional = .Item("POSITIONAL_ALLOWANCE")
+    '            OtherAllowance = .Item("OTHER_ALLOWANCE")
+    '            IDExist = "YES"
+
+    '            CashAdvance = .Item("CASH_ADVANCE")
+    '            Savings = .Item("SAVINGS_DEDUCTION")
+    '            Loans = .Item("LOANS_DEDUCTION")
+    '            Charges = .Item("CHARGES_DEDUCTION")
+    '            Meal = .Item("MEAL_DEDUCTION")
+    '            OtherDeduction = .Item("OTHER_DEDUCTION")
+    '            IDExist = "YES"
+    '        End With
+
+    '    End If
+    'End Using
+
+    'End Sub
+
+    Friend Sub LoadCorrectiveDetails(ByVal IR As Integer)
         Dim mysql As String
 
-        mysql = "Select * From tbl_employee INNER JOIN TBL_BRANCH ON tbl_Employee.BRANCH_id=TBL_BRANCH.ID WHERE tbl_Employee.id = '" & idx & "'"
-        Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
-
-            If ds.Tables(0).Rows.Count > 0 Then
-
-                Dim dr As DataRow
-                dr = ds.Tables(0).Rows(0)
-                With dr
-                    ID = .Item("id")
-                    FirstName = .Item("FIRSTNAME")
-                    MiddleName = .Item("MIDDLENAME")
-                    LastName = .Item("LASTNAME")
-                    Suffix = .Item("SUFFIX")
-                    DateHired = .Item("DATEHIRED")
-                    Position = .Item("EMP_POSITION")
-                    Company_Name = .Item("COMPANYNAME")
-                    Branch_Name = .Item("BRANCHNAME")
-                End With
-
-            End If
-        End Using
-
-        mysql = "Select * From PAYROLL_ALLOW_DEDUC WHERE EMP_ID = '" & idx & "'"
-        Using ds As DataSet = LoadSQL(mysql, "PAYROLL_ALLOW_DEDUC")
-            If ds.Tables(0).Rows.Count > 0 Then
-
-                Dim dr As DataRow
-                dr = ds.Tables(0).Rows(0)
-                With dr
-                    Monthly = .Item("MONTHLY_SALARY")
-                    Daily = .Item("DAILY_SALARY")
-                    Boarding = .Item("BOARDING_ALLOWANCE")
-                    Carekit = .Item("CAREKIT_ALLOWANCE")
-                    Transportation = .Item("TRANSPO_ALLOWANCE")
-                    Medical = .Item("MEDICAL_ALLOWANCE")
-                    Positional = .Item("POSITIONAL_ALLOWANCE")
-                    OtherAllowance = .Item("OTHER_ALLOWANCE")
-                    IDExist = "YES"
-
-                    CashAdvance = .Item("CASH_ADVANCE")
-                    Savings = .Item("SAVINGS_DEDUCTION")
-                    Loans = .Item("LOANS_DEDUCTION")
-                    Charges = .Item("CHARGES_DEDUCTION")
-                    Meal = .Item("MEAL_DEDUCTION")
-                    OtherDeduction = .Item("OTHER_DEDUCTION")
-                    IDExist = "YES"
-                End With
-
-            End If
-        End Using
-
-    End Sub
-
-    Friend Sub LoadCorrectiveDetails(ByVal idx As Integer)
-        Dim mysql As String
-
-        mysql = "Select * From tbl_employee INNER JOIN TBL_BRANCH ON tbl_Employee.BRANCH_id=TBL_BRANCH.ID WHERE tbl_Employee.id = '" & idx & "'"
+        mysql = "Select * From IR_RECORDS inner join tbl_employee on tbl_employee.id = IR_RECORDS.PERSON_ID WHERE IR_RECORDS.IRNo = '" & IR & "'"
         Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
 
             If ds.Tables(0).Rows.Count > 0 Then
@@ -835,13 +837,30 @@ Public Class Employee
                     MiddleName = .Item("MIDDLENAME")
                     LastName = .Item("LASTNAME")
                     Suffix = .Item("SUFFIX")
-                    Position = .Item("EMP_POSITION")
-                    Company_Name = .Item("COMPANYNAME")
-                    Branch_Name = .Item("BRANCHNAME")
+                    Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
+                    BranchID = IIf(IsDBNull(.Item("BRANCH_ID")), "", .Item("BRANCH_ID"))
+                    IRNo = Format(.Item("IRNO"), "00000")
+
                 End With
 
             End If
         End Using
+
+        If Not BranchID = "" Then
+            mysql = "Select * From TBL_BRANCH WHERE id = '" & BranchID & "'"
+            Using ds As DataSet = LoadSQL(mysql, "TBL_BRANCH")
+
+                If ds.Tables(0).Rows.Count > 0 Then
+
+                    Dim dr As DataRow = ds.Tables(0).Rows(0)
+                    With dr
+                        Company_Name = .Item("COMPANYNAME")
+                        Branch_Name = .Item("BRANCHNAME")
+                    End With
+
+                End If
+            End Using
+        End If
 
     End Sub
 
@@ -860,7 +879,7 @@ Public Class Employee
                     MiddleName = .Item("MIDDLENAME")
                     LastName = .Item("LASTNAME")
                     Suffix = .Item("SUFFIX")
-                    Position = .Item("EMP_POSITION")
+                    Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
                 End With
 
             End If
@@ -871,7 +890,7 @@ Public Class Employee
     Friend Sub LoadIRPerson(ByVal idx As Integer)
         Dim mysql As String
 
-        mysql = "Select * From tbl_employee INNER JOIN TBL_BRANCH ON tbl_Employee.BRANCH_id=TBL_BRANCH.ID WHERE tbl_Employee.id = '" & idx & "'"
+        mysql = "Select * From tbl_employee WHERE id = '" & idx & "'"
         Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
 
             If ds.Tables(0).Rows.Count > 0 Then
@@ -883,7 +902,20 @@ Public Class Employee
                     MiddleName = .Item("MIDDLENAME")
                     LastName = .Item("LASTNAME")
                     Suffix = .Item("SUFFIX")
-                    Position = .Item("EMP_POSITION")
+                    Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
+                    BranchID = .Item("BRANCH_ID")
+                End With
+
+            End If
+        End Using
+
+        mysql = "Select * From TBL_BRANCH WHERE id = '" & BranchID & "'"
+        Using ds As DataSet = LoadSQL(mysql, "TBL_BRANCH")
+
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                Dim dr As DataRow = ds.Tables(0).Rows(0)
+                With dr
                     Branch_Name = .Item("BRANCHNAME")
                     Company_Name = .Item("COMPANYNAME")
                 End With

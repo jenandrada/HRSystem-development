@@ -25,6 +25,10 @@ Partial Class frmMainForm
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMainForm))
         Me.pNavigate = New System.Windows.Forms.Panel()
+        Me.Dashboard_LBL = New System.Windows.Forms.Label()
+        Me.Pending_Panel = New System.Windows.Forms.Panel()
+        Me.PendingNo_LBL = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel_Maintenance = New System.Windows.Forms.Panel()
         Me.lbl_Address = New System.Windows.Forms.Label()
         Me.lbl_UserManage = New System.Windows.Forms.Label()
@@ -83,11 +87,8 @@ Partial Class frmMainForm
         Me.RateEMP_BTN = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
-        Me.Dashboard_LBL = New System.Windows.Forms.Label()
-        Me.Pending_Panel = New System.Windows.Forms.Panel()
-        Me.PendingNo_LBL = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.pNavigate.SuspendLayout()
+        Me.Pending_Panel.SuspendLayout()
         Me.Panel_Maintenance.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -95,7 +96,6 @@ Partial Class frmMainForm
         Me.NavagationPanel.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Pending_Panel.SuspendLayout()
         Me.SuspendLayout()
         '
         'pNavigate
@@ -111,6 +111,50 @@ Partial Class frmMainForm
         Me.pNavigate.Name = "pNavigate"
         Me.pNavigate.Size = New System.Drawing.Size(1188, 722)
         Me.pNavigate.TabIndex = 1
+        '
+        'Dashboard_LBL
+        '
+        Me.Dashboard_LBL.AutoSize = True
+        Me.Dashboard_LBL.Font = New System.Drawing.Font("Segoe UI", 20.0!)
+        Me.Dashboard_LBL.Location = New System.Drawing.Point(4, 3)
+        Me.Dashboard_LBL.Name = "Dashboard_LBL"
+        Me.Dashboard_LBL.Size = New System.Drawing.Size(147, 37)
+        Me.Dashboard_LBL.TabIndex = 6
+        Me.Dashboard_LBL.Text = "Dashboard"
+        Me.Dashboard_LBL.Visible = False
+        '
+        'Pending_Panel
+        '
+        Me.Pending_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Pending_Panel.BackColor = System.Drawing.Color.Pink
+        Me.Pending_Panel.Controls.Add(Me.PendingNo_LBL)
+        Me.Pending_Panel.Controls.Add(Me.Label3)
+        Me.Pending_Panel.Location = New System.Drawing.Point(135, 64)
+        Me.Pending_Panel.Name = "Pending_Panel"
+        Me.Pending_Panel.Padding = New System.Windows.Forms.Padding(5)
+        Me.Pending_Panel.Size = New System.Drawing.Size(212, 145)
+        Me.Pending_Panel.TabIndex = 5
+        Me.Pending_Panel.Visible = False
+        '
+        'PendingNo_LBL
+        '
+        Me.PendingNo_LBL.AutoSize = True
+        Me.PendingNo_LBL.Font = New System.Drawing.Font("Kristen ITC", 20.0!)
+        Me.PendingNo_LBL.Location = New System.Drawing.Point(91, 77)
+        Me.PendingNo_LBL.Name = "PendingNo_LBL"
+        Me.PendingNo_LBL.Size = New System.Drawing.Size(31, 36)
+        Me.PendingNo_LBL.TabIndex = 1
+        Me.PendingNo_LBL.Text = "0"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Kristen ITC", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(22, 34)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(180, 23)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = "Show Cause Pendings"
         '
         'Panel_Maintenance
         '
@@ -388,11 +432,11 @@ Partial Class frmMainForm
         'Question_lbl
         '
         Me.Question_lbl.AutoSize = True
-        Me.Question_lbl.Font = New System.Drawing.Font("HoloLens MDL2 Assets", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Question_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Question_lbl.ForeColor = System.Drawing.Color.Black
-        Me.Question_lbl.Location = New System.Drawing.Point(1112, -6)
+        Me.Question_lbl.Location = New System.Drawing.Point(1112, -2)
         Me.Question_lbl.Name = "Question_lbl"
-        Me.Question_lbl.Size = New System.Drawing.Size(28, 32)
+        Me.Question_lbl.Size = New System.Drawing.Size(32, 32)
         Me.Question_lbl.TabIndex = 6
         Me.Question_lbl.Text = "?"
         '
@@ -650,50 +694,6 @@ Partial Class frmMainForm
         Me.RateEMP_BTN.Text = "               Under Deve.."
         Me.RateEMP_BTN.UseVisualStyleBackColor = False
         '
-        'Dashboard_LBL
-        '
-        Me.Dashboard_LBL.AutoSize = True
-        Me.Dashboard_LBL.Font = New System.Drawing.Font("Segoe UI", 20.0!)
-        Me.Dashboard_LBL.Location = New System.Drawing.Point(4, 3)
-        Me.Dashboard_LBL.Name = "Dashboard_LBL"
-        Me.Dashboard_LBL.Size = New System.Drawing.Size(147, 37)
-        Me.Dashboard_LBL.TabIndex = 6
-        Me.Dashboard_LBL.Text = "Dashboard"
-        Me.Dashboard_LBL.Visible = False
-        '
-        'Pending_Panel
-        '
-        Me.Pending_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.Pending_Panel.BackColor = System.Drawing.Color.Pink
-        Me.Pending_Panel.Controls.Add(Me.PendingNo_LBL)
-        Me.Pending_Panel.Controls.Add(Me.Label3)
-        Me.Pending_Panel.Location = New System.Drawing.Point(135, 64)
-        Me.Pending_Panel.Name = "Pending_Panel"
-        Me.Pending_Panel.Padding = New System.Windows.Forms.Padding(5)
-        Me.Pending_Panel.Size = New System.Drawing.Size(212, 145)
-        Me.Pending_Panel.TabIndex = 5
-        Me.Pending_Panel.Visible = False
-        '
-        'PendingNo_LBL
-        '
-        Me.PendingNo_LBL.AutoSize = True
-        Me.PendingNo_LBL.Font = New System.Drawing.Font("Kristen ITC", 20.0!)
-        Me.PendingNo_LBL.Location = New System.Drawing.Point(91, 77)
-        Me.PendingNo_LBL.Name = "PendingNo_LBL"
-        Me.PendingNo_LBL.Size = New System.Drawing.Size(31, 36)
-        Me.PendingNo_LBL.TabIndex = 1
-        Me.PendingNo_LBL.Text = "0"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kristen ITC", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(22, 34)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(180, 23)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = "Show Cause Pendings"
-        '
         'frmMainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -717,6 +717,8 @@ Partial Class frmMainForm
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pNavigate.ResumeLayout(False)
         Me.pNavigate.PerformLayout()
+        Me.Pending_Panel.ResumeLayout(False)
+        Me.Pending_Panel.PerformLayout()
         Me.Panel_Maintenance.ResumeLayout(False)
         Me.Panel_Maintenance.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
@@ -728,8 +730,6 @@ Partial Class frmMainForm
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Pending_Panel.ResumeLayout(False)
-        Me.Pending_Panel.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

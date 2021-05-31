@@ -4,7 +4,7 @@ Public Class Explaination
 
     Dim imgData As Byte()
     Public datagridd As DataGridView = frmCoorective.DataGridView1
-    Public radioB As RadioButton = frmCoorective.Pending_RB
+    Public radioB As RadioButton
 
     Private Sub Close_Modify_BTN_Click(sender As Object, e As EventArgs) Handles Close_Modify_BTN.Click
         Close()
@@ -24,13 +24,13 @@ Public Class Explaination
 
         Close()
 
-        If radioB.Checked = True Then
-            Console.WriteLine("Checkeed")
-            Attachment(datagridd, "YES")
-        Else
-            Console.WriteLine("NOOOOOT Check")
-            Attachment(datagridd, "NO")
-        End If
+        'If radioB.Checked = True Then
+        '    Console.WriteLine("Checkeed")
+        '    Attachment(datagridd, "YES")
+        'Else
+        '    Console.WriteLine("NOOOOOT Check")
+        '    Attachment(datagridd, "NO")
+        'End If
     End Sub
 
     Private Sub PictureBox1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDoubleClick

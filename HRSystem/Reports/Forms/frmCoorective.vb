@@ -8,12 +8,17 @@ Public Class frmCoorective
     Dim chkStatus As Integer
     Dim dateIssued As String = Now.ToShortDateString
     Dim imgData As Byte()
+    Dim FolderPath As String
     'Dim Sectionlist As New ArrayList
 
     Private Sub FrmCoorective_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        If ThisHasRow("SHOWCAUSE_RECORDS") Then
-            GetSCNo(SCNo_LBL)
+        'If ThisHasRow("SHOWCAUSE_RECORDS") Then
+        '    GetLastNo(SCNo_LBL, "SHOWCAUSE_RECORDS", "ID")
+        'End If
+
+        If ThisHasRow("IR_RECORDS") Then
+            GetLastNo(IRNo_LBL, "IR_RECORDS", "IRNO")
         End If
 
         Dim tmpRule As New Lists
@@ -31,9 +36,6 @@ Public Class frmCoorective
             Next
         End With
         chkStatus = 0
-        'Me.ReportViewer1.RefreshReport()
-        Me.RptViewer_IncidentReport.RefreshReport()
-        Me.RptViewer_IncidentReport.RefreshReport()
     End Sub
 
     Private Sub Close_BTN_Click(sender As Object, e As EventArgs) Handles Close_BTN.Click
@@ -68,11 +70,14 @@ Public Class frmCoorective
     Friend Sub LoadEmployeeShowCause(mPower As Employee)
 
         With mPower
+
             EmpName_TXT.Text = String.Format($"{ .LastName}, { .FirstName} { .MiddleName}")
             EmpName_TXT.Tag = .ID
             Position_TXT.Text = .Position
             Company_TXT.Text = .Company_Name
             Branch_TXT.Text = .Branch_Name
+            SCNo_LBL.Text = Format(.IRNo, "00000")
+
         End With
 
     End Sub
@@ -149,9 +154,33 @@ Public Class frmCoorective
 
         If Not EmpName_TXT.Text = "" Then
             ToPDF(EmpName_TXT.Text, "Show Cause Notice", RptViewer_ShowCause, LV_Sections)
+
+            SaveShowCause(EmpName_TXT.Tag, DateSent_DTP.Value, DateSent_DTP.Value.AddDays(5), FolderPath, "NO", Company_TXT.Text, SCNo_LBL.Text)
+
+            ClearShowCause()
+
+            SCPendings(frmMainForm.PendingNo_LBL)
+
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+
+    End Sub
+
+    Private Sub ClearShowCause()
+
+        RptViewer_ShowCause.Clear()
+        EmpName_TXT.Clear()
+        Position_TXT.Clear()
+        Company_TXT.Clear()
+        Branch_TXT.Clear()
+        AuditFindings_TXT.Clear()
+        Location_TXT.Clear()
+        _console.Clear()
+        HRSupervisor_TXT.Clear()
+        BusinessUnitHead_TXT.Clear()
+        SentVia_TXT.Clear()
+        DateSent_DTP.Value = Date.UtcNow
 
     End Sub
 
@@ -172,7 +201,6 @@ Public Class frmCoorective
             New ReportParameter("paramCompany", Company_TXT.Text, True),
             New ReportParameter("paramBranch", Branch_TXT.Text, True),
             New ReportParameter("paramDate", dateIssued),
-            New ReportParameter("paramExplaination", Explaination_TXT.Text),
             New ReportParameter("paramDateofAudit", _console.Text),
             New ReportParameter("paramLocation", Location_TXT.Text),
             New ReportParameter("paramAuditFindings", AuditFindings_TXT.Text),
@@ -350,7 +378,6 @@ Public Class frmCoorective
     End Sub
 
     Private Sub LV_Rules_SelectedIndexChanged(sender As Object, e As EventArgs)
-        'RuleNoList.Add(LV_Rules.Items(LV_Rules.FocusedItem.Index).SubItems(0).Text)
         Dim tmp As New Lists
         LV_Sections.Items.Clear()
         For Each i As ListViewItem In LV_Rules.SelectedItems
@@ -570,11 +597,84 @@ Public Class frmCoorective
 
         End If
 
-        Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf"
-
-        SaveShowCause(EmpName_TXT.Tag, DateSent_DTP.Value, DateSent_DTP.Value.AddDays(5), str, "NO", Company_TXT.Text, SCNo_LBL.Text)
+        FolderPath = "D:\HR Records\" & Folder & "\" & Name & "\" & listview.Items(listview.FocusedItem.Index).SubItems(0).Text & ".pdf"
 
         MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    End Sub
+
+    Friend Sub IRSoftCopy(ByRef Name As String, ByRef Folder As String, ByRef report As ReportViewer, IRNo As String)
+
+        Name = Name.ToString.TrimEnd()
+
+        Dim DirFolderToCreate As String = "D:\HR Records\" & Folder & ""
+        Dim folderName As DirectoryInfo = New DirectoryInfo(DirFolderToCreate)
+
+        Dim DirEmployeeToCreate As String = "D:\HR Records\" & Folder & "\" & Name
+        Dim employee As DirectoryInfo = New DirectoryInfo(DirEmployeeToCreate)
+
+        Dim byteViewer As Byte() = report.LocalReport.Render("PDF")
+        Dim saveFileDialog1 As New SaveFileDialog()
+        saveFileDialog1.Filter = "*PDF files (*.pdf)|*.pdf"
+        saveFileDialog1.FilterIndex = 2
+        saveFileDialog1.RestoreDirectory = True
+
+        If folderName.Exists Then
+
+            If employee.Exists Then
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf", FileMode.Create)
+                newFile.Write(byteViewer, 0, byteViewer.Length)
+                newFile.Close()
+            Else
+                employee.Create()
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf", FileMode.Create)
+                newFile.Write(byteViewer, 0, byteViewer.Length)
+                newFile.Close()
+            End If
+
+        Else
+
+            folderName.Create()
+            If employee.Exists Then
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf", FileMode.Create)
+                newFile.Write(byteViewer, 0, byteViewer.Length)
+                newFile.Close()
+            Else
+                employee.Create()
+                Dim newFile As New FileStream("D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf", FileMode.Create)
+                newFile.Write(byteViewer, 0, byteViewer.Length)
+                newFile.Close()
+            End If
+
+        End If
+
+        Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\" & IRNo & ".pdf"
+
+        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, DateIncident_DTP.Value, DateReceive_DTP.Value, Action_CB.Text, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, str)
+
+        ClearIR()
+
+        MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    End Sub
+
+    Private Sub ClearIR()
+
+        GetLastNo(IRNo_LBL, "IR_RECORDS", "IRNO")
+        RptViewer_IncidentReport.Clear()
+        Supervisor_TXT.Clear()
+        PositionS_TXT.Clear()
+        Person_TXT.Clear()
+        PositionP_TXT.Clear()
+        Department_TXT.Clear()
+        IncidentLoc_TXT.Clear()
+        Action_CB.SelectedIndex = 0
+        Description_RichText.Clear()
+        PreparedBy_TXT.Clear()
+        Received_TXT.Clear()
+        ReviewedBy_TXT.Clear()
+        DateIncident_DTP.Value = Date.UtcNow
+        DateReceive_DTP.Value = Date.UtcNow
 
     End Sub
 
@@ -605,14 +705,6 @@ Public Class frmCoorective
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
-    End Sub
-
-    Private Sub PS1_Btn_Click(sender As Object, e As EventArgs)
-        Position1_TXT.ReadOnly = False
-    End Sub
-
-    Private Sub PS3_Btn_Click(sender As Object, e As EventArgs)
-        Position3_TXT.ReadOnly = False
     End Sub
 
     Private Sub WP_PS1_Btn_Click(sender As Object, e As EventArgs) Handles WP_PS1_Btn.Click
@@ -743,12 +835,12 @@ Public Class frmCoorective
 
     End Sub
 
-    Private Sub Pending_RB_Click(sender As Object, e As EventArgs) Handles Pending_RB.Click
+    Private Sub Pending_RB_Click(sender As Object, e As EventArgs)
         DataGridView1.Rows.Clear()
         Attachment(DataGridView1, "NO")
     End Sub
 
-    Private Sub Finish_RB_Click(sender As Object, e As EventArgs) Handles Finish_RB.Click
+    Private Sub Finish_RB_Click(sender As Object, e As EventArgs)
         DataGridView1.Rows.Clear()
         Attachment(DataGridView1, "YES")
     End Sub
@@ -768,26 +860,30 @@ Public Class frmCoorective
     Private Sub DataGridView1_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseDoubleClick
 
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-            'Modify_Panel.Visible = True
+            Modify_Panel.Visible = True
 
-            'Dim bytes As Byte() = DataGridView1.CurrentRow.Cells(5).Value
-            'Using ms As New MemoryStream(bytes)
-            '    PictureBox1.Image = Image.FromStream(ms)
-            '    PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-            'End Using
-
-            Using explainImage As New Explaination
+            If Not DataGridView1.CurrentRow.Cells(5).Value = Nothing Then
 
                 Dim bytes As Byte() = DataGridView1.CurrentRow.Cells(5).Value
                 Using ms As New MemoryStream(bytes)
-
-                    explainImage.PictureBox1.Image = Image.FromStream(ms)
-                    explainImage.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-                    explainImage.datagridd = DataGridView1
-                    explainImage.ShowDialog()
-
+                    PictureBox1.Image = Image.FromStream(ms)
+                    PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
                 End Using
-            End Using
+
+            End If
+
+            'Using explainImage As New Explaination
+
+            '    Dim bytes As Byte() = DataGridView1.CurrentRow.Cells(5).Value
+            '    Using ms As New MemoryStream(bytes)
+
+            '        explainImage.PictureBox1.Image = Image.FromStream(ms)
+            '        explainImage.PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+            '        explainImage.datagridd = DataGridView1
+            '        explainImage.ShowDialog()
+
+            '    End Using
+            'End Using
 
         End If
 
@@ -854,16 +950,17 @@ Public Class frmCoorective
             imgData = ImgToByteArray(PictureBox1.InitialImage, ImageFormat.Jpeg)
         End If
 
+        ExplainationSave(DataGridView1.Item(0, i).Value, imgData, "YES")
+
         'Modify_Panel.Visible = False
         'PictureBox1.Image = Nothing
 
-        ExplainationSave(DataGridView1.Item(0, i).Value, imgData, "YES")
 
-        If Pending_RB.Checked = True Then
-            Attachment(DataGridView1, "NO")
-        ElseIf Pending_RB.Checked = True Then
-            Attachment(DataGridView1, "YES")
-        End If
+        'If Pending_RB.Checked = True Then
+        '    Attachment(DataGridView1, "NO")
+        'ElseIf Pending_RB.Checked = True Then
+        '    Attachment(DataGridView1, "YES")
+        'End If
 
     End Sub
 
@@ -912,6 +1009,12 @@ Public Class frmCoorective
 
     Private Sub SaveIR_BTN_Click(sender As Object, e As EventArgs) Handles SaveIR_BTN.Click
 
+        If Not Supervisor_TXT.Text = "" Or Not Person_TXT.Text = "" Then
+            IRSoftCopy(Person_TXT.Text, "Incident Report", RptViewer_IncidentReport, IRNo_LBL.Text)
+        Else
+            MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
     End Sub
 
     Private Sub PreviewIR_BTN_Click(sender As Object, e As EventArgs) Handles PreviewIR_BTN.Click
@@ -923,4 +1026,90 @@ Public Class frmCoorective
         End If
     End Sub
 
+    Private Sub ClearIR_BTN_Click(sender As Object, e As EventArgs) Handles ClearIR_BTN.Click
+        ClearIR()
+    End Sub
+
+    Private Sub SearchEMP_BTN_Click_1(sender As Object, e As EventArgs) Handles SearchEMP_BTN.Click
+
+        If frmIRList Is Nothing Then
+            Dim frm As New frmIRList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.txtSearch.Tag = "ShowCause"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmIRList.BringToFront()
+        End If
+
+        Close()
+    End Sub
+
+    Private Sub LV_Rules_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles LV_Rules.SelectedIndexChanged
+        Dim tmp As New Lists
+        LV_Sections.Items.Clear()
+        For Each i As ListViewItem In LV_Rules.SelectedItems
+            If i.SubItems(0).Text = "RULE I" Then
+                For Each item In tmp.Rule1Sections()
+                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+            ElseIf i.SubItems(0).Text = "RULE II" Then
+                For Each item In tmp.Rule2Sections()
+                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+            ElseIf i.SubItems(0).Text = "RULE III" Then
+                For Each item In tmp.Rule3Sections()
+                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+            ElseIf i.SubItems(0).Text = "RULE IV" Then
+                For Each item In tmp.Rule4Sections()
+                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+            ElseIf i.SubItems(0).Text = "RULE V" Then
+                For Each item In tmp.Rule5Sections()
+                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+            ElseIf i.SubItems(0).Text = "RULE VI" Then
+                For Each item In tmp.Rule6Sections()
+                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+
+            End If
+        Next
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        _console.Clear()
+    End Sub
+
+    Private Sub FromAuditDate_DTP_CloseUp_1(sender As Object, e As EventArgs) Handles FromAuditDate_DTP.CloseUp
+        _console.AppendText(FromAuditDate_DTP.Value & ", ")
+    End Sub
+
+    Private Sub Optional_CHK_CheckedChanged_1(sender As Object, e As EventArgs) Handles Optional_CHK.CheckedChanged
+        If Optional_CHK.Checked Then
+            Optional_Group.Enabled = True
+        Else
+            Optional_Group.Enabled = False
+        End If
+    End Sub
+
+    Private Sub PS1_Btn_Click(sender As Object, e As EventArgs) Handles PS1_Btn.Click
+        Position1_TXT.ReadOnly = False
+    End Sub
+
+    Private Sub PS3_Btn_Click(sender As Object, e As EventArgs) Handles PS3_Btn.Click
+        Position3_TXT.ReadOnly = False
+    End Sub
 End Class

@@ -69,7 +69,7 @@ Partial Class frmEmployeeList
         '
         Me.btnSelect.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSelect.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelect.Location = New System.Drawing.Point(820, 628)
+        Me.btnSelect.Location = New System.Drawing.Point(1059, 628)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(99, 52)
         Me.btnSelect.TabIndex = 58
@@ -81,7 +81,7 @@ Partial Class frmEmployeeList
         '
         Me.btnView.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnView.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnView.Location = New System.Drawing.Point(1059, 628)
+        Me.btnView.Location = New System.Drawing.Point(849, 628)
         Me.btnView.Name = "btnView"
         Me.btnView.Size = New System.Drawing.Size(99, 52)
         Me.btnView.TabIndex = 56
@@ -172,7 +172,7 @@ Partial Class frmEmployeeList
         '
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAdd.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdd.Location = New System.Drawing.Point(938, 628)
+        Me.btnAdd.Location = New System.Drawing.Point(954, 628)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(99, 52)
         Me.btnAdd.TabIndex = 57
