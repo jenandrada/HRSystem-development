@@ -842,19 +842,6 @@ Public Class frmEmployeeDetails
         End If
     End Sub
 
-    Private Function ImgToByteArray(img As Image, imgFormat As ImageFormat) As Byte()
-        Dim tmpData As Byte()
-        If img IsNot Nothing Then
-            Dim BufferImage As Bitmap = New Bitmap(img)
-            Dim ms As MemoryStream = New MemoryStream
-            BufferImage.Save(ms, imgFormat)
-            BufferImage.Dispose()
-            tmpData = ms.ToArray
-            ms.Dispose()
-        End If
-        Return tmpData
-    End Function
-
     Private Sub SSSID_BTN_Click(sender As Object, e As EventArgs) Handles SSSID_BTN.Click
         Using archv As New Archive
             archv.Text = "SSS ID Number"

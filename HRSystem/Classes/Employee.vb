@@ -903,25 +903,29 @@ Public Class Employee
                     LastName = .Item("LASTNAME")
                     Suffix = .Item("SUFFIX")
                     Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
-                    BranchID = .Item("BRANCH_ID")
+                    BranchID = IIf(IsDBNull(.Item("BRANCH_ID")), "", .Item("BRANCH_ID"))
                 End With
 
             End If
         End Using
 
-        mysql = "Select * From TBL_BRANCH WHERE id = '" & BranchID & "'"
-        Using ds As DataSet = LoadSQL(mysql, "TBL_BRANCH")
+        If Not BranchID = "" Then
 
-            If ds.Tables(0).Rows.Count > 0 Then
+            mysql = "Select * From TBL_BRANCH WHERE id = '" & BranchID & "'"
+            Using ds As DataSet = LoadSQL(mysql, "TBL_BRANCH")
 
-                Dim dr As DataRow = ds.Tables(0).Rows(0)
-                With dr
-                    Branch_Name = .Item("BRANCHNAME")
-                    Company_Name = .Item("COMPANYNAME")
-                End With
+                If ds.Tables(0).Rows.Count > 0 Then
 
-            End If
-        End Using
+                    Dim dr As DataRow = ds.Tables(0).Rows(0)
+                    With dr
+                        Branch_Name = .Item("BRANCHNAME")
+                        Company_Name = .Item("COMPANYNAME")
+                    End With
+
+                End If
+            End Using
+
+        End If
 
     End Sub
 

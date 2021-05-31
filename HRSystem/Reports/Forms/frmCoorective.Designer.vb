@@ -23,8 +23,48 @@ Partial Class frmCoorective
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCoorective))
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CorrectiveWindow = New System.Windows.Forms.TabControl()
+        Me.IR_Page = New System.Windows.Forms.TabPage()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.RptViewer_IncidentReport = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.ClearIR_BTN = New System.Windows.Forms.Button()
+        Me.PreviewIR_BTN = New System.Windows.Forms.Button()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.SaveIR_BTN = New System.Windows.Forms.Button()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.PreparedBy_TXT = New System.Windows.Forms.TextBox()
+        Me.ReviewedBy_TXT = New System.Windows.Forms.TextBox()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.Received_TXT = New System.Windows.Forms.TextBox()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Description_RichText = New System.Windows.Forms.RichTextBox()
+        Me.Supervisor_BTN = New System.Windows.Forms.Button()
+        Me.DateReceive_DTP = New System.Windows.Forms.DateTimePicker()
+        Me.DateIncident_DTP = New System.Windows.Forms.DateTimePicker()
+        Me.Action_CB = New System.Windows.Forms.ComboBox()
+        Me.Supervisor_TXT = New System.Windows.Forms.TextBox()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.PositionS_TXT = New System.Windows.Forms.TextBox()
+        Me.Person_BTN = New System.Windows.Forms.Button()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Person_TXT = New System.Windows.Forms.TextBox()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.IncidentLoc_TXT = New System.Windows.Forms.TextBox()
+        Me.PositionP_TXT = New System.Windows.Forms.TextBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Department_TXT = New System.Windows.Forms.TextBox()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.IRNo_LBL = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.ShowCause_Page = New System.Windows.Forms.TabPage()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.RptViewer_ShowCause = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -74,54 +114,15 @@ Partial Class frmCoorective
         Me.Location_TXT = New System.Windows.Forms.TextBox()
         Me.FromAuditDate_DTP = New System.Windows.Forms.DateTimePicker()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.CorrectiveWindow = New System.Windows.Forms.TabControl()
-        Me.IR_Page = New System.Windows.Forms.TabPage()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.RptViewer_IncidentReport = New Microsoft.Reporting.WinForms.ReportViewer()
-        Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.ClearIR_BTN = New System.Windows.Forms.Button()
-        Me.PreviewIR_BTN = New System.Windows.Forms.Button()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.SaveIR_BTN = New System.Windows.Forms.Button()
-        Me.Label32 = New System.Windows.Forms.Label()
-        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
-        Me.Label38 = New System.Windows.Forms.Label()
-        Me.PreparedBy_TXT = New System.Windows.Forms.TextBox()
-        Me.ReviewedBy_TXT = New System.Windows.Forms.TextBox()
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.Received_TXT = New System.Windows.Forms.TextBox()
-        Me.Label40 = New System.Windows.Forms.Label()
-        Me.Description_RichText = New System.Windows.Forms.RichTextBox()
-        Me.Supervisor_BTN = New System.Windows.Forms.Button()
-        Me.DateReceive_DTP = New System.Windows.Forms.DateTimePicker()
-        Me.DateIncident_DTP = New System.Windows.Forms.DateTimePicker()
-        Me.Action_CB = New System.Windows.Forms.ComboBox()
-        Me.Supervisor_TXT = New System.Windows.Forms.TextBox()
-        Me.Label37 = New System.Windows.Forms.Label()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.PositionS_TXT = New System.Windows.Forms.TextBox()
-        Me.Person_BTN = New System.Windows.Forms.Button()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.Person_TXT = New System.Windows.Forms.TextBox()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.IncidentLoc_TXT = New System.Windows.Forms.TextBox()
-        Me.PositionP_TXT = New System.Windows.Forms.TextBox()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.Department_TXT = New System.Windows.Forms.TextBox()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.IRNo_LBL = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.ShowCause_Page = New System.Windows.Forms.TabPage()
         Me.Explanation_Page = New System.Windows.Forms.TabPage()
+        Me.RptViewer_Explanation = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.Modify_Panel = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Close_Modify_BTN = New System.Windows.Forms.Button()
         Me.Check_BTN = New System.Windows.Forms.Button()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.Explain_datagrid = New System.Windows.Forms.DataGridView()
         Me.WrittenReprimand_Page = New System.Windows.Forms.TabPage()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -176,17 +177,23 @@ Partial Class frmCoorective
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Close_BTN = New System.Windows.Forms.Button()
         Me.FbDataAdapter1 = New FirebirdSql.Data.FirebirdClient.FbDataAdapter()
-        Me.SCNO_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IRNO_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Name_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Company_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Deadline_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IR = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.IR_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.File_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Explain_DGV = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.Panel2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
+        Me.CorrectiveWindow.SuspendLayout()
+        Me.IR_Page.SuspendLayout()
+        Me.Panel5.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        Me.Panel6.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
+        Me.ShowCause_Page.SuspendLayout()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
@@ -199,20 +206,10 @@ Partial Class frmCoorective
         Me.TabControl2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        Me.CorrectiveWindow.SuspendLayout()
-        Me.IR_Page.SuspendLayout()
-        Me.Panel5.SuspendLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        Me.Panel6.SuspendLayout()
-        Me.GroupBox7.SuspendLayout()
-        Me.ShowCause_Page.SuspendLayout()
         Me.Explanation_Page.SuspendLayout()
         Me.Modify_Panel.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Explain_datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.WrittenReprimand_Page.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -223,505 +220,6 @@ Partial Class frmCoorective
         Me.GroupBox4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.Panel1)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(3, 3)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1167, 667)
-        Me.Panel2.TabIndex = 1
-        '
-        'Panel1
-        '
-        Me.Panel1.AutoScroll = True
-        Me.Panel1.Controls.Add(Me.SplitContainer2)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1167, 667)
-        Me.Panel1.TabIndex = 2
-        '
-        'SplitContainer2
-        '
-        Me.SplitContainer2.Location = New System.Drawing.Point(3, 21)
-        Me.SplitContainer2.Name = "SplitContainer2"
-        '
-        'SplitContainer2.Panel1
-        '
-        Me.SplitContainer2.Panel1.Controls.Add(Me.RptViewer_ShowCause)
-        '
-        'SplitContainer2.Panel2
-        '
-        Me.SplitContainer2.Panel2.Controls.Add(Me.Label17)
-        Me.SplitContainer2.Panel2.Controls.Add(Me.SCNo_LBL)
-        Me.SplitContainer2.Panel2.Controls.Add(Me.GroupBox1)
-        Me.SplitContainer2.Panel2.Controls.Add(Me.GroupBox3)
-        Me.SplitContainer2.Panel2.Controls.Add(Me.GroupBox2)
-        Me.SplitContainer2.Size = New System.Drawing.Size(1143, 1282)
-        Me.SplitContainer2.SplitterDistance = 495
-        Me.SplitContainer2.TabIndex = 15
-        '
-        'RptViewer_ShowCause
-        '
-        Me.RptViewer_ShowCause.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RptViewer_ShowCause.DocumentMapWidth = 1
-        Me.RptViewer_ShowCause.LocalReport.ReportEmbeddedResource = "HRSystem.rpt_ShowCause.rdlc"
-        Me.RptViewer_ShowCause.Location = New System.Drawing.Point(0, 0)
-        Me.RptViewer_ShowCause.Name = "RptViewer_ShowCause"
-        Me.RptViewer_ShowCause.ServerReport.BearerToken = Nothing
-        Me.RptViewer_ShowCause.Size = New System.Drawing.Size(495, 1282)
-        Me.RptViewer_ShowCause.TabIndex = 1
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Tai Le", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(482, 15)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(60, 23)
-        Me.Label17.TabIndex = 18
-        Me.Label17.Text = "IR No."
-        '
-        'SCNo_LBL
-        '
-        Me.SCNo_LBL.AutoSize = True
-        Me.SCNo_LBL.Font = New System.Drawing.Font("Microsoft Tai Le", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SCNo_LBL.Location = New System.Drawing.Point(548, 15)
-        Me.SCNo_LBL.Name = "SCNo_LBL"
-        Me.SCNo_LBL.Size = New System.Drawing.Size(0, 23)
-        Me.SCNo_LBL.TabIndex = 19
-        Me.SCNo_LBL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.GroupBox6)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.Position_TXT)
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.Branch_TXT)
-        Me.GroupBox1.Controls.Add(Me.Company_TXT)
-        Me.GroupBox1.Controls.Add(Me.SearchEMP_BTN)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(31, 45)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(582, 164)
-        Me.GroupBox1.TabIndex = 16
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Employee"
-        '
-        'GroupBox6
-        '
-        Me.GroupBox6.Controls.Add(Me.EmpName_TXT)
-        Me.GroupBox6.Location = New System.Drawing.Point(131, 25)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(386, 35)
-        Me.GroupBox6.TabIndex = 15
-        Me.GroupBox6.TabStop = False
-        '
-        'EmpName_TXT
-        '
-        Me.EmpName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EmpName_TXT.Location = New System.Drawing.Point(4, 9)
-        Me.EmpName_TXT.Name = "EmpName_TXT"
-        Me.EmpName_TXT.Size = New System.Drawing.Size(379, 26)
-        Me.EmpName_TXT.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(75, 34)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(55, 21)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Name:"
-        '
-        'Position_TXT
-        '
-        Me.Position_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Position_TXT.Location = New System.Drawing.Point(136, 76)
-        Me.Position_TXT.Name = "Position_TXT"
-        Me.Position_TXT.Size = New System.Drawing.Size(379, 26)
-        Me.Position_TXT.TabIndex = 3
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(282, 124)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(61, 21)
-        Me.Label4.TabIndex = 9
-        Me.Label4.Text = "Branch:"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(60, 81)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 21)
-        Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Positon: "
-        '
-        'Branch_TXT
-        '
-        Me.Branch_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Branch_TXT.Location = New System.Drawing.Point(352, 121)
-        Me.Branch_TXT.Name = "Branch_TXT"
-        Me.Branch_TXT.Size = New System.Drawing.Size(163, 26)
-        Me.Branch_TXT.TabIndex = 8
-        '
-        'Company_TXT
-        '
-        Me.Company_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Company_TXT.Location = New System.Drawing.Point(136, 121)
-        Me.Company_TXT.Name = "Company_TXT"
-        Me.Company_TXT.Size = New System.Drawing.Size(140, 26)
-        Me.Company_TXT.TabIndex = 5
-        '
-        'SearchEMP_BTN
-        '
-        Me.SearchEMP_BTN.Location = New System.Drawing.Point(521, 31)
-        Me.SearchEMP_BTN.Name = "SearchEMP_BTN"
-        Me.SearchEMP_BTN.Size = New System.Drawing.Size(35, 26)
-        Me.SearchEMP_BTN.TabIndex = 7
-        Me.SearchEMP_BTN.Text = "..."
-        Me.SearchEMP_BTN.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(50, 128)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(80, 21)
-        Me.Label3.TabIndex = 6
-        Me.Label3.Text = "Company:"
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.Optional_CHK)
-        Me.GroupBox3.Controls.Add(Me.Optional_Group)
-        Me.GroupBox3.Controls.Add(Me.Label18)
-        Me.GroupBox3.Controls.Add(Me.Label16)
-        Me.GroupBox3.Controls.Add(Me.PS3_Btn)
-        Me.GroupBox3.Controls.Add(Me.Save_BTN)
-        Me.GroupBox3.Controls.Add(Me.PS1_Btn)
-        Me.GroupBox3.Controls.Add(Me.OK_BTN)
-        Me.GroupBox3.Controls.Add(Me.Position1_TXT)
-        Me.GroupBox3.Controls.Add(Me.Position3_TXT)
-        Me.GroupBox3.Controls.Add(Me.BusinessUnitHead_TXT)
-        Me.GroupBox3.Controls.Add(Me.HRSupervisor_TXT)
-        Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(31, 815)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(582, 456)
-        Me.GroupBox3.TabIndex = 14
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Authorize"
-        '
-        'Optional_CHK
-        '
-        Me.Optional_CHK.AutoSize = True
-        Me.Optional_CHK.Location = New System.Drawing.Point(18, 186)
-        Me.Optional_CHK.Name = "Optional_CHK"
-        Me.Optional_CHK.Size = New System.Drawing.Size(89, 25)
-        Me.Optional_CHK.TabIndex = 47
-        Me.Optional_CHK.Text = "Optional"
-        Me.Optional_CHK.UseVisualStyleBackColor = True
-        '
-        'Optional_Group
-        '
-        Me.Optional_Group.Controls.Add(Me.DateSent_DTP)
-        Me.Optional_Group.Controls.Add(Me.Label20)
-        Me.Optional_Group.Controls.Add(Me.SentVia_TXT)
-        Me.Optional_Group.Controls.Add(Me.Label19)
-        Me.Optional_Group.Location = New System.Drawing.Point(18, 208)
-        Me.Optional_Group.Name = "Optional_Group"
-        Me.Optional_Group.Size = New System.Drawing.Size(546, 133)
-        Me.Optional_Group.TabIndex = 39
-        Me.Optional_Group.TabStop = False
-        '
-        'DateSent_DTP
-        '
-        Me.DateSent_DTP.Location = New System.Drawing.Point(30, 65)
-        Me.DateSent_DTP.Name = "DateSent_DTP"
-        Me.DateSent_DTP.Size = New System.Drawing.Size(258, 28)
-        Me.DateSent_DTP.TabIndex = 42
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(290, 42)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(65, 21)
-        Me.Label20.TabIndex = 41
-        Me.Label20.Text = "Sent via"
-        '
-        'SentVia_TXT
-        '
-        Me.SentVia_TXT.Location = New System.Drawing.Point(294, 65)
-        Me.SentVia_TXT.Name = "SentVia_TXT"
-        Me.SentVia_TXT.Size = New System.Drawing.Size(226, 28)
-        Me.SentVia_TXT.TabIndex = 40
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(26, 42)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(161, 21)
-        Me.Label19.TabIndex = 39
-        Me.Label19.Text = "Explanation Date Sent"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(386, 47)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(102, 21)
-        Me.Label18.TabIndex = 29
-        Me.Label18.Text = "Approved By:"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(14, 47)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(97, 21)
-        Me.Label16.TabIndex = 27
-        Me.Label16.Text = "Prepared By:"
-        '
-        'PS3_Btn
-        '
-        Me.PS3_Btn.Location = New System.Drawing.Point(538, 72)
-        Me.PS3_Btn.Name = "PS3_Btn"
-        Me.PS3_Btn.Size = New System.Drawing.Size(26, 26)
-        Me.PS3_Btn.TabIndex = 26
-        Me.PS3_Btn.Text = "C"
-        Me.PS3_Btn.UseVisualStyleBackColor = True
-        '
-        'Save_BTN
-        '
-        Me.Save_BTN.Location = New System.Drawing.Point(258, 387)
-        Me.Save_BTN.Name = "Save_BTN"
-        Me.Save_BTN.Size = New System.Drawing.Size(139, 46)
-        Me.Save_BTN.TabIndex = 21
-        Me.Save_BTN.Text = "Save/Export"
-        Me.Save_BTN.UseVisualStyleBackColor = True
-        '
-        'PS1_Btn
-        '
-        Me.PS1_Btn.Location = New System.Drawing.Point(166, 70)
-        Me.PS1_Btn.Name = "PS1_Btn"
-        Me.PS1_Btn.Size = New System.Drawing.Size(26, 26)
-        Me.PS1_Btn.TabIndex = 24
-        Me.PS1_Btn.Text = "C"
-        Me.PS1_Btn.UseVisualStyleBackColor = True
-        '
-        'OK_BTN
-        '
-        Me.OK_BTN.Location = New System.Drawing.Point(425, 387)
-        Me.OK_BTN.Name = "OK_BTN"
-        Me.OK_BTN.Size = New System.Drawing.Size(139, 46)
-        Me.OK_BTN.TabIndex = 14
-        Me.OK_BTN.Text = "Preview"
-        Me.OK_BTN.UseVisualStyleBackColor = True
-        '
-        'Position1_TXT
-        '
-        Me.Position1_TXT.Location = New System.Drawing.Point(18, 70)
-        Me.Position1_TXT.Name = "Position1_TXT"
-        Me.Position1_TXT.ReadOnly = True
-        Me.Position1_TXT.Size = New System.Drawing.Size(142, 28)
-        Me.Position1_TXT.TabIndex = 21
-        Me.Position1_TXT.Text = "HR Staff"
-        '
-        'Position3_TXT
-        '
-        Me.Position3_TXT.Location = New System.Drawing.Point(390, 70)
-        Me.Position3_TXT.Name = "Position3_TXT"
-        Me.Position3_TXT.ReadOnly = True
-        Me.Position3_TXT.Size = New System.Drawing.Size(139, 28)
-        Me.Position3_TXT.TabIndex = 23
-        Me.Position3_TXT.Text = "HR Head"
-        '
-        'BusinessUnitHead_TXT
-        '
-        Me.BusinessUnitHead_TXT.Location = New System.Drawing.Point(390, 102)
-        Me.BusinessUnitHead_TXT.Name = "BusinessUnitHead_TXT"
-        Me.BusinessUnitHead_TXT.Size = New System.Drawing.Size(174, 28)
-        Me.BusinessUnitHead_TXT.TabIndex = 17
-        '
-        'HRSupervisor_TXT
-        '
-        Me.HRSupervisor_TXT.Location = New System.Drawing.Point(18, 102)
-        Me.HRSupervisor_TXT.Name = "HRSupervisor_TXT"
-        Me.HRSupervisor_TXT.Size = New System.Drawing.Size(174, 28)
-        Me.HRSupervisor_TXT.TabIndex = 15
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.Button1)
-        Me.GroupBox2.Controls.Add(Me.AuditFindings_TXT)
-        Me.GroupBox2.Controls.Add(Me.TabControl2)
-        Me.GroupBox2.Controls.Add(Me.Audit_CHK)
-        Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Controls.Add(Me.Location_TXT)
-        Me.GroupBox2.Controls.Add(Me.FromAuditDate_DTP)
-        Me.GroupBox2.Controls.Add(Me.Label8)
-        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(31, 235)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(582, 517)
-        Me.GroupBox2.TabIndex = 17
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Rules Violated"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(457, 465)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(97, 29)
-        Me.Button1.TabIndex = 22
-        Me.Button1.Text = "Clear"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'AuditFindings_TXT
-        '
-        Me.AuditFindings_TXT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.AuditFindings_TXT.BulletIndent = 1
-        Me.AuditFindings_TXT.Location = New System.Drawing.Point(21, 307)
-        Me.AuditFindings_TXT.Name = "AuditFindings_TXT"
-        Me.AuditFindings_TXT.Size = New System.Drawing.Size(540, 103)
-        Me.AuditFindings_TXT.TabIndex = 21
-        Me.AuditFindings_TXT.Text = ""
-        '
-        'TabControl2
-        '
-        Me.TabControl2.Controls.Add(Me.TabPage1)
-        Me.TabControl2.Controls.Add(Me.TabPage2)
-        Me.TabControl2.Location = New System.Drawing.Point(21, 33)
-        Me.TabControl2.Name = "TabControl2"
-        Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(540, 237)
-        Me.TabControl2.TabIndex = 20
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.LV_Rules)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 30)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(532, 203)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Rules"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'LV_Rules
-        '
-        Me.LV_Rules.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
-        Me.LV_Rules.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LV_Rules.FullRowSelect = True
-        Me.LV_Rules.HideSelection = False
-        Me.LV_Rules.Location = New System.Drawing.Point(3, 3)
-        Me.LV_Rules.Name = "LV_Rules"
-        Me.LV_Rules.Size = New System.Drawing.Size(526, 197)
-        Me.LV_Rules.TabIndex = 21
-        Me.LV_Rules.UseCompatibleStateImageBehavior = False
-        Me.LV_Rules.View = System.Windows.Forms.View.Details
-        '
-        'ColumnHeader1
-        '
-        Me.ColumnHeader1.Text = "Rule Number"
-        Me.ColumnHeader1.Width = 110
-        '
-        'ColumnHeader2
-        '
-        Me.ColumnHeader2.Text = "Rule Definition"
-        Me.ColumnHeader2.Width = 411
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.LV_Sections)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 30)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(532, 203)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Sections"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'LV_Sections
-        '
-        Me.LV_Sections.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader3, Me.ColumnHeader4})
-        Me.LV_Sections.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LV_Sections.FullRowSelect = True
-        Me.LV_Sections.HideSelection = False
-        Me.LV_Sections.Location = New System.Drawing.Point(3, 3)
-        Me.LV_Sections.Name = "LV_Sections"
-        Me.LV_Sections.Size = New System.Drawing.Size(526, 197)
-        Me.LV_Sections.TabIndex = 0
-        Me.LV_Sections.UseCompatibleStateImageBehavior = False
-        Me.LV_Sections.View = System.Windows.Forms.View.Details
-        '
-        'ColumnHeader3
-        '
-        Me.ColumnHeader3.Text = "Section Number"
-        Me.ColumnHeader3.Width = 137
-        '
-        'ColumnHeader4
-        '
-        Me.ColumnHeader4.Text = "Nature Of Offenses"
-        Me.ColumnHeader4.Width = 383
-        '
-        'Audit_CHK
-        '
-        Me.Audit_CHK.AutoSize = True
-        Me.Audit_CHK.Location = New System.Drawing.Point(496, 281)
-        Me.Audit_CHK.Name = "Audit_CHK"
-        Me.Audit_CHK.Size = New System.Drawing.Size(66, 25)
-        Me.Audit_CHK.TabIndex = 19
-        Me.Audit_CHK.Text = "Audit"
-        Me.Audit_CHK.UseVisualStyleBackColor = True
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(17, 427)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(69, 21)
-        Me.Label5.TabIndex = 18
-        Me.Label5.Text = "Location"
-        '
-        'Location_TXT
-        '
-        Me.Location_TXT.Location = New System.Drawing.Point(94, 424)
-        Me.Location_TXT.Name = "Location_TXT"
-        Me.Location_TXT.Size = New System.Drawing.Size(460, 28)
-        Me.Location_TXT.TabIndex = 17
-        '
-        'FromAuditDate_DTP
-        '
-        Me.FromAuditDate_DTP.CustomFormat = "ddd, MMMM dd , yyyy"
-        Me.FromAuditDate_DTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.FromAuditDate_DTP.Location = New System.Drawing.Point(94, 466)
-        Me.FromAuditDate_DTP.Name = "FromAuditDate_DTP"
-        Me.FromAuditDate_DTP.Size = New System.Drawing.Size(357, 28)
-        Me.FromAuditDate_DTP.TabIndex = 16
-        Me.FromAuditDate_DTP.Value = New Date(2019, 9, 6, 0, 0, 0, 0)
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(17, 284)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(89, 21)
-        Me.Label8.TabIndex = 15
-        Me.Label8.Text = "Violation(s)"
         '
         'CorrectiveWindow
         '
@@ -991,7 +489,7 @@ Partial Class frmCoorective
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(14, 139)
+        Me.Label28.Location = New System.Drawing.Point(19, 88)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(65, 20)
         Me.Label28.TabIndex = 21
@@ -1053,7 +551,7 @@ Partial Class frmCoorective
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(15, 247)
+        Me.Label29.Location = New System.Drawing.Point(16, 215)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(65, 20)
         Me.Label29.TabIndex = 26
@@ -1087,7 +585,7 @@ Partial Class frmCoorective
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(15, 206)
+        Me.Label31.Location = New System.Drawing.Point(16, 174)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(64, 20)
         Me.Label31.TabIndex = 27
@@ -1133,7 +631,8 @@ Partial Class frmCoorective
         '
         'ShowCause_Page
         '
-        Me.ShowCause_Page.Controls.Add(Me.Panel2)
+        Me.ShowCause_Page.AutoScroll = True
+        Me.ShowCause_Page.Controls.Add(Me.SplitContainer2)
         Me.ShowCause_Page.Location = New System.Drawing.Point(4, 29)
         Me.ShowCause_Page.Name = "ShowCause_Page"
         Me.ShowCause_Page.Padding = New System.Windows.Forms.Padding(3)
@@ -1142,12 +641,495 @@ Partial Class frmCoorective
         Me.ShowCause_Page.Text = "   Show Cause Notice   "
         Me.ShowCause_Page.UseVisualStyleBackColor = True
         '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.Location = New System.Drawing.Point(3, 19)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.RptViewer_ShowCause)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.Label17)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.SCNo_LBL)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.GroupBox1)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.GroupBox3)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.GroupBox2)
+        Me.SplitContainer2.Size = New System.Drawing.Size(1145, 1250)
+        Me.SplitContainer2.SplitterDistance = 492
+        Me.SplitContainer2.TabIndex = 16
+        '
+        'RptViewer_ShowCause
+        '
+        Me.RptViewer_ShowCause.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RptViewer_ShowCause.DocumentMapWidth = 1
+        Me.RptViewer_ShowCause.LocalReport.ReportEmbeddedResource = "HRSystem.rpt_ShowCause.rdlc"
+        Me.RptViewer_ShowCause.Location = New System.Drawing.Point(0, 0)
+        Me.RptViewer_ShowCause.Name = "RptViewer_ShowCause"
+        Me.RptViewer_ShowCause.ServerReport.BearerToken = Nothing
+        Me.RptViewer_ShowCause.Size = New System.Drawing.Size(492, 1250)
+        Me.RptViewer_ShowCause.TabIndex = 1
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Tai Le", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(458, 15)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(60, 23)
+        Me.Label17.TabIndex = 18
+        Me.Label17.Text = "IR No."
+        '
+        'SCNo_LBL
+        '
+        Me.SCNo_LBL.AutoSize = True
+        Me.SCNo_LBL.Font = New System.Drawing.Font("Microsoft Tai Le", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SCNo_LBL.Location = New System.Drawing.Point(524, 15)
+        Me.SCNo_LBL.Name = "SCNo_LBL"
+        Me.SCNo_LBL.Size = New System.Drawing.Size(0, 23)
+        Me.SCNo_LBL.TabIndex = 19
+        Me.SCNo_LBL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.GroupBox6)
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.Position_TXT)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.Branch_TXT)
+        Me.GroupBox1.Controls.Add(Me.Company_TXT)
+        Me.GroupBox1.Controls.Add(Me.SearchEMP_BTN)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(62, 53)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(573, 167)
+        Me.GroupBox1.TabIndex = 16
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Employee"
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.EmpName_TXT)
+        Me.GroupBox6.Location = New System.Drawing.Point(131, 25)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(386, 35)
+        Me.GroupBox6.TabIndex = 15
+        Me.GroupBox6.TabStop = False
+        '
+        'EmpName_TXT
+        '
+        Me.EmpName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.EmpName_TXT.Location = New System.Drawing.Point(4, 9)
+        Me.EmpName_TXT.Name = "EmpName_TXT"
+        Me.EmpName_TXT.Size = New System.Drawing.Size(379, 26)
+        Me.EmpName_TXT.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(75, 34)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(55, 21)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Name:"
+        '
+        'Position_TXT
+        '
+        Me.Position_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Position_TXT.Location = New System.Drawing.Point(136, 76)
+        Me.Position_TXT.Name = "Position_TXT"
+        Me.Position_TXT.Size = New System.Drawing.Size(379, 26)
+        Me.Position_TXT.TabIndex = 3
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(282, 124)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(61, 21)
+        Me.Label4.TabIndex = 9
+        Me.Label4.Text = "Branch:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(60, 81)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(69, 21)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Positon: "
+        '
+        'Branch_TXT
+        '
+        Me.Branch_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Branch_TXT.Location = New System.Drawing.Point(352, 121)
+        Me.Branch_TXT.Name = "Branch_TXT"
+        Me.Branch_TXT.Size = New System.Drawing.Size(163, 26)
+        Me.Branch_TXT.TabIndex = 8
+        '
+        'Company_TXT
+        '
+        Me.Company_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Company_TXT.Location = New System.Drawing.Point(136, 121)
+        Me.Company_TXT.Name = "Company_TXT"
+        Me.Company_TXT.Size = New System.Drawing.Size(140, 26)
+        Me.Company_TXT.TabIndex = 5
+        '
+        'SearchEMP_BTN
+        '
+        Me.SearchEMP_BTN.Location = New System.Drawing.Point(521, 31)
+        Me.SearchEMP_BTN.Name = "SearchEMP_BTN"
+        Me.SearchEMP_BTN.Size = New System.Drawing.Size(35, 26)
+        Me.SearchEMP_BTN.TabIndex = 7
+        Me.SearchEMP_BTN.Text = "..."
+        Me.SearchEMP_BTN.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(50, 128)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(80, 21)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Company:"
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.Optional_CHK)
+        Me.GroupBox3.Controls.Add(Me.Optional_Group)
+        Me.GroupBox3.Controls.Add(Me.Label18)
+        Me.GroupBox3.Controls.Add(Me.Label16)
+        Me.GroupBox3.Controls.Add(Me.PS3_Btn)
+        Me.GroupBox3.Controls.Add(Me.Save_BTN)
+        Me.GroupBox3.Controls.Add(Me.PS1_Btn)
+        Me.GroupBox3.Controls.Add(Me.OK_BTN)
+        Me.GroupBox3.Controls.Add(Me.Position1_TXT)
+        Me.GroupBox3.Controls.Add(Me.Position3_TXT)
+        Me.GroupBox3.Controls.Add(Me.BusinessUnitHead_TXT)
+        Me.GroupBox3.Controls.Add(Me.HRSupervisor_TXT)
+        Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox3.Location = New System.Drawing.Point(62, 787)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(573, 457)
+        Me.GroupBox3.TabIndex = 14
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Authorize"
+        '
+        'Optional_CHK
+        '
+        Me.Optional_CHK.AutoSize = True
+        Me.Optional_CHK.Location = New System.Drawing.Point(18, 179)
+        Me.Optional_CHK.Name = "Optional_CHK"
+        Me.Optional_CHK.Size = New System.Drawing.Size(89, 25)
+        Me.Optional_CHK.TabIndex = 49
+        Me.Optional_CHK.Text = "Optional"
+        Me.Optional_CHK.UseVisualStyleBackColor = True
+        '
+        'Optional_Group
+        '
+        Me.Optional_Group.Controls.Add(Me.DateSent_DTP)
+        Me.Optional_Group.Controls.Add(Me.Label20)
+        Me.Optional_Group.Controls.Add(Me.SentVia_TXT)
+        Me.Optional_Group.Controls.Add(Me.Label19)
+        Me.Optional_Group.Location = New System.Drawing.Point(18, 201)
+        Me.Optional_Group.Name = "Optional_Group"
+        Me.Optional_Group.Size = New System.Drawing.Size(546, 133)
+        Me.Optional_Group.TabIndex = 48
+        Me.Optional_Group.TabStop = False
+        '
+        'DateSent_DTP
+        '
+        Me.DateSent_DTP.Location = New System.Drawing.Point(30, 65)
+        Me.DateSent_DTP.Name = "DateSent_DTP"
+        Me.DateSent_DTP.Size = New System.Drawing.Size(258, 28)
+        Me.DateSent_DTP.TabIndex = 42
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(290, 42)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(65, 21)
+        Me.Label20.TabIndex = 41
+        Me.Label20.Text = "Sent via"
+        '
+        'SentVia_TXT
+        '
+        Me.SentVia_TXT.Location = New System.Drawing.Point(294, 65)
+        Me.SentVia_TXT.Name = "SentVia_TXT"
+        Me.SentVia_TXT.Size = New System.Drawing.Size(226, 28)
+        Me.SentVia_TXT.TabIndex = 40
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(26, 42)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(161, 21)
+        Me.Label19.TabIndex = 39
+        Me.Label19.Text = "Explanation Date Sent"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(386, 47)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(102, 21)
+        Me.Label18.TabIndex = 29
+        Me.Label18.Text = "Approved By:"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(14, 47)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(97, 21)
+        Me.Label16.TabIndex = 27
+        Me.Label16.Text = "Prepared By:"
+        '
+        'PS3_Btn
+        '
+        Me.PS3_Btn.Location = New System.Drawing.Point(538, 72)
+        Me.PS3_Btn.Name = "PS3_Btn"
+        Me.PS3_Btn.Size = New System.Drawing.Size(26, 26)
+        Me.PS3_Btn.TabIndex = 26
+        Me.PS3_Btn.Text = "C"
+        Me.PS3_Btn.UseVisualStyleBackColor = True
+        '
+        'Save_BTN
+        '
+        Me.Save_BTN.Location = New System.Drawing.Point(248, 377)
+        Me.Save_BTN.Name = "Save_BTN"
+        Me.Save_BTN.Size = New System.Drawing.Size(139, 46)
+        Me.Save_BTN.TabIndex = 21
+        Me.Save_BTN.Text = "Save/Export"
+        Me.Save_BTN.UseVisualStyleBackColor = True
+        '
+        'PS1_Btn
+        '
+        Me.PS1_Btn.Location = New System.Drawing.Point(166, 70)
+        Me.PS1_Btn.Name = "PS1_Btn"
+        Me.PS1_Btn.Size = New System.Drawing.Size(26, 26)
+        Me.PS1_Btn.TabIndex = 24
+        Me.PS1_Btn.Text = "C"
+        Me.PS1_Btn.UseVisualStyleBackColor = True
+        '
+        'OK_BTN
+        '
+        Me.OK_BTN.Location = New System.Drawing.Point(415, 377)
+        Me.OK_BTN.Name = "OK_BTN"
+        Me.OK_BTN.Size = New System.Drawing.Size(139, 46)
+        Me.OK_BTN.TabIndex = 14
+        Me.OK_BTN.Text = "Preview"
+        Me.OK_BTN.UseVisualStyleBackColor = True
+        '
+        'Position1_TXT
+        '
+        Me.Position1_TXT.Location = New System.Drawing.Point(18, 70)
+        Me.Position1_TXT.Name = "Position1_TXT"
+        Me.Position1_TXT.ReadOnly = True
+        Me.Position1_TXT.Size = New System.Drawing.Size(142, 28)
+        Me.Position1_TXT.TabIndex = 21
+        Me.Position1_TXT.Text = "HR Staff"
+        '
+        'Position3_TXT
+        '
+        Me.Position3_TXT.Location = New System.Drawing.Point(390, 70)
+        Me.Position3_TXT.Name = "Position3_TXT"
+        Me.Position3_TXT.ReadOnly = True
+        Me.Position3_TXT.Size = New System.Drawing.Size(139, 28)
+        Me.Position3_TXT.TabIndex = 23
+        Me.Position3_TXT.Text = "HR Head"
+        '
+        'BusinessUnitHead_TXT
+        '
+        Me.BusinessUnitHead_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.BusinessUnitHead_TXT.Location = New System.Drawing.Point(390, 102)
+        Me.BusinessUnitHead_TXT.Name = "BusinessUnitHead_TXT"
+        Me.BusinessUnitHead_TXT.Size = New System.Drawing.Size(174, 28)
+        Me.BusinessUnitHead_TXT.TabIndex = 17
+        '
+        'HRSupervisor_TXT
+        '
+        Me.HRSupervisor_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.HRSupervisor_TXT.Location = New System.Drawing.Point(18, 102)
+        Me.HRSupervisor_TXT.Name = "HRSupervisor_TXT"
+        Me.HRSupervisor_TXT.Size = New System.Drawing.Size(174, 28)
+        Me.HRSupervisor_TXT.TabIndex = 15
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Button1)
+        Me.GroupBox2.Controls.Add(Me.AuditFindings_TXT)
+        Me.GroupBox2.Controls.Add(Me.TabControl2)
+        Me.GroupBox2.Controls.Add(Me.Audit_CHK)
+        Me.GroupBox2.Controls.Add(Me.Label5)
+        Me.GroupBox2.Controls.Add(Me.Location_TXT)
+        Me.GroupBox2.Controls.Add(Me.FromAuditDate_DTP)
+        Me.GroupBox2.Controls.Add(Me.Label8)
+        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.Location = New System.Drawing.Point(62, 249)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(573, 516)
+        Me.GroupBox2.TabIndex = 17
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Rules Violated"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(457, 465)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(97, 29)
+        Me.Button1.TabIndex = 22
+        Me.Button1.Text = "Clear"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'AuditFindings_TXT
+        '
+        Me.AuditFindings_TXT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.AuditFindings_TXT.BulletIndent = 1
+        Me.AuditFindings_TXT.Location = New System.Drawing.Point(21, 307)
+        Me.AuditFindings_TXT.Name = "AuditFindings_TXT"
+        Me.AuditFindings_TXT.Size = New System.Drawing.Size(540, 103)
+        Me.AuditFindings_TXT.TabIndex = 21
+        Me.AuditFindings_TXT.Text = ""
+        '
+        'TabControl2
+        '
+        Me.TabControl2.Controls.Add(Me.TabPage1)
+        Me.TabControl2.Controls.Add(Me.TabPage2)
+        Me.TabControl2.Location = New System.Drawing.Point(21, 33)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(540, 237)
+        Me.TabControl2.TabIndex = 20
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.LV_Rules)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 30)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(532, 203)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Rules"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'LV_Rules
+        '
+        Me.LV_Rules.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
+        Me.LV_Rules.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LV_Rules.FullRowSelect = True
+        Me.LV_Rules.HideSelection = False
+        Me.LV_Rules.Location = New System.Drawing.Point(3, 3)
+        Me.LV_Rules.Name = "LV_Rules"
+        Me.LV_Rules.Size = New System.Drawing.Size(526, 197)
+        Me.LV_Rules.TabIndex = 21
+        Me.LV_Rules.UseCompatibleStateImageBehavior = False
+        Me.LV_Rules.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "Rule Number"
+        Me.ColumnHeader1.Width = 110
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "Rule Definition"
+        Me.ColumnHeader2.Width = 411
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.LV_Sections)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 30)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(532, 203)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Sections"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'LV_Sections
+        '
+        Me.LV_Sections.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader3, Me.ColumnHeader4})
+        Me.LV_Sections.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LV_Sections.FullRowSelect = True
+        Me.LV_Sections.HideSelection = False
+        Me.LV_Sections.Location = New System.Drawing.Point(3, 3)
+        Me.LV_Sections.Name = "LV_Sections"
+        Me.LV_Sections.Size = New System.Drawing.Size(526, 197)
+        Me.LV_Sections.TabIndex = 0
+        Me.LV_Sections.UseCompatibleStateImageBehavior = False
+        Me.LV_Sections.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader3
+        '
+        Me.ColumnHeader3.Text = "Section Number"
+        Me.ColumnHeader3.Width = 137
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Text = "Nature Of Offenses"
+        Me.ColumnHeader4.Width = 383
+        '
+        'Audit_CHK
+        '
+        Me.Audit_CHK.AutoSize = True
+        Me.Audit_CHK.Location = New System.Drawing.Point(496, 281)
+        Me.Audit_CHK.Name = "Audit_CHK"
+        Me.Audit_CHK.Size = New System.Drawing.Size(66, 25)
+        Me.Audit_CHK.TabIndex = 19
+        Me.Audit_CHK.Text = "Audit"
+        Me.Audit_CHK.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(17, 427)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(69, 21)
+        Me.Label5.TabIndex = 18
+        Me.Label5.Text = "Location"
+        '
+        'Location_TXT
+        '
+        Me.Location_TXT.Location = New System.Drawing.Point(94, 424)
+        Me.Location_TXT.Name = "Location_TXT"
+        Me.Location_TXT.Size = New System.Drawing.Size(460, 28)
+        Me.Location_TXT.TabIndex = 17
+        '
+        'FromAuditDate_DTP
+        '
+        Me.FromAuditDate_DTP.CustomFormat = "ddd, MMMM dd , yyyy"
+        Me.FromAuditDate_DTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.FromAuditDate_DTP.Location = New System.Drawing.Point(94, 466)
+        Me.FromAuditDate_DTP.Name = "FromAuditDate_DTP"
+        Me.FromAuditDate_DTP.Size = New System.Drawing.Size(357, 28)
+        Me.FromAuditDate_DTP.TabIndex = 16
+        Me.FromAuditDate_DTP.Value = New Date(2019, 9, 6, 0, 0, 0, 0)
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(17, 284)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(89, 21)
+        Me.Label8.TabIndex = 15
+        Me.Label8.Text = "Violation(s)"
+        '
         'Explanation_Page
         '
+        Me.Explanation_Page.Controls.Add(Me.RptViewer_Explanation)
+        Me.Explanation_Page.Controls.Add(Me.Modify_Panel)
         Me.Explanation_Page.Controls.Add(Me.btnSearch)
         Me.Explanation_Page.Controls.Add(Me.txtSearch)
-        Me.Explanation_Page.Controls.Add(Me.Modify_Panel)
-        Me.Explanation_Page.Controls.Add(Me.DataGridView1)
+        Me.Explanation_Page.Controls.Add(Me.Explain_datagrid)
         Me.Explanation_Page.Location = New System.Drawing.Point(4, 29)
         Me.Explanation_Page.Name = "Explanation_Page"
         Me.Explanation_Page.Padding = New System.Windows.Forms.Padding(3)
@@ -1155,6 +1137,16 @@ Partial Class frmCoorective
         Me.Explanation_Page.TabIndex = 2
         Me.Explanation_Page.Text = "   Explanation   "
         Me.Explanation_Page.UseVisualStyleBackColor = True
+        '
+        'RptViewer_Explanation
+        '
+        Me.RptViewer_Explanation.LocalReport.EnableExternalImages = True
+        Me.RptViewer_Explanation.LocalReport.ReportEmbeddedResource = "HRSystem.rpt_Explanation.rdlc"
+        Me.RptViewer_Explanation.Location = New System.Drawing.Point(1012, 6)
+        Me.RptViewer_Explanation.Name = "RptViewer_Explanation"
+        Me.RptViewer_Explanation.ServerReport.BearerToken = Nothing
+        Me.RptViewer_Explanation.Size = New System.Drawing.Size(153, 51)
+        Me.RptViewer_Explanation.TabIndex = 78
         '
         'Modify_Panel
         '
@@ -1166,13 +1158,13 @@ Partial Class frmCoorective
         Me.Modify_Panel.Controls.Add(Me.Check_BTN)
         Me.Modify_Panel.Location = New System.Drawing.Point(124, 108)
         Me.Modify_Panel.Name = "Modify_Panel"
-        Me.Modify_Panel.Size = New System.Drawing.Size(842, 557)
+        Me.Modify_Panel.Size = New System.Drawing.Size(852, 557)
         Me.Modify_Panel.TabIndex = 75
         Me.Modify_Panel.Visible = False
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(15, 7)
+        Me.PictureBox1.Location = New System.Drawing.Point(22, 5)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(811, 493)
         Me.PictureBox1.TabIndex = 9
@@ -1198,19 +1190,40 @@ Partial Class frmCoorective
         Me.Check_BTN.Text = "√"
         Me.Check_BTN.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'btnSearch
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace
-        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SCNO_DGV, Me.Name_DGV, Me.Company_DGV, Me.Deadline_DGV, Me.IR, Me.File_DGV, Me.Explain_DGV})
-        Me.DataGridView1.Location = New System.Drawing.Point(9, 70)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.DataGridView1.Size = New System.Drawing.Size(1156, 608)
-        Me.DataGridView1.TabIndex = 6
+        Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearch.Location = New System.Drawing.Point(377, 28)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(89, 31)
+        Me.btnSearch.TabIndex = 77
+        Me.btnSearch.Text = "&Search"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'txtSearch
+        '
+        Me.txtSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSearch.Location = New System.Drawing.Point(8, 31)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(363, 26)
+        Me.txtSearch.TabIndex = 76
+        '
+        'Explain_datagrid
+        '
+        Me.Explain_datagrid.AllowUserToAddRows = False
+        Me.Explain_datagrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace
+        Me.Explain_datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Explain_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Explain_datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IRNO_DGV, Me.Name_DGV, Me.Company_DGV, Me.Deadline_DGV, Me.IR_DGV, Me.File_DGV, Me.Explain_DGV})
+        Me.Explain_datagrid.Location = New System.Drawing.Point(9, 70)
+        Me.Explain_datagrid.Name = "Explain_datagrid"
+        Me.Explain_datagrid.RowHeadersVisible = False
+        Me.Explain_datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.Explain_datagrid.Size = New System.Drawing.Size(1156, 608)
+        Me.Explain_datagrid.TabIndex = 6
         '
         'WrittenReprimand_Page
         '
@@ -1726,12 +1739,12 @@ Partial Class frmCoorective
         Me.Close_BTN.TabIndex = 0
         Me.Close_BTN.UseVisualStyleBackColor = True
         '
-        'SCNO_DGV
+        'IRNO_DGV
         '
-        Me.SCNO_DGV.HeaderText = "SC No."
-        Me.SCNO_DGV.Name = "SCNO_DGV"
-        Me.SCNO_DGV.ReadOnly = True
-        Me.SCNO_DGV.Width = 130
+        Me.IRNO_DGV.HeaderText = "IR No."
+        Me.IRNO_DGV.Name = "IRNO_DGV"
+        Me.IRNO_DGV.ReadOnly = True
+        Me.IRNO_DGV.Width = 130
         '
         'Name_DGV
         '
@@ -1757,11 +1770,11 @@ Partial Class frmCoorective
         Me.Deadline_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.Deadline_DGV.Width = 180
         '
-        'IR
+        'IR_DGV
         '
-        Me.IR.HeaderText = "   IR"
-        Me.IR.Name = "IR"
-        Me.IR.Width = 95
+        Me.IR_DGV.HeaderText = "   IR"
+        Me.IR_DGV.Name = "IR_DGV"
+        Me.IR_DGV.Width = 95
         '
         'File_DGV
         '
@@ -1776,27 +1789,6 @@ Partial Class frmCoorective
         Me.Explain_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.Explain_DGV.Width = 125
         '
-        'btnSearch
-        '
-        Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(377, 28)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(89, 31)
-        Me.btnSearch.TabIndex = 77
-        Me.btnSearch.Text = "&Search"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'txtSearch
-        '
-        Me.txtSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSearch.Location = New System.Drawing.Point(8, 31)
-        Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(363, 26)
-        Me.txtSearch.TabIndex = 76
-        '
         'frmCoorective
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1807,8 +1799,19 @@ Partial Class frmCoorective
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmCoorective"
         Me.Text = "frmCoorective"
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
+        Me.CorrectiveWindow.ResumeLayout(False)
+        Me.IR_Page.ResumeLayout(False)
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel5.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.Panel6.ResumeLayout(False)
+        Me.Panel6.PerformLayout()
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
+        Me.ShowCause_Page.ResumeLayout(False)
         Me.SplitContainer2.Panel1.ResumeLayout(False)
         Me.SplitContainer2.Panel2.ResumeLayout(False)
         Me.SplitContainer2.Panel2.PerformLayout()
@@ -1827,24 +1830,11 @@ Partial Class frmCoorective
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
-        Me.CorrectiveWindow.ResumeLayout(False)
-        Me.IR_Page.ResumeLayout(False)
-        Me.Panel5.ResumeLayout(False)
-        Me.Panel5.PerformLayout()
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
-        Me.Panel6.ResumeLayout(False)
-        Me.Panel6.PerformLayout()
-        Me.GroupBox7.ResumeLayout(False)
-        Me.GroupBox7.PerformLayout()
-        Me.ShowCause_Page.ResumeLayout(False)
         Me.Explanation_Page.ResumeLayout(False)
         Me.Explanation_Page.PerformLayout()
         Me.Modify_Panel.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Explain_datagrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.WrittenReprimand_Page.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
@@ -1862,7 +1852,6 @@ Partial Class frmCoorective
     End Sub
     Friend WithEvents Close_BTN As Button
     Friend WithEvents CorrectiveWindow As TabControl
-    Friend WithEvents ShowCause_Page As TabPage
     Friend WithEvents WrittenReprimand_Page As TabPage
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Splitter2 As Splitter
@@ -1914,7 +1903,7 @@ Partial Class frmCoorective
     Friend WithEvents Label9 As Label
     Friend WithEvents RptViewer_WrittenReprimand As ReportViewer
     Friend WithEvents Explanation_Page As TabPage
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Explain_datagrid As DataGridView
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label21 As Label
     Friend WithEvents FbDataAdapter1 As FirebirdSql.Data.FirebirdClient.FbDataAdapter
@@ -1961,10 +1950,15 @@ Partial Class frmCoorective
     Friend WithEvents Department_TXT As TextBox
     Friend WithEvents Label33 As Label
     Friend WithEvents RptViewer_IncidentReport As ReportViewer
-    Friend WithEvents Panel2 As Panel
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents ClearIR_BTN As Button
+    Friend WithEvents btnSearch As Button
+    Friend WithEvents txtSearch As TextBox
+    Friend WithEvents RptViewer_Explanation As ReportViewer
+    Friend WithEvents ShowCause_Page As TabPage
     Friend WithEvents SplitContainer2 As SplitContainer
     Friend WithEvents RptViewer_ShowCause As ReportViewer
+    Friend WithEvents Label17 As Label
+    Friend WithEvents SCNo_LBL As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents EmpName_TXT As TextBox
@@ -1976,6 +1970,17 @@ Partial Class frmCoorective
     Friend WithEvents Company_TXT As TextBox
     Friend WithEvents SearchEMP_BTN As Button
     Friend WithEvents Label3 As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents PS3_Btn As Button
+    Friend WithEvents Save_BTN As Button
+    Friend WithEvents PS1_Btn As Button
+    Friend WithEvents OK_BTN As Button
+    Friend WithEvents Position1_TXT As TextBox
+    Friend WithEvents Position3_TXT As TextBox
+    Friend WithEvents BusinessUnitHead_TXT As TextBox
+    Friend WithEvents HRSupervisor_TXT As TextBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Button1 As Button
     Friend WithEvents AuditFindings_TXT As RichTextBox
@@ -1993,33 +1998,17 @@ Partial Class frmCoorective
     Friend WithEvents Location_TXT As TextBox
     Friend WithEvents FromAuditDate_DTP As DateTimePicker
     Friend WithEvents Label8 As Label
-    Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Optional_CHK As CheckBox
     Friend WithEvents Optional_Group As GroupBox
     Friend WithEvents DateSent_DTP As DateTimePicker
     Friend WithEvents Label20 As Label
     Friend WithEvents SentVia_TXT As TextBox
     Friend WithEvents Label19 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents PS3_Btn As Button
-    Friend WithEvents Save_BTN As Button
-    Friend WithEvents PS1_Btn As Button
-    Friend WithEvents OK_BTN As Button
-    Friend WithEvents Position1_TXT As TextBox
-    Friend WithEvents Position3_TXT As TextBox
-    Friend WithEvents BusinessUnitHead_TXT As TextBox
-    Friend WithEvents HRSupervisor_TXT As TextBox
-    Friend WithEvents Label17 As Label
-    Friend WithEvents SCNo_LBL As Label
-    Friend WithEvents ClearIR_BTN As Button
-    Friend WithEvents SCNO_DGV As DataGridViewTextBoxColumn
+    Friend WithEvents IRNO_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Name_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Company_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Deadline_DGV As DataGridViewTextBoxColumn
-    Friend WithEvents IR As DataGridViewButtonColumn
+    Friend WithEvents IR_DGV As DataGridViewButtonColumn
     Friend WithEvents File_DGV As DataGridViewButtonColumn
     Friend WithEvents Explain_DGV As DataGridViewImageColumn
-    Friend WithEvents btnSearch As Button
-    Friend WithEvents txtSearch As TextBox
 End Class

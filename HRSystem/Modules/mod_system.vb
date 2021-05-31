@@ -241,6 +241,7 @@ Module mod_system
     End Sub
 
     Friend Sub OpenWindowsForm(ByVal FormName As String)
+
         Try
             Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = FormName).SingleOrDefault()
             If instForm Is Nothing Then
@@ -259,6 +260,7 @@ Module mod_system
         Catch ex As Exception
 
         End Try
+
     End Sub
 
     Public Function CreateObjectInstance(ByVal objectName As String) As Object

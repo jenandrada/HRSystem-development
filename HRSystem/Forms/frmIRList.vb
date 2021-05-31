@@ -52,7 +52,7 @@
         With dr
 
             Dim DateIncident As Date = .Item("INCIDENTDATE")
-            DateIncident = DateIncident.ToString("MMMM dd, yyyy")
+            DateIncident.ToString("MMMM dd, yyyy")
 
             Dim lv As ListViewItem = lvEmployee.Items.Add(Format(.Item("IRNO"), "00000"))
             lv.SubItems.Add($"{ .Item("LastName") }, { .Item("FirstName") } { .Item("MiddleName") }")

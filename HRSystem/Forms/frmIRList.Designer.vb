@@ -39,7 +39,7 @@ Partial Class frmIRList
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Segoe UI", 18.0!)
-        Me.Label21.Location = New System.Drawing.Point(1, -2)
+        Me.Label21.Location = New System.Drawing.Point(1, 1)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(220, 32)
         Me.Label21.TabIndex = 10
@@ -49,7 +49,7 @@ Partial Class frmIRList
         '
         Me.Close_BTN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Close_BTN.Image = CType(resources.GetObject("Close_BTN.Image"), System.Drawing.Image)
-        Me.Close_BTN.Location = New System.Drawing.Point(1153, -2)
+        Me.Close_BTN.Location = New System.Drawing.Point(1151, 1)
         Me.Close_BTN.Name = "Close_BTN"
         Me.Close_BTN.Size = New System.Drawing.Size(30, 30)
         Me.Close_BTN.TabIndex = 11

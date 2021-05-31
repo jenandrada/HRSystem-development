@@ -20,9 +20,9 @@ AllowNoIcons=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 PrivilegesRequired=admin
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=D:\Users\GLENN\Documents\HRSYS_Installer
+OutputDir=D:\Users\ItsYou\Documents\HRINSTALLER
 OutputBaseFilename=HR_SYS
-SetupIconFile=D:\Users\GLENN\Documents\GitHub\Human-Resource-Management-System\HRSystem\Raws\Tpdkdesign.net-Refresh-Cl-System-Install-1.ico
+SetupIconFile=G:\HR-System Record\LATEST HRSystem\HRSystem\Raws\Tpdkdesign.net-Refresh-Cl-System-Install-1.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -34,12 +34,12 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Users\GLENN\Documents\GitHub\Human-Resource-Management-System\HRSystem\HRSystem\bin\Release\HRSystem.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Users\GLENN\Documents\GitHub\Human-Resource-Management-System\HRSystem\HRSystem\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\Users\GLENN\Documents\GitHub\Human-Resource-Management-System\HRSystem\HRSystem\bin\Release\DBConnect.dll.config"; DestDir: "{app}"; Flags: deleteafterinstall
-Source: "D:\Users\GLENN\Documents\GitHub\Human-Resource-Management-System\HRSystem\HRSystem\bin\Release\DotNetZip.pdb"; DestDir: "{app}"; Flags: deleteafterinstall
-Source: "D:\Users\GLENN\Documents\GitHub\Human-Resource-Management-System\HRSystem\HRSystem\bin\Release\DotNetZip.xml"; DestDir: "{app}"; Flags: deleteafterinstall
-Source: "D:\Users\GLENN\Documents\GitHub\Human-Resource-Management-System\HRSystem\HRSystem\bin\Release\HRSystem.xml"; DestDir: "{app}"; Flags: deleteafterinstall
+Source: "G:\HR-System Record\LATEST HRSystem\HRSystem\HRSystem\bin\Debug\HRSystem.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "G:\HR-System Record\LATEST HRSystem\HRSystem\HRSystem\bin\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "G:\HR-System Record\LATEST HRSystem\HRSystem\HRSystem\bin\Debug\DBConnect.dll.config"; DestDir: "{app}"; Flags: deleteafterinstall
+Source: "G:\HR-System Record\LATEST HRSystem\HRSystem\HRSystem\bin\Debug\DotNetZip.pdb"; DestDir: "{app}"; Flags: deleteafterinstall
+Source: "G:\HR-System Record\LATEST HRSystem\HRSystem\HRSystem\bin\Debug\DotNetZip.xml"; DestDir: "{app}"; Flags: deleteafterinstall
+Source: "G:\HR-System Record\LATEST HRSystem\HRSystem\HRSystem\bin\Debug\HRSystem.xml"; DestDir: "{app}"; Flags: deleteafterinstall
 
 
 [Registry]

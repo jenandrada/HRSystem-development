@@ -292,7 +292,6 @@
                 </Style>
               </Textbox>
               <Textbox Name="Textbox118">
-                <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
@@ -1673,7 +1672,7 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>SC No.</Value>
+                        <Value>IR No.</Value>
                         <Style>
                           <FontFamily>Calibri</FontFamily>
                           <FontSize>12pt</FontSize>

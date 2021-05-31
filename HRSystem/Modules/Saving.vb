@@ -1,6 +1,6 @@
 ﻿Module Saving
 
-    Friend Sub SaveShowCause(emp_id As String, dateIssued As String, deadline As String, path As String, status As String, company As String, scno As String)
+    Friend Sub SaveShowCause(emp_id As String, dateIssued As String, deadline As String, path As String, status As String, company As String, irno As String)
         Dim mysql As String = "Select * From SHOWCAUSE_RECORDS Rows 1"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
 
@@ -10,10 +10,10 @@
                 .Item("EMP_ID") = emp_id
                 .Item("DATE_ISSUED") = dateIssued
                 .Item("DATE_DEADLINE") = deadline
-                .Item("PATH") = path
+                .Item("SC_PATH") = path
                 .Item("STATUS") = status
                 .Item("COMPANY") = company
-                .Item("SCNO") = scno
+                .Item("IRNO") = irno
 
             End With
             ds.Tables(0).Rows.Add(dsNewRow)
@@ -42,7 +42,8 @@
                 .Item("Description") = Description
                 .Item("preparedby") = preparedby
                 .Item("receivedby") = receivedby
-                .Item("path") = path
+                .Item("reviewedby") = reviewedby
+                .Item("IR_PATH") = path
 
             End With
             ds.Tables(0).Rows.Add(dsNewRow)
@@ -70,23 +71,8 @@
     End Sub
 
 
-    'Friend Sub SaveExplaination(ID As Integer, p As Byte())
-
-    '    Dim sql As String = "select * from TBL_PROFILEPIC rows 1"
-    '    Using ds As DataSet = LoadSQL(sql, "TBL_PROFILEPIC")
-    '        Dim dsNew As DataRow = ds.Tables(0).NewRow
-
-    '        With dsNew
-    '            .Item("EMP_ID") = ID
-    '            .Item("PROFILE_PIC") = p
-    '        End With
-    '        ds.Tables(0).Rows.Add(dsNew)
-    '        SaveEntry(ds)
-    '    End Using
-    'End Sub
-
-    Friend Sub ExplainationSave(scno As String, pic As Byte(), status As String)
-        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS "
+    Friend Sub ExplainationSave(irno As String, pic As Byte(), status As String)
+        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS where IRNO = '" & irno & "'"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
 
             With ds.Tables(0).Rows(0)
@@ -96,11 +82,9 @@
             SaveEntry(ds, False)
         End Using
 
-        MsgBox("Succesfully Saved!", MsgBoxStyle.Information, "Information")
-
-        If ThisHasRow("SHOWCAUSE_RECORDS") Then
-            SCPendings(frmMainForm.PendingNo_LBL)
-        End If
+        'If ThisHasRow("SHOWCAUSE_RECORDS") Then
+        '    SCPendings(frmMainForm.PendingNo_LBL)
+        'End If
     End Sub
 
 End Module

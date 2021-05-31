@@ -24,9 +24,9 @@ Public Class frmMainForm
             NavagationPanel.Width = 176
         End If
 
-        If ThisHasRow("SHOWCAUSE_RECORDS") Then
-            SCPendings(PendingNo_LBL)
-        End If
+        'If ThisHasRow("SHOWCAUSE_RECORDS") Then
+        '    SCPendings(PendingNo_LBL)
+        'End If
 
     End Sub
 
@@ -71,8 +71,10 @@ Public Class frmMainForm
                 NotifyRatings()
                 NotifyBhAllowance()
             End If
-            Dashboard_LBL.Visible = True
-            Pending_Panel.Visible = True
+
+            'Dashboard_LBL.Visible = True
+            'Pending_Panel.Visible = True
+
         End If
         ID_LBL.Text = idx
         UserName_LBL.Text = username
@@ -623,7 +625,7 @@ Public Class frmMainForm
 
     End Sub
 
-    Private Sub Pending_Panel_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Pending_Panel.MouseDoubleClick
+    Private Sub Pending_Panel_MouseDoubleClick(sender As Object, e As MouseEventArgs)
         If frmCoorective Is Nothing Then
             Dim frm As New frmCoorective With {
                 .MdiParent = Me
