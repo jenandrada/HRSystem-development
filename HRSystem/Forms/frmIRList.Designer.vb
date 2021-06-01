@@ -33,6 +33,7 @@ Partial Class frmIRList
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SuspendLayout()
         '
         'Label21
@@ -60,7 +61,7 @@ Partial Class frmIRList
         Me.lvEmployee.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvEmployee.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader6})
+        Me.lvEmployee.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader5, Me.ColumnHeader4, Me.ColumnHeader6})
         Me.lvEmployee.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lvEmployee.FullRowSelect = True
         Me.lvEmployee.GridLines = True
@@ -80,22 +81,22 @@ Partial Class frmIRList
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "Fullname"
-        Me.ColumnHeader2.Width = 400
+        Me.ColumnHeader2.Width = 350
         '
         'ColumnHeader3
         '
         Me.ColumnHeader3.Text = "Date of Incident"
-        Me.ColumnHeader3.Width = 200
+        Me.ColumnHeader3.Width = 165
         '
         'ColumnHeader4
         '
         Me.ColumnHeader4.Text = "Action Taken"
-        Me.ColumnHeader4.Width = 200
+        Me.ColumnHeader4.Width = 130
         '
         'ColumnHeader6
         '
         Me.ColumnHeader6.Text = "Prepared by"
-        Me.ColumnHeader6.Width = 210
+        Me.ColumnHeader6.Width = 200
         '
         'btnSearch
         '
@@ -117,6 +118,11 @@ Partial Class frmIRList
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(617, 31)
         Me.txtSearch.TabIndex = 57
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "Date Received"
+        Me.ColumnHeader5.Width = 165
         '
         'frmIRList
         '
@@ -146,4 +152,5 @@ Partial Class frmIRList
     Friend WithEvents ColumnHeader6 As ColumnHeader
     Friend WithEvents btnSearch As Button
     Friend WithEvents txtSearch As TextBox
+    Friend WithEvents ColumnHeader5 As ColumnHeader
 End Class

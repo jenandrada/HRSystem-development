@@ -1304,7 +1304,7 @@ Public Class frmEmployeeDetails
         If MobileNum_TXT.Text = "" Then
             MobileNum_TXT.Region = Nothing
         Else
-            If Not MobileNum_TXT.TextLength >= 11 Then
+            If Not MobileNum_TXT.TextLength >= 10 Then
                 MobileNum_TXT.Region = New Region(New Rectangle(2, 2, MobileNum_TXT.Width - 4, MobileNum_TXT.Height - 4))
             Else
                 MobileNum_TXT.Region = Nothing

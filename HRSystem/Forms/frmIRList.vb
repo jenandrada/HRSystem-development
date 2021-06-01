@@ -15,7 +15,10 @@
 
         Dim mysql As String
         If str.Length <> 0 Then
-            mysql = "SELECT * from IR_RECORDS INNER JOIN TBL_EMPLOYEE ON TBL_EMPLOYEE.ID = IR_RECORDS.PERSON_ID"
+
+            'mysql = "SELECT * from IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID INNER JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.STATUS = 'NO'"
+
+            mysql = "SELECT * FROM IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID LEFT JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.IRNO IS NULL"
 
             For Each name In strWords
                 mysql &= $"{vbCr} UPPER(LastName ||' '|| FirstName ||' '|| MiddleName) LIKE UPPER('%{name}%') or "
@@ -26,7 +29,7 @@
                 End If
             Next
         Else
-            mysql = "SELECT * from IR_RECORDS INNER JOIN TBL_EMPLOYEE ON TBL_EMPLOYEE.ID = IR_RECORDS.PERSON_ID"
+            mysql = "SELECT * FROM IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID LEFT JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.IRNO IS NULL"
         End If
 
         Dim ds As DataSet = LoadSQL(mysql, "IR_RECORDS")
@@ -51,12 +54,13 @@
     Private Sub AddItem(ByVal dr As DataRow)
         With dr
 
-            Dim DateIncident As Date = .Item("INCIDENTDATE")
-            DateIncident.ToString("MMMM dd, yyyy")
+            Dim DateIncident As DateTime = CDate(.Item("INCIDENTDATE"))
+            Dim DateReceived As DateTime = CDate(.Item("RECEIVEDDATE"))
 
             Dim lv As ListViewItem = lvEmployee.Items.Add(Format(.Item("IRNO"), "00000"))
             lv.SubItems.Add($"{ .Item("LastName") }, { .Item("FirstName") } { .Item("MiddleName") }")
-            lv.SubItems.Add(DateIncident)
+            lv.SubItems.Add(DateIncident.ToString("MMMM d, yyyy"))
+            lv.SubItems.Add(DateReceived.ToString("MMMM d, yyyy"))
             lv.SubItems.Add(.Item("ACTIONTAKEN"))
             lv.SubItems.Add(.Item("PREPAREDBY"))
             lv.ImageKey = "imgMale"
@@ -87,4 +91,7 @@
         Close()
     End Sub
 
+    Private Sub Close_BTN_Click(sender As Object, e As EventArgs) Handles Close_BTN.Click
+        Close()
+    End Sub
 End Class

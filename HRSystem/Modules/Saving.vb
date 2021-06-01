@@ -71,13 +71,14 @@
     End Sub
 
 
-    Friend Sub ExplainationSave(irno As String, pic As Byte(), status As String)
+    Friend Sub ExplainationSave(irno As String, pic As Byte(), status As String, path As String)
         Dim mysql As String = "Select * From SHOWCAUSE_RECORDS where IRNO = '" & irno & "'"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
 
             With ds.Tables(0).Rows(0)
                 .Item("STATUS") = status
                 .Item("IMAGEEXPLAIN") = pic
+                .Item("EXPLAIN_PATH") = path
             End With
             SaveEntry(ds, False)
         End Using

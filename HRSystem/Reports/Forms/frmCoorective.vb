@@ -469,7 +469,7 @@ Public Class frmCoorective
 
         End If
 
-        Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\" & IRNo & ".pdf"
+        Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf"
 
         SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, DateIncident_DTP.Value, DateReceive_DTP.Value, Action_CB.Text, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, str)
 
@@ -584,27 +584,40 @@ Public Class frmCoorective
         Dim row As DataGridViewRow = Explain_datagrid.Rows(e.RowIndex)
 
         If TypeOf grid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn Then
-            If grid.Columns(e.ColumnIndex).Name = "File_DGV" Then
+
+            If grid.Columns(e.ColumnIndex).Name = "IR_DGV" Then
+                Process.Start(row.Cells("IR_DGV").Tag)
+
+            ElseIf grid.Columns(e.ColumnIndex).Name = "File_DGV" Then
                 Process.Start(row.Cells("File_DGV").Tag)
+
+            ElseIf grid.Columns(e.ColumnIndex).Name = "Explain_DGV" Then
+
+                If row.Cells("Explain_DGV").Value = "Upload" Then
+
+                    Modify_Panel.Visible = True
+                    Modify_Panel.Location = New Point(124, 48)
+
+                Else
+                    Process.Start(row.Cells("Explain_DGV").Tag)
+                End If
+
+
             End If
+
         End If
     End Sub
 
-    Private Sub DataGridView1_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Explain_datagrid.CellMouseDoubleClick
+    'Private Sub DataGridView1_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Explain_datagrid.CellMouseDoubleClick
 
-        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-            Modify_Panel.Visible = True
-            Modify_Panel.Location = New Point(124, 48)
+    '    If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
 
-            Dim bytes As Byte() = Explain_datagrid.CurrentRow.Cells(6).Value
-            Using ms As New MemoryStream(bytes)
-                PictureBox1.Image = Image.FromStream(ms)
-                PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-            End Using
+    '        Modify_Panel.Visible = True
+    '        Modify_Panel.Location = New Point(124, 48)
 
-        End If
+    '    End If
 
-    End Sub
+    'End Sub
 
     Private Sub PictureBox1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDoubleClick
 
@@ -656,11 +669,11 @@ Public Class frmCoorective
             imgData = ImgToByteArray(PictureBox1.InitialImage, ImageFormat.Jpeg)
         End If
 
-        ExplainationSave(Explain_datagrid.Item(0, i).Value, imgData, "YES")
-
-        LoadExpalanation()
+        LoadExplanation()
 
         ToPDF("IR No. " & Explain_datagrid.Item(0, i).Value & " - " & Explain_datagrid.Item(1, i).Value, "Incident Report", RptViewer_Explanation, "Explanation")
+
+        ExplainationSave(Explain_datagrid.Item(0, i).Value, imgData, "YES", FolderPath)
 
         Modify_Panel.Visible = False
         PictureBox1.Image = Nothing
@@ -675,7 +688,7 @@ Public Class frmCoorective
 
     End Sub
 
-    Private Sub LoadExpalanation()
+    Private Sub LoadExplanation()
 
         Dim Datee As Date = Date.UtcNow
         Dim dateee As String = Datee.ToString("MMMM dd, yyyy")
@@ -755,7 +768,6 @@ Public Class frmCoorective
         If Not Supervisor_TXT.Text = "" Or Not Person_TXT.Text = "" Then
 
             IRSoftCopy("IR No. " & IRNo_LBL.Text & " - " & Person_TXT.Text, "Incident Report", RptViewer_IncidentReport, IRNo_LBL.Text)
-
 
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -913,7 +925,9 @@ Public Class frmCoorective
     Private Sub CorrectiveWindow_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CorrectiveWindow.SelectedIndexChanged
 
         If CorrectiveWindow.SelectedIndex = 2 Then
+
             PopulateExplaination(Explain_datagrid)
+
         End If
 
     End Sub

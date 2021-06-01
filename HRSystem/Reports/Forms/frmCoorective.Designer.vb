@@ -183,7 +183,8 @@ Partial Class frmCoorective
         Me.Deadline_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IR_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.File_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Explain_DGV = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Explain_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.CorrectiveWindow.SuspendLayout()
         Me.IR_Page.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -1153,27 +1154,29 @@ Partial Class frmCoorective
         Me.Modify_Panel.AutoSize = True
         Me.Modify_Panel.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Modify_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Modify_Panel.Controls.Add(Me.Label22)
         Me.Modify_Panel.Controls.Add(Me.PictureBox1)
         Me.Modify_Panel.Controls.Add(Me.Close_Modify_BTN)
         Me.Modify_Panel.Controls.Add(Me.Check_BTN)
-        Me.Modify_Panel.Location = New System.Drawing.Point(124, 108)
+        Me.Modify_Panel.Location = New System.Drawing.Point(121, 70)
         Me.Modify_Panel.Name = "Modify_Panel"
-        Me.Modify_Panel.Size = New System.Drawing.Size(852, 557)
+        Me.Modify_Panel.Size = New System.Drawing.Size(855, 595)
         Me.Modify_Panel.TabIndex = 75
         Me.Modify_Panel.Visible = False
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(22, 5)
+        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox1.Location = New System.Drawing.Point(22, 29)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(811, 493)
+        Me.PictureBox1.Size = New System.Drawing.Size(811, 501)
         Me.PictureBox1.TabIndex = 9
         Me.PictureBox1.TabStop = False
         '
         'Close_Modify_BTN
         '
         Me.Close_Modify_BTN.Font = New System.Drawing.Font("Dubai", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Close_Modify_BTN.Location = New System.Drawing.Point(15, 504)
+        Me.Close_Modify_BTN.Location = New System.Drawing.Point(15, 536)
         Me.Close_Modify_BTN.Name = "Close_Modify_BTN"
         Me.Close_Modify_BTN.Size = New System.Drawing.Size(93, 44)
         Me.Close_Modify_BTN.TabIndex = 80
@@ -1183,7 +1186,7 @@ Partial Class frmCoorective
         'Check_BTN
         '
         Me.Check_BTN.Font = New System.Drawing.Font("Dubai", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Check_BTN.Location = New System.Drawing.Point(733, 504)
+        Me.Check_BTN.Location = New System.Drawing.Point(733, 536)
         Me.Check_BTN.Name = "Check_BTN"
         Me.Check_BTN.Size = New System.Drawing.Size(93, 44)
         Me.Check_BTN.TabIndex = 79
@@ -1789,6 +1792,15 @@ Partial Class frmCoorective
         Me.Explain_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.Explain_DGV.Width = 125
         '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(18, 6)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(315, 20)
+        Me.Label22.TabIndex = 81
+        Me.Label22.Text = "Double Click the box below to upload image"
+        '
         'frmCoorective
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1833,6 +1845,7 @@ Partial Class frmCoorective
         Me.Explanation_Page.ResumeLayout(False)
         Me.Explanation_Page.PerformLayout()
         Me.Modify_Panel.ResumeLayout(False)
+        Me.Modify_Panel.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Explain_datagrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.WrittenReprimand_Page.ResumeLayout(False)
@@ -2010,5 +2023,6 @@ Partial Class frmCoorective
     Friend WithEvents Deadline_DGV As DataGridViewTextBoxColumn
     Friend WithEvents IR_DGV As DataGridViewButtonColumn
     Friend WithEvents File_DGV As DataGridViewButtonColumn
-    Friend WithEvents Explain_DGV As DataGridViewImageColumn
+    Friend WithEvents Explain_DGV As DataGridViewButtonColumn
+    Friend WithEvents Label22 As Label
 End Class

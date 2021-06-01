@@ -86,7 +86,7 @@ Module Selecting
 
     Friend Sub PopulateExplaination(datagrid As DataGridView)
         datagrid.Rows.Clear()
-        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS inner join TBL_EMPLOYEE on TBL_EMPLOYEE.id = SHOWCAUSE_RECORDS.emp_id "
+        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
@@ -102,6 +102,7 @@ Module Selecting
     Public Sub AddItem(ByVal dr As DataRow, datagrid As DataGridView)
 
         Dim pb As New PictureBox
+        Dim Status As String
         Dim img As Image
         img = pb.ErrorImage
         imgData = ImgToByteArray(img, ImageFormat.Jpeg)
@@ -117,17 +118,21 @@ Module Selecting
             row.Cells("Company_DGV").Value = .Item("COMPANY")
             row.Cells("Deadline_DGV").Value = datee.ToString("D")
             row.Cells("IR_DGV").Value = "Open"
-            row.Cells("IR_DGV").Tag = .Item("SC_PATH")
+            row.Cells("IR_DGV").Tag = .Item("IR_PATH")
             row.Cells("File_DGV").Value = "Open"
             row.Cells("File_DGV").Tag = .Item("SC_PATH")
-            row.Cells("Explain_DGV").Value = IIf(IsDBNull(.Item("IMAGEEXPLAIN")), imgData, .Item("IMAGEEXPLAIN"))
+
+            If .Item("STATUS") = "NO" Then
+                row.DefaultCellStyle.BackColor = Color.LightSalmon
+                row.Cells("Explain_DGV").Value = "Upload"
+            Else
+                row.Cells("Explain_DGV").Value = "Open"
+                row.Cells("Explain_DGV").Tag = .Item("EXPLAIN_PATH")
+            End If
+
+            row.Height = 35
 
         End With
-
-        For i = 0 To datagrid.Rows.Count - 1
-            Dim r As DataGridViewRow = datagrid.Rows(i)
-            r.Height = 35
-        Next
 
     End Sub
 
