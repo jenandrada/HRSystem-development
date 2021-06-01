@@ -52,7 +52,8 @@
 
     End Sub
 
-    Friend Sub SaveRuleNoSectionnO(emp_id As String, rule As String, section As String)
+    Friend Sub SaveRuleNoSectionnO(emp_id As String, rule As String, section As String, irno As String)
+
         Dim mysql As String = "Select * From SHOWCAUSE_COUNT Rows 1"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_COUNT")
 
@@ -62,6 +63,8 @@
                 .Item("EMP_ID") = emp_id
                 .Item("RULENO") = rule
                 .Item("SECTIONNO") = section
+                .Item("IRNO") = irno
+
 
             End With
             ds.Tables(0).Rows.Add(dsNewRow)

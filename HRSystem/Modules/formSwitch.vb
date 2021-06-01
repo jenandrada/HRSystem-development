@@ -167,7 +167,7 @@
                     frmCoorective.LoadEmployeeShowCause(cus)
 
                 ElseIf tab = 2 Then
-                    frmCoorective.CorrectiveWindow.SelectedIndex = 2
+                    frmCoorective.CorrectiveWindow.SelectedIndex = 3
                     frmCoorective.LoadEmployeeWritten(cus)
 
                 ElseIf tab = 3 Then

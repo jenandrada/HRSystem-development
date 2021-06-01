@@ -262,111 +262,6 @@ Public Class frmCoorective
     End Sub
 
 
-    Private Sub OK_BTN_Click(sender As Object, e As EventArgs)
-        If EmpName_TXT.Text = "" Or IsNothing(Me.LV_Sections.FocusedItem) Then
-            If EmpName_TXT.Text = "" Then
-                MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ElseIf IsNothing(Me.LV_Sections.FocusedItem) Then
-                MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-        Else
-            LoadShowCauseReport()
-        End If
-
-    End Sub
-
-    Private Sub Audit_CHK_CheckedChanged(sender As Object, e As EventArgs)
-        If Audit_CHK.Checked = True Then
-            chkStatus = 1
-        ElseIf Audit_CHK.Checked = False Then
-            chkStatus = 0
-        End If
-    End Sub
-
-    Private Sub SearchWP_EMP_BTN_Click(sender As Object, e As EventArgs) Handles SearchWP_EMP_BTN.Click
-        'Dim secured_str As String = EmpName_TXT.Text
-        'secured_str = DreadKnight(secured_str)
-
-        If frmEmployeeList Is Nothing Then
-            Dim frm As New frmEmployeeList With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.btnView.Visible = False
-            frm.btnAdd.Visible = False
-            frm.btnSelect.Visible = True
-            frm.txtSearch.Tag = "Corrective2"
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
-
-        Else
-            frmEmployeeList.BringToFront()
-        End If
-
-        Close()
-    End Sub
-
-
-    Private Sub WP_OK_BTN_Click(sender As Object, e As EventArgs) Handles WP_OK_BTN.Click
-
-        If WP_Name_TXT.Text = "" Or IsNothing(Me.WP_SectionsList.FocusedItem) Then
-            If WP_Name_TXT.Text = "" Then
-                MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ElseIf IsNothing(Me.WP_SectionsList.FocusedItem) Then
-                MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-        Else
-            LoadWrittenReprimandReport()
-        End If
-    End Sub
-
-    Private Sub WP_RulesList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles WP_RulesList.SelectedIndexChanged
-
-        Dim tmp As New Lists
-        WP_SectionsList.Items.Clear()
-        For Each i As ListViewItem In WP_RulesList.SelectedItems
-            If i.SubItems(0).Text = "RULE I" Then
-                For Each item In tmp.Rule1Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-
-            ElseIf i.SubItems(0).Text = "RULE II" Then
-                For Each item In tmp.Rule2Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-
-            ElseIf i.SubItems(0).Text = "RULE III" Then
-                For Each item In tmp.Rule3Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-
-            ElseIf i.SubItems(0).Text = "RULE IV" Then
-                For Each item In tmp.Rule4Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-
-            ElseIf i.SubItems(0).Text = "RULE V" Then
-                For Each item In tmp.Rule5Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-
-            ElseIf i.SubItems(0).Text = "RULE VI" Then
-                For Each item In tmp.Rule6Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-
-            End If
-        Next
-    End Sub
-
     Public Function AddImage(ByRef dir As String, ByRef img As String) As System.Drawing.Image
         Dim temp As Image = Image.FromFile(dir & "\" & img & ".jpg")
 
@@ -500,74 +395,6 @@ Public Class frmCoorective
     End Sub
 
 
-    Private Sub WP_Save_Btn_Click(sender As Object, e As EventArgs) Handles WP_Save_Btn.Click
-
-        If Not WP_Name_TXT.Text = "" Then
-            ToPDF(WP_Name_TXT.Text, "Written Reprimand Notice", RptViewer_WrittenReprimand, "Written Reprimand Notice")
-        Else
-            MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-
-    End Sub
-
-    Private Sub WP_PS1_Btn_Click(sender As Object, e As EventArgs) Handles WP_PS1_Btn.Click
-        WP_Position1_TXT.ReadOnly = False
-    End Sub
-
-    Private Sub WP_PS2_Btn_Click(sender As Object, e As EventArgs) Handles WP_PS2_Btn.Click
-        WP_Position2_TXT.ReadOnly = False
-    End Sub
-
-    Private Sub WP_PS3_Btn_Click(sender As Object, e As EventArgs) Handles WP_PS3_Btn.Click
-        WP_Position3_TXT.ReadOnly = False
-    End Sub
-
-    Private Sub WP_PS4_Btn_Click(sender As Object, e As EventArgs) Handles WP_PS4_Btn.Click
-        WP_Position4_TXT.ReadOnly = False
-    End Sub
-
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked = True Then
-            NumberOfDays_TXT.Enabled = True
-            WW_RBTN.Checked = False
-            TwoDays_RBTN.Checked = False
-            FourDays_RBTN.Checked = False
-            SixDays_RBTN.Checked = False
-            chkStatus = 0
-        Else
-            NumberOfDays_TXT.Enabled = False
-        End If
-    End Sub
-
-    Private Sub WW_RBTN_CheckedChanged(sender As Object, e As EventArgs) Handles WW_RBTN.CheckedChanged
-        If WW_RBTN.Checked = True Then
-            CheckBox1.Checked = False
-            NumberOfDays_TXT.Value = 0
-        End If
-    End Sub
-
-    Private Sub TwoDays_RBTN_CheckedChanged(sender As Object, e As EventArgs) Handles TwoDays_RBTN.CheckedChanged
-        If TwoDays_RBTN.Checked = True Then
-            CheckBox1.Checked = False
-            NumberOfDays_TXT.Value = 0
-        End If
-    End Sub
-
-    Private Sub FourDays_RBTN_CheckedChanged(sender As Object, e As EventArgs) Handles FourDays_RBTN.CheckedChanged
-        If FourDays_RBTN.Checked = True Then
-            CheckBox1.Checked = False
-            NumberOfDays_TXT.Value = 0
-        End If
-    End Sub
-
-    Private Sub SixDays_RBTN_CheckedChanged(sender As Object, e As EventArgs) Handles SixDays_RBTN.CheckedChanged
-        If SixDays_RBTN.Checked = True Then
-            CheckBox1.Checked = False
-            NumberOfDays_TXT.Value = 0
-        End If
-    End Sub
-
-
     Private ReadOnly _console As New RichTextBox
 
     Private Sub Alert()
@@ -607,17 +434,6 @@ Public Class frmCoorective
 
         End If
     End Sub
-
-    'Private Sub DataGridView1_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Explain_datagrid.CellMouseDoubleClick
-
-    '    If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-
-    '        Modify_Panel.Visible = True
-    '        Modify_Panel.Location = New Point(124, 48)
-
-    '    End If
-
-    'End Sub
 
     Private Sub PictureBox1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDoubleClick
 
@@ -680,12 +496,6 @@ Public Class frmCoorective
 
         PopulateExplaination(Explain_datagrid)
 
-        'If Pending_RB.Checked = True Then
-        '    Attachment(DataGridView1, "NO")
-        'ElseIf Pending_RB.Checked = True Then
-        '    Attachment(DataGridView1, "YES")
-        'End If
-
     End Sub
 
     Private Sub LoadExplanation()
@@ -738,7 +548,7 @@ Public Class frmCoorective
         Else
             frmEmployeeList.BringToFront()
         End If
-        Close()
+        'Close()
     End Sub
 
     Private Sub Person_BTN_Click(sender As Object, e As EventArgs) Handles Person_BTN.Click
@@ -806,7 +616,7 @@ Public Class frmCoorective
             frmIRList.BringToFront()
         End If
 
-        Close()
+        'Close()
     End Sub
 
 
@@ -892,7 +702,7 @@ Public Class frmCoorective
             ToPDF("IR No. " & SCNo_LBL.Text & " - " & EmpName_TXT.Text, "Incident Report", RptViewer_ShowCause, "Show Cause Notice")
 
             For Each itemsec As ListViewItem In LV_Sections.SelectedItems
-                SaveRuleNoSectionnO(EmpName_TXT.Tag, LV_Rules.FocusedItem.SubItems(0).Text, itemsec.SubItems(0).Text)
+                SaveRuleNoSectionnO(EmpName_TXT.Tag, LV_Rules.FocusedItem.SubItems(0).Text, itemsec.SubItems(0).Text, SCNo_LBL.Text)
             Next
 
             SaveShowCause(EmpName_TXT.Tag, DateSent_DTP.Value, DateSent_DTP.Value.AddDays(5), FolderPath, "NO", Company_TXT.Text, SCNo_LBL.Text)
@@ -930,5 +740,174 @@ Public Class frmCoorective
 
         End If
 
+    End Sub
+
+    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress
+        If IsEnter(e) Then btnSearch.PerformClick()
+    End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+
+        LoadExplainSearchName(txtSearch.Text, Explain_datagrid)
+
+    End Sub
+
+    Private Sub WP_OK_BTN_Click_1(sender As Object, e As EventArgs) Handles WP_OK_BTN.Click
+        If WP_Name_TXT.Text = "" Or IsNothing(Me.WP_SectionsList.FocusedItem) Then
+            If WP_Name_TXT.Text = "" Then
+                MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ElseIf IsNothing(Me.WP_SectionsList.FocusedItem) Then
+                MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Else
+            LoadWrittenReprimandReport()
+        End If
+    End Sub
+
+    Private Sub WP_Save_Btn_Click_1(sender As Object, e As EventArgs) Handles WP_Save_Btn.Click
+
+        If Not WP_Name_TXT.Text = "" Then
+            ToPDF(WP_Name_TXT.Text, "Written Reprimand Notice", RptViewer_WrittenReprimand, "Written Reprimand Notice")
+        Else
+            MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+    End Sub
+
+    Private Sub NoDaysSuspend_CB_CheckedChanged(sender As Object, e As EventArgs) Handles NoDaysSuspend_CB.CheckedChanged
+        If NoDaysSuspend_CB.Checked = True Then
+            NumberOfDays_TXT.Enabled = True
+            WW_RBTN.Checked = False
+            TwoDays_RBTN.Checked = False
+            FourDays_RBTN.Checked = False
+            SixDays_RBTN.Checked = False
+            chkStatus = 0
+        Else
+            NumberOfDays_TXT.Enabled = False
+        End If
+    End Sub
+
+    Private Sub WP_PS1_Btn_Click_1(sender As Object, e As EventArgs) Handles WP_PS1_Btn.Click
+        WP_Position1_TXT.ReadOnly = False
+    End Sub
+
+    Private Sub WP_PS2_Btn_Click_1(sender As Object, e As EventArgs) Handles WP_PS2_Btn.Click
+        WP_Position2_TXT.ReadOnly = False
+    End Sub
+
+    Private Sub WP_PS3_Btn_Click_1(sender As Object, e As EventArgs) Handles WP_PS3_Btn.Click
+        WP_Position3_TXT.ReadOnly = False
+    End Sub
+
+    Private Sub WP_PS4_Btn_Click_1(sender As Object, e As EventArgs) Handles WP_PS4_Btn.Click
+        WP_Position4_TXT.ReadOnly = False
+    End Sub
+
+    Private Sub WW_RBTN_CheckedChanged_1(sender As Object, e As EventArgs) Handles WW_RBTN.CheckedChanged
+        If WW_RBTN.Checked = True Then
+            NoDaysSuspend_CB.Checked = False
+            NumberOfDays_TXT.Value = 0
+        End If
+    End Sub
+
+    Private Sub TwoDays_RBTN_CheckedChanged_1(sender As Object, e As EventArgs) Handles TwoDays_RBTN.CheckedChanged
+        If TwoDays_RBTN.Checked = True Then
+            NoDaysSuspend_CB.Checked = False
+            NumberOfDays_TXT.Value = 0
+        End If
+    End Sub
+
+    Private Sub FourDays_RBTN_CheckedChanged_1(sender As Object, e As EventArgs) Handles FourDays_RBTN.CheckedChanged
+        If FourDays_RBTN.Checked = True Then
+            NoDaysSuspend_CB.Checked = False
+            NumberOfDays_TXT.Value = 0
+        End If
+    End Sub
+
+    Private Sub SixDays_RBTN_CheckedChanged_1(sender As Object, e As EventArgs) Handles SixDays_RBTN.CheckedChanged
+        If SixDays_RBTN.Checked = True Then
+            NoDaysSuspend_CB.Checked = False
+            NumberOfDays_TXT.Value = 0
+        End If
+    End Sub
+
+    Private Sub Audit_CHK_CheckedChanged(sender As Object, e As EventArgs) Handles Audit_CHK.CheckedChanged
+        If Audit_CHK.Checked = True Then
+            chkStatus = 1
+        ElseIf Audit_CHK.Checked = False Then
+            chkStatus = 0
+        End If
+    End Sub
+
+    Private Sub WP_RulesList_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles WP_RulesList.SelectedIndexChanged
+        Dim tmp As New Lists
+        WP_SectionsList.Items.Clear()
+        For Each i As ListViewItem In WP_RulesList.SelectedItems
+            If i.SubItems(0).Text = "RULE I" Then
+                For Each item In tmp.Rule1Sections()
+                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+
+            ElseIf i.SubItems(0).Text = "RULE II" Then
+                For Each item In tmp.Rule2Sections()
+                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+
+            ElseIf i.SubItems(0).Text = "RULE III" Then
+                For Each item In tmp.Rule3Sections()
+                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+
+            ElseIf i.SubItems(0).Text = "RULE IV" Then
+                For Each item In tmp.Rule4Sections()
+                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+
+            ElseIf i.SubItems(0).Text = "RULE V" Then
+                For Each item In tmp.Rule5Sections()
+                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+
+            ElseIf i.SubItems(0).Text = "RULE VI" Then
+                For Each item In tmp.Rule6Sections()
+                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+                    lvitem.SubItems.Add(item.NatureOfOffenses)
+                Next
+
+            End If
+        Next
+    End Sub
+
+
+    Private Sub SearchWP_EMP_BTN_Click(sender As Object, e As EventArgs) Handles SearchWP_EMP_BTN.Click
+
+        If frmSCList Is Nothing Then
+            Dim frm As New frmSCList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.txtSearch.Tag = "Written"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmSCList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub IRNo_BTN_Click(sender As Object, e As EventArgs) Handles IRNo_BTN.Click
+        LoadExplainSearchIRNO(IRNo_TXT.Text, Explain_datagrid)
+    End Sub
+
+    Private Sub IRNo_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles IRNo_TXT.KeyPress
+        If IsEnter(e) Then IRNo_BTN.PerformClick()
     End Sub
 End Class

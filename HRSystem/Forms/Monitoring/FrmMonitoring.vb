@@ -487,6 +487,7 @@ Public Class FrmMonitoring
         Else
             mysql = "select * from tbl_leave A inner join tbl_employee B on A.EMP_ID = B.ID inner join tbl_branch C on A.BRANCH_ID = C.ID"
         End If
+
         Using ds As FbDataReader = LoadSQL_byDataReader(mysql)
 
             Emp_Leave_LV.Items.Clear()

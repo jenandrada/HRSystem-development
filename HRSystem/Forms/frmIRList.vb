@@ -18,16 +18,18 @@
 
             'mysql = "SELECT * from IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID INNER JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.STATUS = 'NO'"
 
-            mysql = "SELECT * FROM IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID LEFT JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.IRNO IS NULL"
+            mysql = "SELECT * FROM IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID LEFT JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.IRNO IS NULL and "
 
             For Each name In strWords
-                mysql &= $"{vbCr} UPPER(LastName ||' '|| FirstName ||' '|| MiddleName) LIKE UPPER('%{name}%') or "
-                mysql &= $"{vbCr}UPPER(FirstName ||' '|| MiddleName ||' '|| LastName) LIKE UPPER('%{name}%') or "
+                mysql &= $"{vbCr} UPPER(B.LastName ||' '|| B.FirstName ||' '|| B.MiddleName) LIKE UPPER('%{name}%') or "
+                mysql &= $"{vbCr} UPPER(B.FirstName ||' '|| B.MiddleName ||' '|| B.LastName) LIKE UPPER('%{name}%') or "
+
                 If name Is strWords.Last Then
-                    mysql &= $"{vbCr} UPPER(FirstName ||' '|| LastName ||' '|| MiddleName) LIKE UPPER('%{name}%') "
+                    mysql &= $"{vbCr} UPPER(B.FirstName ||' '|| B.LastName ||' '|| B.MiddleName) LIKE UPPER('%{name}%')"
                     Exit For
                 End If
             Next
+
         Else
             mysql = "SELECT * FROM IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID LEFT JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.IRNO IS NULL"
         End If
@@ -86,6 +88,11 @@
             tmpEmp.LoadCorrectiveDetails(idx)
             ReloadFormFromSearch(FormName.corrective, tmpEmp, 1)
 
+            'ElseIf txtSearch.Tag = "Written" Then
+
+            '    tmpEmp.LoadCorrectiveDetails(idx)
+            '    ReloadFormFromSearch(FormName.corrective, tmpEmp, 2)
+
         End If
 
         Close()
@@ -94,4 +101,51 @@
     Private Sub Close_BTN_Click(sender As Object, e As EventArgs) Handles Close_BTN.Click
         Close()
     End Sub
+
+    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress
+        If IsEnter(e) Then btnSearch.PerformClick()
+    End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        LoadEmployee(txtSearch.Text)
+        txtSearch.Text = ""
+    End Sub
+
+    Private Sub IRNo_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles IRNo_TXT.KeyPress
+        If IsEnter(e) Then IRNo_BTN.PerformClick()
+    End Sub
+
+    Private Sub IRNo_BTN_Click(sender As Object, e As EventArgs) Handles IRNo_BTN.Click
+        LoadIRNo(IRNo_TXT.Text)
+        IRNo_TXT.Text = ""
+    End Sub
+
+    Private Sub LoadIRNo(str As String)
+
+        Dim mysql As String
+        If str.Length <> 0 Then
+            mysql = "SELECT * FROM IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID LEFT JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.IRNO IS NULL and A.IRNO = '" & str & "'"
+        Else
+            mysql = "SELECT * FROM IR_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.PERSON_ID LEFT JOIN SHOWCAUSE_RECORDS C ON C.IRNO = A.IRNO WHERE C.IRNO IS NULL"
+        End If
+
+        Dim ds As DataSet = LoadSQL(mysql, "IR_RECORDS")
+        Dim maxEntries As New Integer
+
+        rowCount = ds.Tables(0).Rows.Count
+        maxEntries = ds.Tables(0).Rows.Count
+        frmMainForm.AppProgressBar.Maximum = maxEntries
+        frmMainForm.AppProgressBar.Visible = True
+        lvEmployee.Items.Clear()
+
+        For Each dr In ds.Tables(0).Rows
+            AddItem(dr)
+            frmMainForm.AppProgressBar.Value += 1
+        Next
+
+        frmMainForm.AppProgressBar.Value = 0
+        frmMainForm.AppProgressBar.Visible = False
+
+    End Sub
+
 End Class

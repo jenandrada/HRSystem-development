@@ -86,7 +86,9 @@ Module Selecting
 
     Friend Sub PopulateExplaination(datagrid As DataGridView)
         datagrid.Rows.Clear()
-        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
+        Dim mysql As String
+
+        mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
@@ -98,11 +100,71 @@ Module Selecting
 
     End Sub
 
+    Public Sub LoadExplainSearchName(search As String, datagrid As DataGridView)
+
+        datagrid.Rows.Clear()
+        Dim secured_str = DreadKnight(search)
+        Dim mysql As String
+        Dim strWords As String() = secured_str.Split(New Char() {" "c})
+
+
+        If secured_str.Length <> 0 Then
+            mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno Where "
+
+            For Each name In strWords
+                mysql &= $"{vbCr} UPPER(B.LastName ||' '|| B.FirstName ||' '|| B.MiddleName) LIKE UPPER('%{name}%') or "
+                mysql &= $"{vbCr} UPPER(B.FirstName ||' '|| B.MiddleName ||' '|| B.LastName) LIKE UPPER('%{name}%') or "
+
+                If name Is strWords.Last Then
+                    mysql &= $"{vbCr} UPPER(B.FirstName ||' '|| B.LastName ||' '|| B.MiddleName) LIKE UPPER('%{name}%')"
+                    Exit For
+                End If
+            Next
+        Else
+            mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
+        End If
+
+        Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                For Each dr In ds.Tables(0).Rows
+                    AddItem(dr, datagrid)
+                Next
+
+            End If
+        End Using
+    End Sub
+
+    Public Sub LoadExplainSearchIRNO(irno As String, datagrid As DataGridView)
+
+        datagrid.Rows.Clear()
+        Dim secured_str = DreadKnight(irno)
+        Dim mysql As String
+        Dim strWords As String() = secured_str.Split(New Char() {" "c})
+
+
+        If secured_str.Length <> 0 Then
+
+            mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno Where A.irno = '" & irno & "'"
+
+        Else
+            mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
+        End If
+
+        Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                For Each dr In ds.Tables(0).Rows
+                    AddItem(dr, datagrid)
+                Next
+
+            End If
+        End Using
+    End Sub
 
     Public Sub AddItem(ByVal dr As DataRow, datagrid As DataGridView)
 
         Dim pb As New PictureBox
-        Dim Status As String
         Dim img As Image
         img = pb.ErrorImage
         imgData = ImgToByteArray(img, ImageFormat.Jpeg)
