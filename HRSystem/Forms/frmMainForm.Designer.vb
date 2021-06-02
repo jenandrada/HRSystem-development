@@ -25,7 +25,6 @@ Partial Class frmMainForm
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMainForm))
         Me.pNavigate = New System.Windows.Forms.Panel()
-        Me.Dashboard_LBL = New System.Windows.Forms.Label()
         Me.Pending_Panel = New System.Windows.Forms.Panel()
         Me.PendingNo_LBL = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -87,6 +86,7 @@ Partial Class frmMainForm
         Me.RateEMP_BTN = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.pNavigate.SuspendLayout()
         Me.Pending_Panel.SuspendLayout()
         Me.Panel_Maintenance.SuspendLayout()
@@ -104,35 +104,24 @@ Partial Class frmMainForm
         Me.pNavigate.AutoSize = True
         Me.pNavigate.BackColor = System.Drawing.Color.Silver
         Me.pNavigate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pNavigate.Controls.Add(Me.Dashboard_LBL)
         Me.pNavigate.Controls.Add(Me.Pending_Panel)
         Me.pNavigate.Controls.Add(Me.Panel_Maintenance)
-        Me.pNavigate.Location = New System.Drawing.Point(179, 41)
+        Me.pNavigate.Location = New System.Drawing.Point(179, 45)
         Me.pNavigate.Name = "pNavigate"
-        Me.pNavigate.Size = New System.Drawing.Size(1188, 722)
+        Me.pNavigate.Size = New System.Drawing.Size(1188, 718)
         Me.pNavigate.TabIndex = 1
-        '
-        'Dashboard_LBL
-        '
-        Me.Dashboard_LBL.AutoSize = True
-        Me.Dashboard_LBL.Font = New System.Drawing.Font("Segoe UI", 20.0!)
-        Me.Dashboard_LBL.Location = New System.Drawing.Point(4, 3)
-        Me.Dashboard_LBL.Name = "Dashboard_LBL"
-        Me.Dashboard_LBL.Size = New System.Drawing.Size(147, 37)
-        Me.Dashboard_LBL.TabIndex = 6
-        Me.Dashboard_LBL.Text = "Dashboard"
-        Me.Dashboard_LBL.Visible = False
         '
         'Pending_Panel
         '
         Me.Pending_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.Pending_Panel.BackColor = System.Drawing.Color.Pink
+        Me.Pending_Panel.Controls.Add(Me.Label2)
         Me.Pending_Panel.Controls.Add(Me.PendingNo_LBL)
         Me.Pending_Panel.Controls.Add(Me.Label3)
-        Me.Pending_Panel.Location = New System.Drawing.Point(135, 64)
+        Me.Pending_Panel.Location = New System.Drawing.Point(169, 32)
         Me.Pending_Panel.Name = "Pending_Panel"
         Me.Pending_Panel.Padding = New System.Windows.Forms.Padding(5)
-        Me.Pending_Panel.Size = New System.Drawing.Size(212, 145)
+        Me.Pending_Panel.Size = New System.Drawing.Size(178, 123)
         Me.Pending_Panel.TabIndex = 5
         Me.Pending_Panel.Visible = False
         '
@@ -140,7 +129,7 @@ Partial Class frmMainForm
         '
         Me.PendingNo_LBL.AutoSize = True
         Me.PendingNo_LBL.Font = New System.Drawing.Font("Kristen ITC", 20.0!)
-        Me.PendingNo_LBL.Location = New System.Drawing.Point(91, 77)
+        Me.PendingNo_LBL.Location = New System.Drawing.Point(79, 79)
         Me.PendingNo_LBL.Name = "PendingNo_LBL"
         Me.PendingNo_LBL.Size = New System.Drawing.Size(31, 36)
         Me.PendingNo_LBL.TabIndex = 1
@@ -149,12 +138,12 @@ Partial Class frmMainForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kristen ITC", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(22, 34)
+        Me.Label3.Font = New System.Drawing.Font("Kristen ITC", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(43, 21)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(180, 23)
+        Me.Label3.Size = New System.Drawing.Size(100, 22)
         Me.Label3.TabIndex = 0
-        Me.Label3.Text = "Show Cause Pendings"
+        Me.Label3.Text = "Show Cause"
         '
         'Panel_Maintenance
         '
@@ -164,7 +153,7 @@ Partial Class frmMainForm
         Me.Panel_Maintenance.Controls.Add(Me.lbl_Branch)
         Me.Panel_Maintenance.Controls.Add(Me.lbl_UserLogs)
         Me.Panel_Maintenance.Controls.Add(Me.lbl_Backup)
-        Me.Panel_Maintenance.Location = New System.Drawing.Point(-1, 114)
+        Me.Panel_Maintenance.Location = New System.Drawing.Point(-1, 32)
         Me.Panel_Maintenance.Name = "Panel_Maintenance"
         Me.Panel_Maintenance.Size = New System.Drawing.Size(133, 156)
         Me.Panel_Maintenance.TabIndex = 0
@@ -694,6 +683,16 @@ Partial Class frmMainForm
         Me.RateEMP_BTN.Text = "               Under Deve.."
         Me.RateEMP_BTN.UseVisualStyleBackColor = False
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Kristen ITC", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(55, 50)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(76, 22)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Pendings"
+        '
         'frmMainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -716,7 +715,6 @@ Partial Class frmMainForm
         Me.Text = "Human Resource Management System Main Form"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pNavigate.ResumeLayout(False)
-        Me.pNavigate.PerformLayout()
         Me.Pending_Panel.ResumeLayout(False)
         Me.Pending_Panel.PerformLayout()
         Me.Panel_Maintenance.ResumeLayout(False)
@@ -793,8 +791,8 @@ Partial Class frmMainForm
     Friend WithEvents AboutUsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Dashboard_LBL As Label
     Friend WithEvents Pending_Panel As Panel
     Friend WithEvents PendingNo_LBL As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents Label2 As Label
 End Class

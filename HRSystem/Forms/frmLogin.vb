@@ -1,8 +1,4 @@
-﻿Imports FirebirdSql.Data.FirebirdClient
-Imports System.IO
-Imports System.Drawing.Imaging
-
-Public Class frmLogin
+﻿Public Class frmLogin
     'Dim images As ImageDatabaseToFolder
 
     ' TODO: Insert code to perform custom authentication using the provided username and password

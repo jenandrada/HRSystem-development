@@ -165,7 +165,6 @@ Partial Class frmCoorective
         Me.WP_Emp_Rel_TXT = New System.Windows.Forms.TextBox()
         Me.WP_Save_Btn = New System.Windows.Forms.Button()
         Me.WP_OK_BTN = New System.Windows.Forms.Button()
-        Me.Label14 = New System.Windows.Forms.Label()
         Me.Violation_TAB = New System.Windows.Forms.TabControl()
         Me.RulesTabPage = New System.Windows.Forms.TabPage()
         Me.WP_RulesList = New System.Windows.Forms.ListView()
@@ -1662,23 +1661,14 @@ Partial Class frmCoorective
         Me.WP_OK_BTN.Text = "Preview"
         Me.WP_OK_BTN.UseVisualStyleBackColor = True
         '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(17, 205)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(259, 20)
-        Me.Label14.TabIndex = 2
-        Me.Label14.Text = "DESCRIPTION OF THE INCIDENT"
-        '
         'Violation_TAB
         '
         Me.Violation_TAB.Controls.Add(Me.RulesTabPage)
         Me.Violation_TAB.Controls.Add(Me.SectionsTabPage)
-        Me.Violation_TAB.Location = New System.Drawing.Point(14, 20)
+        Me.Violation_TAB.Location = New System.Drawing.Point(14, 13)
         Me.Violation_TAB.Name = "Violation_TAB"
         Me.Violation_TAB.SelectedIndex = 0
-        Me.Violation_TAB.Size = New System.Drawing.Size(549, 169)
+        Me.Violation_TAB.Size = New System.Drawing.Size(134, 31)
         Me.Violation_TAB.TabIndex = 0
         '
         'RulesTabPage
@@ -1721,7 +1711,7 @@ Partial Class frmCoorective
         Me.SectionsTabPage.Location = New System.Drawing.Point(4, 29)
         Me.SectionsTabPage.Name = "SectionsTabPage"
         Me.SectionsTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.SectionsTabPage.Size = New System.Drawing.Size(541, 136)
+        Me.SectionsTabPage.Size = New System.Drawing.Size(126, 0)
         Me.SectionsTabPage.TabIndex = 1
         Me.SectionsTabPage.Text = "Sections"
         Me.SectionsTabPage.UseVisualStyleBackColor = True
@@ -1734,7 +1724,7 @@ Partial Class frmCoorective
         Me.WP_SectionsList.HideSelection = False
         Me.WP_SectionsList.Location = New System.Drawing.Point(3, 3)
         Me.WP_SectionsList.Name = "WP_SectionsList"
-        Me.WP_SectionsList.Size = New System.Drawing.Size(535, 130)
+        Me.WP_SectionsList.Size = New System.Drawing.Size(120, 0)
         Me.WP_SectionsList.TabIndex = 0
         Me.WP_SectionsList.UseCompatibleStateImageBehavior = False
         Me.WP_SectionsList.View = System.Windows.Forms.View.Details
@@ -1873,9 +1863,9 @@ Partial Class frmCoorective
         '
         'WP_Incident_TXT
         '
-        Me.WP_Incident_TXT.Location = New System.Drawing.Point(22, 228)
+        Me.WP_Incident_TXT.Location = New System.Drawing.Point(14, 67)
         Me.WP_Incident_TXT.Name = "WP_Incident_TXT"
-        Me.WP_Incident_TXT.Size = New System.Drawing.Size(545, 51)
+        Me.WP_Incident_TXT.Size = New System.Drawing.Size(134, 20)
         Me.WP_Incident_TXT.TabIndex = 38
         Me.WP_Incident_TXT.Text = ""
         '
@@ -1883,14 +1873,11 @@ Partial Class frmCoorective
         '
         Me.GroupBox8.Controls.Add(Me.Violation_TAB)
         Me.GroupBox8.Controls.Add(Me.WP_Incident_TXT)
-        Me.GroupBox8.Controls.Add(Me.Label14)
         Me.GroupBox8.Location = New System.Drawing.Point(22, 173)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(574, 24)
+        Me.GroupBox8.Size = New System.Drawing.Size(574, 49)
         Me.GroupBox8.TabIndex = 39
         Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "Hide This"
-        Me.GroupBox8.Visible = False
         '
         'frmCoorective
         '
@@ -1957,7 +1944,6 @@ Partial Class frmCoorective
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.GroupBox8.ResumeLayout(False)
-        Me.GroupBox8.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2101,7 +2087,6 @@ Partial Class frmCoorective
     Friend WithEvents WP_Emp_Rel_TXT As TextBox
     Friend WithEvents WP_Save_Btn As Button
     Friend WithEvents WP_OK_BTN As Button
-    Friend WithEvents Label14 As Label
     Friend WithEvents Violation_TAB As TabControl
     Friend WithEvents RulesTabPage As TabPage
     Friend WithEvents WP_RulesList As ListView

@@ -9,6 +9,7 @@ Public Class frmEmployeeDetails
     Private tmpPresentAdd As Address
     Private tmpEmployee As Employee
     Private BI_Remarks As String = ""
+    Dim namee As String
 
     Private Sub LoadAddressPro()
         Dim source As New AutoCompleteStringCollection()
@@ -648,8 +649,9 @@ Public Class frmEmployeeDetails
 
 
     Private Sub Save_BTN_Click(sender As Object, e As EventArgs) Handles Save_BTN.Click
-        Console.WriteLine("sss")
         Dim tmpStatus As String = String.Empty
+
+        namee = LastName_TXT.Text & ", " & FirstName_TXT.Text & " " & MiddleName_TXT.Text
 
         If Save_BTN.Text = "&Save" Then
 
@@ -738,6 +740,8 @@ Public Class frmEmployeeDetails
                 '.SaveReqArchive() '------------------jen
             End With
 
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, namee, "ADDED", Branch_combo.Text, Status_CB.Text, Position_combo.Text)
+
             MsgBox("New Record Added", MsgBoxStyle.Information, "Information")
             ClearText()
 
@@ -775,6 +779,7 @@ Public Class frmEmployeeDetails
                 If Status_CB.SelectedIndex = 5 Or Status_CB.SelectedIndex = 7 Then
                     .LastDate = Last_date.Text
                     .SaveTOLASTDATE()
+
                 End If
 
 
@@ -814,6 +819,8 @@ Public Class frmEmployeeDetails
                 .CShistory = CivilStatus_CB.Tag
                 .Statushistory = Status_CB.Tag
                 .SaveEmpHistory()
+
+                SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, namee, "MODIFIED", Branch_combo.Text, Status_CB.Text, Position_combo.Text)
 
                 Dim ChkBox As CheckBox = Nothing
                 For Each xObject As Object In Requirements_GB.Controls

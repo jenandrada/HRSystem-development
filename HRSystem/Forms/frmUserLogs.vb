@@ -1,4 +1,5 @@
 ﻿Public Class frmUserLogs
+
     Private Sub FrmUserLogs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Application.DoEvents()
         LoadUserLogs(Search_TXT.Text)
@@ -12,7 +13,20 @@
         Dim name As String
         Dim sql As String
         If str.Length <> 0 Then
-            sql = "SELECT * FROM USER_LOGS WHERE "
+            'sql = "SELECT * FROM USER_LOGS WHERE "
+            'For Each name In strWords
+            '    sql &= $"{vbCr}UPPER(EMPLOYEE) LIKE UPPER('%{name}%') OR "
+            '    sql &= $"{vbCr}UPPER(USERNAME) LIKE UPPER('%{name}%') and "
+
+            '    If name Is strWords.Last Then
+            '        sql &= $"{vbCr}UPPER(EMPLOYEE) LIKE UPPER('%{name}%') OR "
+            '        sql &= $"{vbCr}UPPER(USERNAME) LIKE UPPER('%{name}%') "
+            '        Exit For
+            '    End If
+            'Next
+
+            sql = "SELECT * FROM USER_TRANSACTION WHERE "
+
             For Each name In strWords
                 sql &= $"{vbCr}UPPER(EMPLOYEE) LIKE UPPER('%{name}%') OR "
                 sql &= $"{vbCr}UPPER(USERNAME) LIKE UPPER('%{name}%') and "
@@ -23,10 +37,11 @@
                     Exit For
                 End If
             Next
+
         Else
-            sql = "SELECT * FROM USER_LOGS"
+            sql = "SELECT * FROM USER_TRANSACTION "
         End If
-        Dim ds As DataSet = LoadSQL(sql, "USER_LOGS")
+        Dim ds As DataSet = LoadSQL(sql, "USER_TRANSACTION")
         TextProgressBar1.Maximum = ds.Tables(0).Rows.Count
         TextProgressBar1.Visible = True
         UserLogs_ListView.Items.Clear()
@@ -48,13 +63,13 @@
             'If IsDBNull(.Item("ASSIGNED")) And IsDBNull(.Item("RELIEVE")) Then
             '    Exit Sub
             'End If
-            Dim i As ListViewItem = UserLogs_ListView.Items.Add(.Item("DATE_CREATED"))
+            Dim i As ListViewItem = UserLogs_ListView.Items.Add(.Item("DATETRANSACTION"))
             i.SubItems.Add(.Item("USERNAME"))
-            i.SubItems.Add(.Item("EMPLOYEE").ToString)
+            i.SubItems.Add(.Item("NAME").ToString)
             i.SubItems.Add(.Item("ACTION"))
-            i.SubItems.Add(.Item("BRANCHNAME"))
-            i.SubItems.Add(.Item("EMP_STATUS"))
-            i.SubItems.Add(.Item("EMP_POSITION"))
+            i.SubItems.Add(.Item("BRANCH"))
+            i.SubItems.Add(.Item("STATUS"))
+            i.SubItems.Add(.Item("POSITION"))
         End With
     End Sub
 

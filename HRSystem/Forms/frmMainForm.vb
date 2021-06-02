@@ -9,24 +9,22 @@ Public Class frmMainForm
 
     Private Sub btnManageEmployee_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnManageEmployee.Click
         OpenWindowsForm("frmEmployeeList")
-
     End Sub
 
     Private Sub frmMainForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        Panel_Maintenance.Visible = False
+
+        'Panel_Maintenance.Visible = False
+
         AppTimer.Start()
         AppDateTime.Text = Date.Now.ToString("dddd, MMMM dd, yyyy hh:mm:ss tt", CultureInfo.CurrentCulture)
         Text = Text & " | Version " & [GetType].Assembly.GetName.Version.ToString
         NotYetLogin(False)
+
         If NavagationPanel.VerticalScroll.Visible = True Then
             NavagationPanel.Width = 192
         Else
             NavagationPanel.Width = 176
         End If
-
-        'If ThisHasRow("SHOWCAUSE_RECORDS") Then
-        '    SCPendings(PendingNo_LBL)
-        'End If
 
     End Sub
 
@@ -71,6 +69,11 @@ Public Class frmMainForm
                 NotifyRatings()
                 NotifyBhAllowance()
             End If
+
+
+            'If ThisHasRow("SHOWCAUSE_RECORDS") Then
+            '    SCPendings(PendingNo_LBL)
+            'End If
 
             'Dashboard_LBL.Visible = True
             'Pending_Panel.Visible = True
@@ -621,10 +624,6 @@ Public Class frmMainForm
         End Using
     End Sub
 
-    Private Sub pNavigate_Paint(sender As Object, e As PaintEventArgs) Handles pNavigate.Paint
-
-    End Sub
-
     Private Sub Pending_Panel_MouseDoubleClick(sender As Object, e As MouseEventArgs)
         If frmCoorective Is Nothing Then
             Dim frm As New frmCoorective With {
@@ -641,4 +640,5 @@ Public Class frmMainForm
             frmEmployeeList.BringToFront()
         End If
     End Sub
+
 End Class

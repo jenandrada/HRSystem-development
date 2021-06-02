@@ -11,6 +11,7 @@ Public Class frmCoorective
     Dim FolderPath As String
     Dim ExpalanationPath As String
     Dim scno_local As Integer
+    Dim NoOfDaysSuspend As Integer
 
     'Dim Sectionlist As New ArrayList
 
@@ -206,7 +207,8 @@ Public Class frmCoorective
             New ReportParameter("paramPosition3", WP_Position3_TXT.Text),
             New ReportParameter("paramPosition4", WP_Position4_TXT.Text),
             New ReportParameter("paramManuallNumDaysSuspension", NumberOfDays_TXT.Text),
-            New ReportParameter("paramCharges", Charges_Numeric.Text)
+            New ReportParameter("paramCharges", Charges_Numeric.Text),
+            New ReportParameter("paramSCNO", IRNoWritten_LBL.Text)
         }
         Try
             For Each itemsec As ListViewItem In WP_SectionsList.SelectedItems
@@ -773,7 +775,13 @@ Public Class frmCoorective
     Private Sub WP_Save_Btn_Click_1(sender As Object, e As EventArgs) Handles WP_Save_Btn.Click
 
         If Not WP_Name_TXT.Text = "" Then
-            ToPDF(WP_Name_TXT.Text, "Written Reprimand Notice", RptViewer_WrittenReprimand, "Written Reprimand Notice")
+            'ToPDF(WP_Name_TXT.Text, "Written Reprimand Notice", RptViewer_WrittenReprimand, "Written Reprimand Notice")
+
+            ToPDF("IR No. " & IRNoWritten_LBL.Text & " - " & WP_Name_TXT.Text, "Incident Report", RptViewer_WrittenReprimand, "Written Reprimand Notice")
+
+            Console.WriteLine("daysss  = " & NoOfDaysSuspend)
+
+            SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, Charges_Numeric.Text, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text)
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
@@ -790,6 +798,7 @@ Public Class frmCoorective
             chkStatus = 0
         Else
             NumberOfDays_TXT.Enabled = False
+            NumberOfDays_TXT.Text = 0
         End If
     End Sub
 
@@ -820,6 +829,9 @@ Public Class frmCoorective
         If TwoDays_RBTN.Checked = True Then
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
+            NoOfDaysSuspend = 2
+        Else
+            NoOfDaysSuspend = 0
         End If
     End Sub
 
@@ -827,6 +839,9 @@ Public Class frmCoorective
         If FourDays_RBTN.Checked = True Then
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
+            NoOfDaysSuspend = 4
+        Else
+            NoOfDaysSuspend = 0
         End If
     End Sub
 
@@ -834,6 +849,9 @@ Public Class frmCoorective
         If SixDays_RBTN.Checked = True Then
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
+            NoOfDaysSuspend = 6
+        Else
+            NoOfDaysSuspend = 0
         End If
     End Sub
 
@@ -927,6 +945,11 @@ Public Class frmCoorective
             'chkStatus = 0
         Else
             Charges_Numeric.Enabled = False
+            Charges_Numeric.Text = 0
         End If
+    End Sub
+
+    Private Sub NumberOfDays_TXT_ValueChanged(sender As Object, e As EventArgs) Handles NumberOfDays_TXT.ValueChanged
+        NoOfDaysSuspend = NumberOfDays_TXT.Text
     End Sub
 End Class

@@ -459,18 +459,53 @@ Public Class Employee
     End Sub
 
     Friend Sub SaveTOLASTDATE()
-        Dim sql As String = "select * from tbl_lastdate rows 1"
-        Using ds As DataSet = LoadSQL(sql, "tbl_lastdate")
-            Dim data As DataRow
-            data = ds.Tables(0).NewRow
-            With data
-                .Item("EMP_ID") = ID
+
+        Dim mysql As String
+
+        mysql = "Select * FROM tbl_lastdate where EMP_ID = '" & ID & "'"
+        Dim dss As DataSet = LoadSQL(mysql, "tbl_lastdate")
+        If dss.Tables(0).Rows.Count > 0 Then
+
+            With dss.Tables(0).Rows(0)
+
                 .Item("lastdate") = LastDate
                 .Item("reason") = Remarks
+
             End With
-            ds.Tables(0).Rows.Add(data)
-            SaveEntry(ds)
-        End Using
+            SaveEntry(dss, False)
+
+        Else
+
+            mysql = "select * from tbl_lastdate rows 1"
+            Using ds As DataSet = LoadSQL(mysql, "tbl_lastdate")
+
+                Dim dsNewRow As DataRow = ds.Tables(0).NewRow
+                With dsNewRow
+
+                    .Item("EMP_ID") = ID
+                    .Item("lastdate") = LastDate
+                    .Item("reason") = Remarks
+
+                End With
+                ds.Tables(0).Rows.Add(dsNewRow)
+                SaveEntry(ds)
+            End Using
+
+        End If
+
+
+        'Dim sql As String = "select * from tbl_lastdate rows 1"
+        'Using ds As DataSet = LoadSQL(sql, "tbl_lastdate")
+        '    Dim data As DataRow
+        '    data = ds.Tables(0).NewRow
+        '    With data
+        '        .Item("EMP_ID") = ID
+        '        .Item("lastdate") = LastDate
+        '        .Item("reason") = Remarks
+        '    End With
+        '    ds.Tables(0).Rows.Add(data)
+        '    SaveEntry(ds)
+        'End Using 
     End Sub
 
     Friend Sub SaveEmpHistory()

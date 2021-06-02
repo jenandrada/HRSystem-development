@@ -658,7 +658,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox18</rd:DefaultName>
-                <Top>0.4509in</Top>
+                <Top>0.39968in</Top>
                 <Left>0.57097in</Left>
                 <Height>0.22222in</Height>
                 <Width>6.54555in</Width>
@@ -702,7 +702,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox18</rd:DefaultName>
-                <Top>0.67312in</Top>
+                <Top>0.6219in</Top>
                 <Left>0.57097in</Left>
                 <Height>0.21777in</Height>
                 <Width>6.54555in</Width>
@@ -723,7 +723,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
             <KeepTogether>true</KeepTogether>
             <Top>1.97259in</Top>
             <Left>0.41533in</Left>
-            <Height>0.95687in</Height>
+            <Height>0.91in</Height>
             <Width>7.6875in</Width>
             <ZIndex>9</ZIndex>
             <Style>
@@ -2073,6 +2073,55 @@ parameters!paramManuallNumDaysSuspension.Value &gt; 4, "DISMISSAL")</Value>
               </RightBorder>
             </Style>
           </Rectangle>
+          <Textbox Name="Textbox20">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>IR No.</Value>
+                    <Style>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve">  </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!paramSCNO.Value</Value>
+                    <Style>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox8</rd:DefaultName>
+            <Top>0.53509in</Top>
+            <Left>6.207in</Left>
+            <Height>0.25in</Height>
+            <Width>1.89584in</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>11in</Height>
         <Style />
@@ -2185,6 +2234,12 @@ parameters!paramManuallNumDaysSuspension.Value &gt; 4, "DISMISSAL")</Value>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="paramSCNO">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2275,6 +2330,11 @@ parameters!paramManuallNumDaysSuspension.Value &gt; 4, "DISMISSAL")</Value>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>paramCharges</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>paramSCNO</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
