@@ -30,6 +30,7 @@ Public Class frmCoorective
         LV_Rules.Items.Clear()
         WP_RulesList.Items.Clear()
         'Optional_Group.Enabled = False
+
         With tmpRule
             For Each item In .List()
                 Dim lvitem As ListViewItem = LV_Rules.Items.Add(item.RuleNumber)
@@ -70,6 +71,12 @@ Public Class frmCoorective
             WP_Position_TXT.Text = .Position
             WP_Company_TXT.Text = .Company_Name
             WP_Branch_TXT.Text = .Branch_Name
+            IRNoWritten_LBL.Text = Format(.IRNo, "00000")
+            WP_Incident_TXT.Text = .Incident_Description
+
+            LoadListviewWritten(.IRNo, WP_RulesList, WP_SectionsList)
+            Violation_TAB.SelectedIndex = 1
+
         End With
 
     End Sub
@@ -198,7 +205,8 @@ Public Class frmCoorective
             New ReportParameter("paramPosition2", WP_Position2_TXT.Text),
             New ReportParameter("paramPosition3", WP_Position3_TXT.Text),
             New ReportParameter("paramPosition4", WP_Position4_TXT.Text),
-            New ReportParameter("paramManuallNumDaysSuspension", NumberOfDays_TXT.Text)
+            New ReportParameter("paramManuallNumDaysSuspension", NumberOfDays_TXT.Text),
+            New ReportParameter("paramCharges", Charges_Numeric.Text)
         }
         Try
             For Each itemsec As ListViewItem In WP_SectionsList.SelectedItems
@@ -753,11 +761,9 @@ Public Class frmCoorective
     End Sub
 
     Private Sub WP_OK_BTN_Click_1(sender As Object, e As EventArgs) Handles WP_OK_BTN.Click
-        If WP_Name_TXT.Text = "" Or IsNothing(Me.WP_SectionsList.FocusedItem) Then
+        If WP_Name_TXT.Text = "" Then
             If WP_Name_TXT.Text = "" Then
                 MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ElseIf IsNothing(Me.WP_SectionsList.FocusedItem) Then
-                MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Else
             LoadWrittenReprimandReport()
@@ -909,5 +915,18 @@ Public Class frmCoorective
 
     Private Sub IRNo_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles IRNo_TXT.KeyPress
         If IsEnter(e) Then IRNo_BTN.PerformClick()
+    End Sub
+
+    Private Sub AmountCharges_CB_CheckedChanged(sender As Object, e As EventArgs) Handles AmountCharges_CB.CheckedChanged
+        If AmountCharges_CB.Checked = True Then
+            Charges_Numeric.Enabled = True
+            WW_RBTN.Checked = False
+            TwoDays_RBTN.Checked = False
+            FourDays_RBTN.Checked = False
+            SixDays_RBTN.Checked = False
+            'chkStatus = 0
+        Else
+            Charges_Numeric.Enabled = False
+        End If
     End Sub
 End Class

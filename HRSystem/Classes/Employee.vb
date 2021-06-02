@@ -153,6 +153,8 @@ Public Class Employee
 
 #End Region
 
+    Public Property Incident_Description() As String
+
 #Region "ReqArchive"
 
     Public Property ReqID() As Integer
@@ -826,12 +828,13 @@ Public Class Employee
         Dim mysql As String
 
         mysql = "Select * From IR_RECORDS inner join tbl_employee on tbl_employee.id = IR_RECORDS.PERSON_ID WHERE IR_RECORDS.IRNo = '" & IR & "'"
-        Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
+        Using ds As DataSet = LoadSQL(mysql, "IR_RECORDS")
 
             If ds.Tables(0).Rows.Count > 0 Then
 
                 Dim dr As DataRow = ds.Tables(0).Rows(0)
                 With dr
+
                     ID = .Item("id")
                     FirstName = .Item("FIRSTNAME")
                     MiddleName = .Item("MIDDLENAME")
@@ -840,6 +843,7 @@ Public Class Employee
                     Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
                     BranchID = IIf(IsDBNull(.Item("BRANCH_ID")), "", .Item("BRANCH_ID"))
                     IRNo = Format(.Item("IRNO"), "00000")
+                    Incident_Description = .Item("DESCRIPTION")
 
                 End With
 

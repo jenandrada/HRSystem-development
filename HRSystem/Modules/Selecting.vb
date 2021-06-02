@@ -27,6 +27,33 @@ Module Selecting
         Return False
     End Function
 
+    Public Sub LoadListviewWritten(irno As String, listRule As ListView, listSection As ListView)
+        Dim mysql As String = "Select * From SHOWCAUSE_COUNT WHERE IRNo = '" & irno & "'"
+        Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_COUNT")
+
+            For Each dr As DataRow In ds.Tables(0).Rows
+                With dr
+                    For x = 0 To listRule.Items.Count - 1
+                        If listRule.Items(x).Text = .Item("RULENO") Then
+                            listRule.Items(x).Selected = True
+                            'listRule.Select()
+                        End If
+
+                        For ii As Integer = 0 To listSection.Items.Count - 1
+                            If listSection.Items(ii).Text = .Item("SECTIONNO") Then
+                                listSection.Items(ii).Selected = True
+                                listSection.Select()
+                            End If
+                        Next
+                    Next
+
+
+                End With
+            Next
+
+        End Using
+    End Sub
+
 
     Public Sub GetLastNo(lastNo As Label, table As String, column As String)
 

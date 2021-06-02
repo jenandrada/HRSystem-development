@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmSCList
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmSCList
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSCList))
         Me.Label21 = New System.Windows.Forms.Label()
@@ -34,8 +34,6 @@ Partial Class frmSCList
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SuspendLayout()
         '
         'Label21
@@ -105,15 +103,15 @@ Partial Class frmSCList
         Me.lvEmployee.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvEmployee.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader5, Me.ColumnHeader4, Me.ColumnHeader6})
+        Me.lvEmployee.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader5})
         Me.lvEmployee.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lvEmployee.FullRowSelect = True
         Me.lvEmployee.GridLines = True
         Me.lvEmployee.HideSelection = False
-        Me.lvEmployee.Location = New System.Drawing.Point(29, 112)
+        Me.lvEmployee.Location = New System.Drawing.Point(29, 116)
         Me.lvEmployee.Name = "lvEmployee"
         Me.lvEmployee.Size = New System.Drawing.Size(1116, 614)
-        Me.lvEmployee.TabIndex = 61
+        Me.lvEmployee.TabIndex = 66
         Me.lvEmployee.UseCompatibleStateImageBehavior = False
         Me.lvEmployee.View = System.Windows.Forms.View.Details
         '
@@ -125,38 +123,28 @@ Partial Class frmSCList
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "Fullname"
-        Me.ColumnHeader2.Width = 350
+        Me.ColumnHeader2.Width = 400
         '
         'ColumnHeader3
         '
-        Me.ColumnHeader3.Text = "Date of Issued"
-        Me.ColumnHeader3.Width = 165
+        Me.ColumnHeader3.Text = "Date Issued"
+        Me.ColumnHeader3.Width = 300
         '
         'ColumnHeader5
         '
-        Me.ColumnHeader5.Text = "Status"
-        Me.ColumnHeader5.Width = 165
-        '
-        'ColumnHeader4
-        '
-        Me.ColumnHeader4.Text = "Company"
-        Me.ColumnHeader4.Width = 130
-        '
-        'ColumnHeader6
-        '
-        Me.ColumnHeader6.Text = "Prepared by"
-        Me.ColumnHeader6.Width = 200
+        Me.ColumnHeader5.Text = "Company"
+        Me.ColumnHeader5.Width = 310
         '
         'frmSCList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1181, 749)
+        Me.Controls.Add(Me.lvEmployee)
         Me.Controls.Add(Me.IRNo_BTN)
         Me.Controls.Add(Me.IRNo_TXT)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txtSearch)
-        Me.Controls.Add(Me.lvEmployee)
         Me.Controls.Add(Me.Close_BTN)
         Me.Controls.Add(Me.Label21)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -178,6 +166,4 @@ Partial Class frmSCList
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents ColumnHeader5 As ColumnHeader
-    Friend WithEvents ColumnHeader4 As ColumnHeader
-    Friend WithEvents ColumnHeader6 As ColumnHeader
 End Class

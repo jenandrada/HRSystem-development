@@ -536,5 +536,4 @@ Public Class FrmMonitoring
         End Using
         Return True
     End Function
-
 End Class

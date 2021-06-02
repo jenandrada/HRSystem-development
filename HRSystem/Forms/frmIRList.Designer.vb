@@ -30,12 +30,12 @@ Partial Class frmIRList
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.IRNo_BTN = New System.Windows.Forms.Button()
         Me.IRNo_TXT = New System.Windows.Forms.TextBox()
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SuspendLayout()
         '
         'Label21
@@ -95,16 +95,6 @@ Partial Class frmIRList
         Me.ColumnHeader5.Text = "Date Received"
         Me.ColumnHeader5.Width = 165
         '
-        'ColumnHeader4
-        '
-        Me.ColumnHeader4.Text = "Action Taken"
-        Me.ColumnHeader4.Width = 130
-        '
-        'ColumnHeader6
-        '
-        Me.ColumnHeader6.Text = "Prepared by"
-        Me.ColumnHeader6.Width = 200
-        '
         'btnSearch
         '
         Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -147,6 +137,16 @@ Partial Class frmIRList
         Me.IRNo_TXT.Size = New System.Drawing.Size(196, 31)
         Me.IRNo_TXT.TabIndex = 59
         '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "Prepared by"
+        Me.ColumnHeader6.Width = 200
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Text = "Action Taken"
+        Me.ColumnHeader4.Width = 200
+        '
         'frmIRList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -173,11 +173,11 @@ Partial Class frmIRList
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
-    Friend WithEvents ColumnHeader4 As ColumnHeader
-    Friend WithEvents ColumnHeader6 As ColumnHeader
     Friend WithEvents btnSearch As Button
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents IRNo_BTN As Button
     Friend WithEvents IRNo_TXT As TextBox
+    Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents ColumnHeader6 As ColumnHeader
 End Class
