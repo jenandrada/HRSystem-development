@@ -81,7 +81,7 @@ Partial Class frmEmployeeList
         '
         Me.btnView.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnView.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnView.Location = New System.Drawing.Point(1059, 628)
+        Me.btnView.Location = New System.Drawing.Point(849, 628)
         Me.btnView.Name = "btnView"
         Me.btnView.Size = New System.Drawing.Size(99, 52)
         Me.btnView.TabIndex = 56

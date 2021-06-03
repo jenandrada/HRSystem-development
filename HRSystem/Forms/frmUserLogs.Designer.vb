@@ -71,7 +71,7 @@ Partial Class frmUserLogs
         'ColumnHeader9
         '
         Me.ColumnHeader9.Text = "Action"
-        Me.ColumnHeader9.Width = 199
+        Me.ColumnHeader9.Width = 320
         '
         'ColumnHeader10
         '

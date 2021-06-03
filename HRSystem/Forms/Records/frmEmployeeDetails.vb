@@ -150,9 +150,9 @@ Public Class frmEmployeeDetails
         PopulateComboBox(Position_combo, "tbl_employee", "EMP_POSITION")
         PopulateComboBox(Branch_combo, "tbl_branch", "BRANCHNAME")
 
-        If ThisHasRow("tbl_employee") Then
-            GreatestBiometric(BioNumber_TXT)
-        End If
+        'If ThisHasRow("tbl_employee") Then
+        '    GreatestBiometric(BioNumber_TXT)
+        'End If
 
 
     End Sub
@@ -378,12 +378,12 @@ Public Class frmEmployeeDetails
             End If
         Next
 
-        GreatestBiometric(BioNumber_TXT)
+        'GreatestBiometric(BioNumber_TXT)
     End Sub
 
     Private Sub Disable(ByVal st As Boolean)
-        FirstName_TXT.Enabled = st
-        MiddleName_TXT.Enabled = st
+        'FirstName_TXT.Enabled = st
+        'MiddleName_TXT.Enabled = st
         Extension_TXT.Enabled = st
         DateOfBirth_DTP.Enabled = st
         DateHired_DTP.Enabled = st
@@ -449,8 +449,13 @@ Public Class frmEmployeeDetails
 
         Dim mysql As String = "SELECT * FROM tbl_employee Where Upper(FIRSTNAME) = Upper('" & FirstName_TXT.Text & "') and Upper(LASTNAME) = Upper('" & LastName_TXT.Text & "')"
         Dim ds As DataSet = LoadSQL(mysql, "tbl_employee")
+
         If ds.Tables(0).Rows.Count > 0 Then
             MsgBox("Name Already Exist", MsgBoxStyle.Critical, "Error")
+            Return False
+
+        ElseIf String.IsNullOrEmpty(BioNumber_TXT.Text) Then
+            BioNumber_TXT.Region = New Region(New Rectangle(2, 2, BioNumber_TXT.Width - 4, BioNumber_TXT.Height - 4))
             Return False
 
         ElseIf String.IsNullOrEmpty(PreA_Province_TXT.Text) Or String.IsNullOrEmpty(PreA_CityMun_TXT.Text) Or String.IsNullOrEmpty(PreA_Barangay_TXT.Text) Then
@@ -510,6 +515,10 @@ Public Class frmEmployeeDetails
 
         If String.IsNullOrEmpty(PreA_Province_TXT.Text) Or String.IsNullOrEmpty(PreA_CityMun_TXT.Text) Or String.IsNullOrEmpty(PreA_Barangay_TXT.Text) Then
             MsgBox("Invalid Address", MsgBoxStyle.Critical, "Error")
+            Return False
+
+        ElseIf String.IsNullOrEmpty(BioNumber_TXT.Text) Then
+            BioNumber_TXT.Region = New Region(New Rectangle(2, 2, BioNumber_TXT.Width - 4, BioNumber_TXT.Height - 4))
             Return False
 
         ElseIf String.IsNullOrEmpty(LastName_TXT.Text) Then
@@ -1300,6 +1309,15 @@ Public Class frmEmployeeDetails
 
     Private Sub LastName_TXT_TextChanged(sender As Object, e As EventArgs) Handles LastName_TXT.TextChanged
         CheckIFEmpty(LastName_TXT)
+    End Sub
+
+    '--------------------------------------------BIOMETRIC----------------------------------- 
+    Private Sub GroupBox_Bio_Paint(sender As Object, e As PaintEventArgs) Handles GroupBox_Bio.Paint
+        RedAlertText(BioNumber_TXT, e)
+    End Sub
+
+    Private Sub BioNumber_TXT_TextChanged(sender As Object, e As EventArgs) Handles BioNumber_TXT.TextChanged
+        CheckIFEmpty(BioNumber_TXT)
     End Sub
 
     '--------------------------------------------MOBILENUMBER-----------------------------------  

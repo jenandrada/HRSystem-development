@@ -602,6 +602,7 @@ Public Class Employee
 
             Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
             BranchID = IIf(IsDBNull(.Item("Branch_id")), "", .Item("Branch_id"))
+            Status = IIf(IsDBNull(.Item("STATUS")), "", .Item("STATUS"))
 
         End With
     End Sub
@@ -773,15 +774,17 @@ Public Class Employee
 
                 Dim dr As DataRow = ds.Tables(0).Rows(0)
                 With dr
+
                     ID = .Item("id")
                     FirstName = .Item("FIRSTNAME")
                     MiddleName = .Item("MIDDLENAME")
-                    Console.WriteLine("IDDDDDD=== " & MiddleName)
                     LastName = .Item("LASTNAME")
                     Suffix = .Item("SUFFIX")
                     Sex = .Item("GENDER")
                     Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
                     BranchID = IIf(IsDBNull(.Item("BRANCH_ID")), "", .Item("BRANCH_ID"))
+                    Status = IIf(IsDBNull(.Item("STATUS")), "", .Item("STATUS"))
+
                 End With
             End If
         End Using
@@ -879,6 +882,9 @@ Public Class Employee
                     BranchID = IIf(IsDBNull(.Item("BRANCH_ID")), "", .Item("BRANCH_ID"))
                     IRNo = Format(.Item("IRNO"), "00000")
                     Incident_Description = .Item("DESCRIPTION")
+                    Status = .Item("STATUS")
+
+                    Console.WriteLine("BBBBBBBBB = " & .Item("STATUS"))
 
                 End With
 
@@ -919,6 +925,7 @@ Public Class Employee
                     LastName = .Item("LASTNAME")
                     Suffix = .Item("SUFFIX")
                     Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
+                    Status = .Item("STATUS")
                 End With
 
             End If
@@ -943,6 +950,7 @@ Public Class Employee
                     Suffix = .Item("SUFFIX")
                     Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
                     BranchID = IIf(IsDBNull(.Item("BRANCH_ID")), "", .Item("BRANCH_ID"))
+                    Status = .Item("STATUS")
                 End With
 
             End If

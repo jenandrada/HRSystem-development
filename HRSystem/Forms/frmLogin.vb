@@ -43,7 +43,7 @@
 
     Private Sub updateStatus()
 
-        Dim mysql As String = "Select * From tbl_Employee where status = 'RPO'"
+        Dim mysql As String = "Select * From tbl_Employee where status = 'PROBATIONARY'"
         Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")
 
             For Each dr As DataRow In ds.Tables(0).Rows

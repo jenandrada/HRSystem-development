@@ -59,6 +59,8 @@ Public Class frmCoorective
             Company_TXT.Text = .Company_Name
             Branch_TXT.Text = .Branch_Name
             SCNo_LBL.Text = Format(.IRNo, "00000")
+            Position_TXT.Tag = .Status
+            Console.WriteLine("AAAAAAA = " & Position_TXT.Tag)
 
         End With
 
@@ -74,6 +76,8 @@ Public Class frmCoorective
             WP_Branch_TXT.Text = .Branch_Name
             IRNoWritten_LBL.Text = Format(.IRNo, "00000")
             WP_Incident_TXT.Text = .Incident_Description
+            WP_Position_TXT.Tag = .Status
+            Console.WriteLine("AAAAAAA = " & Position_TXT.Tag)
 
             LoadListviewWritten(.IRNo, WP_RulesList, WP_SectionsList)
             Violation_TAB.SelectedIndex = 1
@@ -100,6 +104,8 @@ Public Class frmCoorective
             PositionP_TXT.Text = .Position
             Department_TXT.Text = .Branch_Name
             PositionP_TXT.Tag = .Company_Name
+            Department_TXT.Tag = .Status
+            Console.WriteLine("Aaa = " & .Status)
         End With
 
     End Sub
@@ -378,6 +384,8 @@ Public Class frmCoorective
 
         SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, DateIncident_DTP.Value, DateReceive_DTP.Value, Action_CB.Text, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, str)
 
+        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Person_TXT.Text, "Incident Report IR No. " & IRNo_LBL.Text, Department_TXT.Text, Department_TXT.Tag, PositionP_TXT.Text)
+
         ClearIR()
 
         MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -500,6 +508,8 @@ Public Class frmCoorective
         ToPDF("IR No. " & Explain_datagrid.Item(0, i).Value & " - " & Explain_datagrid.Item(1, i).Value, "Incident Report", RptViewer_Explanation, "Explanation")
 
         ExplainationSave(Explain_datagrid.Item(0, i).Value, imgData, "YES", FolderPath)
+
+        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Explain_datagrid.Item(1, i).Value, "Uploaded Explanation for IR No. " & Explain_datagrid.Item(0, i).Value, "-", "-", "-")
 
         Modify_Panel.Visible = False
         PictureBox1.Image = Nothing
@@ -717,6 +727,8 @@ Public Class frmCoorective
 
             SaveShowCause(EmpName_TXT.Tag, DateSent_DTP.Value, DateSent_DTP.Value.AddDays(5), FolderPath, "NO", Company_TXT.Text, SCNo_LBL.Text)
 
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, EmpName_TXT.Text, "Show Cause Notice IR No. " & SCNo_LBL.Text, Branch_TXT.Text, Position_TXT.Tag, Position_TXT.Text)
+
             ClearShowCause()
 
             'SCPendings(frmMainForm.PendingNo_LBL)
@@ -779,9 +791,10 @@ Public Class frmCoorective
 
             ToPDF("IR No. " & IRNoWritten_LBL.Text & " - " & WP_Name_TXT.Text, "Incident Report", RptViewer_WrittenReprimand, "Written Reprimand Notice")
 
-            Console.WriteLine("daysss  = " & NoOfDaysSuspend)
-
             SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, Charges_Numeric.Text, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text)
+
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, WP_Name_TXT.Text, "Written Reprimand for IR No. " & IRNoWritten_LBL.Text, WP_Branch_TXT.Text, WP_Position_TXT.Tag, Allow_Particular_TXT.tag)
+
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If

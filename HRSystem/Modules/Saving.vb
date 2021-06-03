@@ -29,7 +29,6 @@
         mysql = "Select * FROM IR_REPRIMAND where IRNO = '" & irno & "'"
         Dim dss As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
         If dss.Tables(0).Rows.Count > 0 Then
-            Console.WriteLine("NAA = UPDATE ")
             With dss.Tables(0).Rows(0)
                 .Item("EMP_ID") = emp_id
                 .Item("DAYSSUSPEND") = dateSuspend
@@ -41,7 +40,6 @@
 
         Else
 
-            Console.WriteLine("WALA = NEW ")
 
             mysql = "Select * From IR_REPRIMAND Rows 1"
             Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
@@ -140,7 +138,7 @@
             Dim data As DataRow
             data = ds.Tables(0).NewRow
             With data
-                .Item("DATETRANSACTION") = Now.ToString("f")
+                .Item("DATETRANSACTION") = DateTime.Now.ToString("f")
                 .Item("USERNAME") = USERNAME
                 .Item("NAME") = NAME
                 .Item("ACTION") = ActionN

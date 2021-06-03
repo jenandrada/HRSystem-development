@@ -138,6 +138,17 @@ Partial Class frmCoorective
         Me.IRNoWritten_LBL = New System.Windows.Forms.Label()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.RptViewer_WrittenReprimand = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.Violation_TAB = New System.Windows.Forms.TabControl()
+        Me.RulesTabPage = New System.Windows.Forms.TabPage()
+        Me.WP_RulesList = New System.Windows.Forms.ListView()
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.SectionsTabPage = New System.Windows.Forms.TabPage()
+        Me.WP_SectionsList = New System.Windows.Forms.ListView()
+        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.WP_Incident_TXT = New System.Windows.Forms.RichTextBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Charges_Numeric = New System.Windows.Forms.NumericUpDown()
         Me.AmountCharges_CB = New System.Windows.Forms.CheckBox()
@@ -165,15 +176,6 @@ Partial Class frmCoorective
         Me.WP_Emp_Rel_TXT = New System.Windows.Forms.TextBox()
         Me.WP_Save_Btn = New System.Windows.Forms.Button()
         Me.WP_OK_BTN = New System.Windows.Forms.Button()
-        Me.Violation_TAB = New System.Windows.Forms.TabControl()
-        Me.RulesTabPage = New System.Windows.Forms.TabPage()
-        Me.WP_RulesList = New System.Windows.Forms.ListView()
-        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.SectionsTabPage = New System.Windows.Forms.TabPage()
-        Me.WP_SectionsList = New System.Windows.Forms.ListView()
-        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.SearchWP_EMP_BTN = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -188,8 +190,6 @@ Partial Class frmCoorective
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Close_BTN = New System.Windows.Forms.Button()
         Me.FbDataAdapter1 = New FirebirdSql.Data.FirebirdClient.FbDataAdapter()
-        Me.WP_Incident_TXT = New System.Windows.Forms.RichTextBox()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.CorrectiveWindow.SuspendLayout()
         Me.IR_Page.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -221,15 +221,15 @@ Partial Class frmCoorective
         Me.SplitContainer3.Panel1.SuspendLayout()
         Me.SplitContainer3.Panel2.SuspendLayout()
         Me.SplitContainer3.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
-        CType(Me.Charges_Numeric, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumberOfDays_TXT, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox8.SuspendLayout()
         Me.Violation_TAB.SuspendLayout()
         Me.RulesTabPage.SuspendLayout()
         Me.SectionsTabPage.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
+        CType(Me.Charges_Numeric, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumberOfDays_TXT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
         Me.SuspendLayout()
         '
         'CorrectiveWindow
@@ -363,7 +363,7 @@ Partial Class frmCoorective
         Me.SaveIR_BTN.Name = "SaveIR_BTN"
         Me.SaveIR_BTN.Size = New System.Drawing.Size(139, 46)
         Me.SaveIR_BTN.TabIndex = 21
-        Me.SaveIR_BTN.Text = "Save/Export"
+        Me.SaveIR_BTN.Text = "Save"
         Me.SaveIR_BTN.UseVisualStyleBackColor = True
         '
         'Label32
@@ -493,9 +493,9 @@ Partial Class frmCoorective
         Me.Label37.AutoSize = True
         Me.Label37.Location = New System.Drawing.Point(15, 490)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(102, 20)
+        Me.Label37.Size = New System.Drawing.Size(73, 20)
         Me.Label37.TabIndex = 39
-        Me.Label37.Text = "Action Taken"
+        Me.Label37.Text = "Category"
         '
         'Label28
         '
@@ -917,7 +917,7 @@ Partial Class frmCoorective
         Me.Save_BTN.Name = "Save_BTN"
         Me.Save_BTN.Size = New System.Drawing.Size(139, 46)
         Me.Save_BTN.TabIndex = 21
-        Me.Save_BTN.Text = "Save/Export"
+        Me.Save_BTN.Text = "Save"
         Me.Save_BTN.UseVisualStyleBackColor = True
         '
         'PS1_Btn
@@ -1256,11 +1256,11 @@ Partial Class frmCoorective
         Me.Explain_datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Explain_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Explain_datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IRNO_DGV, Me.Name_DGV, Me.Company_DGV, Me.Deadline_DGV, Me.IR_DGV, Me.File_DGV, Me.Explain_DGV})
-        Me.Explain_datagrid.Location = New System.Drawing.Point(9, 70)
+        Me.Explain_datagrid.Location = New System.Drawing.Point(9, 94)
         Me.Explain_datagrid.Name = "Explain_datagrid"
         Me.Explain_datagrid.RowHeadersVisible = False
         Me.Explain_datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.Explain_datagrid.Size = New System.Drawing.Size(1156, 608)
+        Me.Explain_datagrid.Size = New System.Drawing.Size(1156, 567)
         Me.Explain_datagrid.TabIndex = 6
         '
         'IRNO_DGV
@@ -1386,6 +1386,102 @@ Partial Class frmCoorective
         Me.RptViewer_WrittenReprimand.ServerReport.BearerToken = Nothing
         Me.RptViewer_WrittenReprimand.Size = New System.Drawing.Size(544, 627)
         Me.RptViewer_WrittenReprimand.TabIndex = 2
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.Violation_TAB)
+        Me.GroupBox8.Controls.Add(Me.WP_Incident_TXT)
+        Me.GroupBox8.Location = New System.Drawing.Point(22, 173)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(574, 49)
+        Me.GroupBox8.TabIndex = 39
+        Me.GroupBox8.TabStop = False
+        '
+        'Violation_TAB
+        '
+        Me.Violation_TAB.Controls.Add(Me.RulesTabPage)
+        Me.Violation_TAB.Controls.Add(Me.SectionsTabPage)
+        Me.Violation_TAB.Location = New System.Drawing.Point(14, 13)
+        Me.Violation_TAB.Name = "Violation_TAB"
+        Me.Violation_TAB.SelectedIndex = 0
+        Me.Violation_TAB.Size = New System.Drawing.Size(134, 31)
+        Me.Violation_TAB.TabIndex = 0
+        '
+        'RulesTabPage
+        '
+        Me.RulesTabPage.Controls.Add(Me.WP_RulesList)
+        Me.RulesTabPage.Location = New System.Drawing.Point(4, 29)
+        Me.RulesTabPage.Name = "RulesTabPage"
+        Me.RulesTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.RulesTabPage.Size = New System.Drawing.Size(126, 0)
+        Me.RulesTabPage.TabIndex = 0
+        Me.RulesTabPage.Text = "Rules"
+        Me.RulesTabPage.UseVisualStyleBackColor = True
+        '
+        'WP_RulesList
+        '
+        Me.WP_RulesList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6})
+        Me.WP_RulesList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WP_RulesList.FullRowSelect = True
+        Me.WP_RulesList.HideSelection = False
+        Me.WP_RulesList.Location = New System.Drawing.Point(3, 3)
+        Me.WP_RulesList.Name = "WP_RulesList"
+        Me.WP_RulesList.Size = New System.Drawing.Size(120, 0)
+        Me.WP_RulesList.TabIndex = 0
+        Me.WP_RulesList.UseCompatibleStateImageBehavior = False
+        Me.WP_RulesList.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "Rule Number"
+        Me.ColumnHeader5.Width = 110
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "Rule Definition"
+        Me.ColumnHeader6.Width = 411
+        '
+        'SectionsTabPage
+        '
+        Me.SectionsTabPage.Controls.Add(Me.WP_SectionsList)
+        Me.SectionsTabPage.Location = New System.Drawing.Point(4, 29)
+        Me.SectionsTabPage.Name = "SectionsTabPage"
+        Me.SectionsTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.SectionsTabPage.Size = New System.Drawing.Size(126, 0)
+        Me.SectionsTabPage.TabIndex = 1
+        Me.SectionsTabPage.Text = "Sections"
+        Me.SectionsTabPage.UseVisualStyleBackColor = True
+        '
+        'WP_SectionsList
+        '
+        Me.WP_SectionsList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader7, Me.ColumnHeader8})
+        Me.WP_SectionsList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WP_SectionsList.FullRowSelect = True
+        Me.WP_SectionsList.HideSelection = False
+        Me.WP_SectionsList.Location = New System.Drawing.Point(3, 3)
+        Me.WP_SectionsList.Name = "WP_SectionsList"
+        Me.WP_SectionsList.Size = New System.Drawing.Size(120, 0)
+        Me.WP_SectionsList.TabIndex = 0
+        Me.WP_SectionsList.UseCompatibleStateImageBehavior = False
+        Me.WP_SectionsList.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader7
+        '
+        Me.ColumnHeader7.Text = "Section"
+        Me.ColumnHeader7.Width = 137
+        '
+        'ColumnHeader8
+        '
+        Me.ColumnHeader8.Text = "Nature Of Offenses"
+        Me.ColumnHeader8.Width = 383
+        '
+        'WP_Incident_TXT
+        '
+        Me.WP_Incident_TXT.Location = New System.Drawing.Point(14, 67)
+        Me.WP_Incident_TXT.Name = "WP_Incident_TXT"
+        Me.WP_Incident_TXT.Size = New System.Drawing.Size(134, 20)
+        Me.WP_Incident_TXT.TabIndex = 38
+        Me.WP_Incident_TXT.Text = ""
         '
         'GroupBox5
         '
@@ -1661,84 +1757,6 @@ Partial Class frmCoorective
         Me.WP_OK_BTN.Text = "Preview"
         Me.WP_OK_BTN.UseVisualStyleBackColor = True
         '
-        'Violation_TAB
-        '
-        Me.Violation_TAB.Controls.Add(Me.RulesTabPage)
-        Me.Violation_TAB.Controls.Add(Me.SectionsTabPage)
-        Me.Violation_TAB.Location = New System.Drawing.Point(14, 13)
-        Me.Violation_TAB.Name = "Violation_TAB"
-        Me.Violation_TAB.SelectedIndex = 0
-        Me.Violation_TAB.Size = New System.Drawing.Size(134, 31)
-        Me.Violation_TAB.TabIndex = 0
-        '
-        'RulesTabPage
-        '
-        Me.RulesTabPage.Controls.Add(Me.WP_RulesList)
-        Me.RulesTabPage.Location = New System.Drawing.Point(4, 30)
-        Me.RulesTabPage.Name = "RulesTabPage"
-        Me.RulesTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.RulesTabPage.Size = New System.Drawing.Size(541, 0)
-        Me.RulesTabPage.TabIndex = 0
-        Me.RulesTabPage.Text = "Rules"
-        Me.RulesTabPage.UseVisualStyleBackColor = True
-        '
-        'WP_RulesList
-        '
-        Me.WP_RulesList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6})
-        Me.WP_RulesList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WP_RulesList.FullRowSelect = True
-        Me.WP_RulesList.HideSelection = False
-        Me.WP_RulesList.Location = New System.Drawing.Point(3, 3)
-        Me.WP_RulesList.Name = "WP_RulesList"
-        Me.WP_RulesList.Size = New System.Drawing.Size(535, 0)
-        Me.WP_RulesList.TabIndex = 0
-        Me.WP_RulesList.UseCompatibleStateImageBehavior = False
-        Me.WP_RulesList.View = System.Windows.Forms.View.Details
-        '
-        'ColumnHeader5
-        '
-        Me.ColumnHeader5.Text = "Rule Number"
-        Me.ColumnHeader5.Width = 110
-        '
-        'ColumnHeader6
-        '
-        Me.ColumnHeader6.Text = "Rule Definition"
-        Me.ColumnHeader6.Width = 411
-        '
-        'SectionsTabPage
-        '
-        Me.SectionsTabPage.Controls.Add(Me.WP_SectionsList)
-        Me.SectionsTabPage.Location = New System.Drawing.Point(4, 29)
-        Me.SectionsTabPage.Name = "SectionsTabPage"
-        Me.SectionsTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.SectionsTabPage.Size = New System.Drawing.Size(126, 0)
-        Me.SectionsTabPage.TabIndex = 1
-        Me.SectionsTabPage.Text = "Sections"
-        Me.SectionsTabPage.UseVisualStyleBackColor = True
-        '
-        'WP_SectionsList
-        '
-        Me.WP_SectionsList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader7, Me.ColumnHeader8})
-        Me.WP_SectionsList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WP_SectionsList.FullRowSelect = True
-        Me.WP_SectionsList.HideSelection = False
-        Me.WP_SectionsList.Location = New System.Drawing.Point(3, 3)
-        Me.WP_SectionsList.Name = "WP_SectionsList"
-        Me.WP_SectionsList.Size = New System.Drawing.Size(120, 0)
-        Me.WP_SectionsList.TabIndex = 0
-        Me.WP_SectionsList.UseCompatibleStateImageBehavior = False
-        Me.WP_SectionsList.View = System.Windows.Forms.View.Details
-        '
-        'ColumnHeader7
-        '
-        Me.ColumnHeader7.Text = "Section"
-        Me.ColumnHeader7.Width = 137
-        '
-        'ColumnHeader8
-        '
-        Me.ColumnHeader8.Text = "Nature Of Offenses"
-        Me.ColumnHeader8.Width = 383
-        '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.SearchWP_EMP_BTN)
@@ -1861,24 +1879,6 @@ Partial Class frmCoorective
         Me.Close_BTN.TabIndex = 0
         Me.Close_BTN.UseVisualStyleBackColor = True
         '
-        'WP_Incident_TXT
-        '
-        Me.WP_Incident_TXT.Location = New System.Drawing.Point(14, 67)
-        Me.WP_Incident_TXT.Name = "WP_Incident_TXT"
-        Me.WP_Incident_TXT.Size = New System.Drawing.Size(134, 20)
-        Me.WP_Incident_TXT.TabIndex = 38
-        Me.WP_Incident_TXT.Text = ""
-        '
-        'GroupBox8
-        '
-        Me.GroupBox8.Controls.Add(Me.Violation_TAB)
-        Me.GroupBox8.Controls.Add(Me.WP_Incident_TXT)
-        Me.GroupBox8.Location = New System.Drawing.Point(22, 173)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(574, 49)
-        Me.GroupBox8.TabIndex = 39
-        Me.GroupBox8.TabStop = False
-        '
         'frmCoorective
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1932,18 +1932,18 @@ Partial Class frmCoorective
         Me.SplitContainer3.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer3.ResumeLayout(False)
+        Me.GroupBox8.ResumeLayout(False)
+        Me.Violation_TAB.ResumeLayout(False)
+        Me.RulesTabPage.ResumeLayout(False)
+        Me.SectionsTabPage.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         CType(Me.Charges_Numeric, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumberOfDays_TXT, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Violation_TAB.ResumeLayout(False)
-        Me.RulesTabPage.ResumeLayout(False)
-        Me.SectionsTabPage.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        Me.GroupBox8.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

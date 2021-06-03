@@ -25,14 +25,16 @@
             '    End If
             'Next
 
-            sql = "SELECT * FROM USER_TRANSACTION WHERE "
+            sql = "SELECT * FROM USER_TRANSACTION WHERE  "
 
             For Each name In strWords
-                sql &= $"{vbCr}UPPER(EMPLOYEE) LIKE UPPER('%{name}%') OR "
+                sql &= $"{vbCr}UPPER(ACTION) LIKE UPPER('%{name}%') OR "
+                sql &= $"{vbCr}UPPER(STATUS) LIKE UPPER('%{name}%') OR "
+                sql &= $"{vbCr}UPPER(NAME) LIKE UPPER('%{name}%') OR "
                 sql &= $"{vbCr}UPPER(USERNAME) LIKE UPPER('%{name}%') and "
 
                 If name Is strWords.Last Then
-                    sql &= $"{vbCr}UPPER(EMPLOYEE) LIKE UPPER('%{name}%') OR "
+                    sql &= $"{vbCr}UPPER(NAME) LIKE UPPER('%{name}%') OR "
                     sql &= $"{vbCr}UPPER(USERNAME) LIKE UPPER('%{name}%') "
                     Exit For
                 End If
@@ -63,6 +65,7 @@
             'If IsDBNull(.Item("ASSIGNED")) And IsDBNull(.Item("RELIEVE")) Then
             '    Exit Sub
             'End If
+
             Dim i As ListViewItem = UserLogs_ListView.Items.Add(.Item("DATETRANSACTION"))
             i.SubItems.Add(.Item("USERNAME"))
             i.SubItems.Add(.Item("NAME").ToString)
@@ -70,6 +73,7 @@
             i.SubItems.Add(.Item("BRANCH"))
             i.SubItems.Add(.Item("STATUS"))
             i.SubItems.Add(.Item("POSITION"))
+
         End With
     End Sub
 

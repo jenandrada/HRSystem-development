@@ -240,6 +240,7 @@
     'End Sub
 
     Private Sub BtnSelect_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSelect.Click
+
         If lvEmployee.Items.Count = 0 Then Exit Sub
 
         Dim idx As Integer = lvEmployee.FocusedItem.Text
@@ -260,6 +261,11 @@
 
             tmpEmp.LoadEmpLetter(idx)
             ReloadFormFromSearch(FormName.letter, tmpEmp, 2)
+
+        ElseIf txtSearch.Tag = "Allowance-Individual" Then
+
+            tmpEmp.LoadEmpLetter(idx)
+            ReloadFormFromSearch(FormName.letter, tmpEmp, 3, "Individual")
 
             'ElseIf txtSearch.Tag = "Compensation" Then
 

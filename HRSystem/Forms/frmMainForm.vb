@@ -259,6 +259,39 @@ Public Class frmMainForm
         End Using
     End Sub
 
+
+    Private Sub lbl_Address_Click(sender As Object, e As EventArgs) Handles lbl_Address.Click
+        OpenWindowsForm("frmAddress")
+        Panel_Maintenance.Visible = False
+    End Sub
+
+    Private Sub lbl_Branch_Click(sender As Object, e As EventArgs) Handles lbl_Branch.Click
+        OpenWindowsForm("frmBranch")
+        Panel_Maintenance.Visible = False
+    End Sub
+
+
+    Private Sub lbl_UserManage_Click(sender As Object, e As EventArgs) Handles lbl_UserManage.Click
+        OpenWindowsForm("frmUser")
+        Panel_Maintenance.Visible = False
+    End Sub
+
+    Private Sub lbl_UserLogs_Click(sender As Object, e As EventArgs) Handles lbl_UserLogs.Click
+        Panel_Maintenance.Visible = False
+        'Using logs As New frmUserLogs
+        '    logs.ShowDialog()
+        'End Using
+        OpenWindowsForm("frmUserLogs")
+        frmUserLogs.BringToFront()
+    End Sub
+
+    Private Sub lbl_Backup_Click(sender As Object, e As EventArgs) Handles lbl_Backup.Click
+        'Panel_Maintenance.Visible = False
+        'Using backup As New Backup
+        '    backup.ShowDialog()
+        'End Using
+    End Sub
+
     Private Sub Dashboard_BTN_Click(sender As Object, e As EventArgs) Handles Dashboard_BTN.Click
         'OpenWindowsForm("frmRecruitmentDashboard")
         OpenWindowsForm("frmDashboard")
@@ -421,37 +454,6 @@ Public Class frmMainForm
 
     Private Sub lbl_Backup_MouseLeave(sender As Object, e As EventArgs) Handles lbl_Backup.MouseLeave
         lbl_Backup.ForeColor = Color.Black
-    End Sub
-
-    Private Sub lbl_Address_Click(sender As Object, e As EventArgs) Handles lbl_Address.Click
-        OpenWindowsForm("frmAddress")
-        Panel_Maintenance.Visible = False
-    End Sub
-
-    Private Sub lbl_Branch_Click(sender As Object, e As EventArgs) Handles lbl_Branch.Click
-        OpenWindowsForm("frmBranch")
-        Panel_Maintenance.Visible = False
-    End Sub
-
-
-    Private Sub lbl_UserManage_Click(sender As Object, e As EventArgs) Handles lbl_UserManage.Click
-        OpenWindowsForm("frmUser")
-        Panel_Maintenance.Visible = False
-    End Sub
-
-    Private Sub lbl_UserLogs_Click(sender As Object, e As EventArgs) Handles lbl_UserLogs.Click
-        Panel_Maintenance.Visible = False
-        'Using logs As New frmUserLogs
-        '    logs.ShowDialog()
-        'End Using
-        OpenWindowsForm("frmUserLogs")
-    End Sub
-
-    Private Sub lbl_Backup_Click(sender As Object, e As EventArgs) Handles lbl_Backup.Click
-        Panel_Maintenance.Visible = False
-        Using backup As New Backup
-            backup.ShowDialog()
-        End Using
     End Sub
 
     Private Sub btn_Maintenance_Panel_Click(sender As Object, e As EventArgs) Handles btn_Maintenance_Panel.Click

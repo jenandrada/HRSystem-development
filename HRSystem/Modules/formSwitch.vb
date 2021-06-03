@@ -142,6 +142,25 @@
                 ElseIf tab = 2 Then
                     frmLetter.LetterWindow.SelectedIndex = 1
                     frmLetter.LoadEmpAPPOINT(cus)
+
+                ElseIf tab = 3 Then
+
+                    If edit = "Individual" Then
+
+                        frmLetter.LetterWindow.SelectedIndex = 2
+                        frmLetter.Individual_RB.Checked = True
+                        frmLetter.LoadEmpAllowanceFIRST(cus)
+
+                    ElseIf edit = "Individua2" Then
+
+                        frmLetter.LetterWindow.SelectedIndex = 2
+                        frmLetter.Individual_RB.Checked = True
+                        frmLetter.LoadEmpAllowanceSECOND(cus)
+
+                    Else
+
+                    End If
+
                 End If
 
                 frmLetter.Dock = DockStyle.Fill

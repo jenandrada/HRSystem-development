@@ -23,7 +23,7 @@ Partial Class frmLetter
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.Label47 = New System.Windows.Forms.Label()
@@ -187,7 +187,7 @@ Partial Class frmLetter
         Me.Allow_Preview = New System.Windows.Forms.Button()
         Me.Allow_Export = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
+        Me.Individual_RB = New System.Windows.Forms.RadioButton()
         Me.List_Radio = New System.Windows.Forms.RadioButton()
         Me.rpt_Allowance = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.ContextMenu_Remove = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -494,7 +494,7 @@ Partial Class frmLetter
         Me.Save_BTN.Name = "Save_BTN"
         Me.Save_BTN.Size = New System.Drawing.Size(135, 44)
         Me.Save_BTN.TabIndex = 21
-        Me.Save_BTN.Text = "Update/Export"
+        Me.Save_BTN.Text = "Save"
         Me.Save_BTN.UseVisualStyleBackColor = True
         '
         'PS1_Btn
@@ -861,7 +861,7 @@ Partial Class frmLetter
         Me.AP_Save_BTN.Name = "AP_Save_BTN"
         Me.AP_Save_BTN.Size = New System.Drawing.Size(136, 44)
         Me.AP_Save_BTN.TabIndex = 21
-        Me.AP_Save_BTN.Text = "Update/Export"
+        Me.AP_Save_BTN.Text = "Save"
         Me.AP_Save_BTN.UseVisualStyleBackColor = True
         '
         'Button4
@@ -1148,7 +1148,7 @@ Partial Class frmLetter
         Me.Panel6.AutoScroll = True
         Me.Panel6.Controls.Add(Me.Group_List)
         Me.Panel6.Controls.Add(Me.Group_Individual)
-        Me.Panel6.Controls.Add(Me.RadioButton4)
+        Me.Panel6.Controls.Add(Me.Individual_RB)
         Me.Panel6.Controls.Add(Me.List_Radio)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(556, 3)
@@ -1164,7 +1164,7 @@ Partial Class frmLetter
         Me.Group_List.Controls.Add(Me.Label50)
         Me.Group_List.Location = New System.Drawing.Point(14, 48)
         Me.Group_List.Name = "Group_List"
-        Me.Group_List.Size = New System.Drawing.Size(577, 960)
+        Me.Group_List.Size = New System.Drawing.Size(577, 966)
         Me.Group_List.TabIndex = 60
         Me.Group_List.TabStop = False
         Me.Group_List.Visible = False
@@ -1183,9 +1183,9 @@ Partial Class frmLetter
         Me.Group_Details.Controls.Add(Me.Label30)
         Me.Group_Details.Controls.Add(Me.Label51)
         Me.Group_Details.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Group_Details.Location = New System.Drawing.Point(0, 25)
+        Me.Group_Details.Location = New System.Drawing.Point(0, 32)
         Me.Group_Details.Name = "Group_Details"
-        Me.Group_Details.Size = New System.Drawing.Size(577, 514)
+        Me.Group_Details.Size = New System.Drawing.Size(577, 507)
         Me.Group_Details.TabIndex = 13
         Me.Group_Details.TabStop = False
         '
@@ -1251,8 +1251,8 @@ Partial Class frmLetter
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -1399,7 +1399,7 @@ Partial Class frmLetter
         'Allow_Save_List
         '
         Me.Allow_Save_List.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Allow_Save_List.Location = New System.Drawing.Point(428, 218)
+        Me.Allow_Save_List.Location = New System.Drawing.Point(278, 216)
         Me.Allow_Save_List.Name = "Allow_Save_List"
         Me.Allow_Save_List.Size = New System.Drawing.Size(125, 44)
         Me.Allow_Save_List.TabIndex = 21
@@ -1409,7 +1409,7 @@ Partial Class frmLetter
         'Allow_Preview_List
         '
         Me.Allow_Preview_List.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Allow_Preview_List.Location = New System.Drawing.Point(299, 218)
+        Me.Allow_Preview_List.Location = New System.Drawing.Point(439, 216)
         Me.Allow_Preview_List.Name = "Allow_Preview_List"
         Me.Allow_Preview_List.Size = New System.Drawing.Size(110, 44)
         Me.Allow_Preview_List.TabIndex = 14
@@ -1916,18 +1916,18 @@ Partial Class frmLetter
         Me.Label15.TabIndex = 46
         Me.Label15.Text = "Date"
         '
-        'RadioButton4
+        'Individual_RB
         '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Checked = True
-        Me.RadioButton4.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton4.Location = New System.Drawing.Point(430, 9)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(85, 22)
-        Me.RadioButton4.TabIndex = 58
-        Me.RadioButton4.TabStop = True
-        Me.RadioButton4.Text = "Individual"
-        Me.RadioButton4.UseVisualStyleBackColor = True
+        Me.Individual_RB.AutoSize = True
+        Me.Individual_RB.Checked = True
+        Me.Individual_RB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Individual_RB.Location = New System.Drawing.Point(430, 9)
+        Me.Individual_RB.Name = "Individual_RB"
+        Me.Individual_RB.Size = New System.Drawing.Size(85, 22)
+        Me.Individual_RB.TabIndex = 58
+        Me.Individual_RB.TabStop = True
+        Me.Individual_RB.Text = "Individual"
+        Me.Individual_RB.UseVisualStyleBackColor = True
         '
         'List_Radio
         '
@@ -2110,7 +2110,7 @@ Partial Class frmLetter
     Friend WithEvents Splitter4 As Splitter
     Friend WithEvents Splitter3 As Splitter
     Friend WithEvents Panel6 As Panel
-    Friend WithEvents RadioButton4 As RadioButton
+    Friend WithEvents Individual_RB As RadioButton
     Friend WithEvents List_Radio As RadioButton
     Friend WithEvents Group_Double As GroupBox
     Friend WithEvents Clear_BTN1 As Button

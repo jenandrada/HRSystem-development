@@ -26,6 +26,7 @@ Partial Class frmMainForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMainForm))
         Me.pNavigate = New System.Windows.Forms.Panel()
         Me.Pending_Panel = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.PendingNo_LBL = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel_Maintenance = New System.Windows.Forms.Panel()
@@ -86,7 +87,6 @@ Partial Class frmMainForm
         Me.RateEMP_BTN = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.pNavigate.SuspendLayout()
         Me.Pending_Panel.SuspendLayout()
         Me.Panel_Maintenance.SuspendLayout()
@@ -124,6 +124,16 @@ Partial Class frmMainForm
         Me.Pending_Panel.Size = New System.Drawing.Size(178, 123)
         Me.Pending_Panel.TabIndex = 5
         Me.Pending_Panel.Visible = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Kristen ITC", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(55, 50)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(76, 22)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Pendings"
         '
         'PendingNo_LBL
         '
@@ -682,16 +692,6 @@ Partial Class frmMainForm
         Me.RateEMP_BTN.TabIndex = 7
         Me.RateEMP_BTN.Text = "               Under Deve.."
         Me.RateEMP_BTN.UseVisualStyleBackColor = False
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Kristen ITC", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(55, 50)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(76, 22)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Pendings"
         '
         'frmMainForm
         '

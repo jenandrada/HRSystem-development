@@ -5,8 +5,7 @@ Imports FirebirdSql.Data.FirebirdClient
 Public Class frmLetter
 
     Friend isPage1 As Integer
-    Dim lastname As String
-    Dim gender As String
+    Dim lastname, gender, branch1, branch2, status1, status2, position1, position2 As String
 
     Private Sub OK_BTN_Click(sender As Object, e As EventArgs) Handles OK_BTN.Click
         LoadReassignmentLetter()
@@ -104,6 +103,9 @@ Public Class frmLetter
 
         Else
             ToPDF(R_EmpName_TXT.Text & dt, "Letter", "Reassignment", rpt_Reassignment)
+
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, R_EmpName_TXT.Text, "Reassignment", R_FromBranch_TXT.Text, R_Position_TXT.Tag, R_Position_TXT.Text)
+
             UpdateREASSIGN()
             SaveReassignHISTORY()
             ClearREASSign()
@@ -267,56 +269,57 @@ Public Class frmLetter
             R_Position_TXT.Text = .Position
             R_Company_TXT.Text = .Company_Name
             R_FromBranch_TXT.Text = .Branch_Name
+            R_Position_TXT.Tag = .Status
 
         End With
     End Sub
 
 
-    Public Sub LoadEmpAllowanceFIRST(mPower As BhouseAllowance)
+    'Public Sub LoadEmpAllowanceFIRST(mPower As BhouseAllowance)
 
-        With mPower
+    '    With mPower
 
-            Dim pos As Integer = .FullName.IndexOf(",")
-            Dim substring As String = .FullName.Substring(0, pos)
+    '        Dim pos As Integer = .FullName.IndexOf(",")
+    '        Dim substring As String = .FullName.Substring(0, pos)
 
-            'Allow_Name_txt.Tag = .EmpID
-            Allow_Name_txt.Text = .FullName
-            Allow_Name_txt.Tag = substring
-            Allow_Company_txt.Text = .Company
-            Allow_Particular_TXT.Text = .Particulars
-            BH_TXT.Text = .Bhouse_String
+    '        'Allow_Name_txt.Tag = .EmpID
+    '        Allow_Name_txt.Text = .FullName
+    '        Allow_Name_txt.Tag = substring
+    '        Allow_Company_txt.Text = .Company
+    '        Allow_Particular_TXT.Text = .Particulars
+    '        BH_TXT.Text = .Bhouse_String
 
-            Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")
-            CareKit_TXT.Text = CK
+    '        Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")
+    '        CareKit_TXT.Text = CK
 
-            Dim other As Decimal = Decimal.Parse(.other_String).ToString("##,###0.00")
-            Other_TXT.Text = other
-        End With
+    '        Dim other As Decimal = Decimal.Parse(.other_String).ToString("##,###0.00")
+    '        Other_TXT.Text = other
+    '    End With
 
-    End Sub
+    'End Sub
 
-    Public Sub LoadEmpAllowanceSECOND(mPower As BhouseAllowance)
+    'Public Sub LoadEmpAllowanceSECOND(mPower As BhouseAllowance)
 
-        With mPower
+    '    With mPower
 
-            Dim pos As Integer = .FullName.IndexOf(",")
-            Dim substring As String = .FullName.Substring(0, pos)
+    '        Dim pos As Integer = .FullName.IndexOf(",")
+    '        Dim substring As String = .FullName.Substring(0, pos)
 
-            'Allow_Name_txt.Tag = .EmpID
-            Allow_Name_txt1.Text = .FullName
-            Allow_Name_txt1.Tag = substring
-            Allow_Company_txt1.Text = .Company
-            Allow_Particular_TXT1.Text = .Particulars
-            BH_TXT1.Text = .Bhouse_String
+    '        'Allow_Name_txt.Tag = .EmpID
+    '        Allow_Name_txt1.Text = .FullName
+    '        Allow_Name_txt1.Tag = substring
+    '        Allow_Company_txt1.Text = .Company
+    '        Allow_Particular_TXT1.Text = .Particulars
+    '        BH_TXT1.Text = .Bhouse_String
 
-            Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")
-            CareKit_TXT1.Text = CK
+    '        Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")
+    '        CareKit_TXT1.Text = CK
 
-            Dim other As Decimal = Decimal.Parse(.other_String).ToString("##,###0.00")
-            Other_TXT1.Text = other
+    '        Dim other As Decimal = Decimal.Parse(.other_String).ToString("##,###0.00")
+    '        Other_TXT1.Text = other
 
-        End With
-    End Sub
+    '    End With
+    'End Sub
 
     Public Function GetSubTotal() As Decimal
 
@@ -391,6 +394,7 @@ Public Class frmLetter
             AP_Position_TXT.Text = .Position
             AP_Company_TXT.Text = .Company_Name
             AP_Branch_TXT.Text = .Branch_Name
+            AP_Position_TXT.Tag = .Status
 
             lastname = .LastName
 
@@ -399,6 +403,61 @@ Public Class frmLetter
             Else
                 gender = "Mr"
             End If
+
+        End With
+    End Sub
+
+    Public Sub LoadEmpAllowanceFIRST(mPower As Employee)
+
+        With mPower
+
+            Dim MI As String
+
+            If String.IsNullOrEmpty(.MiddleName) Then
+                MI = ""
+            Else
+                MI = .MiddleName.Substring(0, 1) & "."
+            End If
+
+            Allow_Name_txt.Text = $"{ .FirstName} { MI } { .LastName} { .Suffix}"
+            Allow_Name_txt.Tag = .ID
+            Allow_Company_txt.Text = .Company_Name
+            branch1 = .Branch_Name
+            status1 = .Status
+            position1 = .Position
+
+            'Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")
+            'CareKit_TXT.Text = CK
+
+            'Dim other As Decimal = Decimal.Parse(.other_String).ToString("##,###0.00")
+            'Other_TXT.Text = other
+        End With
+
+    End Sub
+
+    Public Sub LoadEmpAllowanceSECOND(mPower As Employee)
+
+        With mPower
+            Dim MI As String
+
+            If String.IsNullOrEmpty(.MiddleName) Then
+                MI = ""
+            Else
+                MI = .MiddleName.Substring(0, 1) & "."
+            End If
+
+            Allow_Name_txt1.Text = $"{ .FirstName} { MI } { .LastName} { .Suffix}"
+            Allow_Name_txt1.Tag = .ID
+            Allow_Company_txt1.Text = .Company_Name
+            branch2 = .Branch_Name
+            status2 = .Status
+            position2 = .Position
+
+            'Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")
+            'CareKit_TXT1.Text = CK
+
+            'Dim other As Decimal = Decimal.Parse(.other_String).ToString("##,###0.00")
+            'Other_TXT1.Text = other
 
         End With
     End Sub
@@ -503,7 +562,10 @@ Public Class frmLetter
 
         Else
 
-            ToPDF(AP_Name_TXT.Text & dt, "Letter", "Appointmentt", rpt_Appointment)
+            ToPDF(AP_Name_TXT.Text & dt, "Letter", "Appointment", rpt_Appointment)
+
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, AP_Name_TXT.Text, "Appointment", AP_Branch_TXT.Text, AP_Position_TXT.Tag, AP_Position_TXT.Text)
+
             UpdateAPPOINT()
             ClearAPPOINT()
         End If
@@ -597,19 +659,39 @@ Public Class frmLetter
         'Dim secured_str As String = Allow_Name_txt.Text
         'secured_str = DreadKnight(secured_str)
 
-        If frmAllowanceList Is Nothing Then
-            Dim frm As New frmAllowanceList With {
+        'If frmAllowanceList Is Nothing Then
+        '    Dim frm As New frmAllowanceList With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Search_TXT.Tag = "Letter3"
+        '    frm.Dock = DockStyle.Fill
+        '    frm.Show()
+        '    frm.BringToFront()
+        'Else
+        '    frmAllowanceList.BringToFront()
+        'End If
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
                 .MdiParent = frmMainForm
             }
             frmMainForm.pNavigate.Controls.Add(frm)
             frmMainForm.pNavigate.Tag = frm
-            frm.Search_TXT.Tag = "Letter3"
-            frm.Dock = DockStyle.Fill
             frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "Allowance-Individual"
+            frm.Dock = DockStyle.Fill
             frm.BringToFront()
+
         Else
-            frmAllowanceList.BringToFront()
+            frmEmployeeList.BringToFront()
         End If
+        Close()
+
     End Sub
 
     Private Sub Allow_Preview_Click(sender As Object, e As EventArgs) Handles Allow_Preview.Click
@@ -690,20 +772,20 @@ Public Class frmLetter
         'Dim secured_str As String = Allow_Name_txt.Text
         'secured_str = DreadKnight(secured_str)
 
-        If frmAllowanceList Is Nothing Then
-            Dim frm As New frmAllowanceList With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Search_TXT.Tag = "Letter3"
-            frm.Search_BTN.Tag = "Individual-2"
-            frm.Dock = DockStyle.Fill
-            frm.Show()
-            frm.BringToFront()
-        Else
-            frmAllowanceList.BringToFront()
-        End If
+        'If frmAllowanceList Is Nothing Then
+        '    Dim frm As New frmAllowanceList With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Search_TXT.Tag = "Letter3"
+        '    frm.Search_BTN.Tag = "Individual-2"
+        '    frm.Dock = DockStyle.Fill
+        '    frm.Show()
+        '    frm.BringToFront()
+        'Else
+        '    frmAllowanceList.BringToFront()
+        'End If
     End Sub
 
     Private Sub Clear_BTN_Click(sender As Object, e As EventArgs) Handles Clear_BTN.Click
@@ -734,7 +816,9 @@ Public Class frmLetter
 
         Else
 
-            ToPDF(Allow_Name_txt.Tag & " , " & Allow_Name_txt1.Tag, "Allowance", dt, rpt_Allowance)
+            ToPDF(Allow_Name_txt.Tag & " , " & Allow_Name_txt1.Tag, "Allowance", dt, rpt_Allowance) 'branch1, branch2, status1, status2, position1, position2
+
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Allow_Name_txt.Tag & " , " & Allow_Name_txt1.Tag, "Allowance", branch1 & " , " & branch2, status1 & " , " & status2, position1 & " , " & position2)
 
         End If
     End Sub
@@ -744,7 +828,7 @@ Public Class frmLetter
         Group_List.Visible = True
     End Sub
 
-    Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged
+    Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles Individual_RB.CheckedChanged
         Group_Individual.Visible = True
         Group_List.Visible = False
     End Sub
@@ -819,6 +903,7 @@ Public Class frmLetter
         End If
 
     End Sub
+
 
     Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
         Dim i As Integer = DataGridView1.CurrentRow.Index
@@ -921,7 +1006,10 @@ Public Class frmLetter
                 DataGridView1.Region = Nothing
 
                 LoadAllowanceLetterLIST()
+
                 ToPDF(Subject_Combo.Text & " - " & Allow_Company_Combo.Text, "Allowance", dt, rpt_Allowance)
+
+                'SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, AP_Name_TXT.Text, Subject_Combo.Text, AP_Branch_TXT.Text, AP_Position_TXT.Tag, AP_Position_TXT.Text)
             End If
         End If
 

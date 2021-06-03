@@ -147,6 +147,7 @@ Partial Class frmEmployeeDetails
         Me.BioNumber_TXT = New System.Windows.Forms.TextBox()
         Me.CloseWindow_BTN = New System.Windows.Forms.Button()
         Me.TimerEmpDetails = New System.Windows.Forms.Timer(Me.components)
+        Me.GroupBox_Bio = New System.Windows.Forms.GroupBox()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Group_firstName.SuspendLayout()
@@ -191,6 +192,7 @@ Partial Class frmEmployeeDetails
         Me.Requirements_GB.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.GroupBox_Bio.SuspendLayout()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
@@ -1451,7 +1453,7 @@ Partial Class frmEmployeeDetails
         'Panel1
         '
         Me.Panel1.AutoScroll = True
-        Me.Panel1.Controls.Add(Me.BioNumber_TXT)
+        Me.Panel1.Controls.Add(Me.GroupBox_Bio)
         Me.Panel1.Controls.Add(Me.CloseWindow_BTN)
         Me.Panel1.Controls.Add(Me.GroupBox6)
         Me.Panel1.Controls.Add(Me.GroupBox1)
@@ -1467,7 +1469,7 @@ Partial Class frmEmployeeDetails
         'BioNumber_TXT
         '
         Me.BioNumber_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BioNumber_TXT.Location = New System.Drawing.Point(790, 15)
+        Me.BioNumber_TXT.Location = New System.Drawing.Point(4, 10)
         Me.BioNumber_TXT.Name = "BioNumber_TXT"
         Me.BioNumber_TXT.Size = New System.Drawing.Size(200, 26)
         Me.BioNumber_TXT.TabIndex = 0
@@ -1482,6 +1484,15 @@ Partial Class frmEmployeeDetails
         Me.CloseWindow_BTN.Size = New System.Drawing.Size(40, 40)
         Me.CloseWindow_BTN.TabIndex = 4
         Me.CloseWindow_BTN.UseVisualStyleBackColor = True
+        '
+        'GroupBox_Bio
+        '
+        Me.GroupBox_Bio.Controls.Add(Me.BioNumber_TXT)
+        Me.GroupBox_Bio.Location = New System.Drawing.Point(788, 4)
+        Me.GroupBox_Bio.Name = "GroupBox_Bio"
+        Me.GroupBox_Bio.Size = New System.Drawing.Size(208, 40)
+        Me.GroupBox_Bio.TabIndex = 25
+        Me.GroupBox_Bio.TabStop = False
         '
         'frmEmployeeDetails
         '
@@ -1553,6 +1564,8 @@ Partial Class frmEmployeeDetails
         Me.GroupBox7.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.GroupBox_Bio.ResumeLayout(False)
+        Me.GroupBox_Bio.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1680,4 +1693,5 @@ Partial Class frmEmployeeDetails
     Friend WithEvents GroupBox16 As GroupBox
     Friend WithEvents GroupBox15 As GroupBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents GroupBox_Bio As GroupBox
 End Class
