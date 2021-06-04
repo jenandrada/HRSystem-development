@@ -6,6 +6,7 @@ Public Class frmLetter
 
     Friend isPage1 As Integer
     Dim lastname, gender, branch1, branch2, status1, status2, position1, position2 As String
+    Private ReadOnly _ListNames, _ListBranch, _ListStatus, _ListPosition As New RichTextBox
 
     Private Sub OK_BTN_Click(sender As Object, e As EventArgs) Handles OK_BTN.Click
         LoadReassignmentLetter()
@@ -321,62 +322,49 @@ Public Class frmLetter
     '    End With
     'End Sub
 
-    Public Function GetSubTotal() As Decimal
-
-        Dim amount As Decimal = 0
-
-        If DataGridView1.RowCount > 0 Then
-            For index = 0 To DataGridView1.Rows.Count - 1
-                amount += Convert.ToDecimal(DataGridView1.Rows(index).Cells(3).Value)
-            Next
-            Allow_total_List.Text = amount
-        End If
-
-        Return amount
-    End Function
-
-    Public Sub LoadEmpAllowanceLIST(mPower As BhouseAllowance, Optional subject As String = "")
+    Public Sub LoadEmpAllowanceLIST(mPower As Employee, Optional subject As String = "")
         List_Radio.Checked = True
         PreviousBranch()
 
-        If subject = 1 Then
+        Dim rowId As Integer = DataGridView1.Rows.Add()
+        Dim row As DataGridViewRow = DataGridView1.Rows(rowId)
 
-            With mPower
+        With mPower
+            Dim MI As String
 
-                Dim rowId As Integer = DataGridView1.Rows.Add()
-                Dim row As DataGridViewRow = DataGridView1.Rows(rowId)
-                row.Cells("Name_DataGrid").Value = .FullName
-                row.Cells("Current_DataGrid").Value = .BranchName_String
-                row.Cells("Amount_DataGrid").Value = .Bhouse_String
+            If String.IsNullOrEmpty(.MiddleName) Then
+                MI = ""
+            Else
+                MI = .MiddleName.Substring(0, 1) & "."
+            End If
+
+
+            If subject = 1 Then  ' Boarding House
+
+                row.Cells("Name_DataGrid").Value = $"{ .FirstName} { MI } { .LastName} { .Suffix}"
+                row.Cells("Current_DataGrid").Value = .Branch_Name
                 Subject_Combo.SelectedIndex = 1
 
-            End With
 
-        ElseIf subject = 2 Then
+            ElseIf subject = 2 Then
 
-            With mPower
-                Dim rowId As Integer = DataGridView1.Rows.Add()
-                Dim row As DataGridViewRow = DataGridView1.Rows(rowId)
-                row.Cells("Name_DataGrid").Value = .FullName
-                row.Cells("Current_DataGrid").Value = .BranchName_String
-                row.Cells("Amount_DataGrid").Value = .Carekit_String
+                row.Cells("Name_DataGrid").Value = $"{ .FirstName} { MI } { .LastName} { .Suffix}"
+                row.Cells("Current_DataGrid").Value = .Branch_Name
                 Subject_Combo.SelectedIndex = 2
-            End With
 
-        ElseIf subject = 3 Then
+            ElseIf subject = 3 Then
 
-            With mPower
-                Dim rowId As Integer = DataGridView1.Rows.Add()
-                Dim row As DataGridViewRow = DataGridView1.Rows(rowId)
-                row.Cells("Name_DataGrid").Value = .FullName
-                row.Cells("Current_DataGrid").Value = .BranchName_String
-                row.Cells("Amount_DataGrid").Value = .other_String
+                row.Cells("Name_DataGrid").Value = $"{ .FirstName} { MI } { .LastName} { .Suffix}"
+                row.Cells("Current_DataGrid").Value = .Branch_Name
                 Subject_Combo.SelectedIndex = 3
-            End With
 
-        End If
+            End If
 
-        GetSubTotal()
+            _ListNames.AppendText(.LastName & ", ")
+            _ListBranch.AppendText(.Branch_Name & ", ")
+            _ListStatus.AppendText(.Position & ", ")
+            _ListPosition.AppendText(.Position & ", ")
+        End With
     End Sub
 
     Public Sub LoadEmpAPPOINT(mPower As Employee)
@@ -426,11 +414,17 @@ Public Class frmLetter
             status1 = .Status
             position1 = .Position
 
-            'Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")
+            _ListNames.AppendText(.LastName & ", ")
+            _ListBranch.AppendText(.Branch_Name & ", ")
+            _ListStatus.AppendText(.Position & ", ")
+            _ListPosition.AppendText(.Position & ", ")
+
+            'Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")  'Allow_Export.Click
             'CareKit_TXT.Text = CK
 
             'Dim other As Decimal = Decimal.Parse(.other_String).ToString("##,###0.00")
             'Other_TXT.Text = other
+
         End With
 
     End Sub
@@ -452,6 +446,11 @@ Public Class frmLetter
             branch2 = .Branch_Name
             status2 = .Status
             position2 = .Position
+
+            _ListNames.AppendText(.LastName & ", ")
+            _ListBranch.AppendText(.Branch_Name & ", ")
+            _ListStatus.AppendText(.Position & ", ")
+            _ListPosition.AppendText(.Position & ", ")
 
             'Dim CK As Decimal = Decimal.Parse(.Carekit_String).ToString("##,###0.00")
             'CareKit_TXT1.Text = CK
@@ -587,6 +586,7 @@ Public Class frmLetter
     End Sub
 
     Private Sub ClearAPPOINT()
+
         AP_Name_TXT.Clear()
         AP_Position_TXT.Clear()
         AP_Company_TXT.Clear()
@@ -598,6 +598,7 @@ Public Class frmLetter
         AP_PreparedBy_TXT.Clear()
         AP_ReviewedBy_TXT.Clear()
         rpt_Appointment.Clear()
+
     End Sub
 
 
@@ -683,14 +684,14 @@ Public Class frmLetter
             frm.btnView.Visible = False
             frm.btnAdd.Visible = False
             frm.btnSelect.Visible = True
-            frm.txtSearch.Tag = "Allowance-Individual"
+            frm.txtSearch.Tag = "Allowance-Individual-1"
             frm.Dock = DockStyle.Fill
             frm.BringToFront()
 
         Else
             frmEmployeeList.BringToFront()
         End If
-        Close()
+        'Close()
 
     End Sub
 
@@ -747,12 +748,12 @@ Public Class frmLetter
                 .Columns.Add("Other1")
             End With
 
-            Dim bhouse As String = If(Not (BH_TXT.Text = 0.00), BH_TXT.Text, 0)
-            Dim carekit As String = If(Not (CareKit_TXT.Text = 0.00), CareKit_TXT.Text, 0)
-            Dim otherr As String = If(Not (Other_TXT.Text = 0.00), Other_TXT.Text, 0)
-            Dim bhouse1 As String = If(Not (BH_TXT1.Text = 0.00), BH_TXT1.Text, 0)
-            Dim carekit1 As String = If(Not (CareKit_TXT1.Text = 0.00), CareKit_TXT1.Text, 0)
-            Dim otherr1 As String = If(Not (Other_TXT1.Text = 0.00), Other_TXT1.Text, 0)
+            Dim bhouse As String = If(Not (BH_TXT.Text = 0.00), Decimal.Parse(BH_TXT.Text).ToString("##,###0.00"), 0)
+            Dim carekit As String = If(Not (CareKit_TXT.Text = 0.00), Decimal.Parse(CareKit_TXT.Text).ToString("##,###0.00"), 0)
+            Dim otherr As String = If(Not (Other_TXT.Text = 0.00), Decimal.Parse(Other_TXT.Text).ToString("##,###0.00"), 0)
+            Dim bhouse1 As String = If(Not (BH_TXT1.Text = 0.00), Decimal.Parse(BH_TXT1.Text).ToString("##,###0.00"), 0)
+            Dim carekit1 As String = If(Not (CareKit_TXT1.Text = 0.00), Decimal.Parse(CareKit_TXT1.Text).ToString("##,###0.00"), 0)
+            Dim otherr1 As String = If(Not (Other_TXT1.Text = 0.00), Decimal.Parse(Other_TXT1.Text).ToString("##,###0.00"), 0)
 
             dt.Rows.Add(bhouse, carekit, otherr, bhouse1, carekit1, otherr1)
 
@@ -786,6 +787,25 @@ Public Class frmLetter
         'Else
         '    frmAllowanceList.BringToFront()
         'End If
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "Allowance-Individual-2"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
     End Sub
 
     Private Sub Clear_BTN_Click(sender As Object, e As EventArgs) Handles Clear_BTN.Click
@@ -806,9 +826,33 @@ Public Class frmLetter
         Other_TXT1.Text = 0
     End Sub
 
+    Private Sub ClearIndi()
+        Clear_BTN1.PerformClick()
+        Clear_BTN1.PerformClick()
+        Allow_PreparedBy_TXT.Clear()
+        Allow_NotedBy_TXT.Clear()
+        Allow_DTP_Indi.Value = Date.Now
+    End Sub
+
+    Private Sub ClearList()
+
+        Allow_DTP_List.Value = Date.Now
+        Allow_Note_List.Clear()
+        Allow_PreparedBy_List.Clear()
+        Allow_NotedBy_List.Clear()
+
+        Subject_Combo.SelectedIndex = 0
+        Allow_Company_Combo.SelectedIndex = 1
+        DataGridView1.Rows.Clear()
+        Allow_total_List.Text = 0
+
+    End Sub
+
     Private Sub Allow_Export_Click(sender As Object, e As EventArgs) Handles Allow_Export.Click
 
         Dim dt As String = $" - {Allow_DTP_Indi.Value.ToString("MMMM dd, yyyy")} "
+        Dim total1 As Decimal = CDbl(BH_TXT.Text) + CDbl(CareKit_TXT.Text) + CDbl(Other_TXT.Text) + CDbl(BH_TXT1.Text) + CDbl(CareKit_TXT1.Text) + CDbl(Other_TXT1.Text)
+        Console.WriteLine("aaaaaaa = " & total1)
 
         If Allow_Name_txt.Text = "" And Allow_Name_txt1.Text = "" Then
 
@@ -818,9 +862,11 @@ Public Class frmLetter
 
             ToPDF(Allow_Name_txt.Tag & " , " & Allow_Name_txt1.Tag, "Allowance", dt, rpt_Allowance) 'branch1, branch2, status1, status2, position1, position2
 
-            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Allow_Name_txt.Tag & " , " & Allow_Name_txt1.Tag, "Allowance", branch1 & " , " & branch2, status1 & " , " & status2, position1 & " , " & position2)
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, _ListNames.Text, "Allowance Total of " & total1, _ListBranch.Text, _ListStatus.Text, _ListPosition.Text)
 
+            ClearIndi()
         End If
+
     End Sub
 
     Private Sub More_Radio_CheckedChanged(sender As Object, e As EventArgs) Handles List_Radio.CheckedChanged
@@ -840,19 +886,49 @@ Public Class frmLetter
         Else
             Subject_Combo.Region = Nothing
 
-            If frmAllowanceList Is Nothing Then
-                Dim frm As New frmAllowanceList With {
+            '    If frmAllowanceList Is Nothing Then
+            '        Dim frm As New frmAllowanceList With {
+            '        .MdiParent = frmMainForm
+            '    }
+            '        frmMainForm.pNavigate.Controls.Add(frm)
+            '        frmMainForm.pNavigate.Tag = frm
+            '        frm.Search_TXT.Tag = "Letter3"
+            '        frm.Search_BTN.Tag = "LIST"
+
+            '        If Subject_Combo.SelectedIndex = 1 Then
+            '            frm.Label_Header.Tag = "Boarding_Allowance"
+            '        ElseIf Subject_Combo.SelectedIndex = 2 Then
+            '            frm.Label_Header.Tag = "CareKit_Allowance"
+            '        ElseIf Subject_Combo.SelectedIndex = 3 Then
+            '            frm.Label_Header.Tag = "Other_Allowance"
+            '        End If
+
+            '        frm.Dock = DockStyle.Fill
+            '        frm.Show()
+            '        frm.BringToFront()
+            '    Else
+            '        frmAllowanceList.BringToFront()
+            '    End If
+            'End If
+
+            If frmEmployeeList Is Nothing Then
+                Dim frm As New frmEmployeeList With {
                 .MdiParent = frmMainForm
             }
                 frmMainForm.pNavigate.Controls.Add(frm)
                 frmMainForm.pNavigate.Tag = frm
-                frm.Search_TXT.Tag = "Letter3"
-                frm.Search_BTN.Tag = "LIST"
+                frm.btnView.Visible = False
+                frm.btnAdd.Visible = False
+                frm.btnSelect.Visible = True
+
+                frm.txtSearch.Tag = "Allowance-List"
 
                 If Subject_Combo.SelectedIndex = 1 Then
                     frm.Label_Header.Tag = "Boarding_Allowance"
+
                 ElseIf Subject_Combo.SelectedIndex = 2 Then
                     frm.Label_Header.Tag = "CareKit_Allowance"
+
                 ElseIf Subject_Combo.SelectedIndex = 3 Then
                     frm.Label_Header.Tag = "Other_Allowance"
                 End If
@@ -860,8 +936,9 @@ Public Class frmLetter
                 frm.Dock = DockStyle.Fill
                 frm.Show()
                 frm.BringToFront()
+
             Else
-                frmAllowanceList.BringToFront()
+                frmEmployeeList.BringToFront()
             End If
         End If
 
@@ -876,6 +953,14 @@ Public Class frmLetter
             Allow_total_List.Text = 0
         End If
 
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        ClearAPPOINT()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        ClearREASSign()
     End Sub
 
     Public Sub PreviousBranch()
@@ -905,10 +990,20 @@ Public Class frmLetter
     End Sub
 
 
+    Private Sub Calculate_BTN_Click(sender As Object, e As EventArgs) Handles Calculate_BTN.Click
+
+        Allow_total_List.Text = 0
+
+        For i = 0 To DataGridView1.RowCount - 1
+            Dim row As DataGridViewRow = DataGridView1.Rows(i)
+            Allow_total_List.Text = Allow_total_List.Text + Convert.ToDecimal(DataGridView1.Rows(i).Cells(3).Value)
+        Next
+
+    End Sub
+
     Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
         Dim i As Integer = DataGridView1.CurrentRow.Index
         DataGridView1.Rows.RemoveAt(i)
-        GetSubTotal()
     End Sub
 
     Private Sub Subject_Combo_SelectedValueChanged(sender As Object, e As EventArgs) Handles Subject_Combo.SelectedValueChanged
@@ -996,21 +1091,30 @@ Public Class frmLetter
         Dim dt As String = $" - {Allow_DTP_List.Value.ToString("MMMM dd, yyyy")} "
 
         If Subject_Combo.Text = "" Then
+
             Subject_Combo.Region = New Region(New Rectangle(2, 2, Subject_Combo.Width - 4, Subject_Combo.Height - 4))
+
         Else
+
             Subject_Combo.Region = Nothing
 
             If DataGridView1.Rows.Count <= 0 Then
+
                 DataGridView1.Region = New Region(New Rectangle(2, 2, DataGridView1.Width - 4, DataGridView1.Height - 4))
+
             Else
+
                 DataGridView1.Region = Nothing
 
                 LoadAllowanceLetterLIST()
 
                 ToPDF(Subject_Combo.Text & " - " & Allow_Company_Combo.Text, "Allowance", dt, rpt_Allowance)
 
-                'SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, AP_Name_TXT.Text, Subject_Combo.Text, AP_Branch_TXT.Text, AP_Position_TXT.Tag, AP_Position_TXT.Text)
+                SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, _ListNames.Text, Subject_Combo.Text & "  Total of " & Allow_total_List.Text, _ListBranch.Text, _ListStatus.Text, _ListPosition.Text)
+
+                ClearList()
             End If
+
         End If
 
     End Sub

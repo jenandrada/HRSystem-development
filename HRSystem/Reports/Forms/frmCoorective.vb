@@ -60,7 +60,6 @@ Public Class frmCoorective
             Branch_TXT.Text = .Branch_Name
             SCNo_LBL.Text = Format(.IRNo, "00000")
             Position_TXT.Tag = .Status
-            Console.WriteLine("AAAAAAA = " & Position_TXT.Tag)
 
         End With
 
@@ -77,7 +76,6 @@ Public Class frmCoorective
             IRNoWritten_LBL.Text = Format(.IRNo, "00000")
             WP_Incident_TXT.Text = .Incident_Description
             WP_Position_TXT.Tag = .Status
-            Console.WriteLine("AAAAAAA = " & Position_TXT.Tag)
 
             LoadListviewWritten(.IRNo, WP_RulesList, WP_SectionsList)
             Violation_TAB.SelectedIndex = 1
@@ -105,7 +103,6 @@ Public Class frmCoorective
             Department_TXT.Text = .Branch_Name
             PositionP_TXT.Tag = .Company_Name
             Department_TXT.Tag = .Status
-            Console.WriteLine("Aaa = " & .Status)
         End With
 
     End Sub
@@ -793,7 +790,7 @@ Public Class frmCoorective
 
             SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, Charges_Numeric.Text, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text)
 
-            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, WP_Name_TXT.Text, "Written Reprimand for IR No. " & IRNoWritten_LBL.Text, WP_Branch_TXT.Text, WP_Position_TXT.Tag, Allow_Particular_TXT.tag)
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, WP_Name_TXT.Text, "Written Reprimand for IR No. " & IRNoWritten_LBL.Text, WP_Branch_TXT.Text, WP_Position_TXT.Tag, WP_Position_TXT.Text)
 
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -965,4 +962,5 @@ Public Class frmCoorective
     Private Sub NumberOfDays_TXT_ValueChanged(sender As Object, e As EventArgs) Handles NumberOfDays_TXT.ValueChanged
         NoOfDaysSuspend = NumberOfDays_TXT.Text
     End Sub
+
 End Class

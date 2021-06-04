@@ -36,7 +36,7 @@
         Dim idx As String = loginUser.ID
         Dim username As String = loginUser.FirstName + " " + loginUser.LastName
         frmMainForm.NotYetLogin(True, idx, username)
-        updateStatus()
+        'updateStatus()
         Close()
     End Sub
 

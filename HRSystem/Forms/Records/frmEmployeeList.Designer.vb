@@ -30,7 +30,7 @@ Partial Class frmEmployeeList
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.btnView = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label_Header = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.lvEmployee = New System.Windows.Forms.ListView()
@@ -88,15 +88,15 @@ Partial Class frmEmployeeList
         Me.btnView.Text = "&View"
         Me.btnView.UseVisualStyleBackColor = True
         '
-        'Label1
+        'Label_Header
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(17, 17)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(190, 31)
-        Me.Label1.TabIndex = 51
-        Me.Label1.Text = "Search Name"
+        Me.Label_Header.AutoSize = True
+        Me.Label_Header.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Header.Location = New System.Drawing.Point(17, 17)
+        Me.Label_Header.Name = "Label_Header"
+        Me.Label_Header.Size = New System.Drawing.Size(190, 31)
+        Me.Label_Header.TabIndex = 51
+        Me.Label_Header.Text = "Search Name"
         '
         'txtSearch
         '
@@ -253,7 +253,7 @@ Partial Class frmEmployeeList
         Me.Panel1.Controls.Add(Me.btnSearch)
         Me.Panel1.Controls.Add(Me.txtSearch)
         Me.Panel1.Controls.Add(Me.btnClose)
-        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.Label_Header)
         Me.Panel1.Controls.Add(Me.btnView)
         Me.Panel1.Controls.Add(Me.btnSelect)
         Me.Panel1.Location = New System.Drawing.Point(3, 1)
@@ -293,7 +293,7 @@ Partial Class frmEmployeeList
     Friend WithEvents Timer2 As Timer
     Friend WithEvents btnSelect As Button
     Friend WithEvents btnView As Button
-    Friend WithEvents Label1 As Label
+    Friend WithEvents Label_Header As Label
     Friend WithEvents btnClose As Button
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnSearch As Button

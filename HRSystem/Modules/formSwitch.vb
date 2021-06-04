@@ -87,6 +87,7 @@
     End Sub
 
     Friend Sub ReloadFormFromSearch(ByVal gotoForm As FormName, cus As Employee, Optional tab As Integer = 0, Optional edit As String = "")
+
         Select Case gotoForm
             Case FormName.Employee
                 FormManagement.MdiParent = frmMainForm
@@ -136,6 +137,7 @@
                 frmMainForm.pNavigate.Tag = frmLetter
                 frmLetter.Show()
                 If tab = 1 Then
+
                     frmLetter.LetterWindow.SelectedIndex = 0
                     frmLetter.LoadEmpReAssign(cus)
 
@@ -156,6 +158,24 @@
                         frmLetter.LetterWindow.SelectedIndex = 2
                         frmLetter.Individual_RB.Checked = True
                         frmLetter.LoadEmpAllowanceSECOND(cus)
+
+                    ElseIf edit = "Boarding_Allowance" Then
+
+                        frmLetter.LetterWindow.SelectedIndex = 2
+                        frmLetter.List_Radio.Checked = True
+                        frmLetter.LoadEmpAllowanceLIST(cus, 1)
+
+                    ElseIf edit = "CareKit_Allowance" Then
+
+                        frmLetter.LetterWindow.SelectedIndex = 2
+                        frmLetter.List_Radio.Checked = True
+                        frmLetter.LoadEmpAllowanceLIST(cus, 2)
+
+                    ElseIf edit = "Other_Allowance" Then
+
+                        frmLetter.LetterWindow.SelectedIndex = 2
+                        frmLetter.List_Radio.Checked = True
+                        frmLetter.LoadEmpAllowanceLIST(cus, 3)
 
                     Else
 
@@ -364,55 +384,55 @@
         End Select
     End Sub
 
-    Friend Sub RealoadfromBhouse(gotoForm As FormName, bhouse As BhouseAllowance, Optional _isPage1 As Integer = 0, Optional employee As Integer = 0, Optional subject As String = "")
-        Select Case gotoForm
-            Case FormName.BhouseAllowance
-                frmAllowance.MdiParent = frmMainForm
-                frmMainForm.pNavigate.Controls.Add(frmAllowance)
-                frmMainForm.pNavigate.Tag = frmAllowance
-                frmAllowance.LoadOthers(bhouse)
-                frmAllowance.Show()
-                frmAllowance.Dock = DockStyle.Fill
-                frmAllowance.BringToFront()
+    'Friend Sub RealoadfromBhouse(gotoForm As FormName, bhouse As BhouseAllowance, Optional _isPage1 As Integer = 0, Optional employee As Integer = 0, Optional subject As String = "")
+    '    Select Case gotoForm
+    '        Case FormName.BhouseAllowance
+    '            frmAllowance.MdiParent = frmMainForm
+    '            frmMainForm.pNavigate.Controls.Add(frmAllowance)
+    '            frmMainForm.pNavigate.Tag = frmAllowance
+    '            frmAllowance.LoadOthers(bhouse)
+    '            frmAllowance.Show()
+    '            frmAllowance.Dock = DockStyle.Fill
+    '            frmAllowance.BringToFront()
 
-            Case FormName.letter
-                frmLetter.MdiParent = frmMainForm
-                frmMainForm.pNavigate.Controls.Add(frmLetter)
-                frmMainForm.pNavigate.Tag = frmLetter
+    '        Case FormName.letter
+    '            frmLetter.MdiParent = frmMainForm
+    '            frmMainForm.pNavigate.Controls.Add(frmLetter)
+    '            frmMainForm.pNavigate.Tag = frmLetter
 
-                If _isPage1 = 3 Then
-                    If employee = 2 Then
-                        frmLetter.LetterWindow.SelectedIndex = 2
-                        frmLetter.LoadEmpAllowanceSECOND(bhouse)
+    '            If _isPage1 = 3 Then
+    '                'If employee = 2 Then
+    '                '    frmLetter.LetterWindow.SelectedIndex = 2
+    '                '    'frmLetter.LoadEmpAllowanceSECOND(bhouse)
 
-                    ElseIf employee = 3 Then
+    '                'ElseIf employee = 3 Then
 
-                        If subject = "Boarding_Allowance" Then
+    '                '    If subject = "Boarding_Allowance" Then
 
-                            frmLetter.LetterWindow.SelectedIndex = 2
-                            frmLetter.LoadEmpAllowanceLIST(bhouse, 1)
+    '                '        frmLetter.LetterWindow.SelectedIndex = 2
+    '                '        frmLetter.LoadEmpAllowanceLIST(bhouse, 1)
 
-                        ElseIf subject = "CareKit_Allowance" Then
+    '                '    ElseIf subject = "CareKit_Allowance" Then
 
-                            frmLetter.LetterWindow.SelectedIndex = 2
-                            frmLetter.LoadEmpAllowanceLIST(bhouse, 2)
+    '                '        frmLetter.LetterWindow.SelectedIndex = 2
+    '                '        frmLetter.LoadEmpAllowanceLIST(bhouse, 2)
 
-                        ElseIf subject = "Other_Allowance" Then
+    '                '    ElseIf subject = "Other_Allowance" Then
 
-                            frmLetter.LetterWindow.SelectedIndex = 2
-                            frmLetter.LoadEmpAllowanceLIST(bhouse, 3)
+    '                '        frmLetter.LetterWindow.SelectedIndex = 2
+    '                '        frmLetter.LoadEmpAllowanceLIST(bhouse, 3)
 
-                        End If
-                    Else
-                        frmLetter.LetterWindow.SelectedIndex = 2
-                        frmLetter.LoadEmpAllowanceFIRST(bhouse)
-                    End If
-                End If
+    '                '    End If
+    '                'Else
+    '                '    frmLetter.LetterWindow.SelectedIndex = 2
+    '                '    'frmLetter.LoadEmpAllowanceFIRST(bhouse)
+    '                'End If
+    '            End If
 
-                frmLetter.Show()
-                frmLetter.Dock = DockStyle.Fill
-                frmLetter.BringToFront()
-        End Select
-    End Sub
+    '            frmLetter.Show()
+    '            frmLetter.Dock = DockStyle.Fill
+    '            frmLetter.BringToFront()
+    '    End Select
+    'End Sub
 
 End Module

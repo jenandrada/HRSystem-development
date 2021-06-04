@@ -106,58 +106,58 @@ Public Class frmAllowanceList
 
     Private Sub Select_BTN_Click(sender As Object, e As EventArgs) Handles Select_BTN.Click
 
-        If BHA_ListView.Items.Count = 0 Then Exit Sub
+        'If BHA_ListView.Items.Count = 0 Then Exit Sub
 
-        If Search_TXT.Tag = "Letter3" Then
+        'If Search_TXT.Tag = "Letter3" Then
 
-            Dim fullname As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(1).Text
-            Dim bhouse As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(2).Text.Replace("PHP ", "")
-            Dim carekit As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(3).Text.Replace("PHP ", "")
-            Dim other As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(4).Text.Replace("PHP ", "")
-            Dim particular As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(5).Text
-            Dim branch As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(6).Text
+        '    Dim fullname As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(1).Text
+        '    Dim bhouse As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(2).Text.Replace("PHP ", "")
+        '    Dim carekit As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(3).Text.Replace("PHP ", "")
+        '    Dim other As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(4).Text.Replace("PHP ", "")
+        '    Dim particular As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(5).Text
+        '    Dim branch As String = BHA_ListView.Items(BHA_ListView.FocusedItem.Index).SubItems(6).Text
 
-            Dim tmpEmp As BhouseAllowance
-            tmpEmp = New BhouseAllowance
-            tmpEmp.GetDetailsJEN(fullname, bhouse, carekit, other, particular, branch)
+        '    Dim tmpEmp As BhouseAllowance
+        '    tmpEmp = New BhouseAllowance
+        '    tmpEmp.GetDetailsJEN(fullname, bhouse, carekit, other, particular, branch)
 
-            If Search_BTN.Tag = "Individual-2" Then
-                RealoadfromBhouse(FormName.letter, tmpEmp, 3, 2)
+        '    If Search_BTN.Tag = "Individual-2" Then
+        '        RealoadfromBhouse(FormName.letter, tmpEmp, 3, 2)
 
-            ElseIf Search_BTN.Tag = "LIST" Then
+        '    ElseIf Search_BTN.Tag = "LIST" Then
 
-                If Label_Header.Tag = "Boarding_Allowance" Then
+        '        If Label_Header.Tag = "Boarding_Allowance" Then
 
-                    RealoadfromBhouse(FormName.letter, tmpEmp, 3, 3, "Boarding_Allowance")
+        '            RealoadfromBhouse(FormName.letter, tmpEmp, 3, 3, "Boarding_Allowance")
 
-                ElseIf Label_Header.Tag = "CareKit_Allowance" Then
+        '        ElseIf Label_Header.Tag = "CareKit_Allowance" Then
 
-                    RealoadfromBhouse(FormName.letter, tmpEmp, 3, 3, "CareKit_Allowance")
+        '            RealoadfromBhouse(FormName.letter, tmpEmp, 3, 3, "CareKit_Allowance")
 
-                ElseIf Label_Header.Tag = "Other_Allowance" Then
+        '        ElseIf Label_Header.Tag = "Other_Allowance" Then
 
-                    RealoadfromBhouse(FormName.letter, tmpEmp, 3, 3, "Other_Allowance")
+        '            RealoadfromBhouse(FormName.letter, tmpEmp, 3, 3, "Other_Allowance")
 
-                End If
-            Else
-                    RealoadfromBhouse(FormName.letter, tmpEmp, 3)
-            End If
+        '        End If
+        '    Else
+        '            RealoadfromBhouse(FormName.letter, tmpEmp, 3)
+        '    End If
 
-        Else
+        'Else
 
-            If BHA_ListView.SelectedItems.Count > 0 Then
-                Dim idx As Integer = CInt(BHA_ListView.SelectedItems(0).SubItems(0).Text)
-                Dim temp As New BhouseAllowance
-                With temp
-                    .Allowance = BHA_ListView.SelectedItems(0).SubItems(2).Text.Substring(4)
-                    .LoadBhouseAllowance(idx, BHA_ListView.SelectedItems(0).SubItems(1).Text)
-                End With
-                RealoadfromBhouse(frmOrig, temp)
+        '    If BHA_ListView.SelectedItems.Count > 0 Then
+        '        Dim idx As Integer = CInt(BHA_ListView.SelectedItems(0).SubItems(0).Text)
+        '        Dim temp As New BhouseAllowance
+        '        With temp
+        '            .Allowance = BHA_ListView.SelectedItems(0).SubItems(2).Text.Substring(4)
+        '            .LoadBhouseAllowance(idx, BHA_ListView.SelectedItems(0).SubItems(1).Text)
+        '        End With
+        '        RealoadfromBhouse(frmOrig, temp)
 
-                Close()
-            End If
+        '        Close()
+        '    End If
 
-        End If
+        'End If
 
     End Sub
 

@@ -262,10 +262,33 @@
             tmpEmp.LoadEmpLetter(idx)
             ReloadFormFromSearch(FormName.letter, tmpEmp, 2)
 
-        ElseIf txtSearch.Tag = "Allowance-Individual" Then
+        ElseIf txtSearch.Tag = "Allowance-Individual-1" Then
 
             tmpEmp.LoadEmpLetter(idx)
             ReloadFormFromSearch(FormName.letter, tmpEmp, 3, "Individual")
+
+        ElseIf txtSearch.Tag = "Allowance-Individual-2" Then
+
+            tmpEmp.LoadEmpLetter(idx)
+            ReloadFormFromSearch(FormName.letter, tmpEmp, 3, "Individua2")
+
+        ElseIf txtSearch.Tag = "Allowance-List" Then
+
+            tmpEmp.LoadEmpLetter(idx)
+
+            If Label_Header.Tag = "Boarding_Allowance" Then
+
+                ReloadFormFromSearch(FormName.letter, tmpEmp, 3, "Boarding_Allowance")
+
+            ElseIf Label_Header.Tag = "CareKit_Allowance" Then
+
+                ReloadFormFromSearch(FormName.letter, tmpEmp, 3, "CareKit_Allowance")
+
+            ElseIf Label_Header.Tag = "Other_Allowance" Then
+
+                ReloadFormFromSearch(FormName.letter, tmpEmp, 3, "Other_Allowance")
+
+            End If
 
             'ElseIf txtSearch.Tag = "Compensation" Then
 

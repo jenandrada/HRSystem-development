@@ -23,7 +23,7 @@ Partial Class frmLetter
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.Label47 = New System.Windows.Forms.Label()
@@ -115,6 +115,7 @@ Partial Class frmLetter
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Group_List = New System.Windows.Forms.GroupBox()
         Me.Group_Details = New System.Windows.Forms.GroupBox()
+        Me.Calculate_BTN = New System.Windows.Forms.Button()
         Me.Allow_DTP_List = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox_Subject = New System.Windows.Forms.GroupBox()
         Me.Subject_Combo = New System.Windows.Forms.ComboBox()
@@ -192,6 +193,8 @@ Partial Class frmLetter
         Me.rpt_Allowance = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.ContextMenu_Remove = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -418,6 +421,7 @@ Partial Class frmLetter
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Button3)
         Me.GroupBox3.Controls.Add(Me.R_DateIssued_DTP)
         Me.GroupBox3.Controls.Add(Me.Label18)
         Me.GroupBox3.Controls.Add(Me.Label17)
@@ -786,6 +790,7 @@ Partial Class frmLetter
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.Button1)
         Me.GroupBox5.Controls.Add(Me.AP_DateIssued_DP)
         Me.GroupBox5.Controls.Add(Me.Label9)
         Me.GroupBox5.Controls.Add(Me.Label10)
@@ -877,7 +882,7 @@ Partial Class frmLetter
         'AP_Preview_BTN
         '
         Me.AP_Preview_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AP_Preview_BTN.Location = New System.Drawing.Point(441, 280)
+        Me.AP_Preview_BTN.Location = New System.Drawing.Point(437, 280)
         Me.AP_Preview_BTN.Name = "AP_Preview_BTN"
         Me.AP_Preview_BTN.Size = New System.Drawing.Size(118, 44)
         Me.AP_Preview_BTN.TabIndex = 14
@@ -1164,13 +1169,14 @@ Partial Class frmLetter
         Me.Group_List.Controls.Add(Me.Label50)
         Me.Group_List.Location = New System.Drawing.Point(14, 48)
         Me.Group_List.Name = "Group_List"
-        Me.Group_List.Size = New System.Drawing.Size(577, 966)
+        Me.Group_List.Size = New System.Drawing.Size(577, 978)
         Me.Group_List.TabIndex = 60
         Me.Group_List.TabStop = False
         Me.Group_List.Visible = False
         '
         'Group_Details
         '
+        Me.Group_Details.Controls.Add(Me.Calculate_BTN)
         Me.Group_Details.Controls.Add(Me.Allow_DTP_List)
         Me.Group_Details.Controls.Add(Me.GroupBox_Subject)
         Me.Group_Details.Controls.Add(Me.Allow_Company_Combo)
@@ -1188,6 +1194,16 @@ Partial Class frmLetter
         Me.Group_Details.Size = New System.Drawing.Size(577, 507)
         Me.Group_Details.TabIndex = 13
         Me.Group_Details.TabStop = False
+        '
+        'Calculate_BTN
+        '
+        Me.Calculate_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Calculate_BTN.Location = New System.Drawing.Point(265, 463)
+        Me.Calculate_BTN.Name = "Calculate_BTN"
+        Me.Calculate_BTN.Size = New System.Drawing.Size(89, 35)
+        Me.Calculate_BTN.TabIndex = 66
+        Me.Calculate_BTN.Text = "Calculate"
+        Me.Calculate_BTN.UseVisualStyleBackColor = True
         '
         'Allow_DTP_List
         '
@@ -1251,8 +1267,8 @@ Partial Class frmLetter
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -1963,6 +1979,26 @@ Partial Class frmLetter
         Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
         Me.RemoveToolStripMenuItem.Text = "Remove"
         '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(133, 280)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(136, 44)
+        Me.Button1.TabIndex = 48
+        Me.Button1.Text = "Clear"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Location = New System.Drawing.Point(136, 280)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(135, 44)
+        Me.Button3.TabIndex = 48
+        Me.Button3.Text = "Clear"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'frmLetter
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2191,4 +2227,7 @@ Partial Class frmLetter
     Friend WithEvents Previous_DataGrid As DataGridViewComboBoxColumn
     Friend WithEvents Current_DataGrid As DataGridViewTextBoxColumn
     Friend WithEvents Amount_DataGrid As DataGridViewTextBoxColumn
+    Friend WithEvents Calculate_BTN As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button3 As Button
 End Class
