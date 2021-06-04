@@ -79,7 +79,7 @@
                 .Item("incidentLoc") = incidentLoc
                 .Item("incidentDate") = incidentDate
                 .Item("ReceivedDate") = ReceivedDate
-                .Item("actionTaken") = actionTaken
+                .Item("RULEVIOLATED") = actionTaken
                 .Item("Description") = Description
                 .Item("preparedby") = preparedby
                 .Item("receivedby") = receivedby

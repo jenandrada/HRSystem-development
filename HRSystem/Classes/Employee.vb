@@ -47,6 +47,14 @@ Public Class Employee
 
     Public Property IRNo() As Integer
 
+    Public Property IncidentDate() As Date
+
+    Public Property RuleViolated() As String
+
+    Public Property RuleDescription() As String
+
+    Public Property IncidentLocation() As String
+
     Public Property ID() As Integer
 
     Public Property FirstName() As String
@@ -883,8 +891,10 @@ Public Class Employee
                     IRNo = Format(.Item("IRNO"), "00000")
                     Incident_Description = .Item("DESCRIPTION")
                     Status = .Item("STATUS")
-
-                    Console.WriteLine("BBBBBBBBB = " & .Item("STATUS"))
+                    RuleViolated = .Item("RULEVIOLATED")
+                    IncidentDate = .Item("INCIDENTDATE")
+                    IncidentLocation = .Item("INCIDENTLOC")
+                    'RuleDescription = .Item("RULE_DEFINITION") 
 
                 End With
 
@@ -906,6 +916,15 @@ Public Class Employee
                 End If
             End Using
         End If
+
+
+        mysql = "Select * From  TBL_RULESECTIONLIST WHERE RULE_NUMBER = '" & RuleViolated & "'"
+        Using ds As DataSet = LoadSQL(mysql, "TBL_RULESECTIONLIST")
+            Dim dr As DataRow = ds.Tables(0).Rows(0)
+            With dr
+                RuleDescription = .Item("RULE_DEFINITION")
+            End With
+        End Using
 
     End Sub
 

@@ -63,7 +63,7 @@
             lv.SubItems.Add($"{ .Item("LastName") }, { .Item("FirstName") } { .Item("MiddleName") }")
             lv.SubItems.Add(DateIncident.ToString("MMMM d, yyyy"))
             lv.SubItems.Add(DateReceived.ToString("MMMM d, yyyy"))
-            lv.SubItems.Add(.Item("ACTIONTAKEN"))
+            lv.SubItems.Add(.Item("RULEVIOLATED"))
             lv.SubItems.Add(.Item("PREPAREDBY"))
             lv.ImageKey = "imgMale"
 

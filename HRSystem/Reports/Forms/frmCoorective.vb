@@ -25,21 +25,23 @@ Public Class frmCoorective
             GetLastNo(IRNo_LBL, "IR_RECORDS", "IRNO")
         End If
 
-        Dim tmpRule As New Lists
-        'tmpRule.RuleDataTable()
         _console.Clear()
-        LV_Rules.Items.Clear()
-        WP_RulesList.Items.Clear()
+
+        'Dim tmpRule As New Lists
+        'tmpRule.RuleDataTable() 
+
+        'LV_Rules.Items.Clear()
+        'WP_RulesList.Items.Clear()
         'Optional_Group.Enabled = False
 
-        With tmpRule
-            For Each item In .List()
-                Dim lvitem As ListViewItem = LV_Rules.Items.Add(item.RuleNumber)
-                lvitem.SubItems.Add(item.RuleDefinition)
-                Dim wplvitem As ListViewItem = WP_RulesList.Items.Add(item.RuleNumber)
-                wplvitem.SubItems.Add(item.RuleDefinition)
-            Next
-        End With
+        'With tmpRule
+        '    For Each item In .List()
+        '        Dim lvitem As ListViewItem = LV_Rules.Items.Add(item.RuleNumber)
+        '        lvitem.SubItems.Add(item.RuleDefinition)
+        '        Dim wplvitem As ListViewItem = WP_RulesList.Items.Add(item.RuleNumber)
+        '        wplvitem.SubItems.Add(item.RuleDefinition)
+        '    Next
+        'End With
         chkStatus = 0
 
     End Sub
@@ -60,7 +62,12 @@ Public Class frmCoorective
             Branch_TXT.Text = .Branch_Name
             SCNo_LBL.Text = Format(.IRNo, "00000")
             Position_TXT.Tag = .Status
+            RuleViolated_GB.Tag = .RuleViolated
+            SCRuleNo_LBL.Text = .RuleViolated & " " & .RuleDescription
+            SC_IncidentDate_RichB.Text = .IncidentDate '
+            Location_TXT.Text = .IncidentLocation
 
+            LoadSectionList()
         End With
 
     End Sub
@@ -68,6 +75,7 @@ Public Class frmCoorective
     Friend Sub LoadEmployeeWritten(mPower As Employee)
 
         With mPower
+
             WP_Name_TXT.Text = String.Format($"{ .LastName}, { .FirstName} { .MiddleName}")
             WP_Name_TXT.Tag = .ID
             WP_Position_TXT.Text = .Position
@@ -76,9 +84,11 @@ Public Class frmCoorective
             IRNoWritten_LBL.Text = Format(.IRNo, "00000")
             WP_Incident_TXT.Text = .Incident_Description
             WP_Position_TXT.Tag = .Status
+            WP_DateIncident_DTP.Text = .IncidentDate '.ToString("MMMM d, yyyy")
 
-            LoadListviewWritten(.IRNo, WP_RulesList, WP_SectionsList)
-            Violation_TAB.SelectedIndex = 1
+            LoadListviewWritten(.IRNo, WP_SectionsList, WPRule_LBL)  'SELECTING
+
+            'Violation_TAB.SelectedIndex = 1
 
         End With
 
@@ -126,6 +136,7 @@ Public Class frmCoorective
     End Sub
 
     Private Sub LoadShowCauseReport()
+
         Dim datesent As String
         If Optional_Group.Enabled = True Then
             datesent = DateSent_DTP.Value.ToString("dd-MM-yy")
@@ -173,6 +184,7 @@ Public Class frmCoorective
             RptViewer_ShowCause.LocalReport.DataSources.Add(datasource)
             RptViewer_ShowCause.LocalReport.SetParameters(paramList)
             RptViewer_ShowCause.RefreshReport()
+
         Catch ex As Exception
             Log_Report(ex.ToString)
             MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -181,6 +193,7 @@ Public Class frmCoorective
     End Sub
 
     Private Sub LoadWrittenReprimandReport()
+
         Dim tmp As New Lists
         Dim tbl As New Rules_SectionsDataSet.RS_DataTableDataTable
         If WW_RBTN.Checked = True Then
@@ -192,7 +205,9 @@ Public Class frmCoorective
         ElseIf SixDays_RBTN.Checked = True Then
             chkStatus = 4
         End If
+
         RptViewer_WrittenReprimand.LocalReport.DataSources.Clear()
+
         Dim paramList As New List(Of ReportParameter) From {
             New ReportParameter("paramName", WP_Name_TXT.Text, True),
             New ReportParameter("paramPosition", WP_Position_TXT.Text, True),
@@ -213,6 +228,7 @@ Public Class frmCoorective
             New ReportParameter("paramCharges", Charges_Numeric.Text),
             New ReportParameter("paramSCNO", IRNoWritten_LBL.Text)
         }
+
         Try
             For Each itemsec As ListViewItem In WP_SectionsList.SelectedItems
                 Dim sql As String = "select * from TBL_RULESECTIONLIST where SECTION = '" & itemsec.SubItems(0).Text & "';"
@@ -379,7 +395,7 @@ Public Class frmCoorective
 
         Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf"
 
-        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, DateIncident_DTP.Value, DateReceive_DTP.Value, Action_CB.Text, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, str)
+        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, DateIncident_DTP.Value, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, str)
 
         SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Person_TXT.Text, "Incident Report IR No. " & IRNo_LBL.Text, Department_TXT.Text, Department_TXT.Tag, PositionP_TXT.Text)
 
@@ -636,51 +652,125 @@ Public Class frmCoorective
         'Close()
     End Sub
 
-
-    Private Sub LV_Rules_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles LV_Rules.SelectedIndexChanged
+    Private Sub LoadSectionList()
         Dim tmp As New Lists
-        LV_Sections.Items.Clear()
-        For Each i As ListViewItem In LV_Rules.SelectedItems
-            If i.SubItems(0).Text = "RULE I" Then
-                For Each item In tmp.Rule1Sections()
-                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-            ElseIf i.SubItems(0).Text = "RULE II" Then
-                For Each item In tmp.Rule2Sections()
-                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-            ElseIf i.SubItems(0).Text = "RULE III" Then
-                For Each item In tmp.Rule3Sections()
-                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-            ElseIf i.SubItems(0).Text = "RULE IV" Then
-                For Each item In tmp.Rule4Sections()
-                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-            ElseIf i.SubItems(0).Text = "RULE V" Then
-                For Each item In tmp.Rule5Sections()
-                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
-            ElseIf i.SubItems(0).Text = "RULE VI" Then
-                For Each item In tmp.Rule6Sections()
-                    Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
 
-            End If
-        Next
+        LV_Sections.Items.Clear()
+
+        If RuleViolated_GB.Tag = "RULE I" Then
+            For Each item In tmp.Rule1Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE II" Then
+            For Each item In tmp.Rule2Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE III" Then
+            For Each item In tmp.Rule3Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE IV" Then
+            For Each item In tmp.Rule4Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE V" Then
+            For Each item In tmp.Rule5Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE VI" Then
+            For Each item In tmp.Rule6Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+
+        End If
     End Sub
 
-    Private Sub FromAuditDate_DTP_CloseUp(sender As Object, e As EventArgs) Handles FromAuditDate_DTP.CloseUp
+    Private Sub LV_Rules_SelectedIndexChanged_1(sender As Object, e As EventArgs)
+
+        Dim tmp As New Lists
+
+        LV_Sections.Items.Clear()
+
+        If RuleViolated_GB.Tag = "RULE I" Then
+            For Each item In tmp.Rule1Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE II" Then
+            For Each item In tmp.Rule2Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE III" Then
+            For Each item In tmp.Rule3Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE IV" Then
+            For Each item In tmp.Rule4Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE V" Then
+            For Each item In tmp.Rule5Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+        ElseIf RuleViolated_GB.Tag = "RULE VI" Then
+            For Each item In tmp.Rule6Sections()
+                Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+                lvitem.SubItems.Add(item.NatureOfOffenses)
+            Next
+
+        End If
+
+        'For Each i As ListViewItem In LV_Rules.SelectedItems
+        '    If i.SubItems(0).Text = "RULE I" Then
+        '        For Each item In tmp.Rule1Sections()
+        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+        '            lvitem.SubItems.Add(item.NatureOfOffenses)
+        '        Next
+        '    ElseIf i.SubItems(0).Text = "RULE II" Then
+        '        For Each item In tmp.Rule2Sections()
+        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+        '            lvitem.SubItems.Add(item.NatureOfOffenses)
+        '        Next
+        '    ElseIf i.SubItems(0).Text = "RULE III" Then
+        '        For Each item In tmp.Rule3Sections()
+        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+        '            lvitem.SubItems.Add(item.NatureOfOffenses)
+        '        Next
+        '    ElseIf i.SubItems(0).Text = "RULE IV" Then
+        '        For Each item In tmp.Rule4Sections()
+        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+        '            lvitem.SubItems.Add(item.NatureOfOffenses)
+        '        Next
+        '    ElseIf i.SubItems(0).Text = "RULE V" Then
+        '        For Each item In tmp.Rule5Sections()
+        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+        '            lvitem.SubItems.Add(item.NatureOfOffenses)
+        '        Next
+        '    ElseIf i.SubItems(0).Text = "RULE VI" Then
+        '        For Each item In tmp.Rule6Sections()
+        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
+        '            lvitem.SubItems.Add(item.NatureOfOffenses)
+        '        Next
+
+        '    End If
+        'Next
+    End Sub
+
+    Private Sub FromAuditDate_DTP_CloseUp(sender As Object, e As EventArgs)
         _console.AppendText(FromAuditDate_DTP.Value & ", ")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         _console.Clear()
     End Sub
 
@@ -719,7 +809,7 @@ Public Class frmCoorective
             ToPDF("IR No. " & SCNo_LBL.Text & " - " & EmpName_TXT.Text, "Incident Report", RptViewer_ShowCause, "Show Cause Notice")
 
             For Each itemsec As ListViewItem In LV_Sections.SelectedItems
-                SaveRuleNoSectionnO(EmpName_TXT.Tag, LV_Rules.FocusedItem.SubItems(0).Text, itemsec.SubItems(0).Text, SCNo_LBL.Text)
+                SaveRuleNoSectionnO(EmpName_TXT.Tag, RuleViolated_GB.Tag, itemsec.SubItems(0).Text, SCNo_LBL.Text)
             Next
 
             SaveShowCause(EmpName_TXT.Tag, DateSent_DTP.Value, DateSent_DTP.Value.AddDays(5), FolderPath, "NO", Company_TXT.Text, SCNo_LBL.Text)
@@ -743,7 +833,7 @@ Public Class frmCoorective
         Alert()
     End Sub
 
-    Private Sub LV_Rules_MouseClick(sender As Object, e As MouseEventArgs) Handles LV_Rules.MouseClick
+    Private Sub LV_Rules_MouseClick(sender As Object, e As MouseEventArgs)
 
         If EmpName_TXT.Text = "" Then
             MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -873,49 +963,49 @@ Public Class frmCoorective
         End If
     End Sub
 
-    Private Sub WP_RulesList_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles WP_RulesList.SelectedIndexChanged
-        Dim tmp As New Lists
-        WP_SectionsList.Items.Clear()
-        For Each i As ListViewItem In WP_RulesList.SelectedItems
-            If i.SubItems(0).Text = "RULE I" Then
-                For Each item In tmp.Rule1Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
+    'Private Sub WP_RulesList_SelectedIndexChanged_1(sender As Object, e As EventArgs)
+    'Dim tmp As New Lists
+    'WP_SectionsList.Items.Clear()
+    'For Each i As ListViewItem In WP_RulesList.SelectedItems
+    '    If i.SubItems(0).Text = "RULE I" Then
+    '        For Each item In tmp.Rule1Sections()
+    '            Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+    '            lvitem.SubItems.Add(item.NatureOfOffenses)
+    '        Next
 
-            ElseIf i.SubItems(0).Text = "RULE II" Then
-                For Each item In tmp.Rule2Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
+    '    ElseIf i.SubItems(0).Text = "RULE II" Then
+    '        For Each item In tmp.Rule2Sections()
+    '            Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+    '            lvitem.SubItems.Add(item.NatureOfOffenses)
+    '        Next
 
-            ElseIf i.SubItems(0).Text = "RULE III" Then
-                For Each item In tmp.Rule3Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
+    '    ElseIf i.SubItems(0).Text = "RULE III" Then
+    '        For Each item In tmp.Rule3Sections()
+    '            Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+    '            lvitem.SubItems.Add(item.NatureOfOffenses)
+    '        Next
 
-            ElseIf i.SubItems(0).Text = "RULE IV" Then
-                For Each item In tmp.Rule4Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
+    '    ElseIf i.SubItems(0).Text = "RULE IV" Then
+    '        For Each item In tmp.Rule4Sections()
+    '            Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+    '            lvitem.SubItems.Add(item.NatureOfOffenses)
+    '        Next
 
-            ElseIf i.SubItems(0).Text = "RULE V" Then
-                For Each item In tmp.Rule5Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
+    '    ElseIf i.SubItems(0).Text = "RULE V" Then
+    '        For Each item In tmp.Rule5Sections()
+    '            Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+    '            lvitem.SubItems.Add(item.NatureOfOffenses)
+    '        Next
 
-            ElseIf i.SubItems(0).Text = "RULE VI" Then
-                For Each item In tmp.Rule6Sections()
-                    Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
-                    lvitem.SubItems.Add(item.NatureOfOffenses)
-                Next
+    '    ElseIf i.SubItems(0).Text = "RULE VI" Then
+    '        For Each item In tmp.Rule6Sections()
+    '            Dim lvitem As ListViewItem = WP_SectionsList.Items.Add(item.Section)
+    '            lvitem.SubItems.Add(item.NatureOfOffenses)
+    '        Next
 
-            End If
-        Next
-    End Sub
+    '    End If
+    'Next
+    'End Sub
 
 
     Private Sub SearchWP_EMP_BTN_Click(sender As Object, e As EventArgs) Handles SearchWP_EMP_BTN.Click
@@ -961,6 +1051,40 @@ Public Class frmCoorective
 
     Private Sub NumberOfDays_TXT_ValueChanged(sender As Object, e As EventArgs) Handles NumberOfDays_TXT.ValueChanged
         NoOfDaysSuspend = NumberOfDays_TXT.Text
+    End Sub
+
+    Private Sub Action_CB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Action_CB.SelectedIndexChanged
+        If Action_CB.SelectedIndex = 1 Then
+
+            Action_CB.Tag = "RULE I"
+            Console.WriteLine("1 " & Action_CB.Tag)
+
+        ElseIf Action_CB.SelectedIndex = 2 Then
+
+            Action_CB.Tag = "RULE II"
+            Console.WriteLine("2 " & Action_CB.Tag)
+
+        ElseIf Action_CB.SelectedIndex = 3 Then
+
+            Action_CB.Tag = "RULE III"
+            Console.WriteLine("3 " & Action_CB.Tag)
+
+        ElseIf Action_CB.SelectedIndex = 4 Then
+
+            Action_CB.Tag = "RULE IV"
+            Console.WriteLine("4 " & Action_CB.Tag)
+
+        ElseIf Action_CB.SelectedIndex = 5 Then
+
+            Action_CB.Tag = "RULE V"
+            Console.WriteLine("5 " & Action_CB.Tag)
+
+        ElseIf Action_CB.SelectedIndex = 6 Then
+
+            Action_CB.Tag = "RULE VI"
+            Console.WriteLine("6 " & Action_CB.Tag)
+
+        End If
     End Sub
 
 End Class

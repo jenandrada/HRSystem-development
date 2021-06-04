@@ -93,6 +93,11 @@ Public Class frmLetter
         Allow_DTP_Indi.Value = DateTime.Now
         Allow_Company_Combo.SelectedIndex = 1
 
+        _ListNames.Clear()
+        _ListBranch.Clear()
+        _ListStatus.Clear()
+        _ListPosition.Clear()
+
     End Sub
 
     Private Sub Save_BTN_Click(sender As Object, e As EventArgs) Handles Save_BTN.Click

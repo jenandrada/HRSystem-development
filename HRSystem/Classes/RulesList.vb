@@ -25,6 +25,7 @@ Public Class Lists
     End Function
 
     Friend Function Rule1Sections() As List(Of SectionList)
+
         Dim secLst As New List(Of SectionList) From
             {
                 New SectionList With {.Section = "Section 1", .NatureOfOffenses = "Failure to register time entry 3 times in a month to the Biometric machine."},
@@ -53,6 +54,7 @@ Public Class Lists
             }
 
         Return secLst
+
     End Function
 
     Friend Function Rule2Sections() As List(Of SectionList)
