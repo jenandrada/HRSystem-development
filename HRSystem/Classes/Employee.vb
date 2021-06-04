@@ -47,7 +47,7 @@ Public Class Employee
 
     Public Property IRNo() As Integer
 
-    Public Property IncidentDate() As Date
+    Public Property IncidentDate() As String
 
     Public Property RuleViolated() As String
 

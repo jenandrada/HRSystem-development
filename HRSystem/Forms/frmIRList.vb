@@ -56,12 +56,11 @@
     Private Sub AddItem(ByVal dr As DataRow)
         With dr
 
-            Dim DateIncident As DateTime = CDate(.Item("INCIDENTDATE"))
             Dim DateReceived As DateTime = CDate(.Item("RECEIVEDDATE"))
 
             Dim lv As ListViewItem = lvEmployee.Items.Add(Format(.Item("IRNO"), "00000"))
             lv.SubItems.Add($"{ .Item("LastName") }, { .Item("FirstName") } { .Item("MiddleName") }")
-            lv.SubItems.Add(DateIncident.ToString("MMMM d, yyyy"))
+            lv.SubItems.Add(.Item("INCIDENTDATE"))
             lv.SubItems.Add(DateReceived.ToString("MMMM d, yyyy"))
             lv.SubItems.Add(.Item("RULEVIOLATED"))
             lv.SubItems.Add(.Item("PREPAREDBY"))

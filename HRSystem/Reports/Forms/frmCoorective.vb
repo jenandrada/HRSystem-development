@@ -153,7 +153,7 @@ Public Class frmCoorective
             New ReportParameter("paramCompany", Company_TXT.Text, True),
             New ReportParameter("paramBranch", Branch_TXT.Text, True),
             New ReportParameter("paramDate", dateIssued),
-            New ReportParameter("paramDateofAudit", _console.Text),
+            New ReportParameter("paramDateofAudit", SC_IncidentDate_RichB.Text),
             New ReportParameter("paramLocation", Location_TXT.Text),
             New ReportParameter("paramAuditFindings", AuditFindings_TXT.Text),
             New ReportParameter("paramChecked", chkStatus),
@@ -230,12 +230,13 @@ Public Class frmCoorective
         }
 
         Try
-            For Each itemsec As ListViewItem In WP_SectionsList.SelectedItems
+            For Each itemsec As ListViewItem In WP_SectionsList.Items
                 Dim sql As String = "select * from TBL_RULESECTIONLIST where SECTION = '" & itemsec.SubItems(0).Text & "';"
                 Using adapter As New FbDataAdapter(sql, con)
                     adapter.Fill(tbl)
                 End Using
             Next
+
             Dim datasource As New ReportDataSource With
             {
                 .Name = "WP_DataSet1",
@@ -270,7 +271,7 @@ Public Class frmCoorective
             New ReportParameter("paramBranch", Department_TXT.Text),
             New ReportParameter("paramDateReceived", DateReceive),
             New ReportParameter("paramLocation", IncidentLoc_TXT.Text),
-            New ReportParameter("paramDateIncident", DateIncident),
+            New ReportParameter("paramDateIncident", _console.Text),
             New ReportParameter("paramDescription", Description_RichText.Text),
             New ReportParameter("paramActionTaken", Action_CB.Text),
             New ReportParameter("paramIRNo", IRNo_LBL.Text),
@@ -395,7 +396,7 @@ Public Class frmCoorective
 
         Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf"
 
-        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, DateIncident_DTP.Value, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, str)
+        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, _console.Text, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, str)
 
         SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Person_TXT.Text, "Incident Report IR No. " & IRNo_LBL.Text, Department_TXT.Text, Department_TXT.Tag, PositionP_TXT.Text)
 
@@ -427,14 +428,6 @@ Public Class frmCoorective
 
 
     Private ReadOnly _console As New RichTextBox
-
-    Private Sub Alert()
-        If EmpName_TXT.Text = "" Then
-            MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ElseIf IsNothing(Me.LV_Sections.FocusedItem) Then
-            MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-    End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Explain_datagrid.CellContentClick
 
@@ -766,28 +759,12 @@ Public Class frmCoorective
         'Next
     End Sub
 
-    Private Sub FromAuditDate_DTP_CloseUp(sender As Object, e As EventArgs)
-        _console.AppendText(FromAuditDate_DTP.Value & ", ")
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        _console.Clear()
-    End Sub
-
     Private Sub PS1_Btn_Click(sender As Object, e As EventArgs) Handles PS1_Btn.Click
         Position1_TXT.ReadOnly = False
     End Sub
 
     Private Sub PS3_Btn_Click(sender As Object, e As EventArgs) Handles PS3_Btn.Click
         Position3_TXT.ReadOnly = False
-    End Sub
-
-    Private Sub Optional_CHK_CheckedChanged(sender As Object, e As EventArgs) Handles Optional_CHK.CheckedChanged
-        If Optional_CHK.Checked Then
-            Optional_Group.Enabled = True
-        Else
-            Optional_Group.Enabled = False
-        End If
     End Sub
 
     Private Sub OK_BTN_Click_1(sender As Object, e As EventArgs) Handles OK_BTN.Click
@@ -823,14 +800,6 @@ Public Class frmCoorective
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
-    End Sub
-
-    Private Sub AuditFindings_TXT_TextChanged(sender As Object, e As EventArgs) Handles AuditFindings_TXT.TextChanged
-        Alert()
-    End Sub
-
-    Private Sub Location_TXT_TextChanged(sender As Object, e As EventArgs) Handles Location_TXT.TextChanged
-        Alert()
     End Sub
 
     Private Sub LV_Rules_MouseClick(sender As Object, e As MouseEventArgs)
@@ -955,13 +924,6 @@ Public Class frmCoorective
         End If
     End Sub
 
-    Private Sub Audit_CHK_CheckedChanged(sender As Object, e As EventArgs) Handles Audit_CHK.CheckedChanged
-        If Audit_CHK.Checked = True Then
-            chkStatus = 1
-        ElseIf Audit_CHK.Checked = False Then
-            chkStatus = 0
-        End If
-    End Sub
 
     'Private Sub WP_RulesList_SelectedIndexChanged_1(sender As Object, e As EventArgs)
     'Dim tmp As New Lists
@@ -1085,6 +1047,14 @@ Public Class frmCoorective
             Console.WriteLine("6 " & Action_CB.Tag)
 
         End If
+    End Sub
+
+    Private Sub DateIncident_DTP_CloseUp(sender As Object, e As EventArgs) Handles DateIncident_DTP.CloseUp
+        _console.AppendText(DateIncident_DTP.Value.ToString("MMMM dd, yyyy") & ", ")
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        _console.Clear()
     End Sub
 
 End Class
