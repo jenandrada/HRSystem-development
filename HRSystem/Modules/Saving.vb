@@ -22,7 +22,7 @@
 
     End Sub
 
-    Friend Sub SaveWrittenReprimand(emp_id As String, dateSuspend As String, chargesAmount As String, preparedBy As String, path As String, irno As String)
+    Friend Sub SaveWrittenReprimand(emp_id As String, dateSuspend As String, dateFrom As String, preparedBy As String, path As String, irno As String, dateCreated As String)
         Dim mysql As String
 
 
@@ -32,14 +32,14 @@
             With dss.Tables(0).Rows(0)
                 .Item("EMP_ID") = emp_id
                 .Item("DAYSSUSPEND") = dateSuspend
-                .Item("CHARGESAMOUNT") = chargesAmount
+                .Item("DATE_FROM") = dateFrom
                 .Item("PREPAREDBY") = preparedBy
                 .Item("WRITTEN_PATH") = path
+                .Item("DATE_CREATED") = dateCreated
             End With
             SaveEntry(dss, False)
 
         Else
-
 
             mysql = "Select * From IR_REPRIMAND Rows 1"
             Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
@@ -50,7 +50,7 @@
                     .Item("IRNO") = irno
                     .Item("EMP_ID") = emp_id
                     .Item("DAYSSUSPEND") = dateSuspend
-                    .Item("CHARGESAMOUNT") = chargesAmount
+                    .Item("DATE_FROM") = dateFrom
                     .Item("PREPAREDBY") = preparedBy
                     .Item("WRITTEN_PATH") = path
 
@@ -60,6 +60,28 @@
             End Using
 
         End If
+
+    End Sub
+
+    Friend Sub SaveECS(IRNo As String, person_ID As String, dateCreated As String, ecsno As String, amount As String, noOfMonths As String)
+
+        Dim mysql As String = "Select * From IR_ECS Rows 1"
+        Using ds As DataSet = LoadSQL(mysql, "IR_ECS")
+
+            Dim dsNewRow As DataRow = ds.Tables(0).NewRow
+            With dsNewRow
+
+                .Item("IRNo") = IRNo
+                .Item("person_ID") = person_ID
+                .Item("DATE_CREATED") = dateCreated
+                .Item("ECSNO") = ecsno
+                .Item("AMOUNT") = amount
+                .Item("NO_OF_MONTHS") = noOfMonths
+
+            End With
+            ds.Tables(0).Rows.Add(dsNewRow)
+            SaveEntry(ds)
+        End Using
 
     End Sub
 

@@ -145,6 +145,22 @@ Module Selecting
 
     End Sub
 
+    Friend Sub PopulateExplainationSTATUS(datagrid As DataGridView, status As String)
+        datagrid.Rows.Clear()
+        Dim mysql As String
+
+        mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno where A.STATUS = '" & status & "'"
+        Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    AddItem(dr, datagrid)
+                Next
+
+            End If
+        End Using
+
+    End Sub
+
     Public Sub LoadExplainSearchName(search As String, datagrid As DataGridView)
 
         datagrid.Rows.Clear()
@@ -182,29 +198,37 @@ Module Selecting
 
     Public Sub LoadExplainSearchIRNO(irno As String, datagrid As DataGridView)
 
-        datagrid.Rows.Clear()
-        Dim secured_str = DreadKnight(irno)
-        Dim mysql As String
-        Dim strWords As String() = secured_str.Split(New Char() {" "c})
+        Dim int As Integer
+
+        If Double.TryParse(irno, int) Then
+
+            datagrid.Rows.Clear()
+            Dim secured_str = DreadKnight(irno)
+            Dim mysql As String
+            Dim strWords As String() = secured_str.Split(New Char() {" "c})
 
 
-        If secured_str.Length <> 0 Then
+            If secured_str.Length <> 0 Then
 
-            mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno Where A.irno = '" & irno & "'"
+                mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno Where A.irno = '" & irno & "'"
+
+            Else
+                mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
+            End If
+
+            Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
+                If ds.Tables(0).Rows.Count > 0 Then
+
+                    For Each dr In ds.Tables(0).Rows
+                        AddItem(dr, datagrid)
+                    Next
+                End If
+            End Using
 
         Else
-            mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
+            MsgBox("Invalid! You entered Nonnumerical data.", MsgBoxStyle.Critical, "Error")
         End If
 
-        Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
-            If ds.Tables(0).Rows.Count > 0 Then
-
-                For Each dr In ds.Tables(0).Rows
-                    AddItem(dr, datagrid)
-                Next
-
-            End If
-        End Using
     End Sub
 
     Public Sub AddItem(ByVal dr As DataRow, datagrid As DataGridView)

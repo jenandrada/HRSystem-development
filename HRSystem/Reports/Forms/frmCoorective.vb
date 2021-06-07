@@ -26,6 +26,8 @@ Public Class frmCoorective
         End If
 
         _console.Clear()
+        SearchBy_Combo.SelectedIndex = 0
+        Status_Combo.SelectedIndex = 0
 
         'Dim tmpRule As New Lists
         'tmpRule.RuleDataTable() 
@@ -204,7 +206,14 @@ Public Class frmCoorective
             chkStatus = 3
         ElseIf SixDays_RBTN.Checked = True Then
             chkStatus = 4
+        ElseIf AmountCharges_CB.Checked = True Then
+            chkStatus = 5
         End If
+
+        Dim DateFrom, DateTo, AMOUNT As String
+        DateFrom = SuspensionDate_DTP.Value.ToString("MMMM dd, yyyy")
+        DateTo = SuspensionDate_DTP.Value.AddDays(NoOfDaysSuspend).ToString("MMMM dd, yyyy")
+        AMOUNT = Decimal.Parse(Charges_Numeric.Text).ToString("##,###0.00")
 
         RptViewer_WrittenReprimand.LocalReport.DataSources.Clear()
 
@@ -225,7 +234,11 @@ Public Class frmCoorective
             New ReportParameter("paramPosition3", WP_Position3_TXT.Text),
             New ReportParameter("paramPosition4", WP_Position4_TXT.Text),
             New ReportParameter("paramManuallNumDaysSuspension", NumberOfDays_TXT.Text),
-            New ReportParameter("paramCharges", Charges_Numeric.Text),
+            New ReportParameter("paramECSNo", ECSNo_TXT.Text),
+            New ReportParameter("paramCharges", AMOUNT),
+            New ReportParameter("paramMonths", NoOfMONTHS_TXT.Text),
+            New ReportParameter("paramDateFrom", DateFrom),
+            New ReportParameter("paramDateTo", DateTo),
             New ReportParameter("paramSCNO", IRNoWritten_LBL.Text)
         }
 
@@ -820,11 +833,7 @@ Public Class frmCoorective
 
     End Sub
 
-    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress
-        If IsEnter(e) Then btnSearch.PerformClick()
-    End Sub
-
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs)
 
         LoadExplainSearchName(txtSearch.Text, Explain_datagrid)
 
@@ -832,9 +841,11 @@ Public Class frmCoorective
 
     Private Sub WP_OK_BTN_Click_1(sender As Object, e As EventArgs) Handles WP_OK_BTN.Click
         If WP_Name_TXT.Text = "" Then
+
             If WP_Name_TXT.Text = "" Then
                 MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
+
         Else
             LoadWrittenReprimandReport()
         End If
@@ -843,17 +854,53 @@ Public Class frmCoorective
     Private Sub WP_Save_Btn_Click_1(sender As Object, e As EventArgs) Handles WP_Save_Btn.Click
 
         If Not WP_Name_TXT.Text = "" Then
-            'ToPDF(WP_Name_TXT.Text, "Written Reprimand Notice", RptViewer_WrittenReprimand, "Written Reprimand Notice")
 
             ToPDF("IR No. " & IRNoWritten_LBL.Text & " - " & WP_Name_TXT.Text, "Incident Report", RptViewer_WrittenReprimand, "Written Reprimand Notice")
 
-            SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, Charges_Numeric.Text, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text)
+            SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, SuspensionDate_DTP.Value, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text, Date.Now)
 
             SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, WP_Name_TXT.Text, "Written Reprimand for IR No. " & IRNoWritten_LBL.Text, WP_Branch_TXT.Text, WP_Position_TXT.Tag, WP_Position_TXT.Text)
+
+            If AmountCharges_CB.Checked = True Then
+
+                SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, NoOfMONTHS_TXT.Text)
+
+            End If
+
+            ClearWRITTEN()
 
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+
+    End Sub
+
+    Private Sub ClearWRITTEN()
+
+        RptViewer_WrittenReprimand.Clear()
+        WP_Name_TXT.Clear()
+        WP_Position_TXT.Clear()
+        WP_Company_TXT.Clear()
+        WP_Branch_TXT.Clear()
+        WP_SectionsList.Clear()
+        WPRule_LBL.Text = "Rule"
+        WP_Incident_TXT.Clear()
+        WP_DateIncident_DTP.Clear()
+
+        WW_RBTN.Checked = False
+        TwoDays_RBTN.Checked = False
+        FourDays_RBTN.Checked = False
+        SixDays_RBTN.Checked = False
+
+        NoDaysSuspend_CB.Checked = False
+        AmountCharges_CB.Checked = False
+
+        _console.Clear()
+
+        WP_Emp_Rel_TXT.Clear()
+        WP_HR_Sup_TXT.Clear()
+        WP_Officer_Incharge_TXT.Clear()
+        WP_BusinessHead_TXT.Clear()
 
     End Sub
 
@@ -864,10 +911,19 @@ Public Class frmCoorective
             TwoDays_RBTN.Checked = False
             FourDays_RBTN.Checked = False
             SixDays_RBTN.Checked = False
+            SuspensionDate_DTP.Enabled = True
             chkStatus = 0
+
+            AmountCharges_CB.Checked = False
+            ECS_GB.Visible = False
+            Charges_Numeric.Text = 0
+            ECSNo_TXT.Text = 0
+            NoOfMONTHS_TXT.Text = 0
         Else
-            NumberOfDays_TXT.Enabled = False
             NumberOfDays_TXT.Text = 0
+            NumberOfDays_TXT.Enabled = False
+            SuspensionDate_DTP.Enabled = False
+
         End If
     End Sub
 
@@ -899,8 +955,15 @@ Public Class frmCoorective
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
             NoOfDaysSuspend = 2
+            SuspensionDate_DTP.Enabled = True
+            SuspensionDate_DTP.Region = New Region(New Rectangle(2, 2, SuspensionDate_DTP.Width - 4, SuspensionDate_DTP.Height - 4))
+
+            AmountCharges_CB.Checked = False
+            Charges_Numeric.Text = 0
         Else
             NoOfDaysSuspend = 0
+            SuspensionDate_DTP.Enabled = False
+            SuspensionDate_DTP.Region = Nothing
         End If
     End Sub
 
@@ -909,8 +972,16 @@ Public Class frmCoorective
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
             NoOfDaysSuspend = 4
+            SuspensionDate_DTP.Enabled = True
+            SuspensionDate_DTP.Region = New Region(New Rectangle(2, 2, SuspensionDate_DTP.Width - 4, SuspensionDate_DTP.Height - 4))
+
+            AmountCharges_CB.Checked = False
+            Charges_Numeric.Enabled = False
+            Charges_Numeric.Text = 0
         Else
             NoOfDaysSuspend = 0
+            SuspensionDate_DTP.Enabled = False
+            SuspensionDate_DTP.Region = Nothing
         End If
     End Sub
 
@@ -919,8 +990,17 @@ Public Class frmCoorective
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
             NoOfDaysSuspend = 6
+            SuspensionDate_DTP.Enabled = True
+            SuspensionDate_DTP.Region = New Region(New Rectangle(2, 2, SuspensionDate_DTP.Width - 4, SuspensionDate_DTP.Height - 4))
+
+
+            AmountCharges_CB.Checked = False
+            Charges_Numeric.Enabled = False
+            Charges_Numeric.Text = 0
         Else
             NoOfDaysSuspend = 0
+            SuspensionDate_DTP.Enabled = False
+            SuspensionDate_DTP.Region = Nothing
         End If
     End Sub
 
@@ -989,62 +1069,59 @@ Public Class frmCoorective
 
     End Sub
 
-    Private Sub IRNo_BTN_Click(sender As Object, e As EventArgs) Handles IRNo_BTN.Click
-        LoadExplainSearchIRNO(IRNo_TXT.Text, Explain_datagrid)
-    End Sub
-
-    Private Sub IRNo_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles IRNo_TXT.KeyPress
-        If IsEnter(e) Then IRNo_BTN.PerformClick()
-    End Sub
-
     Private Sub AmountCharges_CB_CheckedChanged(sender As Object, e As EventArgs) Handles AmountCharges_CB.CheckedChanged
+
         If AmountCharges_CB.Checked = True Then
-            Charges_Numeric.Enabled = True
             WW_RBTN.Checked = False
             TwoDays_RBTN.Checked = False
             FourDays_RBTN.Checked = False
             SixDays_RBTN.Checked = False
-            'chkStatus = 0
+            ECS_GB.Visible = True
+            NoDaysSuspend_CB.Checked = False
+            chkStatus = 0
         Else
-            Charges_Numeric.Enabled = False
+
+            ECS_GB.Visible = False
             Charges_Numeric.Text = 0
         End If
+
     End Sub
 
     Private Sub NumberOfDays_TXT_ValueChanged(sender As Object, e As EventArgs) Handles NumberOfDays_TXT.ValueChanged
-        NoOfDaysSuspend = NumberOfDays_TXT.Text
+
+        If Not NumberOfDays_TXT.Text = 0 Then
+            NoOfDaysSuspend = NumberOfDays_TXT.Text
+            SuspensionDate_DTP.Region = New Region(New Rectangle(2, 2, SuspensionDate_DTP.Width - 4, SuspensionDate_DTP.Height - 4))
+        Else
+            SuspensionDate_DTP.Region = Nothing
+        End If
+
     End Sub
 
     Private Sub Action_CB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Action_CB.SelectedIndexChanged
         If Action_CB.SelectedIndex = 1 Then
 
             Action_CB.Tag = "RULE I"
-            Console.WriteLine("1 " & Action_CB.Tag)
 
         ElseIf Action_CB.SelectedIndex = 2 Then
 
             Action_CB.Tag = "RULE II"
-            Console.WriteLine("2 " & Action_CB.Tag)
 
         ElseIf Action_CB.SelectedIndex = 3 Then
 
             Action_CB.Tag = "RULE III"
-            Console.WriteLine("3 " & Action_CB.Tag)
 
         ElseIf Action_CB.SelectedIndex = 4 Then
 
             Action_CB.Tag = "RULE IV"
-            Console.WriteLine("4 " & Action_CB.Tag)
 
         ElseIf Action_CB.SelectedIndex = 5 Then
 
             Action_CB.Tag = "RULE V"
-            Console.WriteLine("5 " & Action_CB.Tag)
 
         ElseIf Action_CB.SelectedIndex = 6 Then
 
             Action_CB.Tag = "RULE VI"
-            Console.WriteLine("6 " & Action_CB.Tag)
 
         End If
     End Sub
@@ -1057,4 +1134,105 @@ Public Class frmCoorective
         _console.Clear()
     End Sub
 
+    Private Sub GroupBox2_Paint(sender As Object, e As PaintEventArgs)
+        Dim p As New Pen(Color.Red, 2)
+        e.Graphics.DrawRectangle(p, New Rectangle(SuspensionDate_DTP.Location + New Size(1, 1), SuspensionDate_DTP.Size - New Size(2, 2)))
+        p.Dispose()
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SearchBy_Combo.SelectedIndexChanged
+        If SearchBy_Combo.SelectedIndex = 0 Then
+            LoadExplainSearchName(txtSearch.Text, Explain_datagrid)
+        Else
+            LoadExplainSearchIRNO(txtSearch.Text, Explain_datagrid)
+        End If
+    End Sub
+
+    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress, ECSNo_TXT.KeyPress
+        If IsEnter(e) Then
+            If SearchBy_Combo.SelectedIndex = 0 Then
+                LoadExplainSearchName(txtSearch.Text, Explain_datagrid)
+            Else
+                LoadExplainSearchIRNO(txtSearch.Text, Explain_datagrid)
+            End If
+        End If
+    End Sub
+
+    Private Sub Status_Combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Status_Combo.SelectedIndexChanged
+
+        If Status_Combo.SelectedIndex = 0 Then
+
+            PopulateExplaination(Explain_datagrid)
+
+        ElseIf Status_Combo.SelectedIndex = 1 Then
+
+            PopulateExplainationSTATUS(Explain_datagrid, "YES")
+
+        ElseIf Status_Combo.SelectedIndex = 2 Then
+
+            PopulateExplainationSTATUS(Explain_datagrid, "NO")
+
+        End If
+
+    End Sub
+
+    Private Sub NumericUpDown1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles NoOfMONTHS_TXT.KeyPress, Charges_Numeric.KeyPress
+
+        If e.KeyChar <> ChrW(Keys.Back) Then
+            If Char.IsNumber(e.KeyChar) Or e.KeyChar = "." Then
+            Else
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+    Private Sub ECS_GB_Paint(sender As Object, e As PaintEventArgs) Handles ECS_GB.Paint
+
+        Dim txtbox As TextBox = Nothing
+        For Each xObject As Object In ECS_GB.Controls
+            If TypeOf xObject Is TextBox Then
+                txtbox = xObject
+                Dim p As New Pen(Color.Red, 2)
+                e.Graphics.DrawRectangle(p, New Rectangle(txtbox.Location + New Size(1, 1), txtbox.Size - New Size(2, 2)))
+                p.Dispose()
+            End If
+        Next
+
+    End Sub
+
+    Private Sub ECSNo_TXT_TextChanged(sender As Object, e As EventArgs) Handles ECSNo_TXT.TextChanged
+
+        If ECSNo_TXT.Text = 0 Then
+            ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
+        Else
+            ECSNo_TXT.Region = Nothing
+        End If
+
+    End Sub
+
+    Private Sub Charges_Numeric_TextChanged(sender As Object, e As EventArgs) Handles Charges_Numeric.TextChanged
+        If Charges_Numeric.Text = 0 Then
+            Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
+        Else
+            Charges_Numeric.Region = Nothing
+        End If
+    End Sub
+
+    Private Sub NoOfMONTHS_TXT_TextChanged(sender As Object, e As EventArgs) Handles NoOfMONTHS_TXT.TextChanged
+
+        If NoOfMONTHS_TXT.Text = 0 Then
+            NoOfMONTHS_TXT.Region = New Region(New Rectangle(2, 2, NoOfMONTHS_TXT.Width - 4, NoOfMONTHS_TXT.Height - 4))
+        Else
+            NoOfMONTHS_TXT.Region = Nothing
+        End If
+
+    End Sub
+
+    Private Sub SuspensionDate_DTP_CloseUp(sender As Object, e As EventArgs)
+        _console.AppendText(DateIncident_DTP.Value.ToString("MMMM dd, yyyy") & ", ")
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
+        _console.Clear()
+    End Sub
 End Class

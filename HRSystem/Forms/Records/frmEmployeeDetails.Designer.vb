@@ -144,10 +144,10 @@ Partial Class frmEmployeeDetails
         Me.PHealthID_TXT = New HRSystem.WaterMarkTextBox()
         Me.SSSID_TXT = New HRSystem.WaterMarkTextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.GroupBox_Bio = New System.Windows.Forms.GroupBox()
         Me.BioNumber_TXT = New System.Windows.Forms.TextBox()
         Me.CloseWindow_BTN = New System.Windows.Forms.Button()
         Me.TimerEmpDetails = New System.Windows.Forms.Timer(Me.components)
-        Me.GroupBox_Bio = New System.Windows.Forms.GroupBox()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Group_firstName.SuspendLayout()
@@ -1466,6 +1466,15 @@ Partial Class frmEmployeeDetails
         Me.Panel1.Size = New System.Drawing.Size(1179, 730)
         Me.Panel1.TabIndex = 0
         '
+        'GroupBox_Bio
+        '
+        Me.GroupBox_Bio.Controls.Add(Me.BioNumber_TXT)
+        Me.GroupBox_Bio.Location = New System.Drawing.Point(788, 4)
+        Me.GroupBox_Bio.Name = "GroupBox_Bio"
+        Me.GroupBox_Bio.Size = New System.Drawing.Size(208, 40)
+        Me.GroupBox_Bio.TabIndex = 25
+        Me.GroupBox_Bio.TabStop = False
+        '
         'BioNumber_TXT
         '
         Me.BioNumber_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1484,15 +1493,6 @@ Partial Class frmEmployeeDetails
         Me.CloseWindow_BTN.Size = New System.Drawing.Size(40, 40)
         Me.CloseWindow_BTN.TabIndex = 4
         Me.CloseWindow_BTN.UseVisualStyleBackColor = True
-        '
-        'GroupBox_Bio
-        '
-        Me.GroupBox_Bio.Controls.Add(Me.BioNumber_TXT)
-        Me.GroupBox_Bio.Location = New System.Drawing.Point(788, 4)
-        Me.GroupBox_Bio.Name = "GroupBox_Bio"
-        Me.GroupBox_Bio.Size = New System.Drawing.Size(208, 40)
-        Me.GroupBox_Bio.TabIndex = 25
-        Me.GroupBox_Bio.TabStop = False
         '
         'frmEmployeeDetails
         '
