@@ -235,12 +235,11 @@ Module Selecting
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
-                    AddRowAckno(dr, datagrid)
+                    AddItem(dr, datagrid)
                 Next
 
             End If
         End Using
-
     End Sub
 
     Public Sub LoadExplainSearchName(search As String, datagrid As DataGridView)
@@ -271,7 +270,7 @@ Module Selecting
             If ds.Tables(0).Rows.Count > 0 Then
 
                 For Each dr In ds.Tables(0).Rows
-                    AddRowAckno(dr, datagrid)
+                    AddItem(dr, datagrid)
                 Next
 
             End If
@@ -302,7 +301,7 @@ Module Selecting
                 If ds.Tables(0).Rows.Count > 0 Then
 
                     For Each dr In ds.Tables(0).Rows
-                        AddRowAckno(dr, datagrid)
+                        AddItem(dr, datagrid)
                     Next
                 End If
             End Using
@@ -323,7 +322,6 @@ Module Selecting
 
 
         If secured_str.Length <> 0 Then
-            'mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno Where "
 
             mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
@@ -340,7 +338,6 @@ Module Selecting
                 End If
             Next
         Else
-            'mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno "
 
             mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
@@ -352,7 +349,7 @@ Module Selecting
             If ds.Tables(0).Rows.Count > 0 Then
 
                 For Each dr In ds.Tables(0).Rows
-                    AddItem(dr, datagrid)
+                    AddRowAckno(dr, datagrid)
                 Next
 
             End If
@@ -394,7 +391,7 @@ Module Selecting
                 If ds.Tables(0).Rows.Count > 0 Then
 
                     For Each dr In ds.Tables(0).Rows
-                        AddItem(dr, datagrid)
+                        AddRowAckno(dr, datagrid)
                     Next
                 End If
             End Using
@@ -403,6 +400,27 @@ Module Selecting
             MsgBox("Invalid! You entered a Nonnumerical data.", MsgBoxStyle.Critical, "Error")
         End If
 
+    End Sub
+
+    Friend Sub PopulateACKNOWTATUS(datagrid As DataGridView, status As String)
+        datagrid.Rows.Clear()
+        Dim mysql As String
+
+        mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno where A.STATUS = '" & status & "'"
+
+        mysql = "Select * From IR_REPRIMAND A 
+                            inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno Where A.WRITTEN_STATUS = '" & status & "'"
+
+        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    AddRowAckno(dr, datagrid)
+                Next
+
+            End If
+        End Using
     End Sub
 
 End Module

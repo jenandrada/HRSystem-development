@@ -1,6 +1,6 @@
 ﻿Module Saving
 
-    Friend Sub SaveShowCause(emp_id As String, dateIssued As String, deadline As String, path As String, status As String, company As String, irno As String)
+    Friend Sub SaveShowCause(emp_id As String, dateIssued As String, deadline As String, path As String, status As String, company As String, irno As String, violation As String)
         Dim mysql As String = "Select * From SHOWCAUSE_RECORDS Rows 1"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
 
@@ -14,6 +14,7 @@
                 .Item("STATUS") = status
                 .Item("COMPANY") = company
                 .Item("IRNO") = irno
+                .Item("VIOLATION") = violation
 
             End With
             ds.Tables(0).Rows.Add(dsNewRow)

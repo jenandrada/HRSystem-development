@@ -979,21 +979,6 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Image Name="Image2">
-                <Source>Embedded</Source>
-                <Value>PCOM</Value>
-                <Sizing>FitProportional</Sizing>
-                <Top>0.79042in</Top>
-                <Left>7.10292in</Left>
-                <Height>0.5in</Height>
-                <Width>0.5in</Width>
-                <ZIndex>9</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                </Style>
-              </Image>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Height>13in</Height>

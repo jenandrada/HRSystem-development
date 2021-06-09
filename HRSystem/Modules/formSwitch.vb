@@ -26,7 +26,7 @@
         letter = 10
         compensation = 11
         branch3 = 12
-        corrective = 13
+        incidentReport = 13
     End Enum
 
     Friend Sub NavigateToPages(ByVal gotoForm As FormName)
@@ -195,32 +195,40 @@
             '    frmCompensation.Dock = DockStyle.Fill
             '    frmCompensation.BringToFront()
 
-            Case FormName.corrective
-                frmCoorective.MdiParent = frmMainForm
-                frmMainForm.pNavigate.Controls.Add(frmCoorective)
-                frmMainForm.pNavigate.Tag = frmCoorective
-                frmCoorective.Show()
+            Case FormName.incidentReport
+                frmIncidentReport.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frmIncidentReport)
+                frmMainForm.pNavigate.Tag = frmIncidentReport
+                frmIncidentReport.Show()
 
                 If tab = 1 Then
-                    frmCoorective.CorrectiveWindow.SelectedIndex = 1
-                    frmCoorective.LoadEmployeeShowCause(cus)
+                    frmIncidentReport.CorrectiveWindow.SelectedIndex = 1
+                    frmIncidentReport.LoadEmployeeShowCause(cus)
 
                 ElseIf tab = 2 Then
-                    frmCoorective.CorrectiveWindow.SelectedIndex = 3
-                    frmCoorective.LoadEmployeeWritten(cus)
+
+                    If edit = "CORRECTIVE" Then
+                        frmIncidentReport.CorrectiveWindow.SelectedIndex = 5
+                        frmIncidentReport.LoadEmployeeWritten(cus, "CORRECTIVE")
+                    Else
+                        frmIncidentReport.CorrectiveWindow.SelectedIndex = 3
+                        frmIncidentReport.LoadEmployeeWritten(cus, "WRITTEN")
+                    End If
 
                 ElseIf tab = 3 Then
+
                     If edit = "person" Then
-                        frmCoorective.CorrectiveWindow.SelectedIndex = 0
-                        frmCoorective.LoadIRPerson(cus)
+                        frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
+                        frmIncidentReport.LoadIRPerson(cus)
                     Else
-                        frmCoorective.CorrectiveWindow.SelectedIndex = 0
-                        frmCoorective.LoadIRSupervisor(cus)
+                        frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
+                        frmIncidentReport.LoadIRSupervisor(cus)
                     End If
+
                 End If
 
-                frmCoorective.Dock = DockStyle.Fill
-                frmCoorective.BringToFront()
+                frmIncidentReport.Dock = DockStyle.Fill
+                frmIncidentReport.BringToFront()
         End Select
     End Sub
 

@@ -21,8 +21,8 @@
 
     Private Sub Pending_Panel_DoubleClick(sender As Object, e As EventArgs) Handles Pending_Panel.DoubleClick
 
-        If frmCoorective Is Nothing Then
-            Dim frm As New frmCoorective With {
+        If frmIncidentReport Is Nothing Then
+            Dim frm As New frmIncidentReport With {
                 .MdiParent = frmMainForm
             }
             frmMainForm.pNavigate.Controls.Add(frm)
@@ -33,7 +33,7 @@
             frm.BringToFront()
 
         Else
-            frmEmployeeList.BringToFront()
+            frmIncidentReport.BringToFront()
         End If
 
         Close()

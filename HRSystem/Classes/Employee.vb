@@ -55,6 +55,12 @@ Public Class Employee
 
     Public Property IncidentLocation() As String
 
+    Public Property SCDate() As String
+
+    Public Property WRDate() As String
+
+    Public Property Violation() As String
+
     Public Property ID() As Integer
 
     Public Property FirstName() As String
@@ -873,7 +879,11 @@ Public Class Employee
     Friend Sub LoadCorrectiveDetails(ByVal IR As Integer)
         Dim mysql As String
 
-        mysql = "Select * From IR_RECORDS inner join tbl_employee on tbl_employee.id = IR_RECORDS.PERSON_ID WHERE IR_RECORDS.IRNo = '" & IR & "'"
+        mysql = "Select * From IR_RECORDS A 
+                            inner join tbl_employee B on B.id = A.PERSON_ID 
+                            inner join SHOWCAUSE_RECORDS C  on C.IRNo = A.IRNo 
+                            inner join IR_REPRIMAND D  on D.IRNo = A.IRNo  WHERE A.IRNo = '" & IR & "'"
+
         Using ds As DataSet = LoadSQL(mysql, "IR_RECORDS")
 
             If ds.Tables(0).Rows.Count > 0 Then
@@ -894,6 +904,9 @@ Public Class Employee
                     RuleViolated = .Item("RULEVIOLATED")
                     IncidentDate = .Item("INCIDENTDATE")
                     IncidentLocation = .Item("INCIDENTLOC")
+                    SCDate = .Item("DATE_ISSUED")
+                    WRDate = .Item("DATE_CREATED")
+                    Violation = .Item("VIOLATION")
                     'RuleDescription = .Item("RULE_DEFINITION") 
 
                 End With

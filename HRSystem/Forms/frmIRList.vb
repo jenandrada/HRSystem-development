@@ -85,7 +85,7 @@
         If txtSearch.Tag = "ShowCause" Then
 
             tmpEmp.LoadCorrectiveDetails(idx)
-            ReloadFormFromSearch(FormName.corrective, tmpEmp, 1)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 1)
 
             'ElseIf txtSearch.Tag = "Written" Then
 

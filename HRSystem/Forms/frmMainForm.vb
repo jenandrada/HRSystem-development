@@ -627,8 +627,8 @@ Public Class frmMainForm
     End Sub
 
     Private Sub Pending_Panel_MouseDoubleClick(sender As Object, e As MouseEventArgs)
-        If frmCoorective Is Nothing Then
-            Dim frm As New frmCoorective With {
+        If frmIncidentReport Is Nothing Then
+            Dim frm As New frmIncidentReport With {
                 .MdiParent = Me
             }
             pNavigate.Controls.Add(frm)
@@ -639,7 +639,7 @@ Public Class frmMainForm
             frm.BringToFront()
 
         Else
-            frmEmployeeList.BringToFront()
+            frmIncidentReport.BringToFront()
         End If
     End Sub
 

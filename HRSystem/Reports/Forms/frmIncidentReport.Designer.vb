@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmCoorective
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmIncidentReport
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,10 @@ Partial Class frmCoorective
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCoorective))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmIncidentReport))
+        Me.Label21 = New System.Windows.Forms.Label()
         Me.CorrectiveWindow = New System.Windows.Forms.TabControl()
         Me.IR_Page = New System.Windows.Forms.TabPage()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
@@ -186,11 +187,81 @@ Partial Class frmCoorective
         Me.Label6 = New System.Windows.Forms.Label()
         Me.WP_Name_TXT = New System.Windows.Forms.TextBox()
         Me.Acknowledg_Page = New System.Windows.Forms.TabPage()
-        Me.Reports_Page = New System.Windows.Forms.TabPage()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Ack_Panel = New System.Windows.Forms.Panel()
+        Me.Label47 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.CancelAck_BTN = New System.Windows.Forms.Button()
+        Me.SaveAck_BTN = New System.Windows.Forms.Button()
+        Me.Ack_Datagrid = New System.Windows.Forms.DataGridView()
+        Me.IRNO_DGVV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Name_DGVV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Company_DGVV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IR_DGVV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.SC_DGVV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Explain_DGVV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.WRITTEN_DGVV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ACKNOW_DGVV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.StatusACK_Combo = New System.Windows.Forms.ComboBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.SearchAck_Combo = New System.Windows.Forms.ComboBox()
+        Me.SearchAck_TXT = New System.Windows.Forms.TextBox()
+        Me.RptViewer_Acknowledge = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.Corrective_Page = New System.Windows.Forms.TabPage()
+        Me.SplitContainer4 = New System.Windows.Forms.SplitContainer()
+        Me.RptViewer_Corrective = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Coo_DateIncident_RB = New System.Windows.Forms.RichTextBox()
+        Me.Label48 = New System.Windows.Forms.Label()
+        Me.Label49 = New System.Windows.Forms.Label()
+        Me.Coo_Rule_LBL = New System.Windows.Forms.Label()
+        Me.Coo_SectionList = New System.Windows.Forms.ListView()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.Coo_Description_RB = New System.Windows.Forms.RichTextBox()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.ClearDateSuspension_BTN = New System.Windows.Forms.Button()
+        Me.DateSuspension_DPT = New System.Windows.Forms.DateTimePicker()
+        Me.Label52 = New System.Windows.Forms.Label()
+        Me.Label51 = New System.Windows.Forms.Label()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.Label56 = New System.Windows.Forms.Label()
+        Me.Label57 = New System.Windows.Forms.Label()
+        Me.Coo_NoOfDays_Numeric = New System.Windows.Forms.NumericUpDown()
+        Me.Change4_BTN = New System.Windows.Forms.Button()
+        Me.Change2_BTN = New System.Windows.Forms.Button()
+        Me.Change3_BTN = New System.Windows.Forms.Button()
+        Me.Change1_BTN = New System.Windows.Forms.Button()
+        Me.Coo_Noted_Pos_TXT = New System.Windows.Forms.TextBox()
+        Me.Coo_Rev_Pos1_TXT = New System.Windows.Forms.TextBox()
+        Me.Coo_Rev_Pos2_TXT = New System.Windows.Forms.TextBox()
+        Me.Coo_Pre_Pos_TXT = New System.Windows.Forms.TextBox()
+        Me.Coo_Rev_Name2_TXT = New System.Windows.Forms.TextBox()
+        Me.Coo_Rev_Name1_TXT = New System.Windows.Forms.TextBox()
+        Me.Coo_Noted_Name_TXT = New System.Windows.Forms.TextBox()
+        Me.Coo_Pre_Name_TXT = New System.Windows.Forms.TextBox()
+        Me.SaveCOR_BTN = New System.Windows.Forms.Button()
+        Me.PreviewCOR_BTN = New System.Windows.Forms.Button()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.Coo_Emp_BTN = New System.Windows.Forms.Button()
+        Me.Label58 = New System.Windows.Forms.Label()
+        Me.Coo_Branch_TXT = New System.Windows.Forms.TextBox()
+        Me.Label59 = New System.Windows.Forms.Label()
+        Me.Coo_Company_TXT = New System.Windows.Forms.TextBox()
+        Me.Label60 = New System.Windows.Forms.Label()
+        Me.Coo_Position_TXT = New System.Windows.Forms.TextBox()
+        Me.Label62 = New System.Windows.Forms.Label()
+        Me.Coo_Name_TXT = New System.Windows.Forms.TextBox()
+        Me.Label61 = New System.Windows.Forms.Label()
+        Me.IRNoCOO_LBL = New System.Windows.Forms.Label()
         Me.Close_BTN = New System.Windows.Forms.Button()
-        Me.FbDataAdapter1 = New FirebirdSql.Data.FirebirdClient.FbDataAdapter()
+        Me.Coo_Violation = New System.Windows.Forms.RichTextBox()
+        Me.Label50 = New System.Windows.Forms.Label()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.Label54 = New System.Windows.Forms.Label()
+        Me.Coo_SCDate_LBL = New System.Windows.Forms.Label()
+        Me.Coo_WRDate_LBL = New System.Windows.Forms.Label()
+        Me.Label63 = New System.Windows.Forms.Label()
+        Me.SCViolation_RichB = New System.Windows.Forms.RichTextBox()
         Me.CorrectiveWindow.SuspendLayout()
         Me.IR_Page.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -223,24 +294,45 @@ Partial Class frmCoorective
         Me.ECS_GB.SuspendLayout()
         CType(Me.NumberOfDays_TXT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
-        Me.Panel3.SuspendLayout()
+        Me.Acknowledg_Page.SuspendLayout()
+        Me.Ack_Panel.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Ack_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Corrective_Page.SuspendLayout()
+        CType(Me.SplitContainer4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer4.Panel1.SuspendLayout()
+        Me.SplitContainer4.Panel2.SuspendLayout()
+        Me.SplitContainer4.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
+        CType(Me.Coo_NoOfDays_Numeric, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox11.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Segoe UI", 18.0!)
+        Me.Label21.Location = New System.Drawing.Point(2, 8)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(123, 32)
+        Me.Label21.TabIndex = 12
+        Me.Label21.Text = "Corrective"
         '
         'CorrectiveWindow
         '
-        Me.CorrectiveWindow.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CorrectiveWindow.Controls.Add(Me.IR_Page)
         Me.CorrectiveWindow.Controls.Add(Me.ShowCause_Page)
         Me.CorrectiveWindow.Controls.Add(Me.Explanation_Page)
         Me.CorrectiveWindow.Controls.Add(Me.WrittenReprimand_Page)
         Me.CorrectiveWindow.Controls.Add(Me.Acknowledg_Page)
-        Me.CorrectiveWindow.Controls.Add(Me.Reports_Page)
+        Me.CorrectiveWindow.Controls.Add(Me.Corrective_Page)
         Me.CorrectiveWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CorrectiveWindow.Location = New System.Drawing.Point(2, 45)
+        Me.CorrectiveWindow.Location = New System.Drawing.Point(1, 47)
         Me.CorrectiveWindow.Name = "CorrectiveWindow"
         Me.CorrectiveWindow.SelectedIndex = 0
         Me.CorrectiveWindow.Size = New System.Drawing.Size(1175, 700)
-        Me.CorrectiveWindow.TabIndex = 2
+        Me.CorrectiveWindow.TabIndex = 11
         '
         'IR_Page
         '
@@ -629,7 +721,7 @@ Partial Class frmCoorective
         '
         Me.IRNo_LBL.AutoSize = True
         Me.IRNo_LBL.Font = New System.Drawing.Font("Microsoft Tai Le", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IRNo_LBL.Location = New System.Drawing.Point(1026, 5)
+        Me.IRNo_LBL.Location = New System.Drawing.Point(1026, 15)
         Me.IRNo_LBL.Name = "IRNo_LBL"
         Me.IRNo_LBL.Size = New System.Drawing.Size(65, 23)
         Me.IRNo_LBL.TabIndex = 16
@@ -640,7 +732,7 @@ Partial Class frmCoorective
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Microsoft Tai Le", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(966, 5)
+        Me.Label23.Location = New System.Drawing.Point(966, 15)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(60, 23)
         Me.Label23.TabIndex = 15
@@ -722,7 +814,7 @@ Partial Class frmCoorective
         Me.GroupBox1.Controls.Add(Me.SearchEMP_BTN)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(21, 53)
+        Me.GroupBox1.Location = New System.Drawing.Point(21, 17)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(595, 167)
         Me.GroupBox1.TabIndex = 16
@@ -829,9 +921,9 @@ Partial Class frmCoorective
         Me.GroupBox3.Controls.Add(Me.BusinessUnitHead_TXT)
         Me.GroupBox3.Controls.Add(Me.HRSupervisor_TXT)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(21, 1027)
+        Me.GroupBox3.Location = New System.Drawing.Point(21, 1183)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(614, 458)
+        Me.GroupBox3.Size = New System.Drawing.Size(614, 474)
         Me.GroupBox3.TabIndex = 14
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Authorize"
@@ -970,6 +1062,8 @@ Partial Class frmCoorective
         '
         'RuleViolated_GB
         '
+        Me.RuleViolated_GB.Controls.Add(Me.SCViolation_RichB)
+        Me.RuleViolated_GB.Controls.Add(Me.Label63)
         Me.RuleViolated_GB.Controls.Add(Me.Label41)
         Me.RuleViolated_GB.Controls.Add(Me.Label27)
         Me.RuleViolated_GB.Controls.Add(Me.SC_IncidentDate_RichB)
@@ -980,9 +1074,9 @@ Partial Class frmCoorective
         Me.RuleViolated_GB.Controls.Add(Me.Location_TXT)
         Me.RuleViolated_GB.Controls.Add(Me.Label8)
         Me.RuleViolated_GB.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RuleViolated_GB.Location = New System.Drawing.Point(21, 249)
+        Me.RuleViolated_GB.Location = New System.Drawing.Point(21, 213)
         Me.RuleViolated_GB.Name = "RuleViolated_GB"
-        Me.RuleViolated_GB.Size = New System.Drawing.Size(614, 765)
+        Me.RuleViolated_GB.Size = New System.Drawing.Size(614, 929)
         Me.RuleViolated_GB.TabIndex = 17
         Me.RuleViolated_GB.TabStop = False
         Me.RuleViolated_GB.Text = "Rules Violated"
@@ -1053,6 +1147,7 @@ Partial Class frmCoorective
         Me.AuditFindings_TXT.BulletIndent = 1
         Me.AuditFindings_TXT.Location = New System.Drawing.Point(26, 491)
         Me.AuditFindings_TXT.Name = "AuditFindings_TXT"
+        Me.AuditFindings_TXT.ReadOnly = True
         Me.AuditFindings_TXT.Size = New System.Drawing.Size(540, 103)
         Me.AuditFindings_TXT.TabIndex = 21
         Me.AuditFindings_TXT.Text = ""
@@ -1081,9 +1176,9 @@ Partial Class frmCoorective
         Me.Label8.Location = New System.Drawing.Point(22, 468)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(89, 21)
+        Me.Label8.Size = New System.Drawing.Size(166, 21)
         Me.Label8.TabIndex = 15
-        Me.Label8.Text = "Violation(s)"
+        Me.Label8.Text = "Description of Incident"
         '
         'Explanation_Page
         '
@@ -1843,6 +1938,13 @@ Partial Class frmCoorective
         '
         'Acknowledg_Page
         '
+        Me.Acknowledg_Page.Controls.Add(Me.Ack_Panel)
+        Me.Acknowledg_Page.Controls.Add(Me.Ack_Datagrid)
+        Me.Acknowledg_Page.Controls.Add(Me.StatusACK_Combo)
+        Me.Acknowledg_Page.Controls.Add(Me.Label42)
+        Me.Acknowledg_Page.Controls.Add(Me.SearchAck_Combo)
+        Me.Acknowledg_Page.Controls.Add(Me.SearchAck_TXT)
+        Me.Acknowledg_Page.Controls.Add(Me.RptViewer_Acknowledge)
         Me.Acknowledg_Page.Location = New System.Drawing.Point(4, 29)
         Me.Acknowledg_Page.Name = "Acknowledg_Page"
         Me.Acknowledg_Page.Padding = New System.Windows.Forms.Padding(3)
@@ -1851,56 +1953,742 @@ Partial Class frmCoorective
         Me.Acknowledg_Page.Text = "   Acknowledgment   "
         Me.Acknowledg_Page.UseVisualStyleBackColor = True
         '
-        'Reports_Page
+        'Ack_Panel
         '
-        Me.Reports_Page.Location = New System.Drawing.Point(4, 29)
-        Me.Reports_Page.Name = "Reports_Page"
-        Me.Reports_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.Reports_Page.Size = New System.Drawing.Size(1167, 667)
-        Me.Reports_Page.TabIndex = 5
-        Me.Reports_Page.Text = "   Reports   "
-        Me.Reports_Page.UseVisualStyleBackColor = True
+        Me.Ack_Panel.AutoSize = True
+        Me.Ack_Panel.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Ack_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Ack_Panel.Controls.Add(Me.Label47)
+        Me.Ack_Panel.Controls.Add(Me.PictureBox2)
+        Me.Ack_Panel.Controls.Add(Me.CancelAck_BTN)
+        Me.Ack_Panel.Controls.Add(Me.SaveAck_BTN)
+        Me.Ack_Panel.Location = New System.Drawing.Point(156, 65)
+        Me.Ack_Panel.Name = "Ack_Panel"
+        Me.Ack_Panel.Size = New System.Drawing.Size(855, 590)
+        Me.Ack_Panel.TabIndex = 90
+        Me.Ack_Panel.Visible = False
         '
-        'Panel3
+        'Label47
         '
-        Me.Panel3.Controls.Add(Me.Label21)
-        Me.Panel3.Controls.Add(Me.Close_BTN)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel3.Location = New System.Drawing.Point(0, 0)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1181, 43)
-        Me.Panel3.TabIndex = 3
+        Me.Label47.AutoSize = True
+        Me.Label47.Location = New System.Drawing.Point(18, 6)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(315, 20)
+        Me.Label47.TabIndex = 81
+        Me.Label47.Text = "Double Click the box below to upload image"
         '
-        'Label21
+        'PictureBox2
         '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Segoe UI", 18.0!)
-        Me.Label21.Location = New System.Drawing.Point(3, 6)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(123, 32)
-        Me.Label21.TabIndex = 9
-        Me.Label21.Text = "Corrective"
+        Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox2.Location = New System.Drawing.Point(22, 28)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(811, 501)
+        Me.PictureBox2.TabIndex = 9
+        Me.PictureBox2.TabStop = False
+        '
+        'CancelAck_BTN
+        '
+        Me.CancelAck_BTN.Font = New System.Drawing.Font("Dubai", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CancelAck_BTN.Location = New System.Drawing.Point(23, 536)
+        Me.CancelAck_BTN.Name = "CancelAck_BTN"
+        Me.CancelAck_BTN.Size = New System.Drawing.Size(93, 44)
+        Me.CancelAck_BTN.TabIndex = 80
+        Me.CancelAck_BTN.Text = "Cancel"
+        Me.CancelAck_BTN.UseVisualStyleBackColor = True
+        '
+        'SaveAck_BTN
+        '
+        Me.SaveAck_BTN.Font = New System.Drawing.Font("Dubai", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SaveAck_BTN.Location = New System.Drawing.Point(733, 536)
+        Me.SaveAck_BTN.Name = "SaveAck_BTN"
+        Me.SaveAck_BTN.Size = New System.Drawing.Size(93, 44)
+        Me.SaveAck_BTN.TabIndex = 79
+        Me.SaveAck_BTN.Text = "Save"
+        Me.SaveAck_BTN.UseVisualStyleBackColor = True
+        '
+        'Ack_Datagrid
+        '
+        Me.Ack_Datagrid.AllowUserToAddRows = False
+        Me.Ack_Datagrid.AllowUserToResizeRows = False
+        Me.Ack_Datagrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace
+        Me.Ack_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Ack_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Ack_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IRNO_DGVV, Me.Name_DGVV, Me.Company_DGVV, Me.IR_DGVV, Me.SC_DGVV, Me.Explain_DGVV, Me.WRITTEN_DGVV, Me.ACKNOW_DGVV})
+        Me.Ack_Datagrid.Location = New System.Drawing.Point(5, 92)
+        Me.Ack_Datagrid.Name = "Ack_Datagrid"
+        Me.Ack_Datagrid.RowHeadersVisible = False
+        Me.Ack_Datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.Ack_Datagrid.Size = New System.Drawing.Size(1156, 567)
+        Me.Ack_Datagrid.TabIndex = 89
+        '
+        'IRNO_DGVV
+        '
+        Me.IRNO_DGVV.HeaderText = "IR No."
+        Me.IRNO_DGVV.Name = "IRNO_DGVV"
+        Me.IRNO_DGVV.ReadOnly = True
+        Me.IRNO_DGVV.Width = 130
+        '
+        'Name_DGVV
+        '
+        Me.Name_DGVV.HeaderText = "Name"
+        Me.Name_DGVV.Name = "Name_DGVV"
+        Me.Name_DGVV.ReadOnly = True
+        Me.Name_DGVV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Name_DGVV.Width = 300
+        '
+        'Company_DGVV
+        '
+        Me.Company_DGVV.HeaderText = "Company"
+        Me.Company_DGVV.Name = "Company_DGVV"
+        Me.Company_DGVV.ReadOnly = True
+        Me.Company_DGVV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Company_DGVV.Width = 230
+        '
+        'IR_DGVV
+        '
+        Me.IR_DGVV.HeaderText = "     IR"
+        Me.IR_DGVV.Name = "IR_DGVV"
+        Me.IR_DGVV.Width = 80
+        '
+        'SC_DGVV
+        '
+        Me.SC_DGVV.HeaderText = "     SC"
+        Me.SC_DGVV.Name = "SC_DGVV"
+        Me.SC_DGVV.Width = 80
+        '
+        'Explain_DGVV
+        '
+        Me.Explain_DGVV.HeaderText = "   Explanation"
+        Me.Explain_DGVV.Name = "Explain_DGVV"
+        Me.Explain_DGVV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Explain_DGVV.Width = 125
+        '
+        'WRITTEN_DGVV
+        '
+        Me.WRITTEN_DGVV.HeaderText = "     WR"
+        Me.WRITTEN_DGVV.Name = "WRITTEN_DGVV"
+        Me.WRITTEN_DGVV.Width = 80
+        '
+        'ACKNOW_DGVV
+        '
+        Me.ACKNOW_DGVV.HeaderText = "   Acknowledge"
+        Me.ACKNOW_DGVV.Name = "ACKNOW_DGVV"
+        Me.ACKNOW_DGVV.Width = 130
+        '
+        'StatusACK_Combo
+        '
+        Me.StatusACK_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.StatusACK_Combo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StatusACK_Combo.FormattingEnabled = True
+        Me.StatusACK_Combo.Items.AddRange(New Object() {"All", "Done", "Pending"})
+        Me.StatusACK_Combo.Location = New System.Drawing.Point(976, 33)
+        Me.StatusACK_Combo.Name = "StatusACK_Combo"
+        Me.StatusACK_Combo.Size = New System.Drawing.Size(174, 28)
+        Me.StatusACK_Combo.TabIndex = 88
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(914, 39)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(56, 20)
+        Me.Label42.TabIndex = 87
+        Me.Label42.Text = "Status"
+        '
+        'SearchAck_Combo
+        '
+        Me.SearchAck_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.SearchAck_Combo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SearchAck_Combo.FormattingEnabled = True
+        Me.SearchAck_Combo.Items.AddRange(New Object() {"Search by Name", "Search by IR No."})
+        Me.SearchAck_Combo.Location = New System.Drawing.Point(370, 34)
+        Me.SearchAck_Combo.Name = "SearchAck_Combo"
+        Me.SearchAck_Combo.Size = New System.Drawing.Size(158, 28)
+        Me.SearchAck_Combo.TabIndex = 86
+        '
+        'SearchAck_TXT
+        '
+        Me.SearchAck_TXT.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SearchAck_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.SearchAck_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SearchAck_TXT.Location = New System.Drawing.Point(7, 35)
+        Me.SearchAck_TXT.Name = "SearchAck_TXT"
+        Me.SearchAck_TXT.Size = New System.Drawing.Size(357, 27)
+        Me.SearchAck_TXT.TabIndex = 84
+        '
+        'RptViewer_Acknowledge
+        '
+        Me.RptViewer_Acknowledge.LocalReport.EnableExternalImages = True
+        Me.RptViewer_Acknowledge.LocalReport.ReportEmbeddedResource = "HRSystem.rpt_Explanation.rdlc"
+        Me.RptViewer_Acknowledge.Location = New System.Drawing.Point(1011, 10)
+        Me.RptViewer_Acknowledge.Name = "RptViewer_Acknowledge"
+        Me.RptViewer_Acknowledge.ServerReport.BearerToken = Nothing
+        Me.RptViewer_Acknowledge.Size = New System.Drawing.Size(153, 51)
+        Me.RptViewer_Acknowledge.TabIndex = 85
+        Me.RptViewer_Acknowledge.Visible = False
+        '
+        'Corrective_Page
+        '
+        Me.Corrective_Page.Controls.Add(Me.SplitContainer4)
+        Me.Corrective_Page.Controls.Add(Me.Label61)
+        Me.Corrective_Page.Controls.Add(Me.IRNoCOO_LBL)
+        Me.Corrective_Page.Location = New System.Drawing.Point(4, 29)
+        Me.Corrective_Page.Name = "Corrective_Page"
+        Me.Corrective_Page.Padding = New System.Windows.Forms.Padding(3)
+        Me.Corrective_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.Corrective_Page.TabIndex = 5
+        Me.Corrective_Page.Text = "   Corrective Action Report"
+        Me.Corrective_Page.UseVisualStyleBackColor = True
+        '
+        'SplitContainer4
+        '
+        Me.SplitContainer4.Location = New System.Drawing.Point(0, 35)
+        Me.SplitContainer4.Name = "SplitContainer4"
+        '
+        'SplitContainer4.Panel1
+        '
+        Me.SplitContainer4.Panel1.Controls.Add(Me.RptViewer_Corrective)
+        '
+        'SplitContainer4.Panel2
+        '
+        Me.SplitContainer4.Panel2.AutoScroll = True
+        Me.SplitContainer4.Panel2.Controls.Add(Me.GroupBox2)
+        Me.SplitContainer4.Panel2.Controls.Add(Me.GroupBox9)
+        Me.SplitContainer4.Panel2.Controls.Add(Me.GroupBox11)
+        Me.SplitContainer4.Size = New System.Drawing.Size(1167, 627)
+        Me.SplitContainer4.SplitterDistance = 544
+        Me.SplitContainer4.TabIndex = 22
+        '
+        'RptViewer_Corrective
+        '
+        Me.RptViewer_Corrective.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RptViewer_Corrective.LocalReport.ReportEmbeddedResource = "HRSystem.CorrectiveAction.rdlc"
+        Me.RptViewer_Corrective.Location = New System.Drawing.Point(0, 0)
+        Me.RptViewer_Corrective.Name = "RptViewer_Corrective"
+        Me.RptViewer_Corrective.ServerReport.BearerToken = Nothing
+        Me.RptViewer_Corrective.Size = New System.Drawing.Size(544, 627)
+        Me.RptViewer_Corrective.TabIndex = 2
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Coo_WRDate_LBL)
+        Me.GroupBox2.Controls.Add(Me.Coo_SCDate_LBL)
+        Me.GroupBox2.Controls.Add(Me.Label54)
+        Me.GroupBox2.Controls.Add(Me.Label53)
+        Me.GroupBox2.Controls.Add(Me.Coo_Violation)
+        Me.GroupBox2.Controls.Add(Me.Label50)
+        Me.GroupBox2.Controls.Add(Me.Coo_DateIncident_RB)
+        Me.GroupBox2.Controls.Add(Me.Label48)
+        Me.GroupBox2.Controls.Add(Me.Label49)
+        Me.GroupBox2.Controls.Add(Me.Coo_Rule_LBL)
+        Me.GroupBox2.Controls.Add(Me.Coo_SectionList)
+        Me.GroupBox2.Controls.Add(Me.Coo_Description_RB)
+        Me.GroupBox2.Location = New System.Drawing.Point(22, 188)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(574, 969)
+        Me.GroupBox2.TabIndex = 39
+        Me.GroupBox2.TabStop = False
+        '
+        'Coo_DateIncident_RB
+        '
+        Me.Coo_DateIncident_RB.Location = New System.Drawing.Point(17, 600)
+        Me.Coo_DateIncident_RB.Name = "Coo_DateIncident_RB"
+        Me.Coo_DateIncident_RB.ReadOnly = True
+        Me.Coo_DateIncident_RB.Size = New System.Drawing.Size(542, 70)
+        Me.Coo_DateIncident_RB.TabIndex = 43
+        Me.Coo_DateIncident_RB.Text = ""
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.Location = New System.Drawing.Point(15, 566)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(123, 20)
+        Me.Label48.TabIndex = 42
+        Me.Label48.Text = "Date of Incident"
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.Location = New System.Drawing.Point(15, 369)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(168, 20)
+        Me.Label49.TabIndex = 40
+        Me.Label49.Text = "Description of Incident"
+        '
+        'Coo_Rule_LBL
+        '
+        Me.Coo_Rule_LBL.AutoSize = True
+        Me.Coo_Rule_LBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coo_Rule_LBL.Location = New System.Drawing.Point(15, 30)
+        Me.Coo_Rule_LBL.Name = "Coo_Rule_LBL"
+        Me.Coo_Rule_LBL.Size = New System.Drawing.Size(46, 20)
+        Me.Coo_Rule_LBL.TabIndex = 39
+        Me.Coo_Rule_LBL.Text = "Rule "
+        '
+        'Coo_SectionList
+        '
+        Me.Coo_SectionList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
+        Me.Coo_SectionList.FullRowSelect = True
+        Me.Coo_SectionList.HideSelection = False
+        Me.Coo_SectionList.Location = New System.Drawing.Point(19, 72)
+        Me.Coo_SectionList.Name = "Coo_SectionList"
+        Me.Coo_SectionList.Size = New System.Drawing.Size(546, 264)
+        Me.Coo_SectionList.TabIndex = 0
+        Me.Coo_SectionList.UseCompatibleStateImageBehavior = False
+        Me.Coo_SectionList.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "Section"
+        Me.ColumnHeader1.Width = 137
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "Nature Of Offenses"
+        Me.ColumnHeader2.Width = 2500
+        '
+        'Coo_Description_RB
+        '
+        Me.Coo_Description_RB.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress
+        Me.Coo_Description_RB.Location = New System.Drawing.Point(19, 399)
+        Me.Coo_Description_RB.Name = "Coo_Description_RB"
+        Me.Coo_Description_RB.ReadOnly = True
+        Me.Coo_Description_RB.Size = New System.Drawing.Size(542, 138)
+        Me.Coo_Description_RB.TabIndex = 38
+        Me.Coo_Description_RB.Text = ""
+        '
+        'GroupBox9
+        '
+        Me.GroupBox9.Controls.Add(Me.ClearDateSuspension_BTN)
+        Me.GroupBox9.Controls.Add(Me.DateSuspension_DPT)
+        Me.GroupBox9.Controls.Add(Me.Label52)
+        Me.GroupBox9.Controls.Add(Me.Label51)
+        Me.GroupBox9.Controls.Add(Me.Label55)
+        Me.GroupBox9.Controls.Add(Me.Label56)
+        Me.GroupBox9.Controls.Add(Me.Label57)
+        Me.GroupBox9.Controls.Add(Me.Coo_NoOfDays_Numeric)
+        Me.GroupBox9.Controls.Add(Me.Change4_BTN)
+        Me.GroupBox9.Controls.Add(Me.Change2_BTN)
+        Me.GroupBox9.Controls.Add(Me.Change3_BTN)
+        Me.GroupBox9.Controls.Add(Me.Change1_BTN)
+        Me.GroupBox9.Controls.Add(Me.Coo_Noted_Pos_TXT)
+        Me.GroupBox9.Controls.Add(Me.Coo_Rev_Pos1_TXT)
+        Me.GroupBox9.Controls.Add(Me.Coo_Rev_Pos2_TXT)
+        Me.GroupBox9.Controls.Add(Me.Coo_Pre_Pos_TXT)
+        Me.GroupBox9.Controls.Add(Me.Coo_Rev_Name2_TXT)
+        Me.GroupBox9.Controls.Add(Me.Coo_Rev_Name1_TXT)
+        Me.GroupBox9.Controls.Add(Me.Coo_Noted_Name_TXT)
+        Me.GroupBox9.Controls.Add(Me.Coo_Pre_Name_TXT)
+        Me.GroupBox9.Controls.Add(Me.SaveCOR_BTN)
+        Me.GroupBox9.Controls.Add(Me.PreviewCOR_BTN)
+        Me.GroupBox9.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox9.Location = New System.Drawing.Point(3, 1189)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(593, 803)
+        Me.GroupBox9.TabIndex = 4
+        Me.GroupBox9.TabStop = False
+        Me.GroupBox9.Text = "Action"
+        '
+        'ClearDateSuspension_BTN
+        '
+        Me.ClearDateSuspension_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClearDateSuspension_BTN.Location = New System.Drawing.Point(531, 118)
+        Me.ClearDateSuspension_BTN.Name = "ClearDateSuspension_BTN"
+        Me.ClearDateSuspension_BTN.Size = New System.Drawing.Size(56, 26)
+        Me.ClearDateSuspension_BTN.TabIndex = 66
+        Me.ClearDateSuspension_BTN.Text = "Clear"
+        Me.ClearDateSuspension_BTN.UseVisualStyleBackColor = True
+        '
+        'DateSuspension_DPT
+        '
+        Me.DateSuspension_DPT.Location = New System.Drawing.Point(205, 117)
+        Me.DateSuspension_DPT.Name = "DateSuspension_DPT"
+        Me.DateSuspension_DPT.Size = New System.Drawing.Size(320, 28)
+        Me.DateSuspension_DPT.TabIndex = 65
+        '
+        'Label52
+        '
+        Me.Label52.AutoSize = True
+        Me.Label52.Location = New System.Drawing.Point(45, 121)
+        Me.Label52.Name = "Label52"
+        Me.Label52.Size = New System.Drawing.Size(144, 21)
+        Me.Label52.TabIndex = 64
+        Me.Label52.Text = "Date of Suspension"
+        '
+        'Label51
+        '
+        Me.Label51.AutoSize = True
+        Me.Label51.Location = New System.Drawing.Point(43, 42)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(90, 21)
+        Me.Label51.TabIndex = 44
+        Me.Label51.Text = "No. of Days"
+        '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.Location = New System.Drawing.Point(45, 341)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(101, 21)
+        Me.Label55.TabIndex = 34
+        Me.Label55.Text = "Reviewed By:"
+        '
+        'Label56
+        '
+        Me.Label56.AutoSize = True
+        Me.Label56.Location = New System.Drawing.Point(45, 547)
+        Me.Label56.Name = "Label56"
+        Me.Label56.Size = New System.Drawing.Size(77, 21)
+        Me.Label56.TabIndex = 33
+        Me.Label56.Text = "Noted By:"
+        '
+        'Label57
+        '
+        Me.Label57.AutoSize = True
+        Me.Label57.Location = New System.Drawing.Point(45, 236)
+        Me.Label57.Name = "Label57"
+        Me.Label57.Size = New System.Drawing.Size(97, 21)
+        Me.Label57.TabIndex = 32
+        Me.Label57.Text = "Prepared By:"
+        '
+        'Coo_NoOfDays_Numeric
+        '
+        Me.Coo_NoOfDays_Numeric.Location = New System.Drawing.Point(205, 45)
+        Me.Coo_NoOfDays_Numeric.Name = "Coo_NoOfDays_Numeric"
+        Me.Coo_NoOfDays_Numeric.Size = New System.Drawing.Size(320, 28)
+        Me.Coo_NoOfDays_Numeric.TabIndex = 31
+        '
+        'Change4_BTN
+        '
+        Me.Change4_BTN.Location = New System.Drawing.Point(531, 574)
+        Me.Change4_BTN.Name = "Change4_BTN"
+        Me.Change4_BTN.Size = New System.Drawing.Size(26, 26)
+        Me.Change4_BTN.TabIndex = 28
+        Me.Change4_BTN.Text = "C"
+        Me.Change4_BTN.UseVisualStyleBackColor = True
+        '
+        'Change2_BTN
+        '
+        Me.Change2_BTN.Location = New System.Drawing.Point(531, 378)
+        Me.Change2_BTN.Name = "Change2_BTN"
+        Me.Change2_BTN.Size = New System.Drawing.Size(26, 26)
+        Me.Change2_BTN.TabIndex = 27
+        Me.Change2_BTN.Text = "C"
+        Me.Change2_BTN.UseVisualStyleBackColor = True
+        '
+        'Change3_BTN
+        '
+        Me.Change3_BTN.Location = New System.Drawing.Point(531, 470)
+        Me.Change3_BTN.Name = "Change3_BTN"
+        Me.Change3_BTN.Size = New System.Drawing.Size(26, 26)
+        Me.Change3_BTN.TabIndex = 26
+        Me.Change3_BTN.Text = "C"
+        Me.Change3_BTN.UseVisualStyleBackColor = True
+        '
+        'Change1_BTN
+        '
+        Me.Change1_BTN.Location = New System.Drawing.Point(531, 269)
+        Me.Change1_BTN.Name = "Change1_BTN"
+        Me.Change1_BTN.Size = New System.Drawing.Size(26, 26)
+        Me.Change1_BTN.TabIndex = 25
+        Me.Change1_BTN.Text = "C"
+        Me.Change1_BTN.UseVisualStyleBackColor = True
+        '
+        'Coo_Noted_Pos_TXT
+        '
+        Me.Coo_Noted_Pos_TXT.Location = New System.Drawing.Point(205, 573)
+        Me.Coo_Noted_Pos_TXT.Name = "Coo_Noted_Pos_TXT"
+        Me.Coo_Noted_Pos_TXT.ReadOnly = True
+        Me.Coo_Noted_Pos_TXT.Size = New System.Drawing.Size(319, 28)
+        Me.Coo_Noted_Pos_TXT.TabIndex = 18
+        Me.Coo_Noted_Pos_TXT.Text = "Business Unit Head"
+        '
+        'Coo_Rev_Pos1_TXT
+        '
+        Me.Coo_Rev_Pos1_TXT.Location = New System.Drawing.Point(205, 376)
+        Me.Coo_Rev_Pos1_TXT.Name = "Coo_Rev_Pos1_TXT"
+        Me.Coo_Rev_Pos1_TXT.ReadOnly = True
+        Me.Coo_Rev_Pos1_TXT.Size = New System.Drawing.Size(318, 28)
+        Me.Coo_Rev_Pos1_TXT.TabIndex = 17
+        Me.Coo_Rev_Pos1_TXT.Text = "HR Supervisor"
+        '
+        'Coo_Rev_Pos2_TXT
+        '
+        Me.Coo_Rev_Pos2_TXT.Location = New System.Drawing.Point(205, 468)
+        Me.Coo_Rev_Pos2_TXT.Name = "Coo_Rev_Pos2_TXT"
+        Me.Coo_Rev_Pos2_TXT.ReadOnly = True
+        Me.Coo_Rev_Pos2_TXT.Size = New System.Drawing.Size(318, 28)
+        Me.Coo_Rev_Pos2_TXT.TabIndex = 16
+        Me.Coo_Rev_Pos2_TXT.Text = "Operations Officer"
+        '
+        'Coo_Pre_Pos_TXT
+        '
+        Me.Coo_Pre_Pos_TXT.Location = New System.Drawing.Point(205, 267)
+        Me.Coo_Pre_Pos_TXT.Name = "Coo_Pre_Pos_TXT"
+        Me.Coo_Pre_Pos_TXT.ReadOnly = True
+        Me.Coo_Pre_Pos_TXT.Size = New System.Drawing.Size(318, 28)
+        Me.Coo_Pre_Pos_TXT.TabIndex = 15
+        Me.Coo_Pre_Pos_TXT.Text = "Employee Relations"
+        '
+        'Coo_Rev_Name2_TXT
+        '
+        Me.Coo_Rev_Name2_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Coo_Rev_Name2_TXT.Location = New System.Drawing.Point(205, 434)
+        Me.Coo_Rev_Name2_TXT.Name = "Coo_Rev_Name2_TXT"
+        Me.Coo_Rev_Name2_TXT.Size = New System.Drawing.Size(318, 28)
+        Me.Coo_Rev_Name2_TXT.TabIndex = 10
+        '
+        'Coo_Rev_Name1_TXT
+        '
+        Me.Coo_Rev_Name1_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Coo_Rev_Name1_TXT.Location = New System.Drawing.Point(205, 338)
+        Me.Coo_Rev_Name1_TXT.Name = "Coo_Rev_Name1_TXT"
+        Me.Coo_Rev_Name1_TXT.Size = New System.Drawing.Size(318, 28)
+        Me.Coo_Rev_Name1_TXT.TabIndex = 8
+        '
+        'Coo_Noted_Name_TXT
+        '
+        Me.Coo_Noted_Name_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Coo_Noted_Name_TXT.Location = New System.Drawing.Point(205, 539)
+        Me.Coo_Noted_Name_TXT.Name = "Coo_Noted_Name_TXT"
+        Me.Coo_Noted_Name_TXT.Size = New System.Drawing.Size(319, 28)
+        Me.Coo_Noted_Name_TXT.TabIndex = 8
+        Me.Coo_Noted_Name_TXT.Text = "DARREN Y. UY"
+        '
+        'Coo_Pre_Name_TXT
+        '
+        Me.Coo_Pre_Name_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Coo_Pre_Name_TXT.Location = New System.Drawing.Point(205, 233)
+        Me.Coo_Pre_Name_TXT.Name = "Coo_Pre_Name_TXT"
+        Me.Coo_Pre_Name_TXT.Size = New System.Drawing.Size(318, 28)
+        Me.Coo_Pre_Name_TXT.TabIndex = 6
+        '
+        'SaveCOR_BTN
+        '
+        Me.SaveCOR_BTN.Location = New System.Drawing.Point(288, 698)
+        Me.SaveCOR_BTN.Name = "SaveCOR_BTN"
+        Me.SaveCOR_BTN.Size = New System.Drawing.Size(130, 51)
+        Me.SaveCOR_BTN.TabIndex = 4
+        Me.SaveCOR_BTN.Text = "Save"
+        Me.SaveCOR_BTN.UseVisualStyleBackColor = True
+        '
+        'PreviewCOR_BTN
+        '
+        Me.PreviewCOR_BTN.Location = New System.Drawing.Point(448, 694)
+        Me.PreviewCOR_BTN.Name = "PreviewCOR_BTN"
+        Me.PreviewCOR_BTN.Size = New System.Drawing.Size(130, 51)
+        Me.PreviewCOR_BTN.TabIndex = 3
+        Me.PreviewCOR_BTN.Text = "Preview"
+        Me.PreviewCOR_BTN.UseVisualStyleBackColor = True
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.Controls.Add(Me.Coo_Emp_BTN)
+        Me.GroupBox11.Controls.Add(Me.Label58)
+        Me.GroupBox11.Controls.Add(Me.Coo_Branch_TXT)
+        Me.GroupBox11.Controls.Add(Me.Label59)
+        Me.GroupBox11.Controls.Add(Me.Coo_Company_TXT)
+        Me.GroupBox11.Controls.Add(Me.Label60)
+        Me.GroupBox11.Controls.Add(Me.Coo_Position_TXT)
+        Me.GroupBox11.Controls.Add(Me.Label62)
+        Me.GroupBox11.Controls.Add(Me.Coo_Name_TXT)
+        Me.GroupBox11.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox11.Location = New System.Drawing.Point(22, 37)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(574, 145)
+        Me.GroupBox11.TabIndex = 3
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "Employee"
+        '
+        'Coo_Emp_BTN
+        '
+        Me.Coo_Emp_BTN.Location = New System.Drawing.Point(533, 23)
+        Me.Coo_Emp_BTN.Name = "Coo_Emp_BTN"
+        Me.Coo_Emp_BTN.Size = New System.Drawing.Size(35, 26)
+        Me.Coo_Emp_BTN.TabIndex = 8
+        Me.Coo_Emp_BTN.Text = "..."
+        Me.Coo_Emp_BTN.UseVisualStyleBackColor = True
+        '
+        'Label58
+        '
+        Me.Label58.AutoSize = True
+        Me.Label58.Location = New System.Drawing.Point(297, 102)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(65, 21)
+        Me.Label58.TabIndex = 7
+        Me.Label58.Text = "Branch: "
+        '
+        'Coo_Branch_TXT
+        '
+        Me.Coo_Branch_TXT.Location = New System.Drawing.Point(367, 99)
+        Me.Coo_Branch_TXT.Name = "Coo_Branch_TXT"
+        Me.Coo_Branch_TXT.Size = New System.Drawing.Size(160, 28)
+        Me.Coo_Branch_TXT.TabIndex = 6
+        '
+        'Label59
+        '
+        Me.Label59.AutoSize = True
+        Me.Label59.Location = New System.Drawing.Point(33, 102)
+        Me.Label59.Name = "Label59"
+        Me.Label59.Size = New System.Drawing.Size(84, 21)
+        Me.Label59.TabIndex = 5
+        Me.Label59.Text = "Comapny: "
+        '
+        'Coo_Company_TXT
+        '
+        Me.Coo_Company_TXT.Location = New System.Drawing.Point(125, 99)
+        Me.Coo_Company_TXT.Name = "Coo_Company_TXT"
+        Me.Coo_Company_TXT.Size = New System.Drawing.Size(171, 28)
+        Me.Coo_Company_TXT.TabIndex = 4
+        '
+        'Label60
+        '
+        Me.Label60.AutoSize = True
+        Me.Label60.Location = New System.Drawing.Point(44, 64)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(73, 21)
+        Me.Label60.TabIndex = 3
+        Me.Label60.Text = "Position: "
+        '
+        'Coo_Position_TXT
+        '
+        Me.Coo_Position_TXT.Location = New System.Drawing.Point(125, 61)
+        Me.Coo_Position_TXT.Name = "Coo_Position_TXT"
+        Me.Coo_Position_TXT.Size = New System.Drawing.Size(402, 28)
+        Me.Coo_Position_TXT.TabIndex = 2
+        '
+        'Label62
+        '
+        Me.Label62.AutoSize = True
+        Me.Label62.Location = New System.Drawing.Point(58, 26)
+        Me.Label62.Name = "Label62"
+        Me.Label62.Size = New System.Drawing.Size(59, 21)
+        Me.Label62.TabIndex = 1
+        Me.Label62.Text = "Name: "
+        '
+        'Coo_Name_TXT
+        '
+        Me.Coo_Name_TXT.Location = New System.Drawing.Point(125, 23)
+        Me.Coo_Name_TXT.Name = "Coo_Name_TXT"
+        Me.Coo_Name_TXT.Size = New System.Drawing.Size(402, 28)
+        Me.Coo_Name_TXT.TabIndex = 0
+        '
+        'Label61
+        '
+        Me.Label61.AutoSize = True
+        Me.Label61.Font = New System.Drawing.Font("Microsoft Tai Le", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label61.Location = New System.Drawing.Point(954, 10)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(60, 23)
+        Me.Label61.TabIndex = 20
+        Me.Label61.Text = "IR No."
+        '
+        'IRNoCOO_LBL
+        '
+        Me.IRNoCOO_LBL.AutoSize = True
+        Me.IRNoCOO_LBL.Font = New System.Drawing.Font("Microsoft Tai Le", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IRNoCOO_LBL.Location = New System.Drawing.Point(1020, 10)
+        Me.IRNoCOO_LBL.Name = "IRNoCOO_LBL"
+        Me.IRNoCOO_LBL.Size = New System.Drawing.Size(0, 23)
+        Me.IRNoCOO_LBL.TabIndex = 21
+        Me.IRNoCOO_LBL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Close_BTN
         '
         Me.Close_BTN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Close_BTN.Image = CType(resources.GetObject("Close_BTN.Image"), System.Drawing.Image)
-        Me.Close_BTN.Location = New System.Drawing.Point(1151, 0)
+        Me.Close_BTN.Location = New System.Drawing.Point(1150, 2)
         Me.Close_BTN.Name = "Close_BTN"
         Me.Close_BTN.Size = New System.Drawing.Size(30, 30)
-        Me.Close_BTN.TabIndex = 0
+        Me.Close_BTN.TabIndex = 10
         Me.Close_BTN.UseVisualStyleBackColor = True
         '
-        'frmCoorective
+        'Coo_Violation
+        '
+        Me.Coo_Violation.Location = New System.Drawing.Point(19, 741)
+        Me.Coo_Violation.Name = "Coo_Violation"
+        Me.Coo_Violation.Size = New System.Drawing.Size(542, 70)
+        Me.Coo_Violation.TabIndex = 45
+        Me.Coo_Violation.Text = ""
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.Location = New System.Drawing.Point(17, 707)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(82, 20)
+        Me.Label50.TabIndex = 44
+        Me.Label50.Text = "Violation/s"
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Location = New System.Drawing.Point(17, 859)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(264, 20)
+        Me.Label53.TabIndex = 46
+        Me.Label53.Text = "Show Cause Notice Issued               :"
+        '
+        'Label54
+        '
+        Me.Label54.AutoSize = True
+        Me.Label54.Location = New System.Drawing.Point(17, 907)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(263, 20)
+        Me.Label54.TabIndex = 47
+        Me.Label54.Text = "Written Reprimand Notice Issued    :"
+        '
+        'Coo_SCDate_LBL
+        '
+        Me.Coo_SCDate_LBL.AutoSize = True
+        Me.Coo_SCDate_LBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coo_SCDate_LBL.Location = New System.Drawing.Point(297, 861)
+        Me.Coo_SCDate_LBL.Name = "Coo_SCDate_LBL"
+        Me.Coo_SCDate_LBL.Size = New System.Drawing.Size(15, 20)
+        Me.Coo_SCDate_LBL.TabIndex = 48
+        Me.Coo_SCDate_LBL.Text = "-"
+        '
+        'Coo_WRDate_LBL
+        '
+        Me.Coo_WRDate_LBL.AutoSize = True
+        Me.Coo_WRDate_LBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coo_WRDate_LBL.Location = New System.Drawing.Point(297, 906)
+        Me.Coo_WRDate_LBL.Name = "Coo_WRDate_LBL"
+        Me.Coo_WRDate_LBL.Size = New System.Drawing.Size(15, 20)
+        Me.Coo_WRDate_LBL.TabIndex = 49
+        Me.Coo_WRDate_LBL.Text = "-"
+        '
+        'Label63
+        '
+        Me.Label63.AutoSize = True
+        Me.Label63.Location = New System.Drawing.Point(21, 775)
+        Me.Label63.Name = "Label63"
+        Me.Label63.Size = New System.Drawing.Size(72, 21)
+        Me.Label63.TabIndex = 44
+        Me.Label63.Text = "Violation"
+        '
+        'SCViolation_RichB
+        '
+        Me.SCViolation_RichB.Location = New System.Drawing.Point(134, 779)
+        Me.SCViolation_RichB.Name = "SCViolation_RichB"
+        Me.SCViolation_RichB.ReadOnly = True
+        Me.SCViolation_RichB.Size = New System.Drawing.Size(420, 96)
+        Me.SCViolation_RichB.TabIndex = 45
+        Me.SCViolation_RichB.Text = ""
+        '
+        'frmIncidentReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1181, 749)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.Close_BTN)
         Me.Controls.Add(Me.CorrectiveWindow)
-        Me.Controls.Add(Me.Panel3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "frmCoorective"
-        Me.Text = "frmCoorective"
+        Me.Name = "frmIncidentReport"
+        Me.Text = "frmIncidentReport"
         Me.CorrectiveWindow.ResumeLayout(False)
         Me.IR_Page.ResumeLayout(False)
         Me.IR_Page.PerformLayout()
@@ -1949,28 +2737,43 @@ Partial Class frmCoorective
         CType(Me.NumberOfDays_TXT, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
+        Me.Acknowledg_Page.ResumeLayout(False)
+        Me.Acknowledg_Page.PerformLayout()
+        Me.Ack_Panel.ResumeLayout(False)
+        Me.Ack_Panel.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Ack_Datagrid, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Corrective_Page.ResumeLayout(False)
+        Me.Corrective_Page.PerformLayout()
+        Me.SplitContainer4.Panel1.ResumeLayout(False)
+        Me.SplitContainer4.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer4.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
+        CType(Me.Coo_NoOfDays_Numeric, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox11.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
+
+    Friend WithEvents Label21 As Label
     Friend WithEvents Close_BTN As Button
     Friend WithEvents CorrectiveWindow As TabControl
-    Friend WithEvents Explanation_Page As TabPage
-    Friend WithEvents Explain_datagrid As DataGridView
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents Label21 As Label
-    Friend WithEvents FbDataAdapter1 As FirebirdSql.Data.FirebirdClient.FbDataAdapter
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Modify_Panel As Panel
-    Friend WithEvents Close_Modify_BTN As Button
-    Friend WithEvents Check_BTN As Button
+    Friend WithEvents IR_Page As TabPage
     Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents RptViewer_IncidentReport As ReportViewer
     Friend WithEvents Panel6 As Panel
+    Friend WithEvents SaveIR_BTN As Button
+    Friend WithEvents ClearIR_BTN As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents PreviewIR_BTN As Button
     Friend WithEvents Label24 As Label
     Friend WithEvents Label32 As Label
-    Friend WithEvents PreviewIR_BTN As Button
-    Friend WithEvents SaveIR_BTN As Button
     Friend WithEvents GroupBox7 As GroupBox
     Friend WithEvents Label38 As Label
     Friend WithEvents PreparedBy_TXT As TextBox
@@ -1978,9 +2781,7 @@ Partial Class frmCoorective
     Friend WithEvents Label39 As Label
     Friend WithEvents Received_TXT As TextBox
     Friend WithEvents Label40 As Label
-    Friend WithEvents Label23 As Label
     Friend WithEvents Description_RichText As RichTextBox
-    Friend WithEvents IRNo_LBL As Label
     Friend WithEvents Supervisor_BTN As Button
     Friend WithEvents DateReceive_DTP As DateTimePicker
     Friend WithEvents DateIncident_DTP As DateTimePicker
@@ -2001,15 +2802,13 @@ Partial Class frmCoorective
     Friend WithEvents Label31 As Label
     Friend WithEvents Department_TXT As TextBox
     Friend WithEvents Label33 As Label
-    Friend WithEvents RptViewer_IncidentReport As ReportViewer
-    Friend WithEvents ClearIR_BTN As Button
-    Friend WithEvents txtSearch As TextBox
-    Friend WithEvents RptViewer_Explanation As ReportViewer
+    Friend WithEvents IRNo_LBL As Label
+    Friend WithEvents Label23 As Label
     Friend WithEvents ShowCause_Page As TabPage
-    Friend WithEvents SplitContainer2 As SplitContainer
-    Friend WithEvents RptViewer_ShowCause As ReportViewer
     Friend WithEvents Label17 As Label
     Friend WithEvents SCNo_LBL As Label
+    Friend WithEvents SplitContainer2 As SplitContainer
+    Friend WithEvents RptViewer_ShowCause As ReportViewer
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents EmpName_TXT As TextBox
@@ -2022,6 +2821,11 @@ Partial Class frmCoorective
     Friend WithEvents SearchEMP_BTN As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Optional_Group As GroupBox
+    Friend WithEvents DateSent_DTP As DateTimePicker
+    Friend WithEvents Label20 As Label
+    Friend WithEvents SentVia_TXT As TextBox
+    Friend WithEvents Label19 As Label
     Friend WithEvents Label18 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents PS3_Btn As Button
@@ -2033,18 +2837,28 @@ Partial Class frmCoorective
     Friend WithEvents BusinessUnitHead_TXT As TextBox
     Friend WithEvents HRSupervisor_TXT As TextBox
     Friend WithEvents RuleViolated_GB As GroupBox
-    Friend WithEvents AuditFindings_TXT As RichTextBox
+    Friend WithEvents Label41 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents SC_IncidentDate_RichB As RichTextBox
+    Friend WithEvents SCRuleNo_LBL As Label
     Friend WithEvents LV_Sections As ListView
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents AuditFindings_TXT As RichTextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Location_TXT As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents Optional_Group As GroupBox
-    Friend WithEvents DateSent_DTP As DateTimePicker
-    Friend WithEvents Label20 As Label
-    Friend WithEvents SentVia_TXT As TextBox
-    Friend WithEvents Label19 As Label
+    Friend WithEvents Explanation_Page As TabPage
+    Friend WithEvents Status_Combo As ComboBox
+    Friend WithEvents Label43 As Label
+    Friend WithEvents SearchBy_Combo As ComboBox
+    Friend WithEvents Modify_Panel As Panel
+    Friend WithEvents Label22 As Label
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Close_Modify_BTN As Button
+    Friend WithEvents Check_BTN As Button
+    Friend WithEvents txtSearch As TextBox
+    Friend WithEvents Explain_datagrid As DataGridView
     Friend WithEvents IRNO_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Name_DGV As DataGridViewTextBoxColumn
     Friend WithEvents Company_DGV As DataGridViewTextBoxColumn
@@ -2052,11 +2866,30 @@ Partial Class frmCoorective
     Friend WithEvents IR_DGV As DataGridViewButtonColumn
     Friend WithEvents File_DGV As DataGridViewButtonColumn
     Friend WithEvents Explain_DGV As DataGridViewButtonColumn
-    Friend WithEvents Label22 As Label
+    Friend WithEvents RptViewer_Explanation As ReportViewer
     Friend WithEvents WrittenReprimand_Page As TabPage
+    Friend WithEvents Label25 As Label
+    Friend WithEvents IRNoWritten_LBL As Label
     Friend WithEvents SplitContainer3 As SplitContainer
     Friend WithEvents RptViewer_WrittenReprimand As ReportViewer
+    Friend WithEvents GroupBox8 As GroupBox
+    Friend WithEvents WP_DateIncident_DTP As RichTextBox
+    Friend WithEvents Label26 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents WPRule_LBL As Label
+    Friend WithEvents WP_SectionsList As ListView
+    Friend WithEvents ColumnHeader7 As ColumnHeader
+    Friend WithEvents ColumnHeader8 As ColumnHeader
+    Friend WithEvents WP_Incident_TXT As RichTextBox
     Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents ECS_GB As GroupBox
+    Friend WithEvents Label46 As Label
+    Friend WithEvents NoOfMONTHS_TXT As TextBox
+    Friend WithEvents Charges_Numeric As TextBox
+    Friend WithEvents ECSNo_TXT As TextBox
+    Friend WithEvents Label44 As Label
+    Friend WithEvents Label45 As Label
+    Friend WithEvents AmountCharges_CB As CheckBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
@@ -2081,9 +2914,6 @@ Partial Class frmCoorective
     Friend WithEvents WP_Emp_Rel_TXT As TextBox
     Friend WithEvents WP_Save_Btn As Button
     Friend WithEvents WP_OK_BTN As Button
-    Friend WithEvents WP_SectionsList As ListView
-    Friend WithEvents ColumnHeader7 As ColumnHeader
-    Friend WithEvents ColumnHeader8 As ColumnHeader
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents SearchWP_EMP_BTN As Button
     Friend WithEvents Label13 As Label
@@ -2094,32 +2924,80 @@ Partial Class frmCoorective
     Friend WithEvents WP_Position_TXT As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents WP_Name_TXT As TextBox
-    Friend WithEvents AmountCharges_CB As CheckBox
-    Friend WithEvents Label25 As Label
-    Friend WithEvents IRNoWritten_LBL As Label
-    Friend WithEvents WP_Incident_TXT As RichTextBox
-    Friend WithEvents GroupBox8 As GroupBox
-    Friend WithEvents Label14 As Label
-    Friend WithEvents WPRule_LBL As Label
-    Friend WithEvents Label26 As Label
-    Friend WithEvents SCRuleNo_LBL As Label
-    Friend WithEvents Label41 As Label
-    Friend WithEvents Label27 As Label
-    Friend WithEvents SC_IncidentDate_RichB As RichTextBox
-    Friend WithEvents WP_DateIncident_DTP As RichTextBox
-    Friend WithEvents IR_Page As TabPage
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents SearchBy_Combo As ComboBox
-    Friend WithEvents Status_Combo As ComboBox
-    Friend WithEvents Label43 As Label
     Friend WithEvents Acknowledg_Page As TabPage
-    Friend WithEvents Reports_Page As TabPage
-    Friend WithEvents ECS_GB As GroupBox
-    Friend WithEvents Label44 As Label
-    Friend WithEvents Label45 As Label
-    Friend WithEvents Label46 As Label
-    Friend WithEvents NoOfMONTHS_TXT As TextBox
-    Friend WithEvents Charges_Numeric As TextBox
-    Friend WithEvents ECSNo_TXT As TextBox
+    Friend WithEvents Corrective_Page As TabPage
+    Friend WithEvents Ack_Panel As Panel
+    Friend WithEvents Label47 As Label
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents CancelAck_BTN As Button
+    Friend WithEvents SaveAck_BTN As Button
+    Friend WithEvents Ack_Datagrid As DataGridView
+    Friend WithEvents IRNO_DGVV As DataGridViewTextBoxColumn
+    Friend WithEvents Name_DGVV As DataGridViewTextBoxColumn
+    Friend WithEvents Company_DGVV As DataGridViewTextBoxColumn
+    Friend WithEvents IR_DGVV As DataGridViewButtonColumn
+    Friend WithEvents SC_DGVV As DataGridViewButtonColumn
+    Friend WithEvents Explain_DGVV As DataGridViewButtonColumn
+    Friend WithEvents WRITTEN_DGVV As DataGridViewButtonColumn
+    Friend WithEvents ACKNOW_DGVV As DataGridViewButtonColumn
+    Friend WithEvents StatusACK_Combo As ComboBox
+    Friend WithEvents Label42 As Label
+    Friend WithEvents SearchAck_Combo As ComboBox
+    Friend WithEvents SearchAck_TXT As TextBox
+    Friend WithEvents RptViewer_Acknowledge As ReportViewer
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents SplitContainer4 As SplitContainer
+    Friend WithEvents RptViewer_Corrective As ReportViewer
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Coo_DateIncident_RB As RichTextBox
+    Friend WithEvents Label48 As Label
+    Friend WithEvents Label49 As Label
+    Friend WithEvents Coo_Rule_LBL As Label
+    Friend WithEvents Coo_SectionList As ListView
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents Coo_Description_RB As RichTextBox
+    Friend WithEvents GroupBox9 As GroupBox
+    Friend WithEvents Label55 As Label
+    Friend WithEvents Label57 As Label
+    Friend WithEvents Coo_NoOfDays_Numeric As NumericUpDown
+    Friend WithEvents Change4_BTN As Button
+    Friend WithEvents Change2_BTN As Button
+    Friend WithEvents Change3_BTN As Button
+    Friend WithEvents Change1_BTN As Button
+    Friend WithEvents Coo_Noted_Pos_TXT As TextBox
+    Friend WithEvents Coo_Rev_Pos1_TXT As TextBox
+    Friend WithEvents Coo_Rev_Pos2_TXT As TextBox
+    Friend WithEvents Coo_Pre_Pos_TXT As TextBox
+    Friend WithEvents Coo_Rev_Name2_TXT As TextBox
+    Friend WithEvents Coo_Rev_Name1_TXT As TextBox
+    Friend WithEvents Coo_Noted_Name_TXT As TextBox
+    Friend WithEvents Coo_Pre_Name_TXT As TextBox
+    Friend WithEvents SaveCOR_BTN As Button
+    Friend WithEvents PreviewCOR_BTN As Button
+    Friend WithEvents GroupBox11 As GroupBox
+    Friend WithEvents Coo_Emp_BTN As Button
+    Friend WithEvents Label58 As Label
+    Friend WithEvents Coo_Branch_TXT As TextBox
+    Friend WithEvents Label59 As Label
+    Friend WithEvents Coo_Company_TXT As TextBox
+    Friend WithEvents Label60 As Label
+    Friend WithEvents Coo_Position_TXT As TextBox
+    Friend WithEvents Label62 As Label
+    Friend WithEvents Coo_Name_TXT As TextBox
+    Friend WithEvents Label61 As Label
+    Friend WithEvents IRNoCOO_LBL As Label
+    Friend WithEvents ClearDateSuspension_BTN As Button
+    Friend WithEvents DateSuspension_DPT As DateTimePicker
+    Friend WithEvents Label52 As Label
+    Friend WithEvents Label51 As Label
+    Friend WithEvents Label56 As Label
+    Friend WithEvents Coo_Violation As RichTextBox
+    Friend WithEvents Label50 As Label
+    Friend WithEvents Coo_SCDate_LBL As Label
+    Friend WithEvents Label54 As Label
+    Friend WithEvents Label53 As Label
+    Friend WithEvents Coo_WRDate_LBL As Label
+    Friend WithEvents SCViolation_RichB As RichTextBox
+    Friend WithEvents Label63 As Label
 End Class

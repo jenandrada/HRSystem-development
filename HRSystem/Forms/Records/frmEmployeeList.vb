@@ -298,22 +298,22 @@
         ElseIf txtSearch.Tag = "Corrective1" Then
 
             tmpEmp.LoadCorrectiveDetails(idx)
-            ReloadFormFromSearch(FormName.corrective, tmpEmp, 1)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 1)
 
         ElseIf txtSearch.Tag = "Corrective2" Then
 
             tmpEmp.LoadCorrectiveDetails(idx)
-            ReloadFormFromSearch(FormName.corrective, tmpEmp, 2)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 2)
 
         ElseIf txtSearch.Tag = "IR-Supervisor" Then
 
             tmpEmp.LoadIRSupervisor(idx)
-            ReloadFormFromSearch(FormName.corrective, tmpEmp, 3)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 3)
 
         ElseIf txtSearch.Tag = "IR-Person" Then
 
             tmpEmp.LoadIRPerson(idx)
-            ReloadFormFromSearch(FormName.corrective, tmpEmp, 3, "person")
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 3, "person")
 
         End If
 
