@@ -199,6 +199,12 @@
     <Compile Include="Forms\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmIncidentReport.Designer.vb">
+      <DependentUpon>frmIncidentReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmIncidentReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmSCList.Designer.vb">
       <DependentUpon>frmSCList.vb</DependentUpon>
     </Compile>
@@ -585,6 +591,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmIncidentReport.resx">
+      <DependentUpon>frmIncidentReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSCList.resx">
       <DependentUpon>frmSCList.vb</DependentUpon>

@@ -22,7 +22,7 @@
 
     End Sub
 
-    Friend Sub SaveWrittenReprimand(emp_id As String, dateSuspend As String, dateFrom As String, preparedBy As String, path As String, irno As String, dateCreated As String)
+    Friend Sub SaveWrittenReprimand(emp_id As String, daysSuspend As String, preparedBy As String, path As String, irno As String, dateCreated As String, status As String)
         Dim mysql As String
 
 
@@ -31,11 +31,11 @@
         If dss.Tables(0).Rows.Count > 0 Then
             With dss.Tables(0).Rows(0)
                 .Item("EMP_ID") = emp_id
-                .Item("DAYSSUSPEND") = dateSuspend
-                .Item("DATE_FROM") = dateFrom
+                .Item("DAYSSUSPEND") = daysSuspend
                 .Item("PREPAREDBY") = preparedBy
                 .Item("WRITTEN_PATH") = path
                 .Item("DATE_CREATED") = dateCreated
+                .Item("WRITTEN_STATUS") = status
             End With
             SaveEntry(dss, False)
 
@@ -49,10 +49,11 @@
 
                     .Item("IRNO") = irno
                     .Item("EMP_ID") = emp_id
-                    .Item("DAYSSUSPEND") = dateSuspend
-                    .Item("DATE_FROM") = dateFrom
+                    .Item("DAYSSUSPEND") = daysSuspend
                     .Item("PREPAREDBY") = preparedBy
                     .Item("WRITTEN_PATH") = path
+                    .Item("DATE_CREATED") = dateCreated
+                    .Item("WRITTEN_STATUS") = status
 
                 End With
                 ds.Tables(0).Rows.Add(dsNewRow)
@@ -152,6 +153,21 @@
         'If ThisHasRow("SHOWCAUSE_RECORDS") Then
         '    SCPendings(frmMainForm.PendingNo_LBL)
         'End If
+    End Sub
+
+    Friend Sub AcknowledgeSave(irno As String, pic As Byte(), status As String, path As String)
+
+        Dim mysql As String = "Select * From IR_REPRIMAND where IRNO = '" & irno & "'"
+        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+
+            With ds.Tables(0).Rows(0)
+                .Item("WRITTEN_STATUS") = status
+                .Item("ACKNO_IMAGE") = pic
+                .Item("ACKNO_PATH") = path
+            End With
+            SaveEntry(ds, False)
+        End Using
+
     End Sub
 
     Friend Sub SaveTRANSACTIONHistory(USERNAME As String, NAME As String, ActionN As String, BranchN As String, STATUS As String, POSITION As String)

@@ -233,7 +233,7 @@ Public Class frmMainForm
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Coorective_BTN.Click
-        OpenWindowsForm("frmCoorective")
+        OpenWindowsForm("frmIncidentReport")
     End Sub
 
     Private Sub BhouseAllowanceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BhouseAllowanceToolStripMenuItem.Click

@@ -571,7 +571,7 @@ Partial Class frmMainForm
         Me.Coorective_BTN.Name = "Coorective_BTN"
         Me.Coorective_BTN.Size = New System.Drawing.Size(177, 75)
         Me.Coorective_BTN.TabIndex = 12
-        Me.Coorective_BTN.Text = "         &Corrective"
+        Me.Coorective_BTN.Text = "                &Incident Report"
         Me.Coorective_BTN.UseVisualStyleBackColor = False
         '
         'btn_Letter

@@ -210,10 +210,7 @@ Public Class frmCoorective
             chkStatus = 5
         End If
 
-        Dim DateFrom, DateTo, AMOUNT As String
-        DateFrom = SuspensionDate_DTP.Value.ToString("MMMM dd, yyyy")
-        DateTo = SuspensionDate_DTP.Value.AddDays(NoOfDaysSuspend).ToString("MMMM dd, yyyy")
-        AMOUNT = Decimal.Parse(Charges_Numeric.Text).ToString("##,###0.00")
+        Dim AMOUNT As String = Decimal.Parse(Charges_Numeric.Text).ToString("##,###0.00")
 
         RptViewer_WrittenReprimand.LocalReport.DataSources.Clear()
 
@@ -237,8 +234,6 @@ Public Class frmCoorective
             New ReportParameter("paramECSNo", ECSNo_TXT.Text),
             New ReportParameter("paramCharges", AMOUNT),
             New ReportParameter("paramMonths", NoOfMONTHS_TXT.Text),
-            New ReportParameter("paramDateFrom", DateFrom),
-            New ReportParameter("paramDateTo", DateTo),
             New ReportParameter("paramSCNO", IRNoWritten_LBL.Text)
         }
 
@@ -857,7 +852,7 @@ Public Class frmCoorective
 
             ToPDF("IR No. " & IRNoWritten_LBL.Text & " - " & WP_Name_TXT.Text, "Incident Report", RptViewer_WrittenReprimand, "Written Reprimand Notice")
 
-            SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, SuspensionDate_DTP.Value, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text, Date.Now)
+            SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text, Date.Now, "PENDING")
 
             SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, WP_Name_TXT.Text, "Written Reprimand for IR No. " & IRNoWritten_LBL.Text, WP_Branch_TXT.Text, WP_Position_TXT.Tag, WP_Position_TXT.Text)
 
@@ -911,7 +906,6 @@ Public Class frmCoorective
             TwoDays_RBTN.Checked = False
             FourDays_RBTN.Checked = False
             SixDays_RBTN.Checked = False
-            SuspensionDate_DTP.Enabled = True
             chkStatus = 0
 
             AmountCharges_CB.Checked = False
@@ -922,7 +916,6 @@ Public Class frmCoorective
         Else
             NumberOfDays_TXT.Text = 0
             NumberOfDays_TXT.Enabled = False
-            SuspensionDate_DTP.Enabled = False
 
         End If
     End Sub
@@ -955,15 +948,11 @@ Public Class frmCoorective
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
             NoOfDaysSuspend = 2
-            SuspensionDate_DTP.Enabled = True
-            SuspensionDate_DTP.Region = New Region(New Rectangle(2, 2, SuspensionDate_DTP.Width - 4, SuspensionDate_DTP.Height - 4))
 
             AmountCharges_CB.Checked = False
             Charges_Numeric.Text = 0
         Else
             NoOfDaysSuspend = 0
-            SuspensionDate_DTP.Enabled = False
-            SuspensionDate_DTP.Region = Nothing
         End If
     End Sub
 
@@ -972,16 +961,11 @@ Public Class frmCoorective
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
             NoOfDaysSuspend = 4
-            SuspensionDate_DTP.Enabled = True
-            SuspensionDate_DTP.Region = New Region(New Rectangle(2, 2, SuspensionDate_DTP.Width - 4, SuspensionDate_DTP.Height - 4))
 
             AmountCharges_CB.Checked = False
-            Charges_Numeric.Enabled = False
             Charges_Numeric.Text = 0
         Else
             NoOfDaysSuspend = 0
-            SuspensionDate_DTP.Enabled = False
-            SuspensionDate_DTP.Region = Nothing
         End If
     End Sub
 
@@ -990,17 +974,12 @@ Public Class frmCoorective
             NoDaysSuspend_CB.Checked = False
             NumberOfDays_TXT.Value = 0
             NoOfDaysSuspend = 6
-            SuspensionDate_DTP.Enabled = True
-            SuspensionDate_DTP.Region = New Region(New Rectangle(2, 2, SuspensionDate_DTP.Width - 4, SuspensionDate_DTP.Height - 4))
 
 
             AmountCharges_CB.Checked = False
-            Charges_Numeric.Enabled = False
             Charges_Numeric.Text = 0
         Else
             NoOfDaysSuspend = 0
-            SuspensionDate_DTP.Enabled = False
-            SuspensionDate_DTP.Region = Nothing
         End If
     End Sub
 
@@ -1088,14 +1067,7 @@ Public Class frmCoorective
     End Sub
 
     Private Sub NumberOfDays_TXT_ValueChanged(sender As Object, e As EventArgs) Handles NumberOfDays_TXT.ValueChanged
-
-        If Not NumberOfDays_TXT.Text = 0 Then
-            NoOfDaysSuspend = NumberOfDays_TXT.Text
-            SuspensionDate_DTP.Region = New Region(New Rectangle(2, 2, SuspensionDate_DTP.Width - 4, SuspensionDate_DTP.Height - 4))
-        Else
-            SuspensionDate_DTP.Region = Nothing
-        End If
-
+        NoOfDaysSuspend = NumberOfDays_TXT.Text
     End Sub
 
     Private Sub Action_CB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Action_CB.SelectedIndexChanged
@@ -1134,11 +1106,6 @@ Public Class frmCoorective
         _console.Clear()
     End Sub
 
-    Private Sub GroupBox2_Paint(sender As Object, e As PaintEventArgs)
-        Dim p As New Pen(Color.Red, 2)
-        e.Graphics.DrawRectangle(p, New Rectangle(SuspensionDate_DTP.Location + New Size(1, 1), SuspensionDate_DTP.Size - New Size(2, 2)))
-        p.Dispose()
-    End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SearchBy_Combo.SelectedIndexChanged
         If SearchBy_Combo.SelectedIndex = 0 Then
