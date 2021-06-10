@@ -961,13 +961,14 @@ Public Class frmIncidentReport
             Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
             Return False
 
-        ElseIf Not Double.TryParse(AmountPerPayroll_TXT.Text, num3) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
-            AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
-            Return False
-
         ElseIf Not Double.TryParse(NoOFPayroll_TXT.Text, num4) Or String.IsNullOrEmpty(NoOFPayroll_TXT.Text) Then
             NoOFPayroll_TXT.Region = New Region(New Rectangle(2, 2, NoOFPayroll_TXT.Width - 4, NoOFPayroll_TXT.Height - 4))
             Return False
+
+            'ElseIf Not Double.TryParse(AmountPerPayroll_TXT.Text, num3) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
+            '    AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
+            '    Return False
+
         End If
 
         Return True
@@ -1297,12 +1298,15 @@ Public Class frmIncidentReport
         If Not Double.TryParse(Charges_Numeric.Text, num) Or String.IsNullOrEmpty(Charges_Numeric.Text) Then
             Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
 
-            AmountPerPayroll_TXT.ReadOnly = True
+            AmountPerPayroll_TXT.Text = ""
+            NoOFPayroll_TXT.Text = ""
+            'AmountPerPayroll_TXT.ReadOnly = True
             NoOFPayroll_TXT.ReadOnly = True
+
         Else
             Charges_Numeric.Region = Nothing
 
-            AmountPerPayroll_TXT.ReadOnly = False
+            'AmountPerPayroll_TXT.ReadOnly = False
             NoOFPayroll_TXT.ReadOnly = False
         End If
 
@@ -1535,18 +1539,47 @@ Public Class frmIncidentReport
 
     Private Sub AmountPerPayroll_TXT_TextChanged_1(sender As Object, e As EventArgs) Handles AmountPerPayroll_TXT.TextChanged
 
+        'Dim charge = Val(Charges_Numeric.Text)
+        'Dim perPayroll = Val(AmountPerPayroll_TXT.Text)
+
+        'Dim NoOFPayroll = charge / perPayroll
+        'Dim noOFMonths = NoOFPayroll / 2
+
+        'If Not Double.TryParse(AmountPerPayroll_TXT.Text, perPayroll) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
+        '    AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
+        '    NoOFPayroll_TXT.Text = ""
+        'Else
+        '    AmountPerPayroll_TXT.Region = Nothing
+
+        '    NoOFPayroll_TXT.Text = CStr(NoOFPayroll)
+
+        '    If noOFMonths > 0 Then
+
+        '        NoOFMonths_TXT.Text = noOFMonths
+
+        '    End If
+        'End If
+
+    End Sub
+
+    Private Sub NoOFPayroll_TXT_TextChanged(sender As Object, e As EventArgs) Handles NoOFPayroll_TXT.TextChanged
+
         Dim charge = Val(Charges_Numeric.Text)
-        Dim perPayroll = Val(AmountPerPayroll_TXT.Text)
-        Dim NoOFPayroll = charge / perPayroll
-        Dim noOFMonths = NoOFPayroll / 2
+        Dim noOFPayroll = Val(NoOFPayroll_TXT.Text)
 
-        If Not Double.TryParse(AmountPerPayroll_TXT.Text, perPayroll) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
-            AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
-            NoOFPayroll_TXT.Text = ""
+        Dim perPayroll As Double = charge / noOFPayroll
+        Dim roundoff As Double = Math.Round(perPayroll, 2)
+
+        Dim noOFMonths As Double = noOFPayroll / 2
+
+        If Not Double.TryParse(NoOFPayroll_TXT.Text, noOFPayroll) Or String.IsNullOrEmpty(NoOFPayroll_TXT.Text) Then
+            NoOFPayroll_TXT.Region = New Region(New Rectangle(2, 2, NoOFPayroll_TXT.Width - 4, NoOFPayroll_TXT.Height - 4))
+            AmountPerPayroll_TXT.Text = ""
+            NoOFMonths_TXT.Text = ""
         Else
-            AmountPerPayroll_TXT.Region = Nothing
+            NoOFPayroll_TXT.Region = Nothing
 
-            NoOFPayroll_TXT.Text = CStr(NoOFPayroll)
+            AmountPerPayroll_TXT.Text = CStr(roundoff)
 
             If noOFMonths > 0 Then
 
@@ -1557,29 +1590,26 @@ Public Class frmIncidentReport
 
     End Sub
 
-    Private Sub NoOFPayroll_TXT_TextChanged(sender As Object, e As EventArgs) Handles NoOFPayroll_TXT.TextChanged
-
-        Dim charge = Val(Charges_Numeric.Text)
-        Dim noOFPayroll = Val(NoOFPayroll_TXT.Text)
-        Dim perPayroll = charge / noOFPayroll
-        Dim noOFMonths = noOFPayroll / 2
-
-        If Not Double.TryParse(NoOFPayroll_TXT.Text, noOFPayroll) Or String.IsNullOrEmpty(NoOFPayroll_TXT.Text) Then
-            NoOFPayroll_TXT.Region = New Region(New Rectangle(2, 2, NoOFPayroll_TXT.Width - 4, NoOFPayroll_TXT.Height - 4))
-            AmountPerPayroll_TXT.Text = ""
-            NoOFMonths_TXT.Text = ""
-        Else
-            NoOFPayroll_TXT.Region = Nothing
-
-            AmountPerPayroll_TXT.Text = CStr(perPayroll)
-
-            If noOFMonths > 0 Then
-
-                NoOFMonths_TXT.Text = noOFMonths
-
+    Private Sub NoOFPayroll_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles NoOFPayroll_TXT.KeyPress
+        If e.KeyChar <> ChrW(Keys.Back) Then
+            If Char.IsNumber(e.KeyChar) Then
+                'NoOFPayroll_TXT.Region = Nothing
+            Else
+                e.Handled = True
+                'NoOFPayroll_TXT.Region = New Region(New Rectangle(2, 2, NoOFPayroll_TXT.Width - 4, NoOFPayroll_TXT.Height - 4))
             End If
         End If
+    End Sub
 
+    Private Sub Charges_Numeric_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Charges_Numeric.KeyPress
+        If e.KeyChar <> ChrW(Keys.Back) Then
+            If Char.IsNumber(e.KeyChar) Or e.KeyChar = "." Then
+                Charges_Numeric.Region = Nothing
+            Else
+                e.Handled = True
+                Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
+            End If
+        End If
     End Sub
 
     Private Sub SaveCOR_BTN_Click(sender As Object, e As EventArgs) Handles SaveCOR_BTN.Click

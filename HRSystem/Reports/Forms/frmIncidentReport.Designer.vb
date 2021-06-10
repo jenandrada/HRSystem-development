@@ -1613,15 +1613,15 @@ Partial Class frmIncidentReport
         Me.ECS_GB.Controls.Add(Me.NoOFMonths_TXT)
         Me.ECS_GB.Controls.Add(Me.Label66)
         Me.ECS_GB.Controls.Add(Me.Label64)
-        Me.ECS_GB.Controls.Add(Me.NoOFPayroll_TXT)
         Me.ECS_GB.Controls.Add(Me.Label46)
         Me.ECS_GB.Controls.Add(Me.Charges_Numeric)
+        Me.ECS_GB.Controls.Add(Me.NoOFPayroll_TXT)
         Me.ECS_GB.Controls.Add(Me.ECSNo_TXT)
         Me.ECS_GB.Controls.Add(Me.Label44)
         Me.ECS_GB.Controls.Add(Me.Label45)
         Me.ECS_GB.Location = New System.Drawing.Point(177, 192)
         Me.ECS_GB.Name = "ECS_GB"
-        Me.ECS_GB.Size = New System.Drawing.Size(369, 256)
+        Me.ECS_GB.Size = New System.Drawing.Size(369, 234)
         Me.ECS_GB.TabIndex = 44
         Me.ECS_GB.TabStop = False
         Me.ECS_GB.Visible = False
@@ -1647,7 +1647,7 @@ Partial Class frmIncidentReport
         'Label64
         '
         Me.Label64.AutoSize = True
-        Me.Label64.Location = New System.Drawing.Point(6, 152)
+        Me.Label64.Location = New System.Drawing.Point(6, 123)
         Me.Label64.Name = "Label64"
         Me.Label64.Size = New System.Drawing.Size(98, 21)
         Me.Label64.TabIndex = 49
@@ -1655,7 +1655,7 @@ Partial Class frmIncidentReport
         '
         'NoOFPayroll_TXT
         '
-        Me.NoOFPayroll_TXT.Location = New System.Drawing.Point(174, 146)
+        Me.NoOFPayroll_TXT.Location = New System.Drawing.Point(174, 117)
         Me.NoOFPayroll_TXT.Name = "NoOFPayroll_TXT"
         Me.NoOFPayroll_TXT.ReadOnly = True
         Me.NoOFPayroll_TXT.Size = New System.Drawing.Size(175, 28)
@@ -1664,7 +1664,7 @@ Partial Class frmIncidentReport
         'Label46
         '
         Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(6, 117)
+        Me.Label46.Location = New System.Drawing.Point(6, 158)
         Me.Label46.Name = "Label46"
         Me.Label46.Size = New System.Drawing.Size(126, 21)
         Me.Label46.TabIndex = 47
@@ -2873,7 +2873,7 @@ Partial Class frmIncidentReport
         '
         'AmountPerPayroll_TXT
         '
-        Me.AmountPerPayroll_TXT.Location = New System.Drawing.Point(174, 110)
+        Me.AmountPerPayroll_TXT.Location = New System.Drawing.Point(174, 151)
         Me.AmountPerPayroll_TXT.Name = "AmountPerPayroll_TXT"
         Me.AmountPerPayroll_TXT.ReadOnly = True
         Me.AmountPerPayroll_TXT.Size = New System.Drawing.Size(175, 28)
