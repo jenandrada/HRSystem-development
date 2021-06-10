@@ -1649,9 +1649,9 @@ Partial Class frmIncidentReport
         Me.Label64.AutoSize = True
         Me.Label64.Location = New System.Drawing.Point(6, 152)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(104, 21)
+        Me.Label64.Size = New System.Drawing.Size(98, 21)
         Me.Label64.TabIndex = 49
-        Me.Label64.Text = "No. of Payroll"
+        Me.Label64.Text = "No. of give/s"
         '
         'NoOFPayroll_TXT
         '
@@ -1666,9 +1666,9 @@ Partial Class frmIncidentReport
         Me.Label46.AutoSize = True
         Me.Label46.Location = New System.Drawing.Point(6, 117)
         Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(145, 21)
+        Me.Label46.Size = New System.Drawing.Size(126, 21)
         Me.Label46.TabIndex = 47
-        Me.Label46.Text = "Amount per Payroll"
+        Me.Label46.Text = "Amount per give"
         '
         'Charges_Numeric
         '

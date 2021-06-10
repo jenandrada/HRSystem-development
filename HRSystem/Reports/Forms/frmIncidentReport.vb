@@ -1167,13 +1167,11 @@ Public Class frmIncidentReport
 
             ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
             Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
-            AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
 
         Else
 
             ECSNo_TXT.Region = Nothing
             Charges_Numeric.Region = Nothing
-            AmountPerPayroll_TXT.Region = Nothing
 
             ECS_GB.Visible = False
             Charges_Numeric.Text = 0
@@ -1540,32 +1538,47 @@ Public Class frmIncidentReport
         Dim charge = Val(Charges_Numeric.Text)
         Dim perPayroll = Val(AmountPerPayroll_TXT.Text)
         Dim NoOFPayroll = charge / perPayroll
+        Dim noOFMonths = NoOFPayroll / 2
 
         If Not Double.TryParse(AmountPerPayroll_TXT.Text, perPayroll) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
             AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
+            NoOFPayroll_TXT.Text = ""
         Else
             AmountPerPayroll_TXT.Region = Nothing
 
             NoOFPayroll_TXT.Text = CStr(NoOFPayroll)
+
+            If noOFMonths > 0 Then
+
+                NoOFMonths_TXT.Text = noOFMonths
+
+            End If
         End If
 
-        'Dim num1 = Val(AmountPerPayroll_TXT.Text)
+    End Sub
 
-        'Dim total As Double = Convert.ToDouble(Charges_Numeric.Text)
+    Private Sub NoOFPayroll_TXT_TextChanged(sender As Object, e As EventArgs) Handles NoOFPayroll_TXT.TextChanged
 
-        'Dim perPayroll As Double = Convert.ToDouble(AmountPerPayroll_TXT.Text)
+        Dim charge = Val(Charges_Numeric.Text)
+        Dim noOFPayroll = Val(NoOFPayroll_TXT.Text)
+        Dim perPayroll = charge / noOFPayroll
+        Dim noOFMonths = noOFPayroll / 2
 
-        'Dim TotalPayroll As Double = total / perPayroll
+        If Not Double.TryParse(NoOFPayroll_TXT.Text, noOFPayroll) Or String.IsNullOrEmpty(NoOFPayroll_TXT.Text) Then
+            NoOFPayroll_TXT.Region = New Region(New Rectangle(2, 2, NoOFPayroll_TXT.Width - 4, NoOFPayroll_TXT.Height - 4))
+            AmountPerPayroll_TXT.Text = ""
+            NoOFMonths_TXT.Text = ""
+        Else
+            NoOFPayroll_TXT.Region = Nothing
 
-        'If Not Double.TryParse(AmountPerPayroll_TXT.Text, num1) Or AmountPerPayroll_TXT.Text = "0" Then
-        '    AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, Charges_Numeric.Height - 4))
-        'Else
+            AmountPerPayroll_TXT.Text = CStr(perPayroll)
 
-        '    AmountPerPayroll_TXT.Region = Nothing
+            If noOFMonths > 0 Then
 
-        '    NoOFPayroll_TXT.Text = CStr(TotalPayroll)
+                NoOFMonths_TXT.Text = noOFMonths
 
-        'End If
+            End If
+        End If
 
     End Sub
 
