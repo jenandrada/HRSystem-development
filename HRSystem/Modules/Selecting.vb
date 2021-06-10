@@ -193,6 +193,64 @@ Module Selecting
 
     End Sub
 
+    Friend Sub PopulateACTION(datagrid As DataGridView)
+        datagrid.Rows.Clear()
+        Dim mysql As String
+
+        mysql = "Select * From IR_REPRIMAND A 
+                            inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno
+"
+        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    AddRowACTION(dr, datagrid)
+                Next
+
+            End If
+        End Using
+
+    End Sub
+
+    Public Sub AddRowACTION(ByVal dr As DataRow, datagrid As DataGridView)
+
+        With dr
+
+            Dim rowId As Integer = datagrid.Rows.Add()
+            Dim row As DataGridViewRow = datagrid.Rows(rowId)
+            row.Cells("IRNO_COO").Value = Format(.Item("IRNO"), "00000")
+            row.Cells("NAME_COO").Value = .Item("LASTNAME") & ", " & .Item("FIRSTNAME") & " " & .Item("MIDDLENAME")
+            row.Cells("COMPANY_COO").Value = .Item("COMPANY")
+            row.Cells("INCIDENT_COO").Value = "Open"
+            row.Cells("INCIDENT_COO").Tag = .Item("IR_PATH")
+            row.Cells("SC_COO").Value = "Open"
+            row.Cells("SC_COO").Tag = .Item("SC_PATH")
+            row.Cells("EXPLAIN_COO").Value = "Open"
+            row.Cells("EXPLAIN_COO").Tag = .Item("EXPLAIN_PATH")
+            row.Cells("WR_COO").Value = "Open"
+            row.Cells("WR_COO").Tag = .Item("WRITTEN_PATH")
+
+            row.Cells("ACKNO_COO").Value = "Open"
+            row.Cells("ACKNO_COO").Tag = .Item("ACKNO_PATH")
+
+            row.Cells("ACTION_COO").Value = "Open"
+            row.Cells("ACTION_COO").Tag = .Item("CORRECTIVE_PATH")
+
+            'If .Item("WRITTEN_STATUS") = "PENDING" Then
+            '    row.DefaultCellStyle.BackColor = Color.LightSalmon
+            '    row.Cells("ACKNOW_DGVV").Value = "Upload"
+            'Else
+            '    row.Cells("ACKNOW_DGVV").Value = "Open"
+            '    row.Cells("ACKNOW_DGVV").Tag = .Item("ACKNO_PATH")
+            'End If
+
+            row.Height = 35
+
+        End With
+
+    End Sub
+
     Public Sub AddRowAckno(ByVal dr As DataRow, datagrid As DataGridView)
 
         With dr
@@ -370,15 +428,12 @@ Module Selecting
 
             If secured_str.Length <> 0 Then
 
-                'mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno Where A.irno = '" & irno & "'"
-
                 mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
                             inner join IR_RECORDS C on C.irno = A.irno 
                             inner join SHOWCAUSE_RECORDS D on D.irno = A.irno Where A.irno = '" & irno & "'"
 
             Else
-                'mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
 
                 mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
@@ -421,6 +476,92 @@ Module Selecting
 
             End If
         End Using
+    End Sub
+
+    Public Sub LoadACTIONSearchName(search As String, datagrid As DataGridView)
+
+        datagrid.Rows.Clear()
+        Dim secured_str = DreadKnight(search)
+        Dim mysql As String
+        Dim strWords As String() = secured_str.Split(New Char() {" "c})
+
+
+        If secured_str.Length <> 0 Then
+
+            mysql = "Select * From IR_REPRIMAND A 
+                            inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno Where"
+
+            For Each name In strWords
+                mysql &= $"{vbCr} UPPER(B.LastName ||' '|| B.FirstName ||' '|| B.MiddleName) LIKE UPPER('%{name}%') or "
+                mysql &= $"{vbCr} UPPER(B.FirstName ||' '|| B.MiddleName ||' '|| B.LastName) LIKE UPPER('%{name}%') or "
+
+                If name Is strWords.Last Then
+                    mysql &= $"{vbCr} UPPER(B.FirstName ||' '|| B.LastName ||' '|| B.MiddleName) LIKE UPPER('%{name}%')"
+                    Exit For
+                End If
+            Next
+        Else
+
+            mysql = "Select * From IR_REPRIMAND A 
+                            inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno"
+        End If
+
+        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                For Each dr In ds.Tables(0).Rows
+                    AddRowACTION(dr, datagrid)
+                Next
+
+            End If
+        End Using
+    End Sub
+
+    Public Sub LoadACTIONSearchIRNO(irno As String, datagrid As DataGridView)
+
+        Dim int As Integer
+
+        If Double.TryParse(irno, int) Then
+
+            datagrid.Rows.Clear()
+            Dim secured_str = DreadKnight(irno)
+            Dim mysql As String
+            Dim strWords As String() = secured_str.Split(New Char() {" "c})
+
+
+            If secured_str.Length <> 0 Then
+
+                mysql = "Select * From IR_REPRIMAND A 
+                            inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno Where A.irno = '" & irno & "'"
+
+            Else
+
+                mysql = "Select * From IR_REPRIMAND A 
+                            inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno"
+
+            End If
+
+            Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+                If ds.Tables(0).Rows.Count > 0 Then
+
+                    For Each dr In ds.Tables(0).Rows
+                        AddRowACTION(dr, datagrid)
+                    Next
+                End If
+            End Using
+
+        Else
+            MsgBox("Invalid! You entered a Nonnumerical data.", MsgBoxStyle.Critical, "Error")
+        End If
+
     End Sub
 
 End Module

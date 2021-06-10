@@ -25,15 +25,15 @@ Partial Class frmWRList
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWRList))
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Close_BTN = New System.Windows.Forms.Button()
-        Me.Status_Combo = New System.Windows.Forms.ComboBox()
-        Me.Label43 = New System.Windows.Forms.Label()
-        Me.SearchBy_Combo = New System.Windows.Forms.ComboBox()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.lvEmployee = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.IRNo_BTN = New System.Windows.Forms.Button()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.IRNo_TXT = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label21
@@ -42,9 +42,9 @@ Partial Class frmWRList
         Me.Label21.Font = New System.Drawing.Font("Segoe UI", 18.0!)
         Me.Label21.Location = New System.Drawing.Point(-1, -1)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(258, 32)
+        Me.Label21.Size = New System.Drawing.Size(461, 32)
         Me.Label21.TabIndex = 14
-        Me.Label21.Text = "Written Reprimand List"
+        Me.Label21.Text = "List of Acknowledged Written Reprimands"
         '
         'Close_BTN
         '
@@ -55,38 +55,6 @@ Partial Class frmWRList
         Me.Close_BTN.Size = New System.Drawing.Size(30, 30)
         Me.Close_BTN.TabIndex = 15
         Me.Close_BTN.UseVisualStyleBackColor = True
-        '
-        'Status_Combo
-        '
-        Me.Status_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.Status_Combo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Status_Combo.FormattingEnabled = True
-        Me.Status_Combo.Items.AddRange(New Object() {"All", "Pending", "Acknowleged"})
-        Me.Status_Combo.Location = New System.Drawing.Point(979, 49)
-        Me.Status_Combo.Name = "Status_Combo"
-        Me.Status_Combo.Size = New System.Drawing.Size(174, 28)
-        Me.Status_Combo.TabIndex = 87
-        '
-        'Label43
-        '
-        Me.Label43.AutoSize = True
-        Me.Label43.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label43.Location = New System.Drawing.Point(917, 54)
-        Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(56, 20)
-        Me.Label43.TabIndex = 86
-        Me.Label43.Text = "Status"
-        '
-        'SearchBy_Combo
-        '
-        Me.SearchBy_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.SearchBy_Combo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SearchBy_Combo.FormattingEnabled = True
-        Me.SearchBy_Combo.Items.AddRange(New Object() {"Search by Name", "Search by IR No."})
-        Me.SearchBy_Combo.Location = New System.Drawing.Point(373, 50)
-        Me.SearchBy_Combo.Name = "SearchBy_Combo"
-        Me.SearchBy_Combo.Size = New System.Drawing.Size(158, 28)
-        Me.SearchBy_Combo.TabIndex = 85
         '
         'txtSearch
         '
@@ -136,15 +104,47 @@ Partial Class frmWRList
         Me.ColumnHeader5.Text = "Company"
         Me.ColumnHeader5.Width = 310
         '
+        'IRNo_BTN
+        '
+        Me.IRNo_BTN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.IRNo_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IRNo_BTN.Location = New System.Drawing.Point(992, 47)
+        Me.IRNo_BTN.Name = "IRNo_BTN"
+        Me.IRNo_BTN.Size = New System.Drawing.Size(140, 34)
+        Me.IRNo_BTN.TabIndex = 90
+        Me.IRNo_BTN.Text = "&Search IR No."
+        Me.IRNo_BTN.UseVisualStyleBackColor = True
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearch.Location = New System.Drawing.Point(370, 47)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(169, 34)
+        Me.btnSearch.TabIndex = 89
+        Me.btnSearch.Text = "&Search Name"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'IRNo_TXT
+        '
+        Me.IRNo_TXT.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.IRNo_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IRNo_TXT.Location = New System.Drawing.Point(781, 47)
+        Me.IRNo_TXT.Name = "IRNo_TXT"
+        Me.IRNo_TXT.Size = New System.Drawing.Size(196, 31)
+        Me.IRNo_TXT.TabIndex = 91
+        '
         'frmWRList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1181, 749)
+        Me.Controls.Add(Me.IRNo_TXT)
+        Me.Controls.Add(Me.IRNo_BTN)
+        Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.lvEmployee)
-        Me.Controls.Add(Me.Status_Combo)
-        Me.Controls.Add(Me.Label43)
-        Me.Controls.Add(Me.SearchBy_Combo)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.Close_BTN)
         Me.Controls.Add(Me.Label21)
@@ -158,13 +158,13 @@ Partial Class frmWRList
 
     Friend WithEvents Close_BTN As Button
     Friend WithEvents Label21 As Label
-    Friend WithEvents Status_Combo As ComboBox
-    Friend WithEvents Label43 As Label
-    Friend WithEvents SearchBy_Combo As ComboBox
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents lvEmployee As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents IRNo_BTN As Button
+    Friend WithEvents btnSearch As Button
+    Friend WithEvents IRNo_TXT As TextBox
 End Class

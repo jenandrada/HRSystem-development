@@ -99,6 +99,8 @@ Partial Class frmIncidentReport
         Me.BusinessUnitHead_TXT = New System.Windows.Forms.TextBox()
         Me.HRSupervisor_TXT = New System.Windows.Forms.TextBox()
         Me.RuleViolated_GB = New System.Windows.Forms.GroupBox()
+        Me.SCViolation_RichB = New System.Windows.Forms.RichTextBox()
+        Me.Label63 = New System.Windows.Forms.Label()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.SC_IncidentDate_RichB = New System.Windows.Forms.RichTextBox()
@@ -135,6 +137,8 @@ Partial Class frmIncidentReport
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.RptViewer_WrittenReprimand = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.WR_Violation_RichB = New System.Windows.Forms.RichTextBox()
+        Me.Label65 = New System.Windows.Forms.Label()
         Me.WP_DateIncident_DTP = New System.Windows.Forms.RichTextBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -145,8 +149,11 @@ Partial Class frmIncidentReport
         Me.WP_Incident_TXT = New System.Windows.Forms.RichTextBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.ECS_GB = New System.Windows.Forms.GroupBox()
+        Me.NoOFMonths_TXT = New System.Windows.Forms.TextBox()
+        Me.Label66 = New System.Windows.Forms.Label()
+        Me.Label64 = New System.Windows.Forms.Label()
+        Me.NoOFPayroll_TXT = New System.Windows.Forms.TextBox()
         Me.Label46 = New System.Windows.Forms.Label()
-        Me.NoOfMONTHS_TXT = New System.Windows.Forms.TextBox()
         Me.Charges_Numeric = New System.Windows.Forms.TextBox()
         Me.ECSNo_TXT = New System.Windows.Forms.TextBox()
         Me.Label44 = New System.Windows.Forms.Label()
@@ -210,6 +217,12 @@ Partial Class frmIncidentReport
         Me.SplitContainer4 = New System.Windows.Forms.SplitContainer()
         Me.RptViewer_Corrective = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Coo_WRDate_LBL = New System.Windows.Forms.Label()
+        Me.Coo_SCDate_LBL = New System.Windows.Forms.Label()
+        Me.Label54 = New System.Windows.Forms.Label()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.Coo_Violation = New System.Windows.Forms.RichTextBox()
+        Me.Label50 = New System.Windows.Forms.Label()
         Me.Coo_DateIncident_RB = New System.Windows.Forms.RichTextBox()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label49 = New System.Windows.Forms.Label()
@@ -219,6 +232,8 @@ Partial Class frmIncidentReport
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Coo_Description_RB = New System.Windows.Forms.RichTextBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.Coo_Clear_BTN = New System.Windows.Forms.Button()
+        Me.Coo_NoOfDays_Numeric = New System.Windows.Forms.Label()
         Me.ClearDateSuspension_BTN = New System.Windows.Forms.Button()
         Me.DateSuspension_DPT = New System.Windows.Forms.DateTimePicker()
         Me.Label52 = New System.Windows.Forms.Label()
@@ -226,7 +241,6 @@ Partial Class frmIncidentReport
         Me.Label55 = New System.Windows.Forms.Label()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.Label57 = New System.Windows.Forms.Label()
-        Me.Coo_NoOfDays_Numeric = New System.Windows.Forms.NumericUpDown()
         Me.Change4_BTN = New System.Windows.Forms.Button()
         Me.Change2_BTN = New System.Windows.Forms.Button()
         Me.Change3_BTN = New System.Windows.Forms.Button()
@@ -253,15 +267,21 @@ Partial Class frmIncidentReport
         Me.Coo_Name_TXT = New System.Windows.Forms.TextBox()
         Me.Label61 = New System.Windows.Forms.Label()
         Me.IRNoCOO_LBL = New System.Windows.Forms.Label()
+        Me.List_Page = New System.Windows.Forms.TabPage()
+        Me.ACTION_Datagrid = New System.Windows.Forms.DataGridView()
+        Me.IRNO_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NAME_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COMPANY_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.INCIDENT_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.SC_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.EXPLAIN_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.WR_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ACKNO_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ACTION_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Coo_Search_CB = New System.Windows.Forms.ComboBox()
+        Me.Coo_Search_TXT = New System.Windows.Forms.TextBox()
         Me.Close_BTN = New System.Windows.Forms.Button()
-        Me.Coo_Violation = New System.Windows.Forms.RichTextBox()
-        Me.Label50 = New System.Windows.Forms.Label()
-        Me.Label53 = New System.Windows.Forms.Label()
-        Me.Label54 = New System.Windows.Forms.Label()
-        Me.Coo_SCDate_LBL = New System.Windows.Forms.Label()
-        Me.Coo_WRDate_LBL = New System.Windows.Forms.Label()
-        Me.Label63 = New System.Windows.Forms.Label()
-        Me.SCViolation_RichB = New System.Windows.Forms.RichTextBox()
+        Me.AmountPerPayroll_TXT = New System.Windows.Forms.TextBox()
         Me.CorrectiveWindow.SuspendLayout()
         Me.IR_Page.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -305,8 +325,9 @@ Partial Class frmIncidentReport
         Me.SplitContainer4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
-        CType(Me.Coo_NoOfDays_Numeric, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox11.SuspendLayout()
+        Me.List_Page.SuspendLayout()
+        CType(Me.ACTION_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label21
@@ -327,6 +348,7 @@ Partial Class frmIncidentReport
         Me.CorrectiveWindow.Controls.Add(Me.WrittenReprimand_Page)
         Me.CorrectiveWindow.Controls.Add(Me.Acknowledg_Page)
         Me.CorrectiveWindow.Controls.Add(Me.Corrective_Page)
+        Me.CorrectiveWindow.Controls.Add(Me.List_Page)
         Me.CorrectiveWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CorrectiveWindow.Location = New System.Drawing.Point(1, 47)
         Me.CorrectiveWindow.Name = "CorrectiveWindow"
@@ -1081,6 +1103,23 @@ Partial Class frmIncidentReport
         Me.RuleViolated_GB.TabStop = False
         Me.RuleViolated_GB.Text = "Rules Violated"
         '
+        'SCViolation_RichB
+        '
+        Me.SCViolation_RichB.Location = New System.Drawing.Point(134, 779)
+        Me.SCViolation_RichB.Name = "SCViolation_RichB"
+        Me.SCViolation_RichB.Size = New System.Drawing.Size(420, 96)
+        Me.SCViolation_RichB.TabIndex = 45
+        Me.SCViolation_RichB.Text = ""
+        '
+        'Label63
+        '
+        Me.Label63.AutoSize = True
+        Me.Label63.Location = New System.Drawing.Point(21, 775)
+        Me.Label63.Name = "Label63"
+        Me.Label63.Size = New System.Drawing.Size(72, 21)
+        Me.Label63.TabIndex = 44
+        Me.Label63.Text = "Violation"
+        '
         'Label41
         '
         Me.Label41.AutoSize = True
@@ -1432,6 +1471,8 @@ Partial Class frmIncidentReport
         '
         'GroupBox8
         '
+        Me.GroupBox8.Controls.Add(Me.WR_Violation_RichB)
+        Me.GroupBox8.Controls.Add(Me.Label65)
         Me.GroupBox8.Controls.Add(Me.WP_DateIncident_DTP)
         Me.GroupBox8.Controls.Add(Me.Label26)
         Me.GroupBox8.Controls.Add(Me.Label14)
@@ -1440,23 +1481,41 @@ Partial Class frmIncidentReport
         Me.GroupBox8.Controls.Add(Me.WP_Incident_TXT)
         Me.GroupBox8.Location = New System.Drawing.Point(22, 173)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(574, 688)
+        Me.GroupBox8.Size = New System.Drawing.Size(574, 828)
         Me.GroupBox8.TabIndex = 39
         Me.GroupBox8.TabStop = False
         '
+        'WR_Violation_RichB
+        '
+        Me.WR_Violation_RichB.Location = New System.Drawing.Point(158, 703)
+        Me.WR_Violation_RichB.Name = "WR_Violation_RichB"
+        Me.WR_Violation_RichB.ReadOnly = True
+        Me.WR_Violation_RichB.Size = New System.Drawing.Size(401, 96)
+        Me.WR_Violation_RichB.TabIndex = 47
+        Me.WR_Violation_RichB.Text = ""
+        '
+        'Label65
+        '
+        Me.Label65.AutoSize = True
+        Me.Label65.Location = New System.Drawing.Point(15, 703)
+        Me.Label65.Name = "Label65"
+        Me.Label65.Size = New System.Drawing.Size(70, 20)
+        Me.Label65.TabIndex = 46
+        Me.Label65.Text = "Violation"
+        '
         'WP_DateIncident_DTP
         '
-        Me.WP_DateIncident_DTP.Location = New System.Drawing.Point(17, 600)
+        Me.WP_DateIncident_DTP.Location = New System.Drawing.Point(158, 600)
         Me.WP_DateIncident_DTP.Name = "WP_DateIncident_DTP"
         Me.WP_DateIncident_DTP.ReadOnly = True
-        Me.WP_DateIncident_DTP.Size = New System.Drawing.Size(542, 70)
+        Me.WP_DateIncident_DTP.Size = New System.Drawing.Size(401, 70)
         Me.WP_DateIncident_DTP.TabIndex = 43
         Me.WP_DateIncident_DTP.Text = ""
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(15, 566)
+        Me.Label26.Location = New System.Drawing.Point(15, 600)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(123, 20)
         Me.Label26.TabIndex = 42
@@ -1541,60 +1600,89 @@ Partial Class frmIncidentReport
         Me.GroupBox5.Controls.Add(Me.WP_Save_Btn)
         Me.GroupBox5.Controls.Add(Me.WP_OK_BTN)
         Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 924)
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 1084)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(593, 808)
+        Me.GroupBox5.Size = New System.Drawing.Size(593, 912)
         Me.GroupBox5.TabIndex = 4
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Action"
         '
         'ECS_GB
         '
+        Me.ECS_GB.Controls.Add(Me.AmountPerPayroll_TXT)
+        Me.ECS_GB.Controls.Add(Me.NoOFMonths_TXT)
+        Me.ECS_GB.Controls.Add(Me.Label66)
+        Me.ECS_GB.Controls.Add(Me.Label64)
+        Me.ECS_GB.Controls.Add(Me.NoOFPayroll_TXT)
         Me.ECS_GB.Controls.Add(Me.Label46)
-        Me.ECS_GB.Controls.Add(Me.NoOfMONTHS_TXT)
         Me.ECS_GB.Controls.Add(Me.Charges_Numeric)
         Me.ECS_GB.Controls.Add(Me.ECSNo_TXT)
         Me.ECS_GB.Controls.Add(Me.Label44)
         Me.ECS_GB.Controls.Add(Me.Label45)
-        Me.ECS_GB.Location = New System.Drawing.Point(225, 194)
+        Me.ECS_GB.Location = New System.Drawing.Point(177, 192)
         Me.ECS_GB.Name = "ECS_GB"
-        Me.ECS_GB.Size = New System.Drawing.Size(307, 126)
+        Me.ECS_GB.Size = New System.Drawing.Size(369, 256)
         Me.ECS_GB.TabIndex = 44
         Me.ECS_GB.TabStop = False
         Me.ECS_GB.Visible = False
         '
+        'NoOFMonths_TXT
+        '
+        Me.NoOFMonths_TXT.Location = New System.Drawing.Point(174, 185)
+        Me.NoOFMonths_TXT.Name = "NoOFMonths_TXT"
+        Me.NoOFMonths_TXT.ReadOnly = True
+        Me.NoOFMonths_TXT.Size = New System.Drawing.Size(175, 28)
+        Me.NoOFMonths_TXT.TabIndex = 51
+        '
+        'Label66
+        '
+        Me.Label66.AutoSize = True
+        Me.Label66.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label66.Location = New System.Drawing.Point(6, 192)
+        Me.Label66.Name = "Label66"
+        Me.Label66.Size = New System.Drawing.Size(156, 21)
+        Me.Label66.TabIndex = 50
+        Me.Label66.Text = "No. of months to pay"
+        '
+        'Label64
+        '
+        Me.Label64.AutoSize = True
+        Me.Label64.Location = New System.Drawing.Point(6, 152)
+        Me.Label64.Name = "Label64"
+        Me.Label64.Size = New System.Drawing.Size(104, 21)
+        Me.Label64.TabIndex = 49
+        Me.Label64.Text = "No. of Payroll"
+        '
+        'NoOFPayroll_TXT
+        '
+        Me.NoOFPayroll_TXT.Location = New System.Drawing.Point(174, 146)
+        Me.NoOFPayroll_TXT.Name = "NoOFPayroll_TXT"
+        Me.NoOFPayroll_TXT.ReadOnly = True
+        Me.NoOFPayroll_TXT.Size = New System.Drawing.Size(175, 28)
+        Me.NoOFPayroll_TXT.TabIndex = 48
+        '
         'Label46
         '
         Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(6, 90)
+        Me.Label46.Location = New System.Drawing.Point(6, 117)
         Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(109, 21)
+        Me.Label46.Size = New System.Drawing.Size(145, 21)
         Me.Label46.TabIndex = 47
-        Me.Label46.Text = "No. of Months"
-        '
-        'NoOfMONTHS_TXT
-        '
-        Me.NoOfMONTHS_TXT.Location = New System.Drawing.Point(126, 86)
-        Me.NoOfMONTHS_TXT.Name = "NoOfMONTHS_TXT"
-        Me.NoOfMONTHS_TXT.Size = New System.Drawing.Size(175, 28)
-        Me.NoOfMONTHS_TXT.TabIndex = 46
-        Me.NoOfMONTHS_TXT.Text = "0"
+        Me.Label46.Text = "Amount per Payroll"
         '
         'Charges_Numeric
         '
-        Me.Charges_Numeric.Location = New System.Drawing.Point(126, 52)
+        Me.Charges_Numeric.Location = New System.Drawing.Point(174, 50)
         Me.Charges_Numeric.Name = "Charges_Numeric"
         Me.Charges_Numeric.Size = New System.Drawing.Size(175, 28)
         Me.Charges_Numeric.TabIndex = 45
-        Me.Charges_Numeric.Text = "0"
         '
         'ECSNo_TXT
         '
-        Me.ECSNo_TXT.Location = New System.Drawing.Point(126, 20)
+        Me.ECSNo_TXT.Location = New System.Drawing.Point(174, 18)
         Me.ECSNo_TXT.Name = "ECSNo_TXT"
         Me.ECSNo_TXT.Size = New System.Drawing.Size(175, 28)
         Me.ECSNo_TXT.TabIndex = 44
-        Me.ECSNo_TXT.Text = "0"
         '
         'Label44
         '
@@ -1610,9 +1698,9 @@ Partial Class frmIncidentReport
         Me.Label45.AutoSize = True
         Me.Label45.Location = New System.Drawing.Point(6, 56)
         Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(66, 21)
+        Me.Label45.Size = New System.Drawing.Size(104, 21)
         Me.Label45.TabIndex = 43
-        Me.Label45.Text = "Amount"
+        Me.Label45.Text = "Total Amount"
         '
         'AmountCharges_CB
         '
@@ -1627,7 +1715,7 @@ Partial Class frmIncidentReport
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(312, 559)
+        Me.Label15.Location = New System.Drawing.Point(312, 627)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(102, 21)
         Me.Label15.TabIndex = 35
@@ -1636,7 +1724,7 @@ Partial Class frmIncidentReport
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(311, 437)
+        Me.Label11.Location = New System.Drawing.Point(311, 505)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(101, 21)
         Me.Label11.TabIndex = 34
@@ -1645,7 +1733,7 @@ Partial Class frmIncidentReport
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(13, 559)
+        Me.Label10.Location = New System.Drawing.Point(13, 627)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(77, 21)
         Me.Label10.TabIndex = 33
@@ -1654,7 +1742,7 @@ Partial Class frmIncidentReport
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(14, 437)
+        Me.Label9.Location = New System.Drawing.Point(14, 505)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(97, 21)
         Me.Label9.TabIndex = 32
@@ -1680,7 +1768,7 @@ Partial Class frmIncidentReport
         '
         'WP_PS4_Btn
         '
-        Me.WP_PS4_Btn.Location = New System.Drawing.Point(538, 584)
+        Me.WP_PS4_Btn.Location = New System.Drawing.Point(538, 652)
         Me.WP_PS4_Btn.Name = "WP_PS4_Btn"
         Me.WP_PS4_Btn.Size = New System.Drawing.Size(26, 26)
         Me.WP_PS4_Btn.TabIndex = 28
@@ -1689,7 +1777,7 @@ Partial Class frmIncidentReport
         '
         'WP_PS2_Btn
         '
-        Me.WP_PS2_Btn.Location = New System.Drawing.Point(533, 460)
+        Me.WP_PS2_Btn.Location = New System.Drawing.Point(533, 528)
         Me.WP_PS2_Btn.Name = "WP_PS2_Btn"
         Me.WP_PS2_Btn.Size = New System.Drawing.Size(26, 26)
         Me.WP_PS2_Btn.TabIndex = 27
@@ -1698,7 +1786,7 @@ Partial Class frmIncidentReport
         '
         'WP_PS3_Btn
         '
-        Me.WP_PS3_Btn.Location = New System.Drawing.Point(235, 582)
+        Me.WP_PS3_Btn.Location = New System.Drawing.Point(235, 650)
         Me.WP_PS3_Btn.Name = "WP_PS3_Btn"
         Me.WP_PS3_Btn.Size = New System.Drawing.Size(26, 26)
         Me.WP_PS3_Btn.TabIndex = 26
@@ -1707,7 +1795,7 @@ Partial Class frmIncidentReport
         '
         'WP_PS1_Btn
         '
-        Me.WP_PS1_Btn.Location = New System.Drawing.Point(235, 462)
+        Me.WP_PS1_Btn.Location = New System.Drawing.Point(235, 530)
         Me.WP_PS1_Btn.Name = "WP_PS1_Btn"
         Me.WP_PS1_Btn.Size = New System.Drawing.Size(26, 26)
         Me.WP_PS1_Btn.TabIndex = 25
@@ -1716,7 +1804,7 @@ Partial Class frmIncidentReport
         '
         'WP_Position4_TXT
         '
-        Me.WP_Position4_TXT.Location = New System.Drawing.Point(315, 582)
+        Me.WP_Position4_TXT.Location = New System.Drawing.Point(315, 650)
         Me.WP_Position4_TXT.Name = "WP_Position4_TXT"
         Me.WP_Position4_TXT.ReadOnly = True
         Me.WP_Position4_TXT.Size = New System.Drawing.Size(217, 28)
@@ -1725,7 +1813,7 @@ Partial Class frmIncidentReport
         '
         'WP_Position2_TXT
         '
-        Me.WP_Position2_TXT.Location = New System.Drawing.Point(316, 460)
+        Me.WP_Position2_TXT.Location = New System.Drawing.Point(316, 528)
         Me.WP_Position2_TXT.Name = "WP_Position2_TXT"
         Me.WP_Position2_TXT.ReadOnly = True
         Me.WP_Position2_TXT.Size = New System.Drawing.Size(211, 28)
@@ -1734,7 +1822,7 @@ Partial Class frmIncidentReport
         '
         'WP_Position3_TXT
         '
-        Me.WP_Position3_TXT.Location = New System.Drawing.Point(18, 582)
+        Me.WP_Position3_TXT.Location = New System.Drawing.Point(18, 650)
         Me.WP_Position3_TXT.Name = "WP_Position3_TXT"
         Me.WP_Position3_TXT.ReadOnly = True
         Me.WP_Position3_TXT.Size = New System.Drawing.Size(211, 28)
@@ -1743,7 +1831,7 @@ Partial Class frmIncidentReport
         '
         'WP_Position1_TXT
         '
-        Me.WP_Position1_TXT.Location = New System.Drawing.Point(18, 460)
+        Me.WP_Position1_TXT.Location = New System.Drawing.Point(18, 528)
         Me.WP_Position1_TXT.Name = "WP_Position1_TXT"
         Me.WP_Position1_TXT.ReadOnly = True
         Me.WP_Position1_TXT.Size = New System.Drawing.Size(211, 28)
@@ -1797,7 +1885,7 @@ Partial Class frmIncidentReport
         'WP_Officer_Incharge_TXT
         '
         Me.WP_Officer_Incharge_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.WP_Officer_Incharge_TXT.Location = New System.Drawing.Point(18, 614)
+        Me.WP_Officer_Incharge_TXT.Location = New System.Drawing.Point(18, 682)
         Me.WP_Officer_Incharge_TXT.Name = "WP_Officer_Incharge_TXT"
         Me.WP_Officer_Incharge_TXT.Size = New System.Drawing.Size(211, 28)
         Me.WP_Officer_Incharge_TXT.TabIndex = 10
@@ -1805,7 +1893,7 @@ Partial Class frmIncidentReport
         'WP_HR_Sup_TXT
         '
         Me.WP_HR_Sup_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.WP_HR_Sup_TXT.Location = New System.Drawing.Point(316, 492)
+        Me.WP_HR_Sup_TXT.Location = New System.Drawing.Point(316, 560)
         Me.WP_HR_Sup_TXT.Name = "WP_HR_Sup_TXT"
         Me.WP_HR_Sup_TXT.Size = New System.Drawing.Size(211, 28)
         Me.WP_HR_Sup_TXT.TabIndex = 8
@@ -1813,7 +1901,7 @@ Partial Class frmIncidentReport
         'WP_BusinessHead_TXT
         '
         Me.WP_BusinessHead_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.WP_BusinessHead_TXT.Location = New System.Drawing.Point(315, 614)
+        Me.WP_BusinessHead_TXT.Location = New System.Drawing.Point(315, 682)
         Me.WP_BusinessHead_TXT.Name = "WP_BusinessHead_TXT"
         Me.WP_BusinessHead_TXT.Size = New System.Drawing.Size(217, 28)
         Me.WP_BusinessHead_TXT.TabIndex = 8
@@ -1821,14 +1909,14 @@ Partial Class frmIncidentReport
         'WP_Emp_Rel_TXT
         '
         Me.WP_Emp_Rel_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.WP_Emp_Rel_TXT.Location = New System.Drawing.Point(18, 492)
+        Me.WP_Emp_Rel_TXT.Location = New System.Drawing.Point(18, 560)
         Me.WP_Emp_Rel_TXT.Name = "WP_Emp_Rel_TXT"
         Me.WP_Emp_Rel_TXT.Size = New System.Drawing.Size(211, 28)
         Me.WP_Emp_Rel_TXT.TabIndex = 6
         '
         'WP_Save_Btn
         '
-        Me.WP_Save_Btn.Location = New System.Drawing.Point(242, 706)
+        Me.WP_Save_Btn.Location = New System.Drawing.Point(242, 774)
         Me.WP_Save_Btn.Name = "WP_Save_Btn"
         Me.WP_Save_Btn.Size = New System.Drawing.Size(130, 51)
         Me.WP_Save_Btn.TabIndex = 4
@@ -1837,7 +1925,7 @@ Partial Class frmIncidentReport
         '
         'WP_OK_BTN
         '
-        Me.WP_OK_BTN.Location = New System.Drawing.Point(402, 702)
+        Me.WP_OK_BTN.Location = New System.Drawing.Point(402, 770)
         Me.WP_OK_BTN.Name = "WP_OK_BTN"
         Me.WP_OK_BTN.Size = New System.Drawing.Size(130, 51)
         Me.WP_OK_BTN.TabIndex = 3
@@ -2138,7 +2226,7 @@ Partial Class frmIncidentReport
         Me.Corrective_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.Corrective_Page.Size = New System.Drawing.Size(1167, 667)
         Me.Corrective_Page.TabIndex = 5
-        Me.Corrective_Page.Text = "   Corrective Action Report"
+        Me.Corrective_Page.Text = "   Corrective Action Report   "
         Me.Corrective_Page.UseVisualStyleBackColor = True
         '
         'SplitContainer4
@@ -2189,6 +2277,62 @@ Partial Class frmIncidentReport
         Me.GroupBox2.Size = New System.Drawing.Size(574, 969)
         Me.GroupBox2.TabIndex = 39
         Me.GroupBox2.TabStop = False
+        '
+        'Coo_WRDate_LBL
+        '
+        Me.Coo_WRDate_LBL.AutoSize = True
+        Me.Coo_WRDate_LBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coo_WRDate_LBL.Location = New System.Drawing.Point(297, 906)
+        Me.Coo_WRDate_LBL.Name = "Coo_WRDate_LBL"
+        Me.Coo_WRDate_LBL.Size = New System.Drawing.Size(15, 20)
+        Me.Coo_WRDate_LBL.TabIndex = 49
+        Me.Coo_WRDate_LBL.Text = "-"
+        '
+        'Coo_SCDate_LBL
+        '
+        Me.Coo_SCDate_LBL.AutoSize = True
+        Me.Coo_SCDate_LBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coo_SCDate_LBL.Location = New System.Drawing.Point(297, 861)
+        Me.Coo_SCDate_LBL.Name = "Coo_SCDate_LBL"
+        Me.Coo_SCDate_LBL.Size = New System.Drawing.Size(15, 20)
+        Me.Coo_SCDate_LBL.TabIndex = 48
+        Me.Coo_SCDate_LBL.Text = "-"
+        '
+        'Label54
+        '
+        Me.Label54.AutoSize = True
+        Me.Label54.Location = New System.Drawing.Point(17, 907)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(263, 20)
+        Me.Label54.TabIndex = 47
+        Me.Label54.Text = "Written Reprimand Notice Issued    :"
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Location = New System.Drawing.Point(17, 859)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(264, 20)
+        Me.Label53.TabIndex = 46
+        Me.Label53.Text = "Show Cause Notice Issued               :"
+        '
+        'Coo_Violation
+        '
+        Me.Coo_Violation.Location = New System.Drawing.Point(19, 741)
+        Me.Coo_Violation.Name = "Coo_Violation"
+        Me.Coo_Violation.ReadOnly = True
+        Me.Coo_Violation.Size = New System.Drawing.Size(542, 70)
+        Me.Coo_Violation.TabIndex = 45
+        Me.Coo_Violation.Text = ""
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.Location = New System.Drawing.Point(17, 707)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(82, 20)
+        Me.Label50.TabIndex = 44
+        Me.Label50.Text = "Violation/s"
         '
         'Coo_DateIncident_RB
         '
@@ -2261,6 +2405,8 @@ Partial Class frmIncidentReport
         '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.Coo_Clear_BTN)
+        Me.GroupBox9.Controls.Add(Me.Coo_NoOfDays_Numeric)
         Me.GroupBox9.Controls.Add(Me.ClearDateSuspension_BTN)
         Me.GroupBox9.Controls.Add(Me.DateSuspension_DPT)
         Me.GroupBox9.Controls.Add(Me.Label52)
@@ -2268,7 +2414,6 @@ Partial Class frmIncidentReport
         Me.GroupBox9.Controls.Add(Me.Label55)
         Me.GroupBox9.Controls.Add(Me.Label56)
         Me.GroupBox9.Controls.Add(Me.Label57)
-        Me.GroupBox9.Controls.Add(Me.Coo_NoOfDays_Numeric)
         Me.GroupBox9.Controls.Add(Me.Change4_BTN)
         Me.GroupBox9.Controls.Add(Me.Change2_BTN)
         Me.GroupBox9.Controls.Add(Me.Change3_BTN)
@@ -2290,6 +2435,25 @@ Partial Class frmIncidentReport
         Me.GroupBox9.TabIndex = 4
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Action"
+        '
+        'Coo_Clear_BTN
+        '
+        Me.Coo_Clear_BTN.Location = New System.Drawing.Point(47, 698)
+        Me.Coo_Clear_BTN.Name = "Coo_Clear_BTN"
+        Me.Coo_Clear_BTN.Size = New System.Drawing.Size(130, 51)
+        Me.Coo_Clear_BTN.TabIndex = 68
+        Me.Coo_Clear_BTN.Text = "Clear"
+        Me.Coo_Clear_BTN.UseVisualStyleBackColor = True
+        '
+        'Coo_NoOfDays_Numeric
+        '
+        Me.Coo_NoOfDays_Numeric.AutoSize = True
+        Me.Coo_NoOfDays_Numeric.Font = New System.Drawing.Font("Microsoft Tai Le", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coo_NoOfDays_Numeric.Location = New System.Drawing.Point(205, 42)
+        Me.Coo_NoOfDays_Numeric.Name = "Coo_NoOfDays_Numeric"
+        Me.Coo_NoOfDays_Numeric.Size = New System.Drawing.Size(20, 27)
+        Me.Coo_NoOfDays_Numeric.TabIndex = 67
+        Me.Coo_NoOfDays_Numeric.Text = "-"
         '
         'ClearDateSuspension_BTN
         '
@@ -2352,13 +2516,6 @@ Partial Class frmIncidentReport
         Me.Label57.Size = New System.Drawing.Size(97, 21)
         Me.Label57.TabIndex = 32
         Me.Label57.Text = "Prepared By:"
-        '
-        'Coo_NoOfDays_Numeric
-        '
-        Me.Coo_NoOfDays_Numeric.Location = New System.Drawing.Point(205, 45)
-        Me.Coo_NoOfDays_Numeric.Name = "Coo_NoOfDays_Numeric"
-        Me.Coo_NoOfDays_Numeric.Size = New System.Drawing.Size(320, 28)
-        Me.Coo_NoOfDays_Numeric.TabIndex = 31
         '
         'Change4_BTN
         '
@@ -2455,7 +2612,6 @@ Partial Class frmIncidentReport
         Me.Coo_Noted_Name_TXT.Name = "Coo_Noted_Name_TXT"
         Me.Coo_Noted_Name_TXT.Size = New System.Drawing.Size(319, 28)
         Me.Coo_Noted_Name_TXT.TabIndex = 8
-        Me.Coo_Noted_Name_TXT.Text = "DARREN Y. UY"
         '
         'Coo_Pre_Name_TXT
         '
@@ -2467,7 +2623,7 @@ Partial Class frmIncidentReport
         '
         'SaveCOR_BTN
         '
-        Me.SaveCOR_BTN.Location = New System.Drawing.Point(288, 698)
+        Me.SaveCOR_BTN.Location = New System.Drawing.Point(258, 698)
         Me.SaveCOR_BTN.Name = "SaveCOR_BTN"
         Me.SaveCOR_BTN.Size = New System.Drawing.Size(130, 51)
         Me.SaveCOR_BTN.TabIndex = 4
@@ -2595,6 +2751,116 @@ Partial Class frmIncidentReport
         Me.IRNoCOO_LBL.TabIndex = 21
         Me.IRNoCOO_LBL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'List_Page
+        '
+        Me.List_Page.Controls.Add(Me.ACTION_Datagrid)
+        Me.List_Page.Controls.Add(Me.Coo_Search_CB)
+        Me.List_Page.Controls.Add(Me.Coo_Search_TXT)
+        Me.List_Page.Location = New System.Drawing.Point(4, 29)
+        Me.List_Page.Name = "List_Page"
+        Me.List_Page.Padding = New System.Windows.Forms.Padding(3)
+        Me.List_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.List_Page.TabIndex = 6
+        Me.List_Page.Text = "       Records      "
+        Me.List_Page.UseVisualStyleBackColor = True
+        '
+        'ACTION_Datagrid
+        '
+        Me.ACTION_Datagrid.AllowUserToAddRows = False
+        Me.ACTION_Datagrid.AllowUserToResizeRows = False
+        Me.ACTION_Datagrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace
+        Me.ACTION_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ACTION_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ACTION_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IRNO_COO, Me.NAME_COO, Me.COMPANY_COO, Me.INCIDENT_COO, Me.SC_COO, Me.EXPLAIN_COO, Me.WR_COO, Me.ACKNO_COO, Me.ACTION_COO})
+        Me.ACTION_Datagrid.Location = New System.Drawing.Point(4, 91)
+        Me.ACTION_Datagrid.Name = "ACTION_Datagrid"
+        Me.ACTION_Datagrid.RowHeadersVisible = False
+        Me.ACTION_Datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.ACTION_Datagrid.Size = New System.Drawing.Size(1156, 567)
+        Me.ACTION_Datagrid.TabIndex = 95
+        '
+        'IRNO_COO
+        '
+        Me.IRNO_COO.HeaderText = "IR No."
+        Me.IRNO_COO.Name = "IRNO_COO"
+        Me.IRNO_COO.ReadOnly = True
+        Me.IRNO_COO.Width = 110
+        '
+        'NAME_COO
+        '
+        Me.NAME_COO.HeaderText = "Name"
+        Me.NAME_COO.Name = "NAME_COO"
+        Me.NAME_COO.ReadOnly = True
+        Me.NAME_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.NAME_COO.Width = 280
+        '
+        'COMPANY_COO
+        '
+        Me.COMPANY_COO.HeaderText = "Company"
+        Me.COMPANY_COO.Name = "COMPANY_COO"
+        Me.COMPANY_COO.ReadOnly = True
+        Me.COMPANY_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.COMPANY_COO.Width = 210
+        '
+        'INCIDENT_COO
+        '
+        Me.INCIDENT_COO.HeaderText = "     IR"
+        Me.INCIDENT_COO.Name = "INCIDENT_COO"
+        Me.INCIDENT_COO.Width = 75
+        '
+        'SC_COO
+        '
+        Me.SC_COO.HeaderText = "     SC"
+        Me.SC_COO.Name = "SC_COO"
+        Me.SC_COO.Width = 75
+        '
+        'EXPLAIN_COO
+        '
+        Me.EXPLAIN_COO.HeaderText = "   Explanation"
+        Me.EXPLAIN_COO.Name = "EXPLAIN_COO"
+        Me.EXPLAIN_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.EXPLAIN_COO.Width = 115
+        '
+        'WR_COO
+        '
+        Me.WR_COO.HeaderText = "     WR"
+        Me.WR_COO.Name = "WR_COO"
+        Me.WR_COO.Width = 80
+        '
+        'ACKNO_COO
+        '
+        Me.ACKNO_COO.HeaderText = "   Acknowledge"
+        Me.ACKNO_COO.Name = "ACKNO_COO"
+        Me.ACKNO_COO.Width = 130
+        '
+        'ACTION_COO
+        '
+        Me.ACTION_COO.HeaderText = "   Action"
+        Me.ACTION_COO.Name = "ACTION_COO"
+        Me.ACTION_COO.Width = 77
+        '
+        'Coo_Search_CB
+        '
+        Me.Coo_Search_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Coo_Search_CB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coo_Search_CB.FormattingEnabled = True
+        Me.Coo_Search_CB.Items.AddRange(New Object() {"Search by Name", "Search by IR No."})
+        Me.Coo_Search_CB.Location = New System.Drawing.Point(369, 33)
+        Me.Coo_Search_CB.Name = "Coo_Search_CB"
+        Me.Coo_Search_CB.Size = New System.Drawing.Size(158, 28)
+        Me.Coo_Search_CB.TabIndex = 92
+        '
+        'Coo_Search_TXT
+        '
+        Me.Coo_Search_TXT.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Coo_Search_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Coo_Search_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Coo_Search_TXT.Location = New System.Drawing.Point(6, 34)
+        Me.Coo_Search_TXT.Name = "Coo_Search_TXT"
+        Me.Coo_Search_TXT.Size = New System.Drawing.Size(357, 27)
+        Me.Coo_Search_TXT.TabIndex = 90
+        '
         'Close_BTN
         '
         Me.Close_BTN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -2605,78 +2871,13 @@ Partial Class frmIncidentReport
         Me.Close_BTN.TabIndex = 10
         Me.Close_BTN.UseVisualStyleBackColor = True
         '
-        'Coo_Violation
+        'AmountPerPayroll_TXT
         '
-        Me.Coo_Violation.Location = New System.Drawing.Point(19, 741)
-        Me.Coo_Violation.Name = "Coo_Violation"
-        Me.Coo_Violation.Size = New System.Drawing.Size(542, 70)
-        Me.Coo_Violation.TabIndex = 45
-        Me.Coo_Violation.Text = ""
-        '
-        'Label50
-        '
-        Me.Label50.AutoSize = True
-        Me.Label50.Location = New System.Drawing.Point(17, 707)
-        Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(82, 20)
-        Me.Label50.TabIndex = 44
-        Me.Label50.Text = "Violation/s"
-        '
-        'Label53
-        '
-        Me.Label53.AutoSize = True
-        Me.Label53.Location = New System.Drawing.Point(17, 859)
-        Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(264, 20)
-        Me.Label53.TabIndex = 46
-        Me.Label53.Text = "Show Cause Notice Issued               :"
-        '
-        'Label54
-        '
-        Me.Label54.AutoSize = True
-        Me.Label54.Location = New System.Drawing.Point(17, 907)
-        Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(263, 20)
-        Me.Label54.TabIndex = 47
-        Me.Label54.Text = "Written Reprimand Notice Issued    :"
-        '
-        'Coo_SCDate_LBL
-        '
-        Me.Coo_SCDate_LBL.AutoSize = True
-        Me.Coo_SCDate_LBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Coo_SCDate_LBL.Location = New System.Drawing.Point(297, 861)
-        Me.Coo_SCDate_LBL.Name = "Coo_SCDate_LBL"
-        Me.Coo_SCDate_LBL.Size = New System.Drawing.Size(15, 20)
-        Me.Coo_SCDate_LBL.TabIndex = 48
-        Me.Coo_SCDate_LBL.Text = "-"
-        '
-        'Coo_WRDate_LBL
-        '
-        Me.Coo_WRDate_LBL.AutoSize = True
-        Me.Coo_WRDate_LBL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Coo_WRDate_LBL.Location = New System.Drawing.Point(297, 906)
-        Me.Coo_WRDate_LBL.Name = "Coo_WRDate_LBL"
-        Me.Coo_WRDate_LBL.Size = New System.Drawing.Size(15, 20)
-        Me.Coo_WRDate_LBL.TabIndex = 49
-        Me.Coo_WRDate_LBL.Text = "-"
-        '
-        'Label63
-        '
-        Me.Label63.AutoSize = True
-        Me.Label63.Location = New System.Drawing.Point(21, 775)
-        Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(72, 21)
-        Me.Label63.TabIndex = 44
-        Me.Label63.Text = "Violation"
-        '
-        'SCViolation_RichB
-        '
-        Me.SCViolation_RichB.Location = New System.Drawing.Point(134, 779)
-        Me.SCViolation_RichB.Name = "SCViolation_RichB"
-        Me.SCViolation_RichB.ReadOnly = True
-        Me.SCViolation_RichB.Size = New System.Drawing.Size(420, 96)
-        Me.SCViolation_RichB.TabIndex = 45
-        Me.SCViolation_RichB.Text = ""
+        Me.AmountPerPayroll_TXT.Location = New System.Drawing.Point(174, 110)
+        Me.AmountPerPayroll_TXT.Name = "AmountPerPayroll_TXT"
+        Me.AmountPerPayroll_TXT.ReadOnly = True
+        Me.AmountPerPayroll_TXT.Size = New System.Drawing.Size(175, 28)
+        Me.AmountPerPayroll_TXT.TabIndex = 53
         '
         'frmIncidentReport
         '
@@ -2753,9 +2954,11 @@ Partial Class frmIncidentReport
         Me.GroupBox2.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout()
-        CType(Me.Coo_NoOfDays_Numeric, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox11.PerformLayout()
+        Me.List_Page.ResumeLayout(False)
+        Me.List_Page.PerformLayout()
+        CType(Me.ACTION_Datagrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2884,7 +3087,6 @@ Partial Class frmIncidentReport
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents ECS_GB As GroupBox
     Friend WithEvents Label46 As Label
-    Friend WithEvents NoOfMONTHS_TXT As TextBox
     Friend WithEvents Charges_Numeric As TextBox
     Friend WithEvents ECSNo_TXT As TextBox
     Friend WithEvents Label44 As Label
@@ -2960,7 +3162,6 @@ Partial Class frmIncidentReport
     Friend WithEvents GroupBox9 As GroupBox
     Friend WithEvents Label55 As Label
     Friend WithEvents Label57 As Label
-    Friend WithEvents Coo_NoOfDays_Numeric As NumericUpDown
     Friend WithEvents Change4_BTN As Button
     Friend WithEvents Change2_BTN As Button
     Friend WithEvents Change3_BTN As Button
@@ -3000,4 +3201,26 @@ Partial Class frmIncidentReport
     Friend WithEvents Coo_WRDate_LBL As Label
     Friend WithEvents SCViolation_RichB As RichTextBox
     Friend WithEvents Label63 As Label
+    Friend WithEvents Coo_NoOfDays_Numeric As Label
+    Friend WithEvents Coo_Clear_BTN As Button
+    Friend WithEvents List_Page As TabPage
+    Friend WithEvents ACTION_Datagrid As DataGridView
+    Friend WithEvents IRNO_COO As DataGridViewTextBoxColumn
+    Friend WithEvents NAME_COO As DataGridViewTextBoxColumn
+    Friend WithEvents COMPANY_COO As DataGridViewTextBoxColumn
+    Friend WithEvents INCIDENT_COO As DataGridViewButtonColumn
+    Friend WithEvents SC_COO As DataGridViewButtonColumn
+    Friend WithEvents EXPLAIN_COO As DataGridViewButtonColumn
+    Friend WithEvents WR_COO As DataGridViewButtonColumn
+    Friend WithEvents ACKNO_COO As DataGridViewButtonColumn
+    Friend WithEvents ACTION_COO As DataGridViewButtonColumn
+    Friend WithEvents Coo_Search_CB As ComboBox
+    Friend WithEvents Coo_Search_TXT As TextBox
+    Friend WithEvents WR_Violation_RichB As RichTextBox
+    Friend WithEvents Label65 As Label
+    Friend WithEvents Label64 As Label
+    Friend WithEvents NoOFPayroll_TXT As TextBox
+    Friend WithEvents NoOFMonths_TXT As TextBox
+    Friend WithEvents Label66 As Label
+    Friend WithEvents AmountPerPayroll_TXT As TextBox
 End Class

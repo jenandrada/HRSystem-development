@@ -65,6 +65,22 @@
 
     End Sub
 
+    Friend Sub SaveCorrectiveAction(irno As String, actionStatus As String, path As String, dateCreated As String)
+        Dim mysql As String
+
+        mysql = "Select * FROM IR_REPRIMAND where IRNO = '" & irno & "'"
+        Dim dss As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+        If dss.Tables(0).Rows.Count > 0 Then
+            With dss.Tables(0).Rows(0)
+                .Item("CORRECTIVE_ACTION") = actionStatus
+                .Item("CORRECTIVE_PATH") = path
+                .Item("CORRECTIVE_DATE") = dateCreated
+            End With
+            SaveEntry(dss, False)
+        End If
+
+    End Sub
+
     Friend Sub SaveECS(IRNo As String, person_ID As String, dateCreated As String, ecsno As String, amount As String, noOfMonths As String)
 
         Dim mysql As String = "Select * From IR_ECS Rows 1"

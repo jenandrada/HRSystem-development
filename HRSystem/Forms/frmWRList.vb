@@ -85,13 +85,13 @@
 
         If lvEmployee.Items.Count = 0 Then Exit Sub
 
-        Dim idx As Integer = lvEmployee.FocusedItem.Text
+        Dim irno As Integer = lvEmployee.FocusedItem.Text
         Dim tmpEmp As Employee
         tmpEmp = New Employee
 
         If txtSearch.Tag = "Corrective Action" Then
 
-            tmpEmp.LoadCorrectiveDetails(idx)
+            tmpEmp.LoadCorrectiveDetails(irno)
             ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 2, "CORRECTIVE")
 
         End If
@@ -99,4 +99,64 @@
         Close()
 
     End Sub
+
+
+    Private Sub LoadIRNo(str As String)
+
+        Dim int As Integer
+        Dim mysql As String
+
+        If Double.TryParse(str, int) Then
+
+            If str.Length <> 0 Then
+
+                mysql = "SELECT * FROM SHOWCAUSE_RECORDS A 
+                                INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID 
+                                INNER JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.WRITTEN_STATUS = 'DONE' and A.IRNO = '" & str & "'"
+            Else
+
+                mysql = "SELECT * FROM SHOWCAUSE_RECORDS A 
+                                INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID 
+                                INNER JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.WRITTEN_STATUS = 'DONE' "
+            End If
+
+            Dim ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
+            Dim maxEntries As New Integer
+
+            rowCount = ds.Tables(0).Rows.Count
+            maxEntries = ds.Tables(0).Rows.Count
+            frmMainForm.AppProgressBar.Maximum = maxEntries
+            frmMainForm.AppProgressBar.Visible = True
+            lvEmployee.Items.Clear()
+
+            For Each dr In ds.Tables(0).Rows
+                AddItem(dr)
+                frmMainForm.AppProgressBar.Value += 1
+            Next
+
+            frmMainForm.AppProgressBar.Value = 0
+            frmMainForm.AppProgressBar.Visible = False
+
+        Else
+            MsgBox("Invalid! You entered a Nonnumerical data.", MsgBoxStyle.Critical, "Error")
+        End If
+
+    End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        LoadWritten(txtSearch.Text)
+    End Sub
+
+    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress
+        btnSearch.PerformClick()
+    End Sub
+
+    Private Sub IRNo_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles IRNo_TXT.KeyPress
+        IRNo_BTN.PerformClick()
+    End Sub
+
+    Private Sub IRNo_BTN_Click(sender As Object, e As EventArgs) Handles IRNo_BTN.Click
+        LoadIRNo(IRNo_TXT.Text)
+    End Sub
+
 End Class

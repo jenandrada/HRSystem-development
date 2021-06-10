@@ -419,7 +419,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
               <Rectangle Name="WrittenWarning">
                 <KeepTogether>true</KeepTogether>
                 <Top>0.1162in</Top>
-                <Left>0.08551in</Left>
+                <Left>0.21051in</Left>
                 <Height>0.21404in</Height>
                 <Width>0.19454in</Width>
                 <Style>
@@ -454,7 +454,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
                 <Top>0.1162in</Top>
-                <Left>0.3356in</Left>
+                <Left>0.4606in</Left>
                 <Height>0.21404in</Height>
                 <Width>1.12681in</Width>
                 <ZIndex>1</ZIndex>
@@ -472,7 +472,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
               <Rectangle Name="IIDaysSuspension">
                 <KeepTogether>true</KeepTogether>
                 <Top>0.1162in</Top>
-                <Left>1.64956in</Left>
+                <Left>1.77456in</Left>
                 <Height>0.21404in</Height>
                 <Width>0.19454in</Width>
                 <ZIndex>2</ZIndex>
@@ -508,7 +508,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
                 <Top>0.1162in</Top>
-                <Left>1.89966in</Left>
+                <Left>2.02466in</Left>
                 <Height>0.21404in</Height>
                 <Width>1.25181in</Width>
                 <ZIndex>3</ZIndex>
@@ -526,7 +526,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
               <Rectangle Name="IVDaysSuspension">
                 <KeepTogether>true</KeepTogether>
                 <Top>0.1162in</Top>
-                <Left>3.33872in</Left>
+                <Left>3.46372in</Left>
                 <Height>0.21404in</Height>
                 <Width>0.19454in</Width>
                 <ZIndex>4</ZIndex>
@@ -562,7 +562,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
                 <Top>0.1162in</Top>
-                <Left>3.60271in</Left>
+                <Left>3.72771in</Left>
                 <Height>0.21404in</Height>
                 <Width>1.25181in</Width>
                 <ZIndex>5</ZIndex>
@@ -580,7 +580,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
               <Rectangle Name="VIDaysSuspension">
                 <KeepTogether>true</KeepTogether>
                 <Top>0.1162in</Top>
-                <Left>5.06113in</Left>
+                <Left>5.18613in</Left>
                 <Height>0.21404in</Height>
                 <Width>0.19454in</Width>
                 <ZIndex>6</ZIndex>
@@ -616,7 +616,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
                 <Top>0.1162in</Top>
-                <Left>5.31123in</Left>
+                <Left>5.43623in</Left>
                 <Height>0.21404in</Height>
                 <Width>1.25181in</Width>
                 <ZIndex>7</ZIndex>
@@ -713,7 +713,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
               <Rectangle Name="VIDaysSuspension2">
                 <KeepTogether>true</KeepTogether>
                 <Top>0.1162in</Top>
-                <Left>6.77613in</Left>
+                <Left>6.90113in</Left>
                 <Height>0.21404in</Height>
                 <Width>0.19454in</Width>
                 <ZIndex>9</ZIndex>
@@ -731,7 +731,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>CHARGED</Value>
+                        <Value>ECS</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>Calibri</FontFamily>
@@ -749,9 +749,9 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
                 <Top>0.1162in</Top>
-                <Left>7.04011in</Left>
+                <Left>7.16511in</Left>
                 <Height>0.21404in</Height>
-                <Width>0.58488in</Width>
+                <Width>0.4078in</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
                   <Border>

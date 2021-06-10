@@ -55,11 +55,13 @@ Public Class Employee
 
     Public Property IncidentLocation() As String
 
-    Public Property SCDate() As String
+    Public Property SCDate() As Date
 
-    Public Property WRDate() As String
+    Public Property WRDate() As Date
 
     Public Property Violation() As String
+
+    Public Property NoOFDaysSuspend() As String
 
     Public Property ID() As Integer
 
@@ -876,13 +878,14 @@ Public Class Employee
 
     'End Sub
 
-    Friend Sub LoadCorrectiveDetails(ByVal IR As Integer)
+    Friend Sub LoadCorrectiveDetails(irNum As String)
         Dim mysql As String
+
 
         mysql = "Select * From IR_RECORDS A 
                             inner join tbl_employee B on B.id = A.PERSON_ID 
-                            inner join SHOWCAUSE_RECORDS C  on C.IRNo = A.IRNo 
-                            inner join IR_REPRIMAND D  on D.IRNo = A.IRNo  WHERE A.IRNo = '" & IR & "'"
+                            LEFT join SHOWCAUSE_RECORDS C  on C.IRNo = A.IRNo 
+                            LEFT join IR_REPRIMAND D  on D.IRNo = A.IRNo  WHERE A.IRNo = '" & irNum & "'"
 
         Using ds As DataSet = LoadSQL(mysql, "IR_RECORDS")
 
@@ -898,16 +901,14 @@ Public Class Employee
                     Suffix = .Item("SUFFIX")
                     Position = IIf(IsDBNull(.Item("Emp_Position")), "", .Item("Emp_Position"))
                     BranchID = IIf(IsDBNull(.Item("BRANCH_ID")), "", .Item("BRANCH_ID"))
-                    IRNo = Format(.Item("IRNO"), "00000")
+                    IRNo = irNum
                     Incident_Description = .Item("DESCRIPTION")
                     Status = .Item("STATUS")
                     RuleViolated = .Item("RULEVIOLATED")
                     IncidentDate = .Item("INCIDENTDATE")
                     IncidentLocation = .Item("INCIDENTLOC")
-                    SCDate = .Item("DATE_ISSUED")
-                    WRDate = .Item("DATE_CREATED")
-                    Violation = .Item("VIOLATION")
-                    'RuleDescription = .Item("RULE_DEFINITION") 
+                    Violation = IIf(IsDBNull(.Item("VIOLATION")), "", .Item("VIOLATION"))
+                    NoOFDaysSuspend = IIf(IsDBNull(.Item("DAYSSUSPEND")), "", .Item("DAYSSUSPEND"))
 
                 End With
 
@@ -930,8 +931,8 @@ Public Class Employee
             End Using
         End If
 
-
         mysql = "Select * From  TBL_RULESECTIONLIST WHERE RULE_NUMBER = '" & RuleViolated & "'"
+
         Using ds As DataSet = LoadSQL(mysql, "TBL_RULESECTIONLIST")
             Dim dr As DataRow = ds.Tables(0).Rows(0)
             With dr
@@ -939,7 +940,25 @@ Public Class Employee
             End With
         End Using
 
+
+        mysql = "Select * From SHOWCAUSE_RECORDS INNER JOIN IR_REPRIMAND ON SHOWCAUSE_RECORDS.IRNo = IR_REPRIMAND.IRNo WHERE SHOWCAUSE_RECORDS.IRNo= '" & irNum & "'"
+
+        Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
+
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                Dim dr As DataRow = ds.Tables(0).Rows(0)
+                With dr
+                    SCDate = .Item("DATE_ISSUED")
+                    WRDate = .Item("DATE_CREATED")
+                End With
+
+            End If
+        End Using
+
+
     End Sub
+
 
     Friend Sub LoadIRSupervisor(ByVal idx As Integer)
         Dim mysql As String

@@ -164,7 +164,7 @@
                 <rd:DefaultName>Textbox112</rd:DefaultName>
                 <Top>1.46354in</Top>
                 <Left>0.8125in</Left>
-                <Height>1.04861in</Height>
+                <Height>1.06249in</Height>
                 <Width>1.18142in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
@@ -254,7 +254,7 @@
                 <rd:DefaultName>Textbox112</rd:DefaultName>
                 <Top>1.46354in</Top>
                 <Left>2.0217in</Left>
-                <Height>1.04861in</Height>
+                <Height>1.06249in</Height>
                 <Width>0.45312in</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
@@ -373,21 +373,13 @@
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value>Based on your written explanation and the investigation conducted, it was established that you have violated the following </Value>
+                        <Value>Based on your written explanation and the investigation  conducted, it was  established that you have violated the following </Value>
                         <Style>
                           <FontFamily>Century Gothic</FontFamily>
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value>=iif(Parameters!paramViolation.Value = Nothing, "-", Parameters!paramViolation.Value)</Value>
-                        <Style>
-                          <FontStyle>Italic</FontStyle>
-                          <FontFamily>Century Gothic</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                      <TextRun>
-                        <Value xml:space="preserve"> </Value>
+                        <Value>EMPLOYEE CODE OF CONDUCT and DISCIPLINE </Value>
                         <Style>
                           <FontStyle>Italic</FontStyle>
                           <FontFamily>Century Gothic</FontFamily>
@@ -534,7 +526,7 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                         </Style>
                       </TextRun>
                     </TextRuns>
-                    <SpaceBefore>8pt</SpaceBefore>
+                    <SpaceBefore>5pt</SpaceBefore>
                     <Style>
                       <TextAlign>Left</TextAlign>
                     </Style>
@@ -571,7 +563,7 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value>=Parameters!paramDescription.Value</Value>
+                        <Value>=Parameters!paramViolation.Value</Value>
                         <Style>
                           <FontFamily>Century Gothic</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -599,7 +591,7 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Therefore you are suspended for </Value>
+                        <Value>Therefore you are suspended for  </Value>
                         <Style>
                           <FontFamily>Century Gothic</FontFamily>
                         </Style>
@@ -619,7 +611,7 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value>starting on </Value>
+                        <Value>starting on  </Value>
                         <Style>
                           <FontFamily>Century Gothic</FontFamily>
                         </Style>
@@ -633,7 +625,7 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value>. If this offense will be repeated, we will consider a more serious penalty of termination of your employment with the company.</Value>
+                        <Value>. If this offense will be  repeated, we  will  consider  a  more  serious  penalty  of termination of your employment with the company.</Value>
                         <Style>
                           <FontFamily>Century Gothic</FontFamily>
                         </Style>
@@ -839,97 +831,8 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                           <Color>#000000</Color>
                         </Style>
                       </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
                       <TextRun>
-                        <Value />
-                        <Style>
-                          <FontStyle>Italic</FontStyle>
-                          <FontFamily>Century Gothic</FontFamily>
-                          <TextDecoration>None</TextDecoration>
-                          <Color>#000000</Color>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=iif(Parameters!paramRevByName2.Value = Nothing, "-", Parameters!paramRevByName2.Value)</Value>
-                        <Style>
-                          <FontFamily>Century Gothic</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                          <TextDecoration>None</TextDecoration>
-                          <Color>#000000</Color>
-                        </Style>
-                      </TextRun>
-                      <TextRun>
-                        <Value xml:space="preserve">                                                               </Value>
-                        <Style>
-                          <FontFamily>Century Gothic</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                          <TextDecoration>None</TextDecoration>
-                          <Color>#000000</Color>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!paramRevPos2.Value</Value>
-                        <Style>
-                          <FontStyle>Italic</FontStyle>
-                          <FontFamily>Century Gothic</FontFamily>
-                          <TextDecoration>None</TextDecoration>
-                          <Color>#000000</Color>
-                        </Style>
-                      </TextRun>
-                      <TextRun>
-                        <Value xml:space="preserve">                                                 </Value>
-                        <Style>
-                          <FontStyle>Italic</FontStyle>
-                          <FontFamily>Century Gothic</FontFamily>
-                          <TextDecoration>None</TextDecoration>
-                          <Color>#000000</Color>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value xml:space="preserve">                                                                         </Value>
-                        <Style>
-                          <FontStyle>Italic</FontStyle>
-                          <FontFamily>Century Gothic</FontFamily>
-                          <TextDecoration>None</TextDecoration>
-                          <Color>#000000</Color>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value xml:space="preserve">                                                                         </Value>
+                        <Value xml:space="preserve">                                    </Value>
                         <Style>
                           <FontStyle>Italic</FontStyle>
                           <FontFamily>Century Gothic</FontFamily>
@@ -946,7 +849,7 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                 <rd:DefaultName>Textbox112</rd:DefaultName>
                 <Top>3.65797in</Top>
                 <Left>0.8125in</Left>
-                <Height>4.40277in</Height>
+                <Height>3.9861in</Height>
                 <Width>6.93751in</Width>
                 <ZIndex>7</ZIndex>
                 <Style>
@@ -1150,6 +1053,73 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                   </Border>
                 </Style>
               </Tablix>
+              <Textbox Name="Textbox29">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=iif(Parameters!paramRevByName2.Value = Nothing, "-", Parameters!paramRevByName2.Value)</Value>
+                        <Style>
+                          <FontFamily>Century Gothic</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value xml:space="preserve"> </Value>
+                        <Style>
+                          <FontFamily>Century Gothic</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!paramRevPos2.Value</Value>
+                        <Style>
+                          <FontStyle>Italic</FontStyle>
+                          <FontFamily>Century Gothic</FontFamily>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value xml:space="preserve">   </Value>
+                        <Style>
+                          <FontStyle>Italic</FontStyle>
+                          <FontFamily>Century Gothic</FontFamily>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox28</rd:DefaultName>
+                <Top>7.68574in</Top>
+                <Left>0.80728in</Left>
+                <Height>0.41667in</Height>
+                <Width>2.96578in</Width>
+                <ZIndex>10</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Height>11in</Height>
@@ -1279,12 +1249,6 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="paramDescription">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1380,11 +1344,6 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>paramNotedPos</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>4</RowIndex>
-          <ParameterName>paramDescription</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

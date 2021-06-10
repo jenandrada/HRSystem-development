@@ -77,20 +77,16 @@
 
         If lvEmployee.Items.Count = 0 Then Exit Sub
 
-        Dim idx As Integer = lvEmployee.FocusedItem.Text
+        Dim irno As Integer = lvEmployee.FocusedItem.Text
         Dim tmpEmp As Employee
         tmpEmp = New Employee
 
 
         If txtSearch.Tag = "ShowCause" Then
+            Console.WriteLine("aaaaaaaaaa " & irno)
 
-            tmpEmp.LoadCorrectiveDetails(idx)
+            tmpEmp.LoadCorrectiveDetails(irno)
             ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 1)
-
-            'ElseIf txtSearch.Tag = "Written" Then
-
-            '    tmpEmp.LoadCorrectiveDetails(idx)
-            '    ReloadFormFromSearch(FormName.corrective, tmpEmp, 2)
 
         End If
 

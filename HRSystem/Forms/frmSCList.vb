@@ -38,7 +38,7 @@
 
             mysql = "SELECT * FROM SHOWCAUSE_RECORDS A 
                                 INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID 
-                                INNER JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where"
+                                LEFT JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.IRNO IS NULL and"
 
             For Each name In strWords
                 mysql &= $"{vbCr} UPPER(B.LastName ||' '|| B.FirstName ||' '|| B.MiddleName) LIKE UPPER('%{name}%') or "
@@ -55,7 +55,7 @@
 
             mysql = "SELECT * FROM SHOWCAUSE_RECORDS A 
                                 INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID 
-                                INNER JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO"
+                                LEFT JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.IRNO IS NULL"
         End If
 
         Dim ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
@@ -92,7 +92,9 @@
                 lv.ImageKey = "imgFemale"
             End If
 
-            If .Item("WRITTEN_STATUS") = "PENDING" Then
+            Dim status As String = IIf(IsDBNull(.Item("WRITTEN_STATUS")), "", .Item("WRITTEN_STATUS"))
+
+            If status = "" Or status = "PENDING" Then
                 lv.BackColor = Color.LightSalmon
             End If
 
@@ -103,12 +105,20 @@
 
         Dim mysql As String
         If str.Length <> 0 Then
-            mysql = "SELECT * FROM SHOWCAUSE_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID where A.IRNO = '" & str & "'"
+            'mysql = "SELECT * FROM SHOWCAUSE_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID where A.IRNO = '" & str & "'"
+            'LEFT JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.IRNO IS NULL"
+
+            mysql = "SELECT * FROM SHOWCAUSE_RECORDS A
+                        INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID
+                        LEFT JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.IRNO IS NULL AND A.IRNO = '" & str & "'"
+
         Else
-            mysql = "SELECT * FROM SHOWCAUSE_RECORDS A INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID "
+            mysql = "SELECT * FROM SHOWCAUSE_RECORDS A 
+                        INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID 
+                        LEFT JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO"
         End If
 
-        Dim ds As DataSet = LoadSQL(mysql, "IR_RECORDS")
+        Dim ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
         Dim maxEntries As New Integer
 
         rowCount = ds.Tables(0).Rows.Count
@@ -133,25 +143,23 @@
 
     Private Sub IRNo_BTN_Click(sender As Object, e As EventArgs) Handles IRNo_BTN.Click
         LoadIRNo(IRNo_TXT.Text)
-        IRNo_TXT.Text = ""
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadShowCause(txtSearch.Text)
-        txtSearch.Text = ""
     End Sub
 
     Private Sub lvEmployee_MouseDoubleClick_1(sender As Object, e As MouseEventArgs) Handles lvEmployee.MouseDoubleClick
 
         If lvEmployee.Items.Count = 0 Then Exit Sub
 
-        Dim idx As Integer = lvEmployee.FocusedItem.Text
+        Dim irno As Integer = lvEmployee.FocusedItem.Text
         Dim tmpEmp As Employee
         tmpEmp = New Employee
 
         If txtSearch.Tag = "Written" Then
 
-            tmpEmp.LoadCorrectiveDetails(idx)
+            tmpEmp.LoadCorrectiveDetails(irno)
             ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 2)
 
         End If

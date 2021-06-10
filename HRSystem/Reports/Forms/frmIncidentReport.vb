@@ -61,9 +61,6 @@ Public Class frmIncidentReport
 
         With mPower
 
-            Dim scdate As DateTime = .SCDate
-            Dim wrdate As DateTime = .WRDate
-
 
             If WrittenORCorrective = "CORRECTIVE" Then
 
@@ -76,10 +73,11 @@ Public Class frmIncidentReport
 
                 IRNoCOO_LBL.Text = Format(.IRNo, "00000")
                 Coo_Description_RB.Text = .Incident_Description
-                Coo_DateIncident_RB.Text = .IncidentDate '.ToString("MMMM d, yyyy")
-                Coo_SCDate_LBL.Text = scdate.ToString("MMMM dd, yyyy")
-                Coo_WRDate_LBL.Text = wrdate.ToString("MMMM dd, yyyy")
+                Coo_DateIncident_RB.Text = .IncidentDate
+                Coo_SCDate_LBL.Text = .SCDate.ToString("MMMM dd, yyyy")
+                Coo_WRDate_LBL.Text = .WRDate.ToString("MMMM dd, yyyy")
                 Coo_Violation.Text = .Violation
+                Coo_NoOfDays_Numeric.Text = .NoOFDaysSuspend
 
                 LoadListviewWritten(.IRNo, Coo_SectionList, Coo_Rule_LBL)  'SELECTING 
 
@@ -93,11 +91,10 @@ Public Class frmIncidentReport
                 IRNoWritten_LBL.Text = Format(.IRNo, "00000")
                 WP_Incident_TXT.Text = .Incident_Description
                 WP_Position_TXT.Tag = .Status
-                WP_DateIncident_DTP.Text = .IncidentDate '.ToString("MMMM d, yyyy")
+                WP_DateIncident_DTP.Text = .IncidentDate
+                WR_Violation_RichB.Text = .Violation
 
-                LoadListviewWritten(.IRNo, WP_SectionsList, WPRule_LBL)  'SELECTING
-
-                'Violation_TAB.SelectedIndex = 1
+                LoadListviewWritten(.IRNo, WP_SectionsList, WPRule_LBL)  'SELECTING 
 
             End If
 
@@ -144,7 +141,10 @@ Public Class frmIncidentReport
         BusinessUnitHead_TXT.Clear()
         SentVia_TXT.Clear()
         DateSent_DTP.Value = Date.UtcNow
-
+        SCRuleNo_LBL.Text = "RULE"
+        LV_Sections.Clear()
+        SC_IncidentDate_RichB.Clear()
+        SCViolation_RichB.Clear()
     End Sub
 
     Private Sub LoadShowCauseReport()
@@ -244,7 +244,7 @@ Public Class frmIncidentReport
             New ReportParameter("paramManuallNumDaysSuspension", NumberOfDays_TXT.Text),
             New ReportParameter("paramECSNo", ECSNo_TXT.Text),
             New ReportParameter("paramCharges", AMOUNT),
-            New ReportParameter("paramMonths", NoOfMONTHS_TXT.Text),
+            New ReportParameter("paramMonths", AmountPerPayroll_TXT.Text),
             New ReportParameter("paramSCNO", IRNoWritten_LBL.Text)
         }
 
@@ -272,10 +272,31 @@ Public Class frmIncidentReport
 
     End Sub
 
+    Function NumberToText(ByVal n As Integer) As String
+
+        Select Case n
+            Case 0
+                Return ""
+
+            Case 1 To 19
+                Dim arr() As String = {"One", "Two", "Three", "Four", "Five", "Six", "Seven",
+                                        "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen",
+                                          "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"}
+                Return arr(n - 1) & " "
+
+            Case Else
+                Return n
+        End Select
+
+    End Function
+
     Private Sub LoadCorrectiveAction()
 
         Dim tmp As New Lists
         Dim tbl As New Rules_SectionsDataSet.RS_DataTableDataTable
+
+        Dim word As String = NumberToText(Coo_NoOfDays_Numeric.Text) & "(" & Coo_NoOfDays_Numeric.Text & ")"
+        Console.WriteLine("AAAAA " & word)
 
         If _corrective.TextLength <> 0 Then
             _corrective.Text = _corrective.Text & Now.ToString("yyyy")
@@ -288,11 +309,10 @@ Public Class frmIncidentReport
             New ReportParameter("paramCompany", Coo_Company_TXT.Text),
             New ReportParameter("paramDateToday", dateIssued),
             New ReportParameter("paramViolation", Coo_Violation.Text),
-            New ReportParameter("paramDescription", Coo_Description_RB.Text),
             New ReportParameter("paramRule", Coo_Rule_LBL.Text),
             New ReportParameter("paramSCDate", Coo_SCDate_LBL.Text),
             New ReportParameter("paramWRDate", Coo_WRDate_LBL.Text),
-            New ReportParameter("paramNoOfSuspension", Coo_NoOfDays_Numeric.Text),
+            New ReportParameter("paramNoOfSuspension", word),
             New ReportParameter("paramDateSuspend", _corrective.Text),
             New ReportParameter("paramPreparedName", Coo_Pre_Name_TXT.Text),
             New ReportParameter("paramPreparedPos", Coo_Pre_Pos_TXT.Text),
@@ -897,7 +917,12 @@ Public Class frmIncidentReport
             SearchAck_Combo.SelectedIndex = 0
             StatusACK_Combo.SelectedIndex = 0
 
-            PopulateAcknowledge(Ack_Datagrid)
+
+        ElseIf CorrectiveWindow.SelectedIndex = 6 Then
+
+            Coo_Search_CB.SelectedIndex = 0
+
+            PopulateACTION(ACTION_Datagrid)
 
         End If
 
@@ -910,16 +935,43 @@ Public Class frmIncidentReport
     End Sub
 
     Private Sub WP_OK_BTN_Click_1(sender As Object, e As EventArgs) Handles WP_OK_BTN.Click
-        If WP_Name_TXT.Text = "" Then
 
-            If WP_Name_TXT.Text = "" Then
-                MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
+        If Not isValid() Then Exit Sub
 
-        Else
-            LoadWrittenReprimandReport()
-        End If
+        LoadWrittenReprimandReport()
+
     End Sub
+
+    Private Function isValid()
+
+        Dim num1 = Val(ECSNo_TXT.Text)
+        Dim num2 = Val(Charges_Numeric.Text)
+        Dim num3 = Val(AmountPerPayroll_TXT.Text)
+        Dim num4 = Val(NoOFPayroll_TXT.Text)
+
+        If String.IsNullOrEmpty(WP_Name_TXT.Text) Then
+            MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return False
+
+        ElseIf Not Double.TryParse(ECSNo_TXT.Text, num1) Or String.IsNullOrEmpty(ECSNo_TXT.Text) Then
+            ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
+            Return False
+
+        ElseIf Not Double.TryParse(Charges_Numeric.Text, num2) Or String.IsNullOrEmpty(Charges_Numeric.Text) Then
+            Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
+            Return False
+
+        ElseIf Not Double.TryParse(AmountPerPayroll_TXT.Text, num3) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
+            AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
+            Return False
+
+        ElseIf Not Double.TryParse(NoOFPayroll_TXT.Text, num4) Or String.IsNullOrEmpty(NoOFPayroll_TXT.Text) Then
+            NoOFPayroll_TXT.Region = New Region(New Rectangle(2, 2, NoOFPayroll_TXT.Width - 4, NoOFPayroll_TXT.Height - 4))
+            Return False
+        End If
+
+        Return True
+    End Function
 
     Private Sub WP_Save_Btn_Click_1(sender As Object, e As EventArgs) Handles WP_Save_Btn.Click
 
@@ -931,9 +983,9 @@ Public Class frmIncidentReport
 
             SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, WP_Name_TXT.Text, "Written Reprimand for IR No. " & IRNoWritten_LBL.Text, WP_Branch_TXT.Text, WP_Position_TXT.Tag, WP_Position_TXT.Text)
 
-            If Not ECSNo_TXT.Text = 0 And Not Charges_Numeric.Text = 0 And Not NoOfMONTHS_TXT.Text = 0 Then
+            If Not ECSNo_TXT.Text = "" And Not Charges_Numeric.Text = "" And Not AmountPerPayroll_TXT.Text = "" Then
 
-                SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, NoOfMONTHS_TXT.Text)
+                SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, AmountPerPayroll_TXT.Text)
 
             End If
 
@@ -972,6 +1024,33 @@ Public Class frmIncidentReport
 
     End Sub
 
+    Private Sub ClearCorrective()
+        IRNoCOO_LBL.Text = ""
+        RptViewer_Corrective.Clear()
+        Coo_Name_TXT.Clear()
+        Coo_Position_TXT.Clear()
+        Coo_Company_TXT.Clear()
+        Coo_Branch_TXT.Clear()
+        Coo_SectionList.Clear()
+        Coo_Rule_LBL.Text = "Rule"
+        Coo_Description_RB.Clear()
+        Coo_DateIncident_RB.Clear()
+
+        Coo_Violation.Clear()
+        Coo_SCDate_LBL.Text = "-"
+        Coo_WRDate_LBL.Text = "-"
+
+        Coo_NoOfDays_Numeric.Text = "-"
+        _corrective.Clear()
+
+        Coo_Pre_Name_TXT.Clear()
+        Coo_Rev_Name1_TXT.Clear()
+
+        Coo_Rev_Name2_TXT.Clear()
+        Coo_Noted_Name_TXT.Clear()
+
+    End Sub
+
     Private Sub NoDaysSuspend_CB_CheckedChanged(sender As Object, e As EventArgs) Handles NoDaysSuspend_CB.CheckedChanged
         If NoDaysSuspend_CB.Checked = True Then
             NumberOfDays_TXT.Enabled = True
@@ -985,7 +1064,7 @@ Public Class frmIncidentReport
             ECS_GB.Visible = False
             Charges_Numeric.Text = 0
             ECSNo_TXT.Text = 0
-            NoOfMONTHS_TXT.Text = 0
+            AmountPerPayroll_TXT.Text = 0
         Else
             NumberOfDays_TXT.Text = 0
             NumberOfDays_TXT.Enabled = False
@@ -1085,7 +1164,16 @@ Public Class frmIncidentReport
             ECS_GB.Visible = True
             NoDaysSuspend_CB.Checked = False
             chkStatus = 0
+
+            ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
+            Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
+            AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
+
         Else
+
+            ECSNo_TXT.Region = Nothing
+            Charges_Numeric.Region = Nothing
+            AmountPerPayroll_TXT.Region = Nothing
 
             ECS_GB.Visible = False
             Charges_Numeric.Text = 0
@@ -1145,7 +1233,7 @@ Public Class frmIncidentReport
 
     End Sub
 
-    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress, ECSNo_TXT.KeyPress
+    Private Sub txtSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSearch.KeyPress
 
         If IsEnter(e) Then
 
@@ -1177,15 +1265,6 @@ Public Class frmIncidentReport
 
     End Sub
 
-    Private Sub NumericUpDown1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles NoOfMONTHS_TXT.KeyPress, Charges_Numeric.KeyPress
-
-        If e.KeyChar <> ChrW(Keys.Back) Then
-            If Char.IsNumber(e.KeyChar) Or e.KeyChar = "." Then
-            Else
-                e.Handled = True
-            End If
-        End If
-    End Sub
 
     Private Sub ECS_GB_Paint(sender As Object, e As PaintEventArgs) Handles ECS_GB.Paint
 
@@ -1205,7 +1284,7 @@ Public Class frmIncidentReport
 
         Dim num = Val(ECSNo_TXT.Text)
 
-        If Not Double.TryParse(ECSNo_TXT.Text, num) Then
+        If Not Double.TryParse(ECSNo_TXT.Text, num) Or String.IsNullOrEmpty(ECSNo_TXT.Text) Then
             ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
         Else
             ECSNo_TXT.Region = Nothing
@@ -1217,24 +1296,20 @@ Public Class frmIncidentReport
 
         Dim num = Val(Charges_Numeric.Text)
 
-        If Not Double.TryParse(Charges_Numeric.Text, num) Then
+        If Not Double.TryParse(Charges_Numeric.Text, num) Or String.IsNullOrEmpty(Charges_Numeric.Text) Then
             Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
+
+            AmountPerPayroll_TXT.ReadOnly = True
+            NoOFPayroll_TXT.ReadOnly = True
         Else
             Charges_Numeric.Region = Nothing
-        End If
-    End Sub
 
-    Private Sub NoOfMONTHS_TXT_TextChanged(sender As Object, e As EventArgs) Handles NoOfMONTHS_TXT.TextChanged
-
-        Dim num = Val(NoOfMONTHS_TXT.Text)
-
-        If Not Double.TryParse(NoOfMONTHS_TXT.Text, num) Then
-            NoOfMONTHS_TXT.Region = New Region(New Rectangle(2, 2, NoOfMONTHS_TXT.Width - 4, NoOfMONTHS_TXT.Height - 4))
-        Else
-            NoOfMONTHS_TXT.Region = Nothing
+            AmountPerPayroll_TXT.ReadOnly = False
+            NoOFPayroll_TXT.ReadOnly = False
         End If
 
     End Sub
+
 
     Private Sub PictureBox2_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseDoubleClick
 
@@ -1400,5 +1475,115 @@ Public Class frmIncidentReport
     Private Sub PreviewCOR_BTN_Click(sender As Object, e As EventArgs) Handles PreviewCOR_BTN.Click
         LoadCorrectiveAction()
     End Sub
+
+    Private Sub Coo_Clear_BTN_Click(sender As Object, e As EventArgs) Handles Coo_Clear_BTN.Click
+        ClearCorrective()
+    End Sub
+
+    Private Sub ACTION_Datagrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ACTION_Datagrid.CellContentClick
+
+        Dim grid = DirectCast(sender, DataGridView)
+        Dim row As DataGridViewRow = ACTION_Datagrid.Rows(e.RowIndex)
+
+        If TypeOf grid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn Then
+
+            If grid.Columns(e.ColumnIndex).Name = "INCIDENT_COO" Then
+                Process.Start(row.Cells("INCIDENT_COO").Tag)
+
+            ElseIf grid.Columns(e.ColumnIndex).Name = "SC_COO" Then
+                Process.Start(row.Cells("SC_COO").Tag)
+
+            ElseIf grid.Columns(e.ColumnIndex).Name = "EXPLAIN_COO" Then
+                Process.Start(row.Cells("EXPLAIN_COO").Tag)
+
+            ElseIf grid.Columns(e.ColumnIndex).Name = "WR_COO" Then
+                Process.Start(row.Cells("WR_COO").Tag)
+
+            ElseIf grid.Columns(e.ColumnIndex).Name = "ACKNO_COO" Then
+                Process.Start(row.Cells("ACKNO_COO").Tag)
+
+            ElseIf grid.Columns(e.ColumnIndex).Name = "ACTION_COO" Then
+                Process.Start(row.Cells("ACTION_COO").Tag)
+
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub Coo_Search_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Coo_Search_TXT.KeyPress
+        If IsEnter(e) Then
+
+            If Coo_Search_CB.SelectedIndex = 0 Then
+                LoadACTIONSearchName(Coo_Search_TXT.Text, ACTION_Datagrid)
+            Else
+                LoadACTIONSearchIRNO(Coo_Search_TXT.Text, ACTION_Datagrid)
+            End If
+
+        End If
+    End Sub
+
+    Private Sub AmountPerPayroll_TXT_KeyPress(sender As Object, e As KeyPressEventArgs)
+
+        If e.KeyChar <> ChrW(Keys.Back) Then
+
+            If Char.IsNumber(e.KeyChar) Or e.KeyChar = "." Then
+            Else
+                e.Handled = True
+            End If
+        End If
+
+    End Sub
+
+    Private Sub AmountPerPayroll_TXT_TextChanged_1(sender As Object, e As EventArgs) Handles AmountPerPayroll_TXT.TextChanged
+
+        Dim charge = Val(Charges_Numeric.Text)
+        Dim perPayroll = Val(AmountPerPayroll_TXT.Text)
+        Dim NoOFPayroll = charge / perPayroll
+
+        If Not Double.TryParse(AmountPerPayroll_TXT.Text, perPayroll) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
+            AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
+        Else
+            AmountPerPayroll_TXT.Region = Nothing
+
+            NoOFPayroll_TXT.Text = CStr(NoOFPayroll)
+        End If
+
+        'Dim num1 = Val(AmountPerPayroll_TXT.Text)
+
+        'Dim total As Double = Convert.ToDouble(Charges_Numeric.Text)
+
+        'Dim perPayroll As Double = Convert.ToDouble(AmountPerPayroll_TXT.Text)
+
+        'Dim TotalPayroll As Double = total / perPayroll
+
+        'If Not Double.TryParse(AmountPerPayroll_TXT.Text, num1) Or AmountPerPayroll_TXT.Text = "0" Then
+        '    AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, Charges_Numeric.Height - 4))
+        'Else
+
+        '    AmountPerPayroll_TXT.Region = Nothing
+
+        '    NoOFPayroll_TXT.Text = CStr(TotalPayroll)
+
+        'End If
+
+    End Sub
+
+    Private Sub SaveCOR_BTN_Click(sender As Object, e As EventArgs) Handles SaveCOR_BTN.Click
+        If Not Coo_Name_TXT.Text = "" Then
+
+            ToPDF("IR No. " & IRNoCOO_LBL.Text & " - " & Coo_Name_TXT.Text, "Incident Report", RptViewer_Corrective, "Corrective Action Notice")
+
+            SaveCorrectiveAction(IRNoCOO_LBL.Text, "DONE", FolderPath, Date.Now)
+
+            SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Coo_Name_TXT.Text, "Corrective Action for IR No. " & IRNoCOO_LBL.Text, Coo_Branch_TXT.Text, Coo_Position_TXT.Tag, Coo_Position_TXT.Text)
+
+            ClearCorrective()
+
+        Else
+            MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+    End Sub
+
 
 End Class
