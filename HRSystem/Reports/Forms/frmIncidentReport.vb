@@ -147,7 +147,7 @@ Public Class frmIncidentReport
         SCViolation_RichB.Clear()
     End Sub
 
-    Private Sub LoadShowCauseReport()
+    Private Sub LoadShowCauseReport(EvidencePath As String)
 
         Dim datesent As String
         If Optional_Group.Enabled = True Then
@@ -156,8 +156,10 @@ Public Class frmIncidentReport
             datesent = ""
         End If
 
+        Dim Path As String = "file:///" & EvidencePath & ""
+
         Dim tmp As New Lists
-        Dim tbl As New Rules_SectionsDataSet.RS_DataTableDataTable()
+        Dim tblSection As New Rules_SectionsDataSet.RS_DataTableDataTable()
         RptViewer_ShowCause.LocalReport.DataSources.Clear()
         Dim paramList As New List(Of ReportParameter) From {
             New ReportParameter("paramName", EmpName_TXT.Text, True),
@@ -175,7 +177,8 @@ Public Class frmIncidentReport
             New ReportParameter("paramPosition3", Position3_TXT.Text),
             New ReportParameter("paramReplySent", datesent),
             New ReportParameter("paramSCNO", SCNo_LBL.Text),
-            New ReportParameter("paramSentVia", SentVia_TXT.Text)
+            New ReportParameter("paramSentVia", SentVia_TXT.Text),
+            New ReportParameter("paramEvidencePath", Path)
         }
 
 
@@ -183,14 +186,14 @@ Public Class frmIncidentReport
             For Each itemsec As ListViewItem In LV_Sections.SelectedItems
                 Dim sql As String = "select * from TBL_RULESECTIONLIST where SECTION = '" & itemsec.SubItems(0).Text & "';"
                 Using adapter As New FbDataAdapter(sql, con)
-                    adapter.Fill(tbl)
+                    adapter.Fill(tblSection)
                 End Using
             Next
 
             Dim datasource As New ReportDataSource With
             {
                 .Name = "DataSet1",
-                .Value = tbl
+                .Value = tblSection
             }
 
             RptViewer_ShowCause.LocalReport.DataSources.Add(datasource)
@@ -206,6 +209,7 @@ Public Class frmIncidentReport
 
     Private Sub LoadWrittenReprimandReport()
 
+        Dim AMOUNT, noOFMohnths, perPayroll As String
         Dim tmp As New Lists
         Dim tbl As New Rules_SectionsDataSet.RS_DataTableDataTable
         If WW_RBTN.Checked = True Then
@@ -220,8 +224,19 @@ Public Class frmIncidentReport
             chkStatus = 5
         End If
 
-        Dim AMOUNT As String
-        AMOUNT = Decimal.Parse(Charges_Numeric.Text).ToString("##,###0.00")
+        If AmountCharges_CB.Checked = True Then
+
+            AMOUNT = Decimal.Parse(Charges_Numeric.Text).ToString("##,###0.00")
+            perPayroll = Decimal.Parse(AmountPerPayroll_TXT.Text).ToString("##,###0.00")
+
+            If NoOFMonths_TXT.Text.Contains(".") Then
+                noOFMohnths = NoOFMonths_TXT.Text.Split(".")(0) & " AND A HALF"
+            Else
+                noOFMohnths = NoOFMonths_TXT.Text
+            End If
+
+        End If
+
 
         RptViewer_WrittenReprimand.LocalReport.DataSources.Clear()
 
@@ -244,7 +259,8 @@ Public Class frmIncidentReport
             New ReportParameter("paramManuallNumDaysSuspension", NumberOfDays_TXT.Text),
             New ReportParameter("paramECSNo", ECSNo_TXT.Text),
             New ReportParameter("paramCharges", AMOUNT),
-            New ReportParameter("paramMonths", AmountPerPayroll_TXT.Text),
+            New ReportParameter("paramPerPayroll", perPayroll),
+            New ReportParameter("paramMonths", noOFMohnths),
             New ReportParameter("paramSCNO", IRNoWritten_LBL.Text)
         }
 
@@ -489,13 +505,18 @@ Public Class frmIncidentReport
 
         End If
 
-        Dim str As String = "D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf"
+        Dim STR As String = "D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf"
 
-        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, _console.Text, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, str)
+        If Not Evidence_PB.Tag = Nothing Then
+            imgData = ImgToByteArray(Image.FromFile(Evidence_PB.Tag), ImageFormat.Jpeg)
+        Else
+            imgData = ImgToByteArray(Evidence_PB.InitialImage, ImageFormat.Jpeg)
+        End If
+
+
+        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, _console.Text, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, STR, imgData, FolderPath)
 
         SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Person_TXT.Text, "Incident Report IR No. " & IRNo_LBL.Text, Department_TXT.Text, Department_TXT.Tag, PositionP_TXT.Text)
-
-        ClearIR()
 
         MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -691,12 +712,53 @@ Public Class frmIncidentReport
         End If
 
     End Sub
+    Friend Sub ToFOLDER(ByVal Name As String, ByVal Folder As String, ByVal ImageName As String, ByVal picture As PictureBox)
+
+        Name = Name.ToString.TrimEnd()
+
+        Dim folderName As DirectoryInfo = New DirectoryInfo("D:\HR Records\" & Folder)
+        Dim employee As DirectoryInfo = New DirectoryInfo("D:\HR Records\" & Folder & "\" & Name)
+
+        If folderName.Exists Then
+
+            If employee.Exists Then
+
+                picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                picture.Dispose()
+            Else
+                employee.Create()
+                picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                picture.Dispose()
+            End If
+
+        Else
+            folderName.Create()
+            If employee.Exists Then
+                picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                picture.Dispose()
+            Else
+                employee.Create()
+                picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+                picture.Dispose()
+            End If
+
+        End If
+
+        FolderPath = "D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg"
+    End Sub
+
 
     Private Sub SaveIR_BTN_Click(sender As Object, e As EventArgs) Handles SaveIR_BTN.Click
 
         If Not Supervisor_TXT.Text = "" Or Not Person_TXT.Text = "" Then
 
+            If Not Evidence_PB.Image Is Nothing Then    ' EVIDENCE
+                ToFOLDER("IR No. " & IRNo_LBL.Text & " - " & Person_TXT.Text, "Incident Report", "IR Evidence", Evidence_PB)
+            End If
+
             IRSoftCopy("IR No. " & IRNo_LBL.Text & " - " & Person_TXT.Text, "Incident Report", RptViewer_IncidentReport, IRNo_LBL.Text)
+
+            ClearIR()
 
         Else
             MessageBox.Show($"Click Preview before saving", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -868,7 +930,8 @@ Public Class frmIncidentReport
                 MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Else
-            LoadShowCauseReport()
+
+            LoadShowCauseReport(FolderPath)
         End If
     End Sub
 
@@ -917,6 +980,8 @@ Public Class frmIncidentReport
             SearchAck_Combo.SelectedIndex = 0
             StatusACK_Combo.SelectedIndex = 0
 
+            PopulateAcknowledge(Ack_Datagrid)
+
 
         ElseIf CorrectiveWindow.SelectedIndex = 6 Then
 
@@ -936,9 +1001,13 @@ Public Class frmIncidentReport
 
     Private Sub WP_OK_BTN_Click_1(sender As Object, e As EventArgs) Handles WP_OK_BTN.Click
 
-        If Not isValid() Then Exit Sub
+        If AmountCharges_CB.Checked = True Then
+            If Not isValid() Then Exit Sub
+            LoadWrittenReprimandReport()
+        Else
+            LoadWrittenReprimandReport()
+        End If
 
-        LoadWrittenReprimandReport()
 
     End Sub
 
@@ -955,15 +1024,21 @@ Public Class frmIncidentReport
 
         ElseIf Not Double.TryParse(ECSNo_TXT.Text, num1) Or String.IsNullOrEmpty(ECSNo_TXT.Text) Then
             ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
+            MessageBox.Show($"Please indicate ECS No.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return False
 
         ElseIf Not Double.TryParse(Charges_Numeric.Text, num2) Or String.IsNullOrEmpty(Charges_Numeric.Text) Then
             Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
+            MessageBox.Show($"Please indicate Total Amount of ECS.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return False
 
         ElseIf Not Double.TryParse(NoOFPayroll_TXT.Text, num4) Or String.IsNullOrEmpty(NoOFPayroll_TXT.Text) Then
             NoOFPayroll_TXT.Region = New Region(New Rectangle(2, 2, NoOFPayroll_TXT.Width - 4, NoOFPayroll_TXT.Height - 4))
             Return False
+
+            'ElseIf Not Double.TryParse(NoOFMonths_TXT.Text, num4) Or String.IsNullOrEmpty(NoOFMonths_TXT.Text) Then
+            '    NoOFMonths_TXT.Region = New Region(New Rectangle(2, 2, NoOFMonths_TXT.Width - 4, NoOFMonths_TXT.Height - 4))
+            '    Return False
 
             'ElseIf Not Double.TryParse(AmountPerPayroll_TXT.Text, num3) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
             '    AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
@@ -984,11 +1059,10 @@ Public Class frmIncidentReport
 
             SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, WP_Name_TXT.Text, "Written Reprimand for IR No. " & IRNoWritten_LBL.Text, WP_Branch_TXT.Text, WP_Position_TXT.Tag, WP_Position_TXT.Text)
 
-            If Not ECSNo_TXT.Text = "" And Not Charges_Numeric.Text = "" And Not AmountPerPayroll_TXT.Text = "" Then
+            'If Not ECSNo_TXT.Text = "" And Not Charges_Numeric.Text = "" And Not AmountPerPayroll_TXT.Text = "" Then
 
-                SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, AmountPerPayroll_TXT.Text)
-
-            End If
+            '    SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, NoOFMonths_TXT.Text, AmountPerPayroll_TXT.Text)
+            'End If
 
             ClearWRITTEN()
 
@@ -1157,17 +1231,26 @@ Public Class frmIncidentReport
 
     Private Sub AmountCharges_CB_CheckedChanged(sender As Object, e As EventArgs) Handles AmountCharges_CB.CheckedChanged
 
-        If AmountCharges_CB.Checked = True Then
-            WW_RBTN.Checked = False
-            TwoDays_RBTN.Checked = False
-            FourDays_RBTN.Checked = False
-            SixDays_RBTN.Checked = False
-            ECS_GB.Visible = True
-            NoDaysSuspend_CB.Checked = False
-            chkStatus = 0
 
-            ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
-            Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
+        If AmountCharges_CB.Checked = True Then
+
+            If WP_Name_TXT.Text = "" Then
+                MessageBox.Show($"Please Select Employee's name", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            Else
+
+                WW_RBTN.Checked = False
+                TwoDays_RBTN.Checked = False
+                FourDays_RBTN.Checked = False
+                SixDays_RBTN.Checked = False
+                ECS_GB.Visible = True
+                NoDaysSuspend_CB.Checked = False
+                chkStatus = 0
+
+                ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
+                Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
+
+            End If
 
         Else
 
@@ -1302,12 +1385,14 @@ Public Class frmIncidentReport
             NoOFPayroll_TXT.Text = ""
             'AmountPerPayroll_TXT.ReadOnly = True
             NoOFPayroll_TXT.ReadOnly = True
+            NoOFMonths_TXT.ReadOnly = True
 
         Else
             Charges_Numeric.Region = Nothing
 
             'AmountPerPayroll_TXT.ReadOnly = False
             NoOFPayroll_TXT.ReadOnly = False
+            NoOFMonths_TXT.ReadOnly = False
         End If
 
     End Sub
@@ -1405,7 +1490,7 @@ Public Class frmIncidentReport
 
         ToPDF("IR No. " & Ack_Datagrid.Item(0, i).Value & " - " & Ack_Datagrid.Item(1, i).Value, "Incident Report", RptViewer_Acknowledge, "Acknowledgment")
 
-        AcknowledgeSave(Ack_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath)
+        AcknowledgeSave(Ack_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath, "PENDING")
 
         SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Ack_Datagrid.Item(1, i).Value, "Acknowledgment IR No. " & Ack_Datagrid.Item(0, i).Value, "-", "-", "-")
 
@@ -1525,42 +1610,17 @@ Public Class frmIncidentReport
         End If
     End Sub
 
-    Private Sub AmountPerPayroll_TXT_KeyPress(sender As Object, e As KeyPressEventArgs)
+    'Private Sub AmountPerPayroll_TXT_KeyPress(sender As Object, e As KeyPressEventArgs)
 
-        If e.KeyChar <> ChrW(Keys.Back) Then
+    '    If e.KeyChar <> ChrW(Keys.Back) Then
 
-            If Char.IsNumber(e.KeyChar) Or e.KeyChar = "." Then
-            Else
-                e.Handled = True
-            End If
-        End If
+    '        If Char.IsNumber(e.KeyChar) Or e.KeyChar = "." Then
+    '        Else
+    '            e.Handled = True
+    '        End If
+    '    End If
 
-    End Sub
-
-    Private Sub AmountPerPayroll_TXT_TextChanged_1(sender As Object, e As EventArgs) Handles AmountPerPayroll_TXT.TextChanged
-
-        'Dim charge = Val(Charges_Numeric.Text)
-        'Dim perPayroll = Val(AmountPerPayroll_TXT.Text)
-
-        'Dim NoOFPayroll = charge / perPayroll
-        'Dim noOFMonths = NoOFPayroll / 2
-
-        'If Not Double.TryParse(AmountPerPayroll_TXT.Text, perPayroll) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
-        '    AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
-        '    NoOFPayroll_TXT.Text = ""
-        'Else
-        '    AmountPerPayroll_TXT.Region = Nothing
-
-        '    NoOFPayroll_TXT.Text = CStr(NoOFPayroll)
-
-        '    If noOFMonths > 0 Then
-
-        '        NoOFMonths_TXT.Text = noOFMonths
-
-        '    End If
-        'End If
-
-    End Sub
+    'End Sub
 
     Private Sub NoOFPayroll_TXT_TextChanged(sender As Object, e As EventArgs) Handles NoOFPayroll_TXT.TextChanged
 
@@ -1611,6 +1671,59 @@ Public Class frmIncidentReport
             End If
         End If
     End Sub
+
+
+    Private Sub NoOFMonths_TXT_TextChanged_1(sender As Object, e As EventArgs) Handles NoOFMonths_TXT.TextChanged
+
+        Dim noOFMonths = Val(NoOFMonths_TXT.Text)
+
+        Dim GivesCount As Integer = noOFMonths / 0.5
+
+        NoOFPayroll_TXT.Text = Val(GivesCount)
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Using openF As New OpenFileDialog()
+            Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
+            Dim sep As String = String.Empty
+
+            With openF
+                .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+                .Title = "Save As Image"
+                .DefaultExt = ".JPG"
+                .Filter = ""
+                .FilterIndex = 2
+                .RestoreDirectory = True
+                .FileName = "*.JPG"
+            End With
+
+            For Each c As ImageCodecInfo In codecs
+                Dim codecName As String = c.CodecName.Substring(8).Replace("Codec", "Files").Trim()
+                openF.Filter = $"{openF.Filter }{sep }{codecName } ({c.FilenameExtension })|{c.FilenameExtension }"
+                sep = "|"
+            Next
+
+            If openF.ShowDialog = DialogResult.OK Then
+                If Not Image.FromFile(openF.FileName).Size = Evidence_PB.InitialImage.Size Then
+                    Evidence_PB.Image = Image.FromFile(openF.FileName)
+                    Evidence_PB.Tag = openF.FileName
+                    Evidence_PB.SizeMode = PictureBoxSizeMode.StretchImage
+                Else
+                    Evidence_PB.Image = Image.FromFile(openF.FileName)
+                    Evidence_PB.Tag = openF.FileName
+                    Evidence_PB.SizeMode = PictureBoxSizeMode.CenterImage
+                End If
+            End If
+        End Using
+
+    End Sub
+
+    Private Sub ClearEvidence_BTN_Click(sender As Object, e As EventArgs) Handles ClearEvidence_BTN.Click
+        Evidence_PB.Image = Nothing
+    End Sub
+
 
     Private Sub SaveCOR_BTN_Click(sender As Object, e As EventArgs) Handles SaveCOR_BTN.Click
         If Not Coo_Name_TXT.Text = "" Then

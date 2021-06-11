@@ -652,7 +652,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value>     AMOUNTING TO </Value>
+                        <Value>     TOTAL AMOUNT  </Value>
                         <Style>
                           <FontFamily>Calibri</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -666,7 +666,28 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value>  FOR </Value>
+                        <Value xml:space="preserve"> </Value>
+                        <Style>
+                          <FontFamily>Calibri</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!paramPerPayroll.Value</Value>
+                        <Style>
+                          <FontFamily>Calibri</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value> PESOS WILL BE DEDUCTED EVERY PAYROLL FOR </Value>
                         <Style>
                           <FontFamily>Calibri</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -751,7 +772,7 @@ parameters!paramCompany.Value = "PGC", "PGC")</Value>
                 <Top>0.1162in</Top>
                 <Left>7.16511in</Left>
                 <Height>0.21404in</Height>
-                <Width>0.4078in</Width>
+                <Width>0.52239in</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
                   <Border>
@@ -2341,6 +2362,12 @@ parameters!paramManuallNumDaysSuspension.Value &gt; 4, "DISMISSAL")</Value>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="paramPerPayroll">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2446,6 +2473,11 @@ parameters!paramManuallNumDaysSuspension.Value &gt; 4, "DISMISSAL")</Value>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>paramMonths</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>paramPerPayroll</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -30,6 +30,10 @@ Partial Class frmIncidentReport
         Me.RptViewer_IncidentReport = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.ClearEvidence_BTN = New System.Windows.Forms.Button()
+        Me.Evidence_PB = New System.Windows.Forms.PictureBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label67 = New System.Windows.Forms.Label()
         Me.SaveIR_BTN = New System.Windows.Forms.Button()
         Me.ClearIR_BTN = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -149,12 +153,13 @@ Partial Class frmIncidentReport
         Me.WP_Incident_TXT = New System.Windows.Forms.RichTextBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.ECS_GB = New System.Windows.Forms.GroupBox()
+        Me.AmountPerPayroll_TXT = New System.Windows.Forms.TextBox()
         Me.NoOFMonths_TXT = New System.Windows.Forms.TextBox()
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label64 = New System.Windows.Forms.Label()
-        Me.NoOFPayroll_TXT = New System.Windows.Forms.TextBox()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.Charges_Numeric = New System.Windows.Forms.TextBox()
+        Me.NoOFPayroll_TXT = New System.Windows.Forms.TextBox()
         Me.ECSNo_TXT = New System.Windows.Forms.TextBox()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label45 = New System.Windows.Forms.Label()
@@ -281,7 +286,6 @@ Partial Class frmIncidentReport
         Me.Coo_Search_CB = New System.Windows.Forms.ComboBox()
         Me.Coo_Search_TXT = New System.Windows.Forms.TextBox()
         Me.Close_BTN = New System.Windows.Forms.Button()
-        Me.AmountPerPayroll_TXT = New System.Windows.Forms.TextBox()
         Me.CorrectiveWindow.SuspendLayout()
         Me.IR_Page.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -289,6 +293,7 @@ Partial Class frmIncidentReport
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.Panel6.SuspendLayout()
+        CType(Me.Evidence_PB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox7.SuspendLayout()
         Me.ShowCause_Page.SuspendLayout()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -334,7 +339,7 @@ Partial Class frmIncidentReport
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Segoe UI", 18.0!)
-        Me.Label21.Location = New System.Drawing.Point(2, 8)
+        Me.Label21.Location = New System.Drawing.Point(2, 4)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(123, 32)
         Me.Label21.TabIndex = 12
@@ -399,13 +404,17 @@ Partial Class frmIncidentReport
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(29, 1035)
+        Me.Panel1.Location = New System.Drawing.Point(29, 1278)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(592, 30)
+        Me.Panel1.Size = New System.Drawing.Size(592, 22)
         Me.Panel1.TabIndex = 63
         '
         'Panel6
         '
+        Me.Panel6.Controls.Add(Me.ClearEvidence_BTN)
+        Me.Panel6.Controls.Add(Me.Evidence_PB)
+        Me.Panel6.Controls.Add(Me.Button2)
+        Me.Panel6.Controls.Add(Me.Label67)
         Me.Panel6.Controls.Add(Me.SaveIR_BTN)
         Me.Panel6.Controls.Add(Me.ClearIR_BTN)
         Me.Panel6.Controls.Add(Me.Button1)
@@ -437,12 +446,50 @@ Partial Class frmIncidentReport
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(633, 1065)
+        Me.Panel6.Size = New System.Drawing.Size(633, 1300)
         Me.Panel6.TabIndex = 62
+        '
+        'ClearEvidence_BTN
+        '
+        Me.ClearEvidence_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClearEvidence_BTN.Location = New System.Drawing.Point(40, 870)
+        Me.ClearEvidence_BTN.Name = "ClearEvidence_BTN"
+        Me.ClearEvidence_BTN.Size = New System.Drawing.Size(98, 36)
+        Me.ClearEvidence_BTN.TabIndex = 67
+        Me.ClearEvidence_BTN.Text = "Clear"
+        Me.ClearEvidence_BTN.UseVisualStyleBackColor = True
+        '
+        'Evidence_PB
+        '
+        Me.Evidence_PB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Evidence_PB.Location = New System.Drawing.Point(206, 798)
+        Me.Evidence_PB.Name = "Evidence_PB"
+        Me.Evidence_PB.Size = New System.Drawing.Size(354, 171)
+        Me.Evidence_PB.TabIndex = 66
+        Me.Evidence_PB.TabStop = False
+        '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(40, 825)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(98, 36)
+        Me.Button2.TabIndex = 65
+        Me.Button2.Text = "Upload"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Label67
+        '
+        Me.Label67.AutoSize = True
+        Me.Label67.Location = New System.Drawing.Point(19, 794)
+        Me.Label67.Name = "Label67"
+        Me.Label67.Size = New System.Drawing.Size(134, 20)
+        Me.Label67.TabIndex = 64
+        Me.Label67.Text = "Proof of Evidence"
         '
         'SaveIR_BTN
         '
-        Me.SaveIR_BTN.Location = New System.Drawing.Point(438, 965)
+        Me.SaveIR_BTN.Location = New System.Drawing.Point(433, 1208)
         Me.SaveIR_BTN.Name = "SaveIR_BTN"
         Me.SaveIR_BTN.Size = New System.Drawing.Size(139, 46)
         Me.SaveIR_BTN.TabIndex = 21
@@ -451,7 +498,7 @@ Partial Class frmIncidentReport
         '
         'ClearIR_BTN
         '
-        Me.ClearIR_BTN.Location = New System.Drawing.Point(43, 965)
+        Me.ClearIR_BTN.Location = New System.Drawing.Point(38, 1208)
         Me.ClearIR_BTN.Name = "ClearIR_BTN"
         Me.ClearIR_BTN.Size = New System.Drawing.Size(139, 46)
         Me.ClearIR_BTN.TabIndex = 62
@@ -470,7 +517,7 @@ Partial Class frmIncidentReport
         '
         'PreviewIR_BTN
         '
-        Me.PreviewIR_BTN.Location = New System.Drawing.Point(246, 964)
+        Me.PreviewIR_BTN.Location = New System.Drawing.Point(241, 1207)
         Me.PreviewIR_BTN.Name = "PreviewIR_BTN"
         Me.PreviewIR_BTN.Size = New System.Drawing.Size(139, 46)
         Me.PreviewIR_BTN.TabIndex = 14
@@ -480,7 +527,7 @@ Partial Class frmIncidentReport
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(15, 554)
+        Me.Label24.Location = New System.Drawing.Point(15, 552)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(168, 20)
         Me.Label24.TabIndex = 59
@@ -503,7 +550,7 @@ Partial Class frmIncidentReport
         Me.GroupBox7.Controls.Add(Me.Label39)
         Me.GroupBox7.Controls.Add(Me.Received_TXT)
         Me.GroupBox7.Controls.Add(Me.Label40)
-        Me.GroupBox7.Location = New System.Drawing.Point(8, 797)
+        Me.GroupBox7.Location = New System.Drawing.Point(3, 1040)
         Me.GroupBox7.Name = "GroupBox7"
         Me.GroupBox7.Size = New System.Drawing.Size(605, 100)
         Me.GroupBox7.TabIndex = 61
@@ -1626,6 +1673,14 @@ Partial Class frmIncidentReport
         Me.ECS_GB.TabStop = False
         Me.ECS_GB.Visible = False
         '
+        'AmountPerPayroll_TXT
+        '
+        Me.AmountPerPayroll_TXT.Location = New System.Drawing.Point(174, 151)
+        Me.AmountPerPayroll_TXT.Name = "AmountPerPayroll_TXT"
+        Me.AmountPerPayroll_TXT.ReadOnly = True
+        Me.AmountPerPayroll_TXT.Size = New System.Drawing.Size(175, 28)
+        Me.AmountPerPayroll_TXT.TabIndex = 53
+        '
         'NoOFMonths_TXT
         '
         Me.NoOFMonths_TXT.Location = New System.Drawing.Point(174, 185)
@@ -1649,9 +1704,25 @@ Partial Class frmIncidentReport
         Me.Label64.AutoSize = True
         Me.Label64.Location = New System.Drawing.Point(6, 123)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(98, 21)
+        Me.Label64.Size = New System.Drawing.Size(104, 21)
         Me.Label64.TabIndex = 49
-        Me.Label64.Text = "No. of give/s"
+        Me.Label64.Text = "No. of payroll"
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(6, 158)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(145, 21)
+        Me.Label46.TabIndex = 47
+        Me.Label46.Text = "Amount per payroll"
+        '
+        'Charges_Numeric
+        '
+        Me.Charges_Numeric.Location = New System.Drawing.Point(174, 50)
+        Me.Charges_Numeric.Name = "Charges_Numeric"
+        Me.Charges_Numeric.Size = New System.Drawing.Size(175, 28)
+        Me.Charges_Numeric.TabIndex = 45
         '
         'NoOFPayroll_TXT
         '
@@ -1660,22 +1731,6 @@ Partial Class frmIncidentReport
         Me.NoOFPayroll_TXT.ReadOnly = True
         Me.NoOFPayroll_TXT.Size = New System.Drawing.Size(175, 28)
         Me.NoOFPayroll_TXT.TabIndex = 48
-        '
-        'Label46
-        '
-        Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(6, 158)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(126, 21)
-        Me.Label46.TabIndex = 47
-        Me.Label46.Text = "Amount per give"
-        '
-        'Charges_Numeric
-        '
-        Me.Charges_Numeric.Location = New System.Drawing.Point(174, 50)
-        Me.Charges_Numeric.Name = "Charges_Numeric"
-        Me.Charges_Numeric.Size = New System.Drawing.Size(175, 28)
-        Me.Charges_Numeric.TabIndex = 45
         '
         'ECSNo_TXT
         '
@@ -2871,14 +2926,6 @@ Partial Class frmIncidentReport
         Me.Close_BTN.TabIndex = 10
         Me.Close_BTN.UseVisualStyleBackColor = True
         '
-        'AmountPerPayroll_TXT
-        '
-        Me.AmountPerPayroll_TXT.Location = New System.Drawing.Point(174, 151)
-        Me.AmountPerPayroll_TXT.Name = "AmountPerPayroll_TXT"
-        Me.AmountPerPayroll_TXT.ReadOnly = True
-        Me.AmountPerPayroll_TXT.Size = New System.Drawing.Size(175, 28)
-        Me.AmountPerPayroll_TXT.TabIndex = 53
-        '
         'frmIncidentReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2899,6 +2946,7 @@ Partial Class frmIncidentReport
         Me.SplitContainer1.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
+        CType(Me.Evidence_PB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.ShowCause_Page.ResumeLayout(False)
@@ -3223,4 +3271,8 @@ Partial Class frmIncidentReport
     Friend WithEvents NoOFMonths_TXT As TextBox
     Friend WithEvents Label66 As Label
     Friend WithEvents AmountPerPayroll_TXT As TextBox
+    Friend WithEvents Evidence_PB As PictureBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Label67 As Label
+    Friend WithEvents ClearEvidence_BTN As Button
 End Class

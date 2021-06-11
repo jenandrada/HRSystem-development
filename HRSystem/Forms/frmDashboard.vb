@@ -5,8 +5,17 @@
     End Sub
 
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         If ThisHasRow("SHOWCAUSE_RECORDS") Then
-            SCPendings(PendingNo_LBL)
+            Pendings(Explanation_LBL, "SHOWCAUSE_RECORDS", "STATUS")
+        End If
+
+        If ThisHasRow("IR_REPRIMAND") Then
+            Pendings(Correction_LBL, "IR_REPRIMAND", "CORRECTIVE_ACTION")
+        End If
+
+        If ThisHasRow("IR_REPRIMAND") Then
+            Pendings(Acknowledge_LBL, "IR_REPRIMAND", "WRITTEN_STATUS")
         End If
     End Sub
 

@@ -25,10 +25,6 @@ Partial Class frmMainForm
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMainForm))
         Me.pNavigate = New System.Windows.Forms.Panel()
-        Me.Pending_Panel = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.PendingNo_LBL = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel_Maintenance = New System.Windows.Forms.Panel()
         Me.lbl_Address = New System.Windows.Forms.Label()
         Me.lbl_UserManage = New System.Windows.Forms.Label()
@@ -88,7 +84,6 @@ Partial Class frmMainForm
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.pNavigate.SuspendLayout()
-        Me.Pending_Panel.SuspendLayout()
         Me.Panel_Maintenance.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -104,56 +99,11 @@ Partial Class frmMainForm
         Me.pNavigate.AutoSize = True
         Me.pNavigate.BackColor = System.Drawing.Color.Silver
         Me.pNavigate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pNavigate.Controls.Add(Me.Pending_Panel)
         Me.pNavigate.Controls.Add(Me.Panel_Maintenance)
         Me.pNavigate.Location = New System.Drawing.Point(179, 45)
         Me.pNavigate.Name = "pNavigate"
         Me.pNavigate.Size = New System.Drawing.Size(1188, 718)
         Me.pNavigate.TabIndex = 1
-        '
-        'Pending_Panel
-        '
-        Me.Pending_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.Pending_Panel.BackColor = System.Drawing.Color.Pink
-        Me.Pending_Panel.Controls.Add(Me.Label2)
-        Me.Pending_Panel.Controls.Add(Me.PendingNo_LBL)
-        Me.Pending_Panel.Controls.Add(Me.Label3)
-        Me.Pending_Panel.Location = New System.Drawing.Point(169, 32)
-        Me.Pending_Panel.Name = "Pending_Panel"
-        Me.Pending_Panel.Padding = New System.Windows.Forms.Padding(5)
-        Me.Pending_Panel.Size = New System.Drawing.Size(178, 123)
-        Me.Pending_Panel.TabIndex = 5
-        Me.Pending_Panel.Visible = False
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Kristen ITC", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(55, 50)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(76, 22)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Pendings"
-        '
-        'PendingNo_LBL
-        '
-        Me.PendingNo_LBL.AutoSize = True
-        Me.PendingNo_LBL.Font = New System.Drawing.Font("Kristen ITC", 20.0!)
-        Me.PendingNo_LBL.Location = New System.Drawing.Point(79, 79)
-        Me.PendingNo_LBL.Name = "PendingNo_LBL"
-        Me.PendingNo_LBL.Size = New System.Drawing.Size(31, 36)
-        Me.PendingNo_LBL.TabIndex = 1
-        Me.PendingNo_LBL.Text = "0"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kristen ITC", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(43, 21)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(100, 22)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = "Show Cause"
         '
         'Panel_Maintenance
         '
@@ -163,7 +113,7 @@ Partial Class frmMainForm
         Me.Panel_Maintenance.Controls.Add(Me.lbl_Branch)
         Me.Panel_Maintenance.Controls.Add(Me.lbl_UserLogs)
         Me.Panel_Maintenance.Controls.Add(Me.lbl_Backup)
-        Me.Panel_Maintenance.Location = New System.Drawing.Point(-1, 32)
+        Me.Panel_Maintenance.Location = New System.Drawing.Point(-1, 107)
         Me.Panel_Maintenance.Name = "Panel_Maintenance"
         Me.Panel_Maintenance.Size = New System.Drawing.Size(133, 156)
         Me.Panel_Maintenance.TabIndex = 0
@@ -550,11 +500,11 @@ Partial Class frmMainForm
         Me.Dashboard_BTN.ForeColor = System.Drawing.Color.White
         Me.Dashboard_BTN.Image = Global.HRSystem.My.Resources.Resources.details_50px
         Me.Dashboard_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Dashboard_BTN.Location = New System.Drawing.Point(-1, 687)
+        Me.Dashboard_BTN.Location = New System.Drawing.Point(-1, 78)
         Me.Dashboard_BTN.Name = "Dashboard_BTN"
         Me.Dashboard_BTN.Size = New System.Drawing.Size(177, 75)
         Me.Dashboard_BTN.TabIndex = 10
-        Me.Dashboard_BTN.Text = "               Under Deve.."
+        Me.Dashboard_BTN.Text = "               Dashboard"
         Me.Dashboard_BTN.UseVisualStyleBackColor = False
         '
         'Coorective_BTN
@@ -567,7 +517,7 @@ Partial Class frmMainForm
         Me.Coorective_BTN.ForeColor = System.Drawing.Color.White
         Me.Coorective_BTN.Image = Global.HRSystem.My.Resources.Resources.report_card_50px
         Me.Coorective_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Coorective_BTN.Location = New System.Drawing.Point(0, 307)
+        Me.Coorective_BTN.Location = New System.Drawing.Point(0, 382)
         Me.Coorective_BTN.Name = "Coorective_BTN"
         Me.Coorective_BTN.Size = New System.Drawing.Size(177, 75)
         Me.Coorective_BTN.TabIndex = 12
@@ -584,7 +534,7 @@ Partial Class frmMainForm
         Me.btn_Letter.ForeColor = System.Drawing.Color.White
         Me.btn_Letter.Image = Global.HRSystem.My.Resources.Resources._21
         Me.btn_Letter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_Letter.Location = New System.Drawing.Point(0, 231)
+        Me.btn_Letter.Location = New System.Drawing.Point(0, 306)
         Me.btn_Letter.Name = "btn_Letter"
         Me.btn_Letter.Size = New System.Drawing.Size(177, 75)
         Me.btn_Letter.TabIndex = 11
@@ -601,7 +551,7 @@ Partial Class frmMainForm
         Me.btnWorkManage.ForeColor = System.Drawing.Color.White
         Me.btnWorkManage.Image = Global.HRSystem.My.Resources.Resources.business_50px
         Me.btnWorkManage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnWorkManage.Location = New System.Drawing.Point(-1, 611)
+        Me.btnWorkManage.Location = New System.Drawing.Point(-1, 686)
         Me.btnWorkManage.Name = "btnWorkManage"
         Me.btnWorkManage.Size = New System.Drawing.Size(177, 75)
         Me.btnWorkManage.TabIndex = 4
@@ -618,7 +568,7 @@ Partial Class frmMainForm
         Me.btn_Maintenance_Panel.ForeColor = System.Drawing.Color.White
         Me.btn_Maintenance_Panel.Image = Global.HRSystem.My.Resources.Resources._17
         Me.btn_Maintenance_Panel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_Maintenance_Panel.Location = New System.Drawing.Point(0, 79)
+        Me.btn_Maintenance_Panel.Location = New System.Drawing.Point(0, 154)
         Me.btn_Maintenance_Panel.Name = "btn_Maintenance_Panel"
         Me.btn_Maintenance_Panel.Size = New System.Drawing.Size(177, 75)
         Me.btn_Maintenance_Panel.TabIndex = 3
@@ -635,7 +585,7 @@ Partial Class frmMainForm
         Me.btnManageEmployee.ForeColor = System.Drawing.Color.White
         Me.btnManageEmployee.Image = Global.HRSystem.My.Resources.Resources.employee_card_50px
         Me.btnManageEmployee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnManageEmployee.Location = New System.Drawing.Point(-1, 155)
+        Me.btnManageEmployee.Location = New System.Drawing.Point(-1, 230)
         Me.btnManageEmployee.Name = "btnManageEmployee"
         Me.btnManageEmployee.Size = New System.Drawing.Size(177, 75)
         Me.btnManageEmployee.TabIndex = 2
@@ -652,7 +602,7 @@ Partial Class frmMainForm
         Me.Monitoring_BTN.ForeColor = System.Drawing.Color.White
         Me.Monitoring_BTN.Image = Global.HRSystem.My.Resources.Resources.attendance_mark_50px
         Me.Monitoring_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Monitoring_BTN.Location = New System.Drawing.Point(0, 383)
+        Me.Monitoring_BTN.Location = New System.Drawing.Point(0, 458)
         Me.Monitoring_BTN.Name = "Monitoring_BTN"
         Me.Monitoring_BTN.Size = New System.Drawing.Size(177, 75)
         Me.Monitoring_BTN.TabIndex = 13
@@ -669,7 +619,7 @@ Partial Class frmMainForm
         Me.Compensation_BTN.ForeColor = System.Drawing.Color.White
         Me.Compensation_BTN.Image = Global.HRSystem.My.Resources.Resources.receive_cash_50px1
         Me.Compensation_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Compensation_BTN.Location = New System.Drawing.Point(0, 459)
+        Me.Compensation_BTN.Location = New System.Drawing.Point(0, 534)
         Me.Compensation_BTN.Name = "Compensation_BTN"
         Me.Compensation_BTN.Size = New System.Drawing.Size(177, 75)
         Me.Compensation_BTN.TabIndex = 8
@@ -686,7 +636,7 @@ Partial Class frmMainForm
         Me.RateEMP_BTN.ForeColor = System.Drawing.Color.White
         Me.RateEMP_BTN.Image = Global.HRSystem.My.Resources.Resources.combo_chart_50px
         Me.RateEMP_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.RateEMP_BTN.Location = New System.Drawing.Point(0, 535)
+        Me.RateEMP_BTN.Location = New System.Drawing.Point(0, 610)
         Me.RateEMP_BTN.Name = "RateEMP_BTN"
         Me.RateEMP_BTN.Size = New System.Drawing.Size(177, 75)
         Me.RateEMP_BTN.TabIndex = 7
@@ -715,8 +665,6 @@ Partial Class frmMainForm
         Me.Text = "Human Resource Management System Main Form"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pNavigate.ResumeLayout(False)
-        Me.Pending_Panel.ResumeLayout(False)
-        Me.Pending_Panel.PerformLayout()
         Me.Panel_Maintenance.ResumeLayout(False)
         Me.Panel_Maintenance.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
@@ -791,8 +739,4 @@ Partial Class frmMainForm
     Friend WithEvents AboutUsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Pending_Panel As Panel
-    Friend WithEvents PendingNo_LBL As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
 End Class

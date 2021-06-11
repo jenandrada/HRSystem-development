@@ -25,6 +25,15 @@ Module Selecting
         Return False
     End Function
 
+    Public Function IREvidence(irno As String, path As String)
+        Dim mysql As String = "Select * FROM  IR_RECORDS WEHRE"
+        Dim ds As DataSet = LoadSQL(mysql, table)
+        If ds.Tables(0).Rows.Count > 0 Then
+            Return True
+        End If
+        Return False
+    End Function
+
     'Public Sub LoadListviewWritten(irno As String, listRule As ListView, listSection As ListView)
     '    Dim mysql As String = "Select * From SHOWCAUSE_COUNT WHERE IRNo = '" & irno & "'"
     '    Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_COUNT")
@@ -107,16 +116,16 @@ Module Selecting
         End Using
     End Sub
 
-    Public Sub SCPendings(SCNO As Label)
+    Public Sub Pendings(number As Label, table As String, statusName As String)
 
-        Dim mysql As String = "Select Count(ID) as CountME FROM SHOWCAUSE_RECORDS where status = 'NO'"
+        Dim mysql As String = $"Select Count(ID) as CountME FROM { table } where { statusName } = 'PENDING'"
         Using ds As DataSet = LoadSQL(mysql)
 
             Dim dr As DataRow = ds.Tables(0).Rows(0)
             If dr.Table.Rows.Count > 0 Then
                 With dr
-                    'Dim idx As Long = Format(.Item("Greatest"), "00000")
-                    SCNO.Text = .Item("CountME")
+
+                    number.Text = .Item("CountME")
 
                 End With
             End If
@@ -180,8 +189,8 @@ Module Selecting
         mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
                             inner join IR_RECORDS C on C.irno = A.irno 
-                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno
-"
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno"
+
         Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
@@ -200,8 +209,7 @@ Module Selecting
         mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
                             inner join IR_RECORDS C on C.irno = A.irno 
-                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno
-"
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where CORRECTIVE_ACTION = 'DONE'"
         Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
