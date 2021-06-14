@@ -133,6 +133,22 @@ Module Selecting
 
     End Sub
 
+    Public Sub PendingCorrective(number As Label)
+
+        Dim mysql As String = $"Select Count(ID) as CountME FROM IR_REPRIMAND where WRITTEN_STATUS = 'DONE' and CORRECTIVE_ACTION = 'PENDING' and DAYSSUSPEND <> 0"
+        Using ds As DataSet = LoadSQL(mysql)
+
+            Dim dr As DataRow = ds.Tables(0).Rows(0)
+            If dr.Table.Rows.Count > 0 Then
+                With dr
+
+                    number.Text = .Item("CountME")
+
+                End With
+            End If
+        End Using
+
+    End Sub
 
     Friend Sub PopulateExplaination(datagrid As DataGridView)
         datagrid.Rows.Clear()
@@ -202,6 +218,44 @@ Module Selecting
 
     End Sub
 
+    Friend Sub PopulateACTIONByECS(datagrid As DataGridView)Y
+        datagrid.Rows.Clear()
+        Dim mysql As String
+
+        mysql = "Select * From IR_REPRIMAND A 
+                            inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where A.WRITTEN_STATUS = 'DONE' and A.DAYSSUSPEND = 0"
+        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    AddRowACTION(dr, datagrid)
+                Next
+
+            End If
+        End Using
+
+    End Sub
+
+    Friend Sub PopulateACTIONBySuspension(datagrid As DataGridView)Y
+        datagrid.Rows.Clear()
+        Dim mysql As String
+
+        mysql = "Select * From IR_REPRIMAND A 
+                            inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where A.WRITTEN_STATUS = 'DONE' and A.DAYSSUSPEND <> 0"
+        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    AddRowACTION(dr, datagrid)
+                Next
+
+            End If
+        End Using
+
+    End Sub
+
     Friend Sub PopulateACTION(datagrid As DataGridView)
         datagrid.Rows.Clear()
         Dim mysql As String
@@ -209,7 +263,7 @@ Module Selecting
         mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
                             inner join IR_RECORDS C on C.irno = A.irno 
-                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where CORRECTIVE_ACTION = 'DONE'"
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where A.WRITTEN_STATUS = 'DONE'"
         Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
@@ -242,16 +296,14 @@ Module Selecting
             row.Cells("ACKNO_COO").Value = "Open"
             row.Cells("ACKNO_COO").Tag = .Item("ACKNO_PATH")
 
-            row.Cells("ACTION_COO").Value = "Open"
-            row.Cells("ACTION_COO").Tag = .Item("CORRECTIVE_PATH")
+            If .Item("CORRECTIVE_ACTION") = "DONE" Then
+                row.Cells("ACTION_COO").Value = "Open"
+                row.Cells("ACTION_COO").Tag = .Item("CORRECTIVE_PATH")
 
-            'If .Item("WRITTEN_STATUS") = "PENDING" Then
-            '    row.DefaultCellStyle.BackColor = Color.LightSalmon
-            '    row.Cells("ACKNOW_DGVV").Value = "Upload"
-            'Else
-            '    row.Cells("ACKNOW_DGVV").Value = "Open"
-            '    row.Cells("ACKNOW_DGVV").Tag = .Item("ACKNO_PATH")
-            'End If
+            Else
+                row.DefaultCellStyle.ForeColor = Color.Red
+                row.Cells("ACTION_COO").Value = ""
+            End If
 
             row.Height = 35
 
@@ -297,7 +349,7 @@ Module Selecting
         datagrid.Rows.Clear()
         Dim mysql As String
 
-        mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno where A.STATUS = '" & status & "'"
+        mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B On B.id = A.emp_id inner join IR_RECORDS C On C.irno = A.irno where A.STATUS = '" & status & "'"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows

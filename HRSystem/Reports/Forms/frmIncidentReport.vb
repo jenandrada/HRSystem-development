@@ -140,16 +140,26 @@ Public Class frmIncidentReport
                 MI = .MiddleName.Substring(0, 1) & "."
             End If
 
-            If authorize = "prepared" Then
+            If authorize = "ir-prepared" Then
                 PreparedBy_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
-            ElseIf authorize = "received" Then
+            ElseIf authorize = "ir-received" Then
                 Received_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
-            ElseIf authorize = "reviewed" Then
-                ReviewedBy_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "ir-reviewed" Then
+                ReviewedBy_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}") '====================
+
             ElseIf authorize = "sc-prepared" Then
                 HRSupervisor_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
             ElseIf authorize = "sc-approved" Then
-                BusinessUnitHead_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+                BusinessUnitHead_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}") ' =============
+
+            ElseIf authorize = "wr-prepared" Then
+                WP_Emp_Rel_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "wr-reviewed" Then
+                WP_HR_Sup_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "wr-noted" Then
+                WP_Officer_Incharge_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "wr-approved" Then
+                WP_BusinessHead_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
             End If
 
         End With
@@ -246,9 +256,10 @@ Public Class frmIncidentReport
 
     Private Sub LoadWrittenReprimandReport()
 
-        Dim AMOUNT, noOFMohnths, perPayroll As String
+        Dim AMOUNT, noOFMohnths, perPayroll, ECSFill As String
         Dim tmp As New Lists
         Dim tbl As New Rules_SectionsDataSet.RS_DataTableDataTable
+
         If WW_RBTN.Checked = True Then
             chkStatus = 1
         ElseIf TwoDays_RBTN.Checked = True Then
@@ -257,8 +268,10 @@ Public Class frmIncidentReport
             chkStatus = 3
         ElseIf SixDays_RBTN.Checked = True Then
             chkStatus = 4
-        ElseIf AmountCharges_CB.Checked = True Then
-            chkStatus = 5
+        End If
+
+        If AmountCharges_CB.Checked = True Then
+            ECSFill = 5
         End If
 
         If AmountCharges_CB.Checked = True Then
@@ -285,6 +298,7 @@ Public Class frmIncidentReport
             New ReportParameter("paramDate", dateIssued),
             New ReportParameter("paramIncident", WP_Incident_TXT.Text),
             New ReportParameter("paramStatus", chkStatus),
+            New ReportParameter("paramECSFill", ECSFill),
             New ReportParameter("paramHRSupervisor", WP_HR_Sup_TXT.Text),
             New ReportParameter("paramEmployeeRelations", WP_Emp_Rel_TXT.Text),
             New ReportParameter("paramDiningOfficerIn_charge", WP_Officer_Incharge_TXT.Text),
@@ -1246,10 +1260,6 @@ Public Class frmIncidentReport
 
             Else
 
-                WW_RBTN.Checked = False
-                TwoDays_RBTN.Checked = False
-                FourDays_RBTN.Checked = False
-                SixDays_RBTN.Checked = False
                 ECS_GB.Visible = True
                 NoDaysSuspend_CB.Checked = False
                 chkStatus = 0
@@ -1390,18 +1400,22 @@ Public Class frmIncidentReport
         If Not Double.TryParse(Charges_Numeric.Text, num) Or String.IsNullOrEmpty(Charges_Numeric.Text) Then
             Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
 
-            AmountPerPayroll_TXT.Text = ""
-            NoOFPayroll_TXT.Text = ""
-            'AmountPerPayroll_TXT.ReadOnly = True
+            NoOFPayroll_TXT.Text = Nothing
+            NoOFMonths_TXT.Text = Nothing
+            AmountPerPayroll_TXT.Text = Nothing
             NoOFPayroll_TXT.ReadOnly = True
             NoOFMonths_TXT.ReadOnly = True
 
         Else
             Charges_Numeric.Region = Nothing
 
-            'AmountPerPayroll_TXT.ReadOnly = False
+            NoOFPayroll_TXT.Text = Nothing
+            NoOFMonths_TXT.Text = Nothing
+            AmountPerPayroll_TXT.Text = Nothing
+
             NoOFPayroll_TXT.ReadOnly = False
             NoOFMonths_TXT.ReadOnly = False
+
         End If
 
     End Sub
@@ -1599,11 +1613,16 @@ Public Class frmIncidentReport
                 Process.Start(row.Cells("ACKNO_COO").Tag)
 
             ElseIf grid.Columns(e.ColumnIndex).Name = "ACTION_COO" Then
-                Process.Start(row.Cells("ACTION_COO").Tag)
+
+                If Not row.Cells("ACTION_COO").Value = "" Then
+                    Process.Start(row.Cells("ACTION_COO").Tag)
+                End If
+
 
             End If
 
         End If
+
 
     End Sub
 
@@ -1684,11 +1703,18 @@ Public Class frmIncidentReport
 
     Private Sub NoOFMonths_TXT_TextChanged_1(sender As Object, e As EventArgs) Handles NoOFMonths_TXT.TextChanged
 
-        Dim noOFMonths = Val(NoOFMonths_TXT.Text)
+        If NoOFMonths_TXT.Text = Nothing Then
+            NoOFPayroll_TXT.Text = Nothing
+            AmountPerPayroll_TXT.Text = Nothing
+        Else
 
-        Dim GivesCount As Integer = noOFMonths / 0.5
+            Dim noOFMonths = Val(NoOFMonths_TXT.Text)
 
-        NoOFPayroll_TXT.Text = Val(GivesCount)
+            Dim GivesCount As Integer = noOFMonths / 0.5
+
+            NoOFPayroll_TXT.Text = Val(GivesCount)
+
+        End If
 
     End Sub
 
@@ -1830,7 +1856,7 @@ Public Class frmIncidentReport
             frm.btnView.Visible = False
             frm.btnAdd.Visible = False
             frm.btnSelect.Visible = True
-            frm.txtSearch.Tag = "IR-ApprovedBy"
+            frm.txtSearch.Tag = "SC-ApprovedBy"
             frm.Dock = DockStyle.Fill
             frm.BringToFront()
 
@@ -1838,6 +1864,102 @@ Public Class frmIncidentReport
             frmEmployeeList.BringToFront()
         End If
 
+    End Sub
+
+    Private Sub WR_PraparedBy_BTN_Click(sender As Object, e As EventArgs) Handles WR_PraparedBy_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "WR-PreparedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub WR_ReviewedBy_BTN_Click(sender As Object, e As EventArgs) Handles WR_ReviewedBy_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "WR-ReviewedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub WR_NotedBy_BTN_Click(sender As Object, e As EventArgs) Handles WR_NotedBy_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "WR-NotedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub WR_ApprovedBy_BTN_Click(sender As Object, e As EventArgs) Handles WR_ApprovedBy_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "WR-ApprovedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub ECS_RadioB_CheckedChanged(sender As Object, e As EventArgs) Handles ECS_RadioB.CheckedChanged
+        PopulateACTIONByECS(ACTION_Datagrid)0
+    End Sub
+
+    Private Sub Suspension_RadioB_CheckedChanged(sender As Object, e As EventArgs) Handles Suspension_RadioB.CheckedChanged
+        PopulateACTIONBySuspension(ACTION_Datagrid)0
     End Sub
 
     Private Sub ClearEvidence_BTN_Click(sender As Object, e As EventArgs) Handles ClearEvidence_BTN.Click

@@ -30,13 +30,13 @@ Partial Class frmDashboard
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Acknowledge_LBL = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.Correction_LBL = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Pending_Panel.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -118,6 +118,16 @@ Partial Class frmDashboard
         Me.Panel1.Size = New System.Drawing.Size(212, 145)
         Me.Panel1.TabIndex = 4
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Kristen ITC", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(54, 48)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(116, 23)
+        Me.Label8.TabIndex = 2
+        Me.Label8.Text = "Acknowledge"
+        '
         'Acknowledge_LBL
         '
         Me.Acknowledge_LBL.AutoSize = True
@@ -151,6 +161,16 @@ Partial Class frmDashboard
         Me.Panel2.Size = New System.Drawing.Size(212, 145)
         Me.Panel2.TabIndex = 4
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Kristen ITC", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(35, 47)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(157, 23)
+        Me.Label9.TabIndex = 2
+        Me.Label9.Text = "Corrective Action"
+        '
         'Correction_LBL
         '
         Me.Correction_LBL.AutoSize = True
@@ -170,26 +190,6 @@ Partial Class frmDashboard
         Me.Label6.Size = New System.Drawing.Size(103, 23)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Waiting for "
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Kristen ITC", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(54, 48)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(116, 23)
-        Me.Label8.TabIndex = 2
-        Me.Label8.Text = "Acknowledge"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Kristen ITC", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(35, 47)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(159, 23)
-        Me.Label9.TabIndex = 2
-        Me.Label9.Text = "Correction Action"
         '
         'frmDashboard
         '

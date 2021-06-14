@@ -11,7 +11,7 @@
         End If
 
         If ThisHasRow("IR_REPRIMAND") Then
-            Pendings(Correction_LBL, "IR_REPRIMAND", "CORRECTIVE_ACTION")
+            PendingCorrective(Correction_LBL)
         End If
 
         If ThisHasRow("IR_REPRIMAND") Then
@@ -28,8 +28,7 @@
         Pending_Panel.BackColor = Color.Pink
     End Sub
 
-    Private Sub Pending_Panel_DoubleClick(sender As Object, e As EventArgs) Handles Pending_Panel.DoubleClick
-
+    Private Sub Pending_Panel_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Pending_Panel.MouseDoubleClick
         If frmIncidentReport Is Nothing Then
             Dim frm As New frmIncidentReport With {
                 .MdiParent = frmMainForm
@@ -46,6 +45,45 @@
         End If
 
         Close()
+
+    End Sub
+
+    Private Sub Panel1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Panel1.MouseDoubleClick
+        If frmIncidentReport Is Nothing Then
+            Dim frm As New frmIncidentReport With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.CorrectiveWindow.SelectedIndex = 4
+            frm.StatusACK_Combo.SelectedIndex = 2
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmIncidentReport.BringToFront()
+        End If
+
+        Close()
+    End Sub
+
+    Private Sub Panel2_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Panel2.MouseDoubleClick
+
+        If frmWRList Is Nothing Then
+            Dim frm As New frmWRList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.txtSearch.Tag = "Corrective Action"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmWRList.BringToFront()
+        End If
 
     End Sub
 

@@ -313,9 +313,9 @@
         ElseIf txtSearch.Tag = "IR-Person" Then
 
             tmpEmp.LoadIRPerson(idx)
-            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 3, "person") '=====================
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 3, "person")
 
-        ElseIf txtSearch.Tag = "IR-PreparedBy" Then
+        ElseIf txtSearch.Tag = "IR-PreparedBy" Then '======================================== IR Authorize personnel
 
             tmpEmp.LoadAuthorizePersonnel(idx)
             ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 4, "prepared")
@@ -328,17 +328,37 @@
         ElseIf txtSearch.Tag = "IR-ReviewedBy" Then
 
             tmpEmp.LoadAuthorizePersonnel(idx)
-            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 4, "reviewed") '===========================
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 4, "reviewed")
 
-        ElseIf txtSearch.Tag = "SC-PreparedBy" Then
+        ElseIf txtSearch.Tag = "SC-PreparedBy" Then '========================================== Show cause Authorize personnel
 
             tmpEmp.LoadAuthorizePersonnel(idx)
             ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 5, "prepared")
 
-        ElseIf txtSearch.Tag = "IR-ApprovedBy" Then
+        ElseIf txtSearch.Tag = "SC-ApprovedBy" Then
 
             tmpEmp.LoadAuthorizePersonnel(idx)
             ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 5, "approved")
+
+        ElseIf txtSearch.Tag = "WR-PreparedBy" Then   '======================================== Written Reprimand Authorize personnel
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 6, "prepared")
+
+        ElseIf txtSearch.Tag = "WR-ReviewedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 6, "reviewed")
+
+        ElseIf txtSearch.Tag = "WR-NotedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 6, "noted")
+
+        ElseIf txtSearch.Tag = "WR-ApprovedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 6, "approved")
 
         End If
 

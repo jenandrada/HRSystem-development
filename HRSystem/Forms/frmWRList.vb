@@ -22,7 +22,7 @@
 
             mysql = "SELECT * FROM SHOWCAUSE_RECORDS A 
                                 INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID 
-                                INNER JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.WRITTEN_STATUS = 'DONE' and "
+                                INNER JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.WRITTEN_STATUS = 'DONE' and C.CORRECTIVE_ACTION = 'PENDING' and C.DAYSSUSPEND <> 0"
 
             For Each name In strWords
                 mysql &= $"{vbCr} UPPER(B.LastName ||' '|| B.FirstName ||' '|| B.MiddleName) LIKE UPPER('%{name}%') or "
@@ -39,7 +39,7 @@
 
             mysql = "SELECT * FROM SHOWCAUSE_RECORDS A 
                                 INNER JOIN TBL_EMPLOYEE B ON B.ID = A.EMP_ID 
-                                INNER JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.WRITTEN_STATUS = 'DONE'"
+                                INNER JOIN IR_REPRIMAND C ON C.IRNO = A.IRNO where C.WRITTEN_STATUS = 'DONE' and C.CORRECTIVE_ACTION = 'PENDING' and C.DAYSSUSPEND <> 0"
         End If
 
         Dim ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")

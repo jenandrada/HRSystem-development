@@ -229,12 +229,12 @@
 
                     If edit = "prepared" Then
 
-                        frmIncidentReport.LoadIRAuthorize(cus, "prepared")
+                        frmIncidentReport.LoadIRAuthorize(cus, "ir-prepared")
                     ElseIf edit = "received" Then
 
-                        frmIncidentReport.LoadIRAuthorize(cus, "received")
+                        frmIncidentReport.LoadIRAuthorize(cus, "ir-received")
                     ElseIf edit = "reviewed" Then
-                        frmIncidentReport.LoadIRAuthorize(cus, "reviewed")
+                        frmIncidentReport.LoadIRAuthorize(cus, "ir-reviewed")
                     End If
 
                     frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
@@ -250,6 +250,24 @@
                     End If
 
                     frmIncidentReport.CorrectiveWindow.SelectedIndex = 1
+
+                ElseIf tab = 6 Then
+
+                    If edit = "prepared" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "wr-prepared")
+                    ElseIf edit = "reviewed" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "wr-reviewed")
+                    ElseIf edit = "noted" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "wr-noted")
+                    ElseIf edit = "approved" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "wr-approved")
+                    End If
+
+                    frmIncidentReport.CorrectiveWindow.SelectedIndex = 3
                 End If
 
                 frmIncidentReport.Dock = DockStyle.Fill
