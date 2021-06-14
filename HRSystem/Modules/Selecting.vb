@@ -25,14 +25,14 @@ Module Selecting
         Return False
     End Function
 
-    Public Function IREvidence(irno As String, path As String)
-        Dim mysql As String = "Select * FROM  IR_RECORDS WEHRE"
-        Dim ds As DataSet = LoadSQL(mysql, table)
-        If ds.Tables(0).Rows.Count > 0 Then
-            Return True
-        End If
-        Return False
-    End Function
+    'Public Function IREvidence(irno As String, path As String)
+    '    Dim mysql As String = "Select * FROM  IR_RECORDS WEHRE "
+    '    Dim ds As DataSet = LoadSQL(mysql, table)
+    '    If ds.Tables(0).Rows.Count > 0 Then
+    '        Return True
+    '    End If
+    '    Return False
+    'End Function
 
     'Public Sub LoadListviewWritten(irno As String, listRule As ListView, listSection As ListView)
     '    Dim mysql As String = "Select * From SHOWCAUSE_COUNT WHERE IRNo = '" & irno & "'"

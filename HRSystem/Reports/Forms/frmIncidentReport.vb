@@ -9,11 +9,11 @@ Public Class frmIncidentReport
     Dim chkStatus As Integer
     Dim dateIssued As String = Now.ToString("MMMM dd, yyyy")
     Dim imgData As Byte()
-    Dim FolderPath As String
+    Dim FolderPath, EvidencePAth As String
     Dim ExpalanationPath As String
     Dim NoOfDaysSuspend As Integer
 
-    Private ReadOnly _console, _corrective As New RichTextBox
+    Private ReadOnly _incidentDate, _corrective As New RichTextBox
 
     'Dim Sectionlist As New ArrayList
 
@@ -23,7 +23,7 @@ Public Class frmIncidentReport
             GetLastNo(IRNo_LBL, "IR_RECORDS", "IRNO")
         End If
 
-        _console.Clear()
+        _incidentDate.Clear()
         _corrective.Clear()
 
         chkStatus = 0
@@ -51,7 +51,10 @@ Public Class frmIncidentReport
             SC_IncidentDate_RichB.Text = .IncidentDate '
             Location_TXT.Text = .IncidentLocation
             AuditFindings_TXT.Text = .Incident_Description
+            SCNo_LBL.Tag = .EvidencePath
 
+
+            Console.WriteLine("AAAB " & SCNo_LBL.Tag)
             LoadSectionList()
         End With
 
@@ -125,6 +128,34 @@ Public Class frmIncidentReport
 
     End Sub
 
+    Friend Sub LoadIRAuthorize(mPower As Employee, authorize As String)
+
+        With mPower
+
+            Dim MI As String
+
+            If String.IsNullOrEmpty(.MiddleName) Then
+                MI = ""
+            Else
+                MI = .MiddleName.Substring(0, 1) & "."
+            End If
+
+            If authorize = "prepared" Then
+                PreparedBy_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "received" Then
+                Received_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "reviewed" Then
+                ReviewedBy_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "sc-prepared" Then
+                HRSupervisor_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "sc-approved" Then
+                BusinessUnitHead_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            End If
+
+        End With
+
+    End Sub
+
 
     Private Sub ClearShowCause()
 
@@ -135,7 +166,7 @@ Public Class frmIncidentReport
         Branch_TXT.Clear()
         AuditFindings_TXT.Clear()
         Location_TXT.Clear()
-        _console.Clear()
+        _incidentDate.Clear()
         _corrective.Clear()
         HRSupervisor_TXT.Clear()
         BusinessUnitHead_TXT.Clear()
@@ -145,9 +176,11 @@ Public Class frmIncidentReport
         LV_Sections.Clear()
         SC_IncidentDate_RichB.Clear()
         SCViolation_RichB.Clear()
+        SCNo_LBL.Tag = ""
+
     End Sub
 
-    Private Sub LoadShowCauseReport(EvidencePath As String)
+    Private Sub LoadShowCauseReport()
 
         Dim datesent As String
         If Optional_Group.Enabled = True Then
@@ -156,16 +189,20 @@ Public Class frmIncidentReport
             datesent = ""
         End If
 
-        Dim Path As String = "file:///" & EvidencePath & ""
+        Dim Path As String = "file:///" & SCNo_LBL.Tag & ""
+
+        Console.WriteLine("aaaaaaa " & Path)
 
         Dim tmp As New Lists
         Dim tblSection As New Rules_SectionsDataSet.RS_DataTableDataTable()
+
         RptViewer_ShowCause.LocalReport.DataSources.Clear()
+
         Dim paramList As New List(Of ReportParameter) From {
-            New ReportParameter("paramName", EmpName_TXT.Text, True),
-            New ReportParameter("paramPosition", Position_TXT.Text, True),
-            New ReportParameter("paramCompany", Company_TXT.Text, True),
-            New ReportParameter("paramBranch", Branch_TXT.Text, True),
+            New ReportParameter("paramName", EmpName_TXT.Text),
+            New ReportParameter("paramPosition", Position_TXT.Text),
+            New ReportParameter("paramCompany", Company_TXT.Text),
+            New ReportParameter("paramBranch", Branch_TXT.Text),
             New ReportParameter("paramDate", dateIssued),
             New ReportParameter("paramDateofAudit", SC_IncidentDate_RichB.Text),
             New ReportParameter("paramLocation", Location_TXT.Text),
@@ -306,13 +343,13 @@ Public Class frmIncidentReport
 
     End Function
 
+
     Private Sub LoadCorrectiveAction()
 
         Dim tmp As New Lists
         Dim tbl As New Rules_SectionsDataSet.RS_DataTableDataTable
 
         Dim word As String = NumberToText(Coo_NoOfDays_Numeric.Text) & "(" & Coo_NoOfDays_Numeric.Text & ")"
-        Console.WriteLine("AAAAA " & word)
 
         If _corrective.TextLength <> 0 Then
             _corrective.Text = _corrective.Text & Now.ToString("yyyy")
@@ -355,8 +392,8 @@ Public Class frmIncidentReport
             }
             RptViewer_Corrective.LocalReport.DataSources.Add(datasource)
             RptViewer_Corrective.LocalReport.SetParameters(paramList)
-
             RptViewer_Corrective.RefreshReport()
+
         Catch ex As Exception
             Log_Report(ex.ToString)
             MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -371,6 +408,10 @@ Public Class frmIncidentReport
         DateReceive = DateReceive_DTP.Value.ToString("MMMM dd, yyyy")
         Dim company As String = PositionP_TXT.Tag
 
+        If _incidentDate.TextLength <> 0 Then
+            _incidentDate.Text = _incidentDate.Text & Now.ToString("yyyy")
+        End If
+
         RptViewer_IncidentReport.LocalReport.DataSources.Clear()
 
         Dim paramList As New List(Of ReportParameter) From {
@@ -382,7 +423,7 @@ Public Class frmIncidentReport
             New ReportParameter("paramBranch", Department_TXT.Text),
             New ReportParameter("paramDateReceived", DateReceive),
             New ReportParameter("paramLocation", IncidentLoc_TXT.Text),
-            New ReportParameter("paramDateIncident", _console.Text),
+            New ReportParameter("paramDateIncident", _incidentDate.Text),
             New ReportParameter("paramDescription", Description_RichText.Text),
             New ReportParameter("paramActionTaken", Action_CB.Text),
             New ReportParameter("paramIRNo", IRNo_LBL.Text),
@@ -513,8 +554,9 @@ Public Class frmIncidentReport
             imgData = ImgToByteArray(Evidence_PB.InitialImage, ImageFormat.Jpeg)
         End If
 
+        Console.WriteLine("BBBBBBB " & EvidencePAth)
 
-        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, _console.Text, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, STR, imgData, FolderPath)
+        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, _incidentDate.Text, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, STR, imgData, EvidencePAth)
 
         SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Person_TXT.Text, "Incident Report IR No. " & IRNo_LBL.Text, Department_TXT.Text, Department_TXT.Tag, PositionP_TXT.Text)
 
@@ -540,7 +582,7 @@ Public Class frmIncidentReport
         DateIncident_DTP.Value = Date.UtcNow
         DateReceive_DTP.Value = Date.UtcNow
 
-        _console.Clear()
+        _incidentDate.Clear()
 
     End Sub
 
@@ -644,10 +686,9 @@ Public Class frmIncidentReport
         Dim Datee As Date = Date.UtcNow
         Dim dateee As String = Datee.ToString("MMMM dd, yyyy")
 
-        'Dim arrPic As Byte() = ImgToByteArray(PictureBox1.Image, ImageFormat.Jpeg)
-        'Dim sIMGBASE64 As String = Convert.ToBase64String(arrPic)
-
         Dim Path As String = "file:///" & ExpalanationPath & ""
+
+        Console.WriteLine("ERRRR " & Path)
 
         report.LocalReport.DataSources.Clear()
 
@@ -744,7 +785,7 @@ Public Class frmIncidentReport
 
         End If
 
-        FolderPath = "D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg"
+        EvidencePAth = "D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg"
     End Sub
 
 
@@ -770,6 +811,8 @@ Public Class frmIncidentReport
 
         If Supervisor_TXT.Text = "" Or Person_TXT.Text = "" Then
             MessageBox.Show($"Please Complete employee's name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf Action_CB.Text = "" Then
+            MessageBox.Show($"Please Select category.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             LoadIncidentReport()
         End If
@@ -877,41 +920,6 @@ Public Class frmIncidentReport
             Next
 
         End If
-
-        'For Each i As ListViewItem In LV_Rules.SelectedItems
-        '    If i.SubItems(0).Text = "RULE I" Then
-        '        For Each item In tmp.Rule1Sections()
-        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-        '            lvitem.SubItems.Add(item.NatureOfOffenses)
-        '        Next
-        '    ElseIf i.SubItems(0).Text = "RULE II" Then
-        '        For Each item In tmp.Rule2Sections()
-        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-        '            lvitem.SubItems.Add(item.NatureOfOffenses)
-        '        Next
-        '    ElseIf i.SubItems(0).Text = "RULE III" Then
-        '        For Each item In tmp.Rule3Sections()
-        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-        '            lvitem.SubItems.Add(item.NatureOfOffenses)
-        '        Next
-        '    ElseIf i.SubItems(0).Text = "RULE IV" Then
-        '        For Each item In tmp.Rule4Sections()
-        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-        '            lvitem.SubItems.Add(item.NatureOfOffenses)
-        '        Next
-        '    ElseIf i.SubItems(0).Text = "RULE V" Then
-        '        For Each item In tmp.Rule5Sections()
-        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-        '            lvitem.SubItems.Add(item.NatureOfOffenses)
-        '        Next
-        '    ElseIf i.SubItems(0).Text = "RULE VI" Then
-        '        For Each item In tmp.Rule6Sections()
-        '            Dim lvitem As ListViewItem = LV_Sections.Items.Add(item.Section)
-        '            lvitem.SubItems.Add(item.NatureOfOffenses)
-        '        Next
-
-        '    End If
-        'Next
     End Sub
 
     Private Sub PS1_Btn_Click(sender As Object, e As EventArgs) Handles PS1_Btn.Click
@@ -930,8 +938,7 @@ Public Class frmIncidentReport
                 MessageBox.Show($"Please select section number.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Else
-
-            LoadShowCauseReport(FolderPath)
+            LoadShowCauseReport()
         End If
     End Sub
 
@@ -1298,11 +1305,13 @@ Public Class frmIncidentReport
     End Sub
 
     Private Sub DateIncident_DTP_CloseUp(sender As Object, e As EventArgs) Handles DateIncident_DTP.CloseUp
-        _console.AppendText(DateIncident_DTP.Value.ToString("MMMM dd, yyyy") & ", ")
+        '_incidentDate.AppendText(DateIncident_DTP.Value.ToString("MMMM dd, yyyy") & ", ")
+
+        _incidentDate.AppendText(DateIncident_DTP.Value.ToString("M") & ", ")
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        _console.Clear()
+        _incidentDate.Clear()
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SearchBy_Combo.SelectedIndexChanged
@@ -1715,8 +1724,119 @@ Public Class frmIncidentReport
                     Evidence_PB.Tag = openF.FileName
                     Evidence_PB.SizeMode = PictureBoxSizeMode.CenterImage
                 End If
+
+                EvidencePAth = openF.FileName
             End If
+
         End Using
+
+    End Sub
+
+    Private Sub SC_Clear_BTN_Click(sender As Object, e As EventArgs) Handles SC_Clear_BTN.Click
+        ClearShowCause()
+    End Sub
+
+    Private Sub SearcPreparedBy_BTN_Click(sender As Object, e As EventArgs) Handles IR_PreparedBy_BTN.Click
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "IR-PreparedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+    End Sub
+
+    Private Sub SearcReceivedBy_BTN_Click(sender As Object, e As EventArgs) Handles IR_ReceivedBy_BTN.Click
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "IR-ReceivedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+    End Sub
+
+    Private Sub SearcReviewBy_BTN_Click(sender As Object, e As EventArgs) Handles IR_ReviewBy_BTN.Click
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "IR-ReviewedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+    End Sub
+
+    Private Sub SC_PreparedBy_BTN_Click(sender As Object, e As EventArgs) Handles SC_PreparedBy_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "SC-PreparedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub SC_ApprovedBy_BTN_Click(sender As Object, e As EventArgs) Handles SC_ApprovedBy_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "IR-ApprovedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
 
     End Sub
 

@@ -63,6 +63,10 @@ Public Class Employee
 
     Public Property NoOFDaysSuspend() As String
 
+    Public Property EvidenceImage() As Image
+
+    Public Property EvidencePath() As String
+
     Public Property ID() As Integer
 
     Public Property FirstName() As String
@@ -205,6 +209,7 @@ Public Class Employee
 #End Region
 
 #Region "Procedures"
+
 
     Private Function ImgToByteArray(img As Image, imgFormat As ImageFormat) As Byte()
         Dim tmpData As Byte()
@@ -909,6 +914,11 @@ Public Class Employee
                     IncidentLocation = .Item("INCIDENTLOC")
                     Violation = IIf(IsDBNull(.Item("VIOLATION")), "", .Item("VIOLATION"))
                     NoOFDaysSuspend = IIf(IsDBNull(.Item("DAYSSUSPEND")), "", .Item("DAYSSUSPEND"))
+                    EvidencePath = IIf(IsDBNull(.Item("EVIDENCE_PATH")), "", .Item("EVIDENCE_PATH"))
+
+                    Dim bytBLOBData() As Byte = IIf(IsDBNull(.Item("EVIDENCE_IMAGE")), Nothing, .Item("EVIDENCE_IMAGE"))
+                    Dim stmBLOBData As New MemoryStream(bytBLOBData)
+                    EvidenceImage = Image.FromStream(stmBLOBData)
 
                 End With
 
@@ -1025,6 +1035,26 @@ Public Class Employee
 
         End If
 
+    End Sub
+
+    Friend Sub LoadAuthorizePersonnel(ByVal idx As Integer)
+        Dim mysql As String
+
+        mysql = "Select * From tbl_employee WHERE id = '" & idx & "'"
+        Using ds As DataSet = LoadSQL(mysql, "tbl_employee")
+
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                Dim dr As DataRow = ds.Tables(0).Rows(0)
+                With dr
+                    FirstName = .Item("FIRSTNAME")
+                    MiddleName = .Item("MIDDLENAME")
+                    LastName = .Item("LASTNAME")
+                    Suffix = .Item("SUFFIX")
+                End With
+
+            End If
+        End Using
     End Sub
 
 

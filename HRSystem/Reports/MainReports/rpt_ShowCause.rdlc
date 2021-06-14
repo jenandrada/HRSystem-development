@@ -558,9 +558,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox121</rd:DefaultName>
                 <Top>3.16116in</Top>
-                <Left>0.23438in</Left>
+                <Left>0.23439in</Left>
                 <Height>1.52997in</Height>
-                <Width>4.90625in</Width>
+                <Width>4.89235in</Width>
                 <ZIndex>8</ZIndex>
                 <Visibility>
                   <Hidden>=IIF(parameters!paramChecked.Value = 0, false, true)</Hidden>
@@ -1592,21 +1592,20 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                     <TextRuns>
                       <TextRun>
                         <Value>=Parameters!paramEvidencePath.Value</Value>
-                        <Style />
+                        <Style>
+                          <FontSize>8pt</FontSize>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Top>0.73896in</Top>
-                <Left>0.23438in</Left>
+                <Top>0.78062in</Top>
+                <Left>0.22049in</Left>
                 <Height>0.25in</Height>
-                <Width>1in</Width>
+                <Width>3.91667in</Width>
                 <ZIndex>20</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1619,14 +1618,14 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
               </Textbox>
               <Rectangle Name="Rectangle1">
                 <ReportItems>
-                  <Image Name="Image2">
+                  <Image Name="Image4">
                     <Source>External</Source>
                     <Value>=Parameters!paramEvidencePath.Value</Value>
-                    <Sizing>FitProportional</Sizing>
-                    <Top>0.05556in</Top>
-                    <Left>0.05555in</Left>
-                    <Height>1.41885in</Height>
-                    <Width>2.878in</Width>
+                    <Sizing>Fit</Sizing>
+                    <Top>0.05555in</Top>
+                    <Left>0.05903in</Left>
+                    <Height>1.35417in</Height>
+                    <Width>2.90625in</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -1637,7 +1636,7 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                 <KeepTogether>true</KeepTogether>
                 <Top>3.16116in</Top>
                 <Left>5.15452in</Left>
-                <Height>1.51607in</Height>
+                <Height>1.53472in</Height>
                 <Width>3.07986in</Width>
                 <ZIndex>21</ZIndex>
                 <Style>
@@ -1765,12 +1764,6 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="paramPosition2">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="paramPosition3">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
@@ -1886,11 +1879,6 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>3</RowIndex>
           <ParameterName>paramPosition1</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>4</RowIndex>
-          <ParameterName>paramPosition2</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>

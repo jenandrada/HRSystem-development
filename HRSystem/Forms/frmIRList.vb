@@ -83,7 +83,6 @@
 
 
         If txtSearch.Tag = "ShowCause" Then
-            Console.WriteLine("aaaaaaaaaa " & irno)
 
             tmpEmp.LoadCorrectiveDetails(irno)
             ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 1)

@@ -129,9 +129,6 @@
             <Height>0.25in</Height>
             <Width>1.08333in</Width>
             <ZIndex>3</ZIndex>
-            <Visibility>
-              <Hidden>true</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>

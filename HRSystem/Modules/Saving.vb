@@ -127,7 +127,7 @@
                 .Item("reviewedby") = reviewedby
                 .Item("IR_PATH") = path
                 .Item("EVIDENCE_IMAGE") = evidenceImage
-                .Item("EVIDENCE_PATH") = evidenceImage
+                .Item("EVIDENCE_PATH") = EVIDENCE_PATH
 
             End With
             ds.Tables(0).Rows.Add(dsNewRow)

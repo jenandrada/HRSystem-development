@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmIncidentReport
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmIncidentReport
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmIncidentReport))
         Me.Label21 = New System.Windows.Forms.Label()
@@ -41,6 +41,9 @@ Partial Class frmIncidentReport
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.IR_ReceivedBy_BTN = New System.Windows.Forms.Button()
+        Me.IR_ReviewBy_BTN = New System.Windows.Forms.Button()
+        Me.IR_PreparedBy_BTN = New System.Windows.Forms.Button()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.PreparedBy_TXT = New System.Windows.Forms.TextBox()
         Me.ReviewedBy_TXT = New System.Windows.Forms.TextBox()
@@ -87,6 +90,9 @@ Partial Class frmIncidentReport
         Me.SearchEMP_BTN = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.SC_ApprovedBy_BTN = New System.Windows.Forms.Button()
+        Me.SC_PreparedBy_BTN = New System.Windows.Forms.Button()
+        Me.SC_Clear_BTN = New System.Windows.Forms.Button()
         Me.Optional_Group = New System.Windows.Forms.GroupBox()
         Me.DateSent_DTP = New System.Windows.Forms.DateTimePicker()
         Me.Label20 = New System.Windows.Forms.Label()
@@ -404,9 +410,9 @@ Partial Class frmIncidentReport
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(29, 1278)
+        Me.Panel1.Location = New System.Drawing.Point(29, 1397)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(592, 22)
+        Me.Panel1.Size = New System.Drawing.Size(592, 15)
         Me.Panel1.TabIndex = 63
         '
         'Panel6
@@ -446,7 +452,7 @@ Partial Class frmIncidentReport
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(633, 1300)
+        Me.Panel6.Size = New System.Drawing.Size(633, 1412)
         Me.Panel6.TabIndex = 62
         '
         'ClearEvidence_BTN
@@ -489,7 +495,7 @@ Partial Class frmIncidentReport
         '
         'SaveIR_BTN
         '
-        Me.SaveIR_BTN.Location = New System.Drawing.Point(433, 1208)
+        Me.SaveIR_BTN.Location = New System.Drawing.Point(439, 1326)
         Me.SaveIR_BTN.Name = "SaveIR_BTN"
         Me.SaveIR_BTN.Size = New System.Drawing.Size(139, 46)
         Me.SaveIR_BTN.TabIndex = 21
@@ -498,7 +504,7 @@ Partial Class frmIncidentReport
         '
         'ClearIR_BTN
         '
-        Me.ClearIR_BTN.Location = New System.Drawing.Point(38, 1208)
+        Me.ClearIR_BTN.Location = New System.Drawing.Point(44, 1326)
         Me.ClearIR_BTN.Name = "ClearIR_BTN"
         Me.ClearIR_BTN.Size = New System.Drawing.Size(139, 46)
         Me.ClearIR_BTN.TabIndex = 62
@@ -517,7 +523,7 @@ Partial Class frmIncidentReport
         '
         'PreviewIR_BTN
         '
-        Me.PreviewIR_BTN.Location = New System.Drawing.Point(241, 1207)
+        Me.PreviewIR_BTN.Location = New System.Drawing.Point(247, 1325)
         Me.PreviewIR_BTN.Name = "PreviewIR_BTN"
         Me.PreviewIR_BTN.Size = New System.Drawing.Size(139, 46)
         Me.PreviewIR_BTN.TabIndex = 14
@@ -544,6 +550,9 @@ Partial Class frmIncidentReport
         '
         'GroupBox7
         '
+        Me.GroupBox7.Controls.Add(Me.IR_ReceivedBy_BTN)
+        Me.GroupBox7.Controls.Add(Me.IR_ReviewBy_BTN)
+        Me.GroupBox7.Controls.Add(Me.IR_PreparedBy_BTN)
         Me.GroupBox7.Controls.Add(Me.Label38)
         Me.GroupBox7.Controls.Add(Me.PreparedBy_TXT)
         Me.GroupBox7.Controls.Add(Me.ReviewedBy_TXT)
@@ -552,14 +561,44 @@ Partial Class frmIncidentReport
         Me.GroupBox7.Controls.Add(Me.Label40)
         Me.GroupBox7.Location = New System.Drawing.Point(3, 1040)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(605, 100)
+        Me.GroupBox7.Size = New System.Drawing.Size(605, 240)
         Me.GroupBox7.TabIndex = 61
         Me.GroupBox7.TabStop = False
+        '
+        'IR_ReceivedBy_BTN
+        '
+        Me.IR_ReceivedBy_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IR_ReceivedBy_BTN.Location = New System.Drawing.Point(564, 65)
+        Me.IR_ReceivedBy_BTN.Name = "IR_ReceivedBy_BTN"
+        Me.IR_ReceivedBy_BTN.Size = New System.Drawing.Size(36, 26)
+        Me.IR_ReceivedBy_BTN.TabIndex = 59
+        Me.IR_ReceivedBy_BTN.Text = "..."
+        Me.IR_ReceivedBy_BTN.UseVisualStyleBackColor = True
+        '
+        'IR_ReviewBy_BTN
+        '
+        Me.IR_ReviewBy_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IR_ReviewBy_BTN.Location = New System.Drawing.Point(268, 174)
+        Me.IR_ReviewBy_BTN.Name = "IR_ReviewBy_BTN"
+        Me.IR_ReviewBy_BTN.Size = New System.Drawing.Size(36, 26)
+        Me.IR_ReviewBy_BTN.TabIndex = 58
+        Me.IR_ReviewBy_BTN.Text = "..."
+        Me.IR_ReviewBy_BTN.UseVisualStyleBackColor = True
+        '
+        'IR_PreparedBy_BTN
+        '
+        Me.IR_PreparedBy_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IR_PreparedBy_BTN.Location = New System.Drawing.Point(265, 65)
+        Me.IR_PreparedBy_BTN.Name = "IR_PreparedBy_BTN"
+        Me.IR_PreparedBy_BTN.Size = New System.Drawing.Size(36, 26)
+        Me.IR_PreparedBy_BTN.TabIndex = 57
+        Me.IR_PreparedBy_BTN.Text = "..."
+        Me.IR_PreparedBy_BTN.UseVisualStyleBackColor = True
         '
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(15, 33)
+        Me.Label38.Location = New System.Drawing.Point(37, 33)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(94, 20)
         Me.Label38.TabIndex = 53
@@ -568,23 +607,23 @@ Partial Class frmIncidentReport
         'PreparedBy_TXT
         '
         Me.PreparedBy_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.PreparedBy_TXT.Location = New System.Drawing.Point(15, 65)
+        Me.PreparedBy_TXT.Location = New System.Drawing.Point(37, 65)
         Me.PreparedBy_TXT.Name = "PreparedBy_TXT"
-        Me.PreparedBy_TXT.Size = New System.Drawing.Size(174, 26)
+        Me.PreparedBy_TXT.Size = New System.Drawing.Size(221, 26)
         Me.PreparedBy_TXT.TabIndex = 51
         '
         'ReviewedBy_TXT
         '
         Me.ReviewedBy_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.ReviewedBy_TXT.Location = New System.Drawing.Point(423, 65)
+        Me.ReviewedBy_TXT.Location = New System.Drawing.Point(41, 174)
         Me.ReviewedBy_TXT.Name = "ReviewedBy_TXT"
-        Me.ReviewedBy_TXT.Size = New System.Drawing.Size(174, 26)
+        Me.ReviewedBy_TXT.Size = New System.Drawing.Size(221, 26)
         Me.ReviewedBy_TXT.TabIndex = 52
         '
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(215, 33)
+        Me.Label39.Location = New System.Drawing.Point(360, 33)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(95, 20)
         Me.Label39.TabIndex = 54
@@ -593,15 +632,15 @@ Partial Class frmIncidentReport
         'Received_TXT
         '
         Me.Received_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.Received_TXT.Location = New System.Drawing.Point(219, 65)
+        Me.Received_TXT.Location = New System.Drawing.Point(364, 65)
         Me.Received_TXT.Name = "Received_TXT"
-        Me.Received_TXT.Size = New System.Drawing.Size(174, 26)
+        Me.Received_TXT.Size = New System.Drawing.Size(195, 26)
         Me.Received_TXT.TabIndex = 55
         '
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(419, 33)
+        Me.Label40.Location = New System.Drawing.Point(37, 142)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(98, 20)
         Me.Label40.TabIndex = 56
@@ -864,6 +903,7 @@ Partial Class frmIncidentReport
         '
         Me.RptViewer_ShowCause.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RptViewer_ShowCause.DocumentMapWidth = 1
+        Me.RptViewer_ShowCause.LocalReport.EnableExternalImages = True
         Me.RptViewer_ShowCause.LocalReport.ReportEmbeddedResource = "HRSystem.rpt_ShowCause.rdlc"
         Me.RptViewer_ShowCause.Location = New System.Drawing.Point(0, 0)
         Me.RptViewer_ShowCause.Name = "RptViewer_ShowCause"
@@ -978,6 +1018,9 @@ Partial Class frmIncidentReport
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.SC_ApprovedBy_BTN)
+        Me.GroupBox3.Controls.Add(Me.SC_PreparedBy_BTN)
+        Me.GroupBox3.Controls.Add(Me.SC_Clear_BTN)
         Me.GroupBox3.Controls.Add(Me.Optional_Group)
         Me.GroupBox3.Controls.Add(Me.Label18)
         Me.GroupBox3.Controls.Add(Me.Label16)
@@ -992,10 +1035,39 @@ Partial Class frmIncidentReport
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(21, 1183)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(614, 474)
+        Me.GroupBox3.Size = New System.Drawing.Size(614, 466)
         Me.GroupBox3.TabIndex = 14
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Authorize"
+        '
+        'SC_ApprovedBy_BTN
+        '
+        Me.SC_ApprovedBy_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SC_ApprovedBy_BTN.Location = New System.Drawing.Point(572, 111)
+        Me.SC_ApprovedBy_BTN.Name = "SC_ApprovedBy_BTN"
+        Me.SC_ApprovedBy_BTN.Size = New System.Drawing.Size(36, 26)
+        Me.SC_ApprovedBy_BTN.TabIndex = 59
+        Me.SC_ApprovedBy_BTN.Text = "..."
+        Me.SC_ApprovedBy_BTN.UseVisualStyleBackColor = True
+        '
+        'SC_PreparedBy_BTN
+        '
+        Me.SC_PreparedBy_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SC_PreparedBy_BTN.Location = New System.Drawing.Point(223, 113)
+        Me.SC_PreparedBy_BTN.Name = "SC_PreparedBy_BTN"
+        Me.SC_PreparedBy_BTN.Size = New System.Drawing.Size(36, 26)
+        Me.SC_PreparedBy_BTN.TabIndex = 58
+        Me.SC_PreparedBy_BTN.Text = "..."
+        Me.SC_PreparedBy_BTN.UseVisualStyleBackColor = True
+        '
+        'SC_Clear_BTN
+        '
+        Me.SC_Clear_BTN.Location = New System.Drawing.Point(18, 386)
+        Me.SC_Clear_BTN.Name = "SC_Clear_BTN"
+        Me.SC_Clear_BTN.Size = New System.Drawing.Size(139, 46)
+        Me.SC_Clear_BTN.TabIndex = 49
+        Me.SC_Clear_BTN.Text = "Clear"
+        Me.SC_Clear_BTN.UseVisualStyleBackColor = True
         '
         'Optional_Group
         '
@@ -1037,14 +1109,14 @@ Partial Class frmIncidentReport
         Me.Label19.AutoSize = True
         Me.Label19.Location = New System.Drawing.Point(26, 42)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(161, 21)
+        Me.Label19.Size = New System.Drawing.Size(77, 21)
         Me.Label19.TabIndex = 39
-        Me.Label19.Text = "Explanation Date Sent"
+        Me.Label19.Text = "Date Sent"
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(386, 47)
+        Me.Label18.Location = New System.Drawing.Point(355, 47)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(102, 21)
         Me.Label18.TabIndex = 29
@@ -1061,7 +1133,7 @@ Partial Class frmIncidentReport
         '
         'PS3_Btn
         '
-        Me.PS3_Btn.Location = New System.Drawing.Point(571, 81)
+        Me.PS3_Btn.Location = New System.Drawing.Point(540, 81)
         Me.PS3_Btn.Name = "PS3_Btn"
         Me.PS3_Btn.Size = New System.Drawing.Size(26, 26)
         Me.PS3_Btn.TabIndex = 26
@@ -1070,7 +1142,7 @@ Partial Class frmIncidentReport
         '
         'Save_BTN
         '
-        Me.Save_BTN.Location = New System.Drawing.Point(248, 386)
+        Me.Save_BTN.Location = New System.Drawing.Point(458, 386)
         Me.Save_BTN.Name = "Save_BTN"
         Me.Save_BTN.Size = New System.Drawing.Size(139, 46)
         Me.Save_BTN.TabIndex = 21
@@ -1088,7 +1160,7 @@ Partial Class frmIncidentReport
         '
         'OK_BTN
         '
-        Me.OK_BTN.Location = New System.Drawing.Point(415, 386)
+        Me.OK_BTN.Location = New System.Drawing.Point(248, 386)
         Me.OK_BTN.Name = "OK_BTN"
         Me.OK_BTN.Size = New System.Drawing.Size(139, 46)
         Me.OK_BTN.TabIndex = 14
@@ -1106,7 +1178,7 @@ Partial Class frmIncidentReport
         '
         'Position3_TXT
         '
-        Me.Position3_TXT.Location = New System.Drawing.Point(390, 79)
+        Me.Position3_TXT.Location = New System.Drawing.Point(359, 79)
         Me.Position3_TXT.Name = "Position3_TXT"
         Me.Position3_TXT.ReadOnly = True
         Me.Position3_TXT.Size = New System.Drawing.Size(176, 28)
@@ -1116,7 +1188,7 @@ Partial Class frmIncidentReport
         'BusinessUnitHead_TXT
         '
         Me.BusinessUnitHead_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.BusinessUnitHead_TXT.Location = New System.Drawing.Point(390, 111)
+        Me.BusinessUnitHead_TXT.Location = New System.Drawing.Point(359, 111)
         Me.BusinessUnitHead_TXT.Name = "BusinessUnitHead_TXT"
         Me.BusinessUnitHead_TXT.Size = New System.Drawing.Size(207, 28)
         Me.BusinessUnitHead_TXT.TabIndex = 17
@@ -1145,7 +1217,7 @@ Partial Class frmIncidentReport
         Me.RuleViolated_GB.Font = New System.Drawing.Font("Microsoft Tai Le", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RuleViolated_GB.Location = New System.Drawing.Point(21, 213)
         Me.RuleViolated_GB.Name = "RuleViolated_GB"
-        Me.RuleViolated_GB.Size = New System.Drawing.Size(614, 929)
+        Me.RuleViolated_GB.Size = New System.Drawing.Size(614, 912)
         Me.RuleViolated_GB.TabIndex = 17
         Me.RuleViolated_GB.TabStop = False
         Me.RuleViolated_GB.Text = "Rules Violated"
@@ -3275,4 +3347,10 @@ Partial Class frmIncidentReport
     Friend WithEvents Button2 As Button
     Friend WithEvents Label67 As Label
     Friend WithEvents ClearEvidence_BTN As Button
+    Friend WithEvents SC_Clear_BTN As Button
+    Friend WithEvents IR_ReceivedBy_BTN As Button
+    Friend WithEvents IR_ReviewBy_BTN As Button
+    Friend WithEvents IR_PreparedBy_BTN As Button
+    Friend WithEvents SC_ApprovedBy_BTN As Button
+    Friend WithEvents SC_PreparedBy_BTN As Button
 End Class

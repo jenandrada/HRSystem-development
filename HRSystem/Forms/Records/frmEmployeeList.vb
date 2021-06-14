@@ -313,7 +313,32 @@
         ElseIf txtSearch.Tag = "IR-Person" Then
 
             tmpEmp.LoadIRPerson(idx)
-            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 3, "person")
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 3, "person") '=====================
+
+        ElseIf txtSearch.Tag = "IR-PreparedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 4, "prepared")
+
+        ElseIf txtSearch.Tag = "IR-ReceivedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 4, "received")
+
+        ElseIf txtSearch.Tag = "IR-ReviewedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 4, "reviewed") '===========================
+
+        ElseIf txtSearch.Tag = "SC-PreparedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 5, "prepared")
+
+        ElseIf txtSearch.Tag = "IR-ApprovedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 5, "approved")
 
         End If
 

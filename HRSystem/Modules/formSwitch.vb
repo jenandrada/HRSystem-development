@@ -218,13 +218,38 @@
                 ElseIf tab = 3 Then
 
                     If edit = "person" Then
-                        frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
                         frmIncidentReport.LoadIRPerson(cus)
                     Else
-                        frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
                         frmIncidentReport.LoadIRSupervisor(cus)
                     End If
 
+                    frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
+
+                ElseIf tab = 4 Then
+
+                    If edit = "prepared" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "prepared")
+                    ElseIf edit = "received" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "received")
+                    ElseIf edit = "reviewed" Then
+                        frmIncidentReport.LoadIRAuthorize(cus, "reviewed")
+                    End If
+
+                    frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
+
+                ElseIf tab = 5 Then
+
+                    If edit = "prepared" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "sc-prepared")
+                    ElseIf edit = "approved" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "sc-approved")
+                    End If
+
+                    frmIncidentReport.CorrectiveWindow.SelectedIndex = 1
                 End If
 
                 frmIncidentReport.Dock = DockStyle.Fill
