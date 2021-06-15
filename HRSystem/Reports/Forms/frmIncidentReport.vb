@@ -618,7 +618,7 @@ Public Class frmIncidentReport
                 If row.Cells("Explain_DGV").Value = "Upload" Then
 
                     Modify_Panel.Visible = True
-                    Modify_Panel.Location = New Point(124, 48)
+                    Modify_Panel.Location = New Point(345, 115)
 
                 Else
                     Process.Start(row.Cells("Explain_DGV").Tag)
@@ -751,45 +751,93 @@ Public Class frmIncidentReport
     End Sub
 
     Private Sub Supervisor_BTN_Click(sender As Object, e As EventArgs) Handles Supervisor_BTN.Click
-        If frmEmployeeList Is Nothing Then
-            Dim frm As New frmEmployeeList With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.btnView.Visible = False
-            frm.btnAdd.Visible = False
-            frm.btnSelect.Visible = True
-            frm.txtSearch.Tag = "IR-Supervisor"
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
+        'If frmEmployeeList Is Nothing Then
+        '    Dim frm As New frmEmployeeList With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Show()
+        '    frm.btnView.Visible = False
+        '    frm.btnAdd.Visible = False
+        '    frm.btnSelect.Visible = True
+        '    frm.txtSearch.Tag = "IR-Supervisor"
+        '    frm.Dock = DockStyle.Fill
+        '    frm.BringToFront()
 
-        Else
-            frmEmployeeList.BringToFront()
-        End If
+        'Else
+        '    frmEmployeeList.BringToFront()
+        'End If
         'Close()
+
+
+        Try
+            Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = "frmEmployeeList").SingleOrDefault()
+            If instForm Is Nothing Then
+                Dim frm As frmEmployeeList
+                frm = DirectCast(CreateObjectInstance("frmEmployeeList"), Form)
+                frm.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frm)
+                frmMainForm.pNavigate.Tag = frm
+                frm.Show()
+                frm.btnView.Visible = False
+                frm.btnAdd.Visible = False
+                frm.btnSelect.Visible = True
+                frm.txtSearch.Tag = "IR-Supervisor"
+                frm.Dock = DockStyle.Fill
+                frm.BringToFront()
+            Else
+                instForm.BringToFront()
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub Person_BTN_Click(sender As Object, e As EventArgs) Handles Person_BTN.Click
 
-        If frmEmployeeList Is Nothing Then
-            Dim frm As New frmEmployeeList With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.btnView.Visible = False
-            frm.btnAdd.Visible = False
-            frm.btnSelect.Visible = True
-            frm.txtSearch.Tag = "IR-Person"
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
+        'If frmEmployeeList Is Nothing Then
+        '    Dim frm As New frmEmployeeList With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Show()
+        '    frm.btnView.Visible = False
+        '    frm.btnAdd.Visible = False
+        '    frm.btnSelect.Visible = True
+        '    frm.txtSearch.Tag = "IR-Person"
+        '    frm.Dock = DockStyle.Fill
+        '    frm.BringToFront()
 
-        Else
-            frmEmployeeList.BringToFront()
-        End If
+        'Else
+        '    frmEmployeeList.BringToFront()
+        'End If
+
+        Try
+            Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = "frmEmployeeList").SingleOrDefault()
+            If instForm Is Nothing Then
+                Dim frm As frmEmployeeList
+                frm = DirectCast(CreateObjectInstance("frmEmployeeList"), Form)
+                frm.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frm)
+                frmMainForm.pNavigate.Tag = frm
+                frm.Show()
+                frm.btnView.Visible = False
+                frm.btnAdd.Visible = False
+                frm.btnSelect.Visible = True
+                frm.txtSearch.Tag = "IR-Person"
+                frm.Dock = DockStyle.Fill
+                frm.BringToFront()
+            Else
+                instForm.BringToFront()
+            End If
+
+        Catch ex As Exception
+
+        End Try
 
     End Sub
     Friend Sub ToFOLDER(ByVal Name As String, ByVal Folder As String, ByVal ImageName As String, ByVal picture As PictureBox)
@@ -1296,7 +1344,6 @@ Public Class frmIncidentReport
                     Dim year As String = Date.Now.ToString("yy")
                     Dim month As String = Date.Now.ToString("MM")
                     ECSNo_TXT.Text = year & "0" & month & "001"
-                    Console.WriteLine("Walay unod ang table")
                 End If
 
                 Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
@@ -1502,7 +1549,7 @@ Public Class frmIncidentReport
                 If row.Cells("ACKNOW_DGVV").Value = "Upload" Then
 
                     Ack_Panel.Visible = True
-                    Ack_Panel.Location = New Point(124, 48)
+                    Ack_Panel.Location = New Point(345, 115)
 
                 Else
                     Process.Start(row.Cells("ACKNOW_DGVV").Tag)
@@ -1784,63 +1831,138 @@ Public Class frmIncidentReport
     End Sub
 
     Private Sub SearcPreparedBy_BTN_Click(sender As Object, e As EventArgs) Handles IR_PreparedBy_BTN.Click
-        If frmEmployeeList Is Nothing Then
-            Dim frm As New frmEmployeeList With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.btnView.Visible = False
-            frm.btnAdd.Visible = False
-            frm.btnSelect.Visible = True
-            frm.txtSearch.Tag = "IR-PreparedBy"
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
+        'If frmEmployeeList Is Nothing Then
+        '    Dim frm As New frmEmployeeList With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Show()
+        '    frm.btnView.Visible = False
+        '    frm.btnAdd.Visible = False
+        '    frm.btnSelect.Visible = True
+        '    frm.txtSearch.Tag = "IR-PreparedBy"
+        '    frm.Dock = DockStyle.Fill
+        '    frm.BringToFront()
 
-        Else
-            frmEmployeeList.BringToFront()
-        End If
+        'Else
+        '    frmEmployeeList.BringToFront()
+        'End If
+
+
+        Try
+            Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = "frmEmployeeList").SingleOrDefault()
+            If instForm Is Nothing Then
+                Dim frm As frmEmployeeList
+                frm = DirectCast(CreateObjectInstance("frmEmployeeList"), Form)
+                frm.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frm)
+                frmMainForm.pNavigate.Tag = frm
+                frm.Show()
+                frm.btnView.Visible = False
+                frm.btnAdd.Visible = False
+                frm.btnSelect.Visible = True
+                frm.txtSearch.Tag = "IR-PreparedBy"
+                frm.Dock = DockStyle.Fill
+                frm.BringToFront()
+            Else
+                instForm.BringToFront()
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub SearcReceivedBy_BTN_Click(sender As Object, e As EventArgs) Handles IR_ReceivedBy_BTN.Click
-        If frmEmployeeList Is Nothing Then
-            Dim frm As New frmEmployeeList With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.btnView.Visible = False
-            frm.btnAdd.Visible = False
-            frm.btnSelect.Visible = True
-            frm.txtSearch.Tag = "IR-ReceivedBy"
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
+        'If frmEmployeeList Is Nothing Then
+        '    Dim frm As New frmEmployeeList With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Show()
+        '    frm.btnView.Visible = False
+        '    frm.btnAdd.Visible = False
+        '    frm.btnSelect.Visible = True
+        '    frm.txtSearch.Tag = "IR-ReceivedBy"
+        '    frm.Dock = DockStyle.Fill
+        '    frm.BringToFront()
 
-        Else
-            frmEmployeeList.BringToFront()
-        End If
+        'Else
+        '    frmEmployeeList.BringToFront()
+        'End If
+
+
+        Try
+            Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = "frmEmployeeList").SingleOrDefault()
+            If instForm Is Nothing Then
+                Dim frm As frmEmployeeList
+                frm = DirectCast(CreateObjectInstance("frmEmployeeList"), Form)
+                frm.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frm)
+                frmMainForm.pNavigate.Tag = frm
+                frm.Show()
+                frm.btnView.Visible = False
+                frm.btnAdd.Visible = False
+                frm.btnSelect.Visible = True
+                frm.txtSearch.Tag = "IR-ReceivedBy"
+                frm.Dock = DockStyle.Fill
+                frm.BringToFront()
+            Else
+                instForm.BringToFront()
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub SearcReviewBy_BTN_Click(sender As Object, e As EventArgs) Handles IR_ReviewBy_BTN.Click
-        If frmEmployeeList Is Nothing Then
-            Dim frm As New frmEmployeeList With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.btnView.Visible = False
-            frm.btnAdd.Visible = False
-            frm.btnSelect.Visible = True
-            frm.txtSearch.Tag = "IR-ReviewedBy"
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
+        'If frmEmployeeList Is Nothing Then
+        '    Dim frm As New frmEmployeeList With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Show()
+        '    frm.btnView.Visible = False
+        '    frm.btnAdd.Visible = False
+        '    frm.btnSelect.Visible = True
+        '    frm.txtSearch.Tag = "IR-ReviewedBy"
+        '    frm.Dock = DockStyle.Fill
+        '    frm.BringToFront()
 
-        Else
-            frmEmployeeList.BringToFront()
-        End If
+        'Else
+        '    frmEmployeeList.BringToFront()
+        'End If
+
+
+        Try
+            Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = "frmEmployeeList").SingleOrDefault()
+            If instForm Is Nothing Then
+                Dim frm As frmEmployeeList
+                frm = DirectCast(CreateObjectInstance("frmEmployeeList"), Form)
+                frm.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frm)
+                frmMainForm.pNavigate.Tag = frm
+                frm.Show()
+                frm.btnView.Visible = False
+                frm.btnAdd.Visible = False
+                frm.btnSelect.Visible = True
+                frm.txtSearch.Tag = "IR-ReviewedBy"
+                frm.Dock = DockStyle.Fill
+                frm.BringToFront()
+            Else
+                instForm.BringToFront()
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub SC_PreparedBy_BTN_Click(sender As Object, e As EventArgs) Handles SC_PreparedBy_BTN.Click

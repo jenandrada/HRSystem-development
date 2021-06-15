@@ -306,6 +306,7 @@ Partial Class frmIncidentReport
         Me.Remarks_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Action_Page = New System.Windows.Forms.TabPage()
         Me.List_Page.SuspendLayout()
         CType(Me.ACTION_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Corrective_Page.SuspendLayout()
@@ -389,7 +390,7 @@ Partial Class frmIncidentReport
         Me.List_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.List_Page.Size = New System.Drawing.Size(1167, 667)
         Me.List_Page.TabIndex = 6
-        Me.List_Page.Text = "       Records      "
+        Me.List_Page.Text = "Records      "
         Me.List_Page.UseVisualStyleBackColor = True
         '
         'Label68
@@ -519,7 +520,7 @@ Partial Class frmIncidentReport
         Me.Corrective_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.Corrective_Page.Size = New System.Drawing.Size(1167, 667)
         Me.Corrective_Page.TabIndex = 5
-        Me.Corrective_Page.Text = "   Corrective Action Report   "
+        Me.Corrective_Page.Text = "Corrective Action   "
         Me.Corrective_Page.UseVisualStyleBackColor = True
         '
         'SplitContainer4
@@ -1058,7 +1059,7 @@ Partial Class frmIncidentReport
         Me.Acknowledg_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.Acknowledg_Page.Size = New System.Drawing.Size(1167, 667)
         Me.Acknowledg_Page.TabIndex = 4
-        Me.Acknowledg_Page.Text = "   Acknowledgment   "
+        Me.Acknowledg_Page.Text = "Written Acknowledge   "
         Me.Acknowledg_Page.UseVisualStyleBackColor = True
         '
         'Ack_Panel
@@ -1072,7 +1073,7 @@ Partial Class frmIncidentReport
         Me.Ack_Panel.Controls.Add(Me.SaveAck_BTN)
         Me.Ack_Panel.Location = New System.Drawing.Point(156, 131)
         Me.Ack_Panel.Name = "Ack_Panel"
-        Me.Ack_Panel.Size = New System.Drawing.Size(795, 520)
+        Me.Ack_Panel.Size = New System.Drawing.Size(615, 492)
         Me.Ack_Panel.TabIndex = 90
         Me.Ack_Panel.Visible = False
         '
@@ -1090,14 +1091,14 @@ Partial Class frmIncidentReport
         Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBox2.Location = New System.Drawing.Point(22, 28)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(758, 441)
+        Me.PictureBox2.Size = New System.Drawing.Size(575, 395)
         Me.PictureBox2.TabIndex = 9
         Me.PictureBox2.TabStop = False
         '
         'CancelAck_BTN
         '
         Me.CancelAck_BTN.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CancelAck_BTN.Location = New System.Drawing.Point(23, 479)
+        Me.CancelAck_BTN.Location = New System.Drawing.Point(22, 438)
         Me.CancelAck_BTN.Name = "CancelAck_BTN"
         Me.CancelAck_BTN.Size = New System.Drawing.Size(76, 31)
         Me.CancelAck_BTN.TabIndex = 80
@@ -1107,7 +1108,7 @@ Partial Class frmIncidentReport
         'SaveAck_BTN
         '
         Me.SaveAck_BTN.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SaveAck_BTN.Location = New System.Drawing.Point(719, 479)
+        Me.SaveAck_BTN.Location = New System.Drawing.Point(536, 438)
         Me.SaveAck_BTN.Name = "SaveAck_BTN"
         Me.SaveAck_BTN.Size = New System.Drawing.Size(61, 31)
         Me.SaveAck_BTN.TabIndex = 79
@@ -1246,7 +1247,7 @@ Partial Class frmIncidentReport
         Me.WrittenReprimand_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.WrittenReprimand_Page.Size = New System.Drawing.Size(1167, 667)
         Me.WrittenReprimand_Page.TabIndex = 1
-        Me.WrittenReprimand_Page.Text = "  Written Reprimand Notice   "
+        Me.WrittenReprimand_Page.Text = "Written Notice    "
         Me.WrittenReprimand_Page.UseVisualStyleBackColor = True
         '
         'Label25
@@ -1918,7 +1919,7 @@ Partial Class frmIncidentReport
         Me.Explanation_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.Explanation_Page.Size = New System.Drawing.Size(1167, 667)
         Me.Explanation_Page.TabIndex = 2
-        Me.Explanation_Page.Text = "   Explanation   "
+        Me.Explanation_Page.Text = "Explanation   "
         Me.Explanation_Page.UseVisualStyleBackColor = True
         '
         'Remarks_Panel
@@ -2105,7 +2106,7 @@ Partial Class frmIncidentReport
         Me.ShowCause_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.ShowCause_Page.Size = New System.Drawing.Size(1167, 667)
         Me.ShowCause_Page.TabIndex = 0
-        Me.ShowCause_Page.Text = "   Show Cause Notice   "
+        Me.ShowCause_Page.Text = "Show Cause Notice   "
         Me.ShowCause_Page.UseVisualStyleBackColor = True
         '
         'Label17
@@ -2596,7 +2597,7 @@ Partial Class frmIncidentReport
         Me.IR_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.IR_Page.Size = New System.Drawing.Size(1167, 667)
         Me.IR_Page.TabIndex = 3
-        Me.IR_Page.Text = "   Incident Report   "
+        Me.IR_Page.Text = "Incident Report   "
         Me.IR_Page.UseVisualStyleBackColor = True
         '
         'SplitContainer1
@@ -3073,6 +3074,7 @@ Partial Class frmIncidentReport
         Me.CorrectiveWindow.Controls.Add(Me.WrittenReprimand_Page)
         Me.CorrectiveWindow.Controls.Add(Me.Acknowledg_Page)
         Me.CorrectiveWindow.Controls.Add(Me.Corrective_Page)
+        Me.CorrectiveWindow.Controls.Add(Me.Action_Page)
         Me.CorrectiveWindow.Controls.Add(Me.List_Page)
         Me.CorrectiveWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CorrectiveWindow.Location = New System.Drawing.Point(1, 36)
@@ -3161,6 +3163,15 @@ Partial Class frmIncidentReport
         Me.Button3.TabIndex = 15
         Me.Button3.Text = "Clear"
         Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Action_Page
+        '
+        Me.Action_Page.Location = New System.Drawing.Point(4, 29)
+        Me.Action_Page.Name = "Action_Page"
+        Me.Action_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.Action_Page.TabIndex = 7
+        Me.Action_Page.Text = "Action Acknowledge   "
+        Me.Action_Page.UseVisualStyleBackColor = True
         '
         'frmIncidentReport
         '
@@ -3536,4 +3547,5 @@ Partial Class frmIncidentReport
     Friend WithEvents Remarks_DGV As DataGridViewButtonColumn
     Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents Button3 As Button
+    Friend WithEvents Action_Page As TabPage
 End Class

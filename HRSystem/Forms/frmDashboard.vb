@@ -29,61 +29,107 @@
     End Sub
 
     Private Sub Pending_Panel_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Pending_Panel.MouseDoubleClick
-        If frmIncidentReport Is Nothing Then
-            Dim frm As New frmIncidentReport With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.CorrectiveWindow.SelectedIndex = 2
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
+        'If frmIncidentReport Is Nothing Then
+        '    Dim frm As New frmIncidentReport With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Show()
+        '    frm.CorrectiveWindow.SelectedIndex = 2
+        '    frm.Dock = DockStyle.Fill
+        '    frm.BringToFront()
 
-        Else
-            frmIncidentReport.BringToFront()
-        End If
+        'Else
+        '    frmIncidentReport.BringToFront()
+        'End If
 
-        Close()
+        'Close()
+
+        Try
+            Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = "frmIncidentReport").SingleOrDefault()
+            If instForm Is Nothing Then
+                Dim frm As frmIncidentReport
+                frm = DirectCast(CreateObjectInstance("frmIncidentReport"), Form)
+                frm.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frm)
+                frmMainForm.pNavigate.Tag = frm
+                frm.Show()
+                frm.CorrectiveWindow.SelectedIndex = 2
+                frm.Dock = DockStyle.Fill
+                frm.BringToFront()
+            Else
+                instForm.BringToFront()
+            End If
+
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
     Private Sub Panel1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Panel1.MouseDoubleClick
-        If frmIncidentReport Is Nothing Then
-            Dim frm As New frmIncidentReport With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.CorrectiveWindow.SelectedIndex = 4
-            frm.StatusACK_Combo.SelectedIndex = 2
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
+        Try
+            Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = "frmIncidentReport").SingleOrDefault()
+            If instForm Is Nothing Then
+                Dim frm As frmIncidentReport
+                frm = DirectCast(CreateObjectInstance("frmIncidentReport"), Form)
+                frm.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frm)
+                frmMainForm.pNavigate.Tag = frm
+                frm.Show()
+                frm.CorrectiveWindow.SelectedIndex = 4
+                frm.StatusACK_Combo.SelectedIndex = 2
+                frm.Dock = DockStyle.Fill
+                frm.BringToFront()
+            Else
+                instForm.BringToFront()
+            End If
 
-        Else
-            frmIncidentReport.BringToFront()
-        End If
+        Catch ex As Exception
 
-        Close()
+        End Try
+
     End Sub
 
     Private Sub Panel2_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Panel2.MouseDoubleClick
 
-        If frmWRList Is Nothing Then
-            Dim frm As New frmWRList With {
-                .MdiParent = frmMainForm
-            }
-            frmMainForm.pNavigate.Controls.Add(frm)
-            frmMainForm.pNavigate.Tag = frm
-            frm.Show()
-            frm.txtSearch.Tag = "Corrective Action"
-            frm.Dock = DockStyle.Fill
-            frm.BringToFront()
+        'If frmWRList Is Nothing Then
+        '    Dim frm As New frmWRList With {
+        '        .MdiParent = frmMainForm
+        '    }
+        '    frmMainForm.pNavigate.Controls.Add(frm)
+        '    frmMainForm.pNavigate.Tag = frm
+        '    frm.Show()
+        '    frm.txtSearch.Tag = "Corrective Action"
+        '    frm.Dock = DockStyle.Fill
+        '    frm.BringToFront()
 
-        Else
-            frmWRList.BringToFront()
-        End If
+        'Else
+        '    frmWRList.BringToFront()
+        'End If
+
+
+        Try
+            Dim instForm As Form = Application.OpenForms.OfType(Of Form)().Where(Function(frm) frm.Name = "frmWRList").SingleOrDefault()
+            If instForm Is Nothing Then
+                Dim frm As frmWRList
+                frm = DirectCast(CreateObjectInstance("frmWRList"), Form)
+                frm.MdiParent = frmMainForm
+                frmMainForm.pNavigate.Controls.Add(frm)
+                frmMainForm.pNavigate.Tag = frm
+                frm.Show()
+                frm.txtSearch.Tag = "Corrective Action"
+                frm.Dock = DockStyle.Fill
+                frm.BringToFront()
+            Else
+                instForm.BringToFront()
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
 

@@ -234,6 +234,7 @@ Public Class frmMainForm
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Coorective_BTN.Click
         OpenWindowsForm("frmIncidentReport")
+        frmIncidentReport.BringToFront()
     End Sub
 
     Private Sub BhouseAllowanceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BhouseAllowanceToolStripMenuItem.Click

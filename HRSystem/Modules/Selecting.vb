@@ -127,7 +127,9 @@ Module Selecting
 
                     Dim year As String = Date.Now.ToString("yy")
                     Dim month As String = Date.Now.ToString("MM")
-                    textbox.Text = year & "-0" & month & "-" & .Item("Greatest")
+                    textbox.Text = year & "0" & month & "" & Format(.Item("Greatest"), "000")
+
+
                 End With
             Else
                 Exit Sub
