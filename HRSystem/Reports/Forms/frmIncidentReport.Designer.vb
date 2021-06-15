@@ -26,8 +26,8 @@ Partial Class frmIncidentReport
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Close_BTN = New System.Windows.Forms.Button()
         Me.List_Page = New System.Windows.Forms.TabPage()
-        Me.Suspension_RadioB = New System.Windows.Forms.RadioButton()
-        Me.ECS_RadioB = New System.Windows.Forms.RadioButton()
+        Me.Label68 = New System.Windows.Forms.Label()
+        Me.RecordsGroupby_Combo = New System.Windows.Forms.ComboBox()
         Me.ACTION_Datagrid = New System.Windows.Forms.DataGridView()
         Me.IRNO_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NAME_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -38,7 +38,7 @@ Partial Class frmIncidentReport
         Me.WR_COO = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.ACKNO_COO = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.ACTION_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Coo_Search_CB = New System.Windows.Forms.ComboBox()
+        Me.Records_Search_CB = New System.Windows.Forms.ComboBox()
         Me.Coo_Search_TXT = New System.Windows.Forms.TextBox()
         Me.Corrective_Page = New System.Windows.Forms.TabPage()
         Me.SplitContainer4 = New System.Windows.Forms.SplitContainer()
@@ -369,10 +369,10 @@ Partial Class frmIncidentReport
         '
         'List_Page
         '
-        Me.List_Page.Controls.Add(Me.Suspension_RadioB)
-        Me.List_Page.Controls.Add(Me.ECS_RadioB)
+        Me.List_Page.Controls.Add(Me.Label68)
+        Me.List_Page.Controls.Add(Me.RecordsGroupby_Combo)
         Me.List_Page.Controls.Add(Me.ACTION_Datagrid)
-        Me.List_Page.Controls.Add(Me.Coo_Search_CB)
+        Me.List_Page.Controls.Add(Me.Records_Search_CB)
         Me.List_Page.Controls.Add(Me.Coo_Search_TXT)
         Me.List_Page.Location = New System.Drawing.Point(4, 29)
         Me.List_Page.Name = "List_Page"
@@ -382,27 +382,25 @@ Partial Class frmIncidentReport
         Me.List_Page.Text = "       Records      "
         Me.List_Page.UseVisualStyleBackColor = True
         '
-        'Suspension_RadioB
+        'Label68
         '
-        Me.Suspension_RadioB.AutoSize = True
-        Me.Suspension_RadioB.Location = New System.Drawing.Point(1032, 34)
-        Me.Suspension_RadioB.Name = "Suspension_RadioB"
-        Me.Suspension_RadioB.Size = New System.Drawing.Size(111, 24)
-        Me.Suspension_RadioB.TabIndex = 97
-        Me.Suspension_RadioB.TabStop = True
-        Me.Suspension_RadioB.Text = "Suspension"
-        Me.Suspension_RadioB.UseVisualStyleBackColor = True
+        Me.Label68.AutoSize = True
+        Me.Label68.Location = New System.Drawing.Point(898, 37)
+        Me.Label68.Name = "Label68"
+        Me.Label68.Size = New System.Drawing.Size(80, 20)
+        Me.Label68.TabIndex = 99
+        Me.Label68.Text = "Group By "
         '
-        'ECS_RadioB
+        'RecordsGroupby_Combo
         '
-        Me.ECS_RadioB.AutoSize = True
-        Me.ECS_RadioB.Location = New System.Drawing.Point(943, 34)
-        Me.ECS_RadioB.Name = "ECS_RadioB"
-        Me.ECS_RadioB.Size = New System.Drawing.Size(60, 24)
-        Me.ECS_RadioB.TabIndex = 96
-        Me.ECS_RadioB.TabStop = True
-        Me.ECS_RadioB.Text = "ECS"
-        Me.ECS_RadioB.UseVisualStyleBackColor = True
+        Me.RecordsGroupby_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.RecordsGroupby_Combo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RecordsGroupby_Combo.FormattingEnabled = True
+        Me.RecordsGroupby_Combo.Items.AddRange(New Object() {"Group by All", "Group by ECS", "Group by Written ", "Group by Suspension"})
+        Me.RecordsGroupby_Combo.Location = New System.Drawing.Point(984, 33)
+        Me.RecordsGroupby_Combo.Name = "RecordsGroupby_Combo"
+        Me.RecordsGroupby_Combo.Size = New System.Drawing.Size(158, 28)
+        Me.RecordsGroupby_Combo.TabIndex = 98
         '
         'ACTION_Datagrid
         '
@@ -479,16 +477,16 @@ Partial Class frmIncidentReport
         Me.ACTION_COO.Name = "ACTION_COO"
         Me.ACTION_COO.Width = 77
         '
-        'Coo_Search_CB
+        'Records_Search_CB
         '
-        Me.Coo_Search_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.Coo_Search_CB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Coo_Search_CB.FormattingEnabled = True
-        Me.Coo_Search_CB.Items.AddRange(New Object() {"Search by Name", "Search by IR No."})
-        Me.Coo_Search_CB.Location = New System.Drawing.Point(369, 33)
-        Me.Coo_Search_CB.Name = "Coo_Search_CB"
-        Me.Coo_Search_CB.Size = New System.Drawing.Size(158, 28)
-        Me.Coo_Search_CB.TabIndex = 92
+        Me.Records_Search_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Records_Search_CB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Records_Search_CB.FormattingEnabled = True
+        Me.Records_Search_CB.Items.AddRange(New Object() {"Search by Name", "Search by IR No."})
+        Me.Records_Search_CB.Location = New System.Drawing.Point(369, 33)
+        Me.Records_Search_CB.Name = "Records_Search_CB"
+        Me.Records_Search_CB.Size = New System.Drawing.Size(158, 28)
+        Me.Records_Search_CB.TabIndex = 92
         '
         'Coo_Search_TXT
         '
@@ -1554,6 +1552,7 @@ Partial Class frmIncidentReport
         '
         Me.ECSNo_TXT.Location = New System.Drawing.Point(174, 18)
         Me.ECSNo_TXT.Name = "ECSNo_TXT"
+        Me.ECSNo_TXT.ReadOnly = True
         Me.ECSNo_TXT.Size = New System.Drawing.Size(175, 28)
         Me.ECSNo_TXT.TabIndex = 44
         '
@@ -3171,7 +3170,7 @@ Partial Class frmIncidentReport
     Friend WithEvents WR_COO As DataGridViewButtonColumn
     Friend WithEvents ACKNO_COO As DataGridViewButtonColumn
     Friend WithEvents ACTION_COO As DataGridViewButtonColumn
-    Friend WithEvents Coo_Search_CB As ComboBox
+    Friend WithEvents Records_Search_CB As ComboBox
     Friend WithEvents Coo_Search_TXT As TextBox
     Friend WithEvents Corrective_Page As TabPage
     Friend WithEvents SplitContainer4 As SplitContainer
@@ -3431,6 +3430,6 @@ Partial Class frmIncidentReport
     Friend WithEvents IRNo_LBL As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents CorrectiveWindow As TabControl
-    Friend WithEvents Suspension_RadioB As RadioButton
-    Friend WithEvents ECS_RadioB As RadioButton
+    Friend WithEvents Label68 As Label
+    Friend WithEvents RecordsGroupby_Combo As ComboBox
 End Class

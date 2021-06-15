@@ -23,7 +23,7 @@
 
     End Sub
 
-    Friend Sub SaveWrittenReprimand(emp_id As String, daysSuspend As String, preparedBy As String, path As String, irno As String, dateCreated As String, status As String)
+    Friend Sub SaveWrittenReprimand(emp_id As String, daysSuspend As String, preparedBy As String, path As String, irno As String, dateCreated As String, status As String, correctiveAction As String)
         Dim mysql As String
 
 
@@ -37,6 +37,7 @@
                 .Item("WRITTEN_PATH") = path
                 .Item("DATE_CREATED") = dateCreated
                 .Item("WRITTEN_STATUS") = status
+                .Item("CORRECTIVE_ACTION") = correctiveAction
             End With
             SaveEntry(dss, False)
 
@@ -55,6 +56,7 @@
                     .Item("WRITTEN_PATH") = path
                     .Item("DATE_CREATED") = dateCreated
                     .Item("WRITTEN_STATUS") = status
+                    .Item("CORRECTIVE_ACTION") = correctiveAction
 
                 End With
                 ds.Tables(0).Rows.Add(dsNewRow)
@@ -80,8 +82,8 @@
         End If
 
     End Sub
-
-    Friend Sub SaveECS(IRNo As String, person_ID As String, dateCreated As String, ecsno As String, amount As String, noOfMonths As String, perPayroll As String)
+    'SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, NoOFMonths_TXT.Text, AmountPerPayroll_TXT.Text)
+    Friend Sub SaveECS(IRNo As String, person_ID As String, dateCreated As String, ecsno As String, amount As String, noOfMonths As Integer, perPayroll As String)
 
         Dim mysql As String = "Select * From IR_ECS Rows 1"
         Using ds As DataSet = LoadSQL(mysql, "IR_ECS")
@@ -175,7 +177,7 @@
         'End If
     End Sub
 
-    Friend Sub AcknowledgeSave(irno As String, pic As Byte(), status As String, path As String, CORRECTIVE_ACTION As String)
+    Friend Sub AcknowledgeSave(irno As String, pic As Byte(), status As String, path As String)
 
         Dim mysql As String = "Select * From IR_REPRIMAND where IRNO = '" & irno & "'"
         Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
@@ -184,7 +186,6 @@
                 .Item("WRITTEN_STATUS") = status
                 .Item("ACKNO_IMAGE") = pic
                 .Item("ACKNO_PATH") = path
-                .Item("CORRECTIVE_ACTION") = CORRECTIVE_ACTION
             End With
             SaveEntry(ds, False)
         End Using

@@ -116,6 +116,26 @@ Module Selecting
         End Using
     End Sub
 
+    Public Sub GreatestECS(textbox As TextBox)
+
+        Dim mysql As String = "Select MAX(ID) + 1  As Greatest FROM IR_ECS"
+        Using ds As DataSet = LoadSQL(mysql)
+
+            Dim dr As DataRow = ds.Tables(0).Rows(0)
+            If dr.Table.Rows.Count > 0 Then
+                With dr
+
+                    Dim year As String = Date.Now.ToString("yy")
+                    Dim month As String = Date.Now.ToString("MM")
+                    textbox.Text = year & "-0" & month & "-" & .Item("Greatest")
+                End With
+            Else
+                Exit Sub
+            End If
+
+        End Using
+    End Sub
+
     Public Sub Pendings(number As Label, table As String, statusName As String)
 
         Dim mysql As String = $"Select Count(ID) as CountME FROM { table } where { statusName } = 'PENDING'"
@@ -218,14 +238,34 @@ Module Selecting
 
     End Sub
 
-    Friend Sub PopulateACTIONByECS(datagrid As DataGridView)Y
+    Friend Sub PopulateACTIONByECS(datagrid As DataGridView)
+        datagrid.Rows.Clear()
+        Dim mysql As String
+
+        mysql = "Select * From IR_ECS A 
+                            inner join TBL_EMPLOYEE B on B.id = A.PERSON_ID 
+                            inner join IR_RECORDS C on C.irno = A.irno 
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno 
+                            inner join IR_REPRIMAND E on E.irno = A.irno where A.irno = E.irno"
+
+        Using ds As DataSet = LoadSQL(mysql, "IR_ECS")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    AddRowACTION(dr, datagrid)
+                Next
+            End If
+        End Using
+    End Sub
+
+    Friend Sub PopulateACTIONBySuspension(datagrid As DataGridView)
         datagrid.Rows.Clear()
         Dim mysql As String
 
         mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
                             inner join IR_RECORDS C on C.irno = A.irno 
-                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where A.WRITTEN_STATUS = 'DONE' and A.DAYSSUSPEND = 0"
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where A.WRITTEN_STATUS = 'DONE' and A.DAYSSUSPEND <> '0' "
+
         Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
@@ -237,14 +277,15 @@ Module Selecting
 
     End Sub
 
-    Friend Sub PopulateACTIONBySuspension(datagrid As DataGridView)Y
+    Friend Sub PopulateACTIONByWrittenOnly(datagrid As DataGridView)
         datagrid.Rows.Clear()
         Dim mysql As String
 
         mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
                             inner join IR_RECORDS C on C.irno = A.irno 
-                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where A.WRITTEN_STATUS = 'DONE' and A.DAYSSUSPEND <> 0"
+                            inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where A.CORRECTIVE_ACTION = 'WRITTEN'"
+
         Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
@@ -264,6 +305,7 @@ Module Selecting
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
                             inner join IR_RECORDS C on C.irno = A.irno 
                             inner join SHOWCAUSE_RECORDS D on D.irno = A.irno where A.WRITTEN_STATUS = 'DONE'"
+
         Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
@@ -300,9 +342,14 @@ Module Selecting
                 row.Cells("ACTION_COO").Value = "Open"
                 row.Cells("ACTION_COO").Tag = .Item("CORRECTIVE_PATH")
 
-            Else
-                row.DefaultCellStyle.ForeColor = Color.Red
+            ElseIf .Item("CORRECTIVE_ACTION") = "WRITTEN" Then
+                row.DefaultCellStyle.ForeColor = Color.Aqua
                 row.Cells("ACTION_COO").Value = ""
+
+            ElseIf .Item("CORRECTIVE_ACTION") = "ECS" Then
+                row.DefaultCellStyle.ForeColor = Color.BlueViolet
+                row.Cells("ACTION_COO").Value = ""
+
             End If
 
             row.Height = 35

@@ -53,8 +53,6 @@ Public Class frmIncidentReport
             AuditFindings_TXT.Text = .Incident_Description
             SCNo_LBL.Tag = .EvidencePath
 
-
-            Console.WriteLine("AAAB " & SCNo_LBL.Tag)
             LoadSectionList()
         End With
 
@@ -183,7 +181,8 @@ Public Class frmIncidentReport
         SentVia_TXT.Clear()
         DateSent_DTP.Value = Date.UtcNow
         SCRuleNo_LBL.Text = "RULE"
-        LV_Sections.Clear()
+        LV_Sections.Items.Clear()
+
         SC_IncidentDate_RichB.Clear()
         SCViolation_RichB.Clear()
         SCNo_LBL.Tag = ""
@@ -595,7 +594,7 @@ Public Class frmIncidentReport
         ReviewedBy_TXT.Clear()
         DateIncident_DTP.Value = Date.UtcNow
         DateReceive_DTP.Value = Date.UtcNow
-
+        Evidence_PB.Image = Nothing
         _incidentDate.Clear()
 
     End Sub
@@ -779,22 +778,22 @@ Public Class frmIncidentReport
             If employee.Exists Then
 
                 picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
-                picture.Dispose()
+                'picture.Dispose()
             Else
                 employee.Create()
                 picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
-                picture.Dispose()
+                'picture.Dispose()
             End If
 
         Else
             folderName.Create()
             If employee.Exists Then
                 picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
-                picture.Dispose()
+                'picture.Dispose()
             Else
                 employee.Create()
                 picture.Image.Save("D:\HR Records\" & Folder & "\" & Name & "\" & ImageName & ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
-                picture.Dispose()
+                'picture.Dispose()
             End If
 
         End If
@@ -1006,7 +1005,9 @@ Public Class frmIncidentReport
 
         ElseIf CorrectiveWindow.SelectedIndex = 6 Then
 
-            Coo_Search_CB.SelectedIndex = 0
+            Records_Search_CB.SelectedIndex = 0
+            RecordsGroupby_Combo.SelectedIndex = 0
+
 
             PopulateACTION(ACTION_Datagrid)
 
@@ -1034,18 +1035,12 @@ Public Class frmIncidentReport
 
     Private Function isValid()
 
-        Dim num1 = Val(ECSNo_TXT.Text)
         Dim num2 = Val(Charges_Numeric.Text)
         Dim num3 = Val(AmountPerPayroll_TXT.Text)
         Dim num4 = Val(NoOFPayroll_TXT.Text)
 
         If String.IsNullOrEmpty(WP_Name_TXT.Text) Then
             MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Return False
-
-        ElseIf Not Double.TryParse(ECSNo_TXT.Text, num1) Or String.IsNullOrEmpty(ECSNo_TXT.Text) Then
-            ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
-            MessageBox.Show($"Please indicate ECS No.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return False
 
         ElseIf Not Double.TryParse(Charges_Numeric.Text, num2) Or String.IsNullOrEmpty(Charges_Numeric.Text) Then
@@ -1056,14 +1051,6 @@ Public Class frmIncidentReport
         ElseIf Not Double.TryParse(NoOFPayroll_TXT.Text, num4) Or String.IsNullOrEmpty(NoOFPayroll_TXT.Text) Then
             NoOFPayroll_TXT.Region = New Region(New Rectangle(2, 2, NoOFPayroll_TXT.Width - 4, NoOFPayroll_TXT.Height - 4))
             Return False
-
-            'ElseIf Not Double.TryParse(NoOFMonths_TXT.Text, num4) Or String.IsNullOrEmpty(NoOFMonths_TXT.Text) Then
-            '    NoOFMonths_TXT.Region = New Region(New Rectangle(2, 2, NoOFMonths_TXT.Width - 4, NoOFMonths_TXT.Height - 4))
-            '    Return False
-
-            'ElseIf Not Double.TryParse(AmountPerPayroll_TXT.Text, num3) Or String.IsNullOrEmpty(AmountPerPayroll_TXT.Text) Then
-            '    AmountPerPayroll_TXT.Region = New Region(New Rectangle(2, 2, AmountPerPayroll_TXT.Width - 4, AmountPerPayroll_TXT.Height - 4))
-            '    Return False
 
         End If
 
@@ -1076,14 +1063,26 @@ Public Class frmIncidentReport
 
             ToPDF("IR No. " & IRNoWritten_LBL.Text & " - " & WP_Name_TXT.Text, "Incident Report", RptViewer_WrittenReprimand, "Written Reprimand Notice")
 
-            SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text, Date.Now, "PENDING")
+            If WW_RBTN.Checked And Not AmountCharges_CB.Checked Then
+
+                SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text, Date.Now, "PENDING", "WRITTEN")
+            ElseIf WW_RBTN.Checked And AmountCharges_CB.Checked Then
+
+                SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text, Date.Now, "PENDING", "ECS")
+            ElseIf AmountCharges_CB.Checked And Not WW_RBTN.Checked Then
+
+                SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text, Date.Now, "PENDING", "ECS")
+            ElseIf Not AmountCharges_CB.Checked = True And Not WW_RBTN.Checked Then
+
+                SaveWrittenReprimand(WP_Name_TXT.Tag, NoOfDaysSuspend, WP_Emp_Rel_TXT.Text, FolderPath, IRNoWritten_LBL.Text, Date.Now, "PENDING", "PENDING")
+            End If
 
             SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, WP_Name_TXT.Text, "Written Reprimand for IR No. " & IRNoWritten_LBL.Text, WP_Branch_TXT.Text, WP_Position_TXT.Tag, WP_Position_TXT.Text)
 
-            'If Not ECSNo_TXT.Text = "" And Not Charges_Numeric.Text = "" And Not AmountPerPayroll_TXT.Text = "" Then
+            If Not Charges_Numeric.Text = "" And Not AmountPerPayroll_TXT.Text = "" Then
 
-            '    SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, NoOFMonths_TXT.Text, AmountPerPayroll_TXT.Text)
-            'End If
+                SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, NoOFMonths_TXT.Text, AmountPerPayroll_TXT.Text)
+            End If
 
             ClearWRITTEN()
 
@@ -1100,7 +1099,9 @@ Public Class frmIncidentReport
         WP_Position_TXT.Clear()
         WP_Company_TXT.Clear()
         WP_Branch_TXT.Clear()
-        WP_SectionsList.Clear()
+
+        WP_SectionsList.Items.Clear()
+
         WPRule_LBL.Text = "Rule"
         WP_Incident_TXT.Clear()
         WP_DateIncident_DTP.Clear()
@@ -1127,7 +1128,7 @@ Public Class frmIncidentReport
         Coo_Position_TXT.Clear()
         Coo_Company_TXT.Clear()
         Coo_Branch_TXT.Clear()
-        Coo_SectionList.Clear()
+        Coo_SectionList.Items.Clear()
         Coo_Rule_LBL.Text = "Rule"
         Coo_Description_RB.Clear()
         Coo_DateIncident_RB.Clear()
@@ -1252,7 +1253,6 @@ Public Class frmIncidentReport
 
     Private Sub AmountCharges_CB_CheckedChanged(sender As Object, e As EventArgs) Handles AmountCharges_CB.CheckedChanged
 
-
         If AmountCharges_CB.Checked = True Then
 
             If WP_Name_TXT.Text = "" Then
@@ -1264,14 +1264,21 @@ Public Class frmIncidentReport
                 NoDaysSuspend_CB.Checked = False
                 chkStatus = 0
 
-                ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
+                If ThisHasRow("IR_ECS") Then
+                    GreatestECS(ECSNo_TXT)
+                Else
+                    Dim year As String = Date.Now.ToString("yy")
+                    Dim month As String = Date.Now.ToString("MM")
+                    ECSNo_TXT.Text = year & "0" & month & "001"
+                    Console.WriteLine("Walay unod ang table")
+                End If
+
                 Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
 
             End If
 
         Else
 
-            ECSNo_TXT.Region = Nothing
             Charges_Numeric.Region = Nothing
 
             ECS_GB.Visible = False
@@ -1378,18 +1385,6 @@ Public Class frmIncidentReport
                 p.Dispose()
             End If
         Next
-
-    End Sub
-
-    Private Sub ECSNo_TXT_TextChanged(sender As Object, e As EventArgs) Handles ECSNo_TXT.TextChanged
-
-        Dim num = Val(ECSNo_TXT.Text)
-
-        If Not Double.TryParse(ECSNo_TXT.Text, num) Or String.IsNullOrEmpty(ECSNo_TXT.Text) Then
-            ECSNo_TXT.Region = New Region(New Rectangle(2, 2, ECSNo_TXT.Width - 4, ECSNo_TXT.Height - 4))
-        Else
-            ECSNo_TXT.Region = Nothing
-        End If
 
     End Sub
 
@@ -1513,7 +1508,7 @@ Public Class frmIncidentReport
 
         ToPDF("IR No. " & Ack_Datagrid.Item(0, i).Value & " - " & Ack_Datagrid.Item(1, i).Value, "Incident Report", RptViewer_Acknowledge, "Acknowledgment")
 
-        AcknowledgeSave(Ack_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath, "PENDING")
+        AcknowledgeSave(Ack_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath)
 
         SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Ack_Datagrid.Item(1, i).Value, "Acknowledgment IR No. " & Ack_Datagrid.Item(0, i).Value, "-", "-", "-")
 
@@ -1629,7 +1624,7 @@ Public Class frmIncidentReport
     Private Sub Coo_Search_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Coo_Search_TXT.KeyPress
         If IsEnter(e) Then
 
-            If Coo_Search_CB.SelectedIndex = 0 Then
+            If Records_Search_CB.SelectedIndex = 0 Then
                 LoadACTIONSearchName(Coo_Search_TXT.Text, ACTION_Datagrid)
             Else
                 LoadACTIONSearchIRNO(Coo_Search_TXT.Text, ACTION_Datagrid)
@@ -1954,12 +1949,22 @@ Public Class frmIncidentReport
 
     End Sub
 
-    Private Sub ECS_RadioB_CheckedChanged(sender As Object, e As EventArgs) Handles ECS_RadioB.CheckedChanged
-        PopulateACTIONByECS(ACTION_Datagrid)0
-    End Sub
+    Private Sub RecordsGroupby_Combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RecordsGroupby_Combo.SelectedIndexChanged
 
-    Private Sub Suspension_RadioB_CheckedChanged(sender As Object, e As EventArgs) Handles Suspension_RadioB.CheckedChanged
-        PopulateACTIONBySuspension(ACTION_Datagrid)0
+        If RecordsGroupby_Combo.SelectedIndex = 0 Then
+
+            PopulateACTION(ACTION_Datagrid)
+        ElseIf RecordsGroupby_Combo.SelectedIndex = 1 Then
+
+            PopulateACTIONByECS(ACTION_Datagrid)
+        ElseIf RecordsGroupby_Combo.SelectedIndex = 2 Then
+
+            PopulateACTIONByWrittenOnly(ACTION_Datagrid)
+        ElseIf RecordsGroupby_Combo.SelectedIndex = 3 Then
+
+            PopulateACTIONBySuspension(ACTION_Datagrid)
+        End If
+
     End Sub
 
     Private Sub ClearEvidence_BTN_Click(sender As Object, e As EventArgs) Handles ClearEvidence_BTN.Click
