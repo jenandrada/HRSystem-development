@@ -1454,4 +1454,14 @@ Public Class frmEmployeeDetails
         End If
     End Sub
 
+    Private Sub SSSID_TXT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TIN_TXT.KeyPress, SSSID_TXT.KeyPress, PIbigID_TXT.KeyPress, PHealthID_TXT.KeyPress
+        If e.KeyChar <> ChrW(Keys.Back) Then
+            If Char.IsNumber(e.KeyChar) Then
+                'NUMBER HERE
+            Else
+                e.Handled = True
+                'NOT ALLOWED
+            End If
+        End If
+    End Sub
 End Class

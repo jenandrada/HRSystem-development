@@ -159,7 +159,6 @@
 
     End Sub
 
-
     Friend Sub ExplainationSave(irno As String, pic As Byte(), status As String, path As String)
         Dim mysql As String = "Select * From SHOWCAUSE_RECORDS where IRNO = '" & irno & "'"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
@@ -171,10 +170,17 @@
             End With
             SaveEntry(ds, False)
         End Using
+    End Sub
 
-        'If ThisHasRow("SHOWCAUSE_RECORDS") Then
-        '    SCPendings(frmMainForm.PendingNo_LBL)
-        'End If
+    Friend Sub RemarksSave(irno As String, remarks As String)
+        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS where IRNO = '" & irno & "'"
+        Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
+
+            With ds.Tables(0).Rows(0)
+                .Item("EXPLAIN_REMARKS") = remarks
+            End With
+            SaveEntry(ds, False)
+        End Using
     End Sub
 
     Friend Sub AcknowledgeSave(irno As String, pic As Byte(), status As String, path As String)

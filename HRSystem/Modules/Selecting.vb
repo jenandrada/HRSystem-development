@@ -211,6 +211,16 @@ Module Selecting
                 row.Cells("Explain_DGV").Tag = .Item("EXPLAIN_PATH")
             End If
 
+
+            If .Item("EXPLAIN_REMARKS").Equals(DBNull.Value) Or .Item("EXPLAIN_REMARKS").Equals("") Then
+                row.Cells("Remarks_DGV").Value = "Add"
+
+            Else
+                row.Cells("Remarks_DGV").Value = "View"
+                row.Cells("Remarks_DGV").Tag = .Item("EXPLAIN_REMARKS")
+            End If
+
+
             row.Height = 35
 
         End With
@@ -343,16 +353,15 @@ Module Selecting
                 row.Cells("ACTION_COO").Tag = .Item("CORRECTIVE_PATH")
 
             ElseIf .Item("CORRECTIVE_ACTION") = "WRITTEN" Then
-                row.DefaultCellStyle.ForeColor = Color.Aqua
                 row.Cells("ACTION_COO").Value = ""
 
             ElseIf .Item("CORRECTIVE_ACTION") = "ECS" Then
-                row.DefaultCellStyle.ForeColor = Color.BlueViolet
                 row.Cells("ACTION_COO").Value = ""
 
             End If
 
             row.Height = 35
+            'row.DefaultCellStyle.ForeColor = Color.BlueViolet
 
         End With
 

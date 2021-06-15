@@ -624,7 +624,20 @@ Public Class frmIncidentReport
                     Process.Start(row.Cells("Explain_DGV").Tag)
                 End If
 
+            ElseIf grid.Columns(e.ColumnIndex).Name = "Remarks_DGV" Then
 
+                If row.Cells("Remarks_DGV").Value = "Add" Then
+
+                    Exp_Remarks_RichB.Text = ""
+                    Remarks_Panel.Visible = True
+                    Remarks_Panel.Location = New Point(Cursor.Position.X - 600, Cursor.Position.Y - 130)
+
+                Else
+                    Exp_Remarks_RichB.Text = row.Cells("Remarks_DGV").Tag
+                    Remarks_Panel.Visible = True
+                    Remarks_Panel.Location = New Point(Cursor.Position.X - 600, Cursor.Position.Y - 130)
+                End If
+                '
             End If
 
         End If
@@ -694,14 +707,27 @@ Public Class frmIncidentReport
 
     End Sub
 
+    Private Sub Remarks_Save_BTN_Click(sender As Object, e As EventArgs) Handles Remarks_Save_BTN.Click
+
+        Dim i As Integer = Explain_datagrid.CurrentRow.Index
+        RemarksSave(Explain_datagrid.Item(0, i).Value, Exp_Remarks_RichB.Text)
+
+        Exp_Remarks_RichB.Text = ""
+        Remarks_Panel.Visible = False
+
+        PopulateExplaination(Explain_datagrid)
+
+        MessageBox.Show($"Successfully Saved", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
+    End Sub
+
     Private Sub LoadUploadToReportViewer(scnooo As String, name As String, report As ReportViewer, headerName As String)
 
         Dim Datee As Date = Date.UtcNow
         Dim dateee As String = Datee.ToString("MMMM dd, yyyy")
 
         Dim Path As String = "file:///" & ExpalanationPath & ""
-
-        Console.WriteLine("ERRRR " & Path)
 
         report.LocalReport.DataSources.Clear()
 
@@ -1965,6 +1991,23 @@ Public Class frmIncidentReport
             PopulateACTIONBySuspension(ACTION_Datagrid)
         End If
 
+    End Sub
+
+    Private Sub Explain_datagrid_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Explain_datagrid.MouseDoubleClick
+        Remarks_Panel.Location = New Point(e.X, e.Y)
+        Remarks_Panel.Visible = True
+    End Sub
+
+    Private Sub Remarks_Cancel_BTN_Click(sender As Object, e As EventArgs) Handles Remarks_Cancel_BTN.Click
+        Remarks_Panel.Visible = False
+        Exp_Remarks_RichB.Text = ""
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        WW_RBTN.Checked = False
+        TwoDays_RBTN.Checked = False
+        FourDays_RBTN.Checked = False
+        SixDays_RBTN.Checked = False
     End Sub
 
     Private Sub ClearEvidence_BTN_Click(sender As Object, e As EventArgs) Handles ClearEvidence_BTN.Click
