@@ -38,6 +38,7 @@
                 .Item("DATE_CREATED") = dateCreated
                 .Item("WRITTEN_STATUS") = status
                 .Item("CORRECTIVE_ACTION") = correctiveAction
+                .Item("RECEIVE_ACTION") = "PENDING"
             End With
             SaveEntry(dss, False)
 
@@ -192,6 +193,21 @@
                 .Item("WRITTEN_STATUS") = status
                 .Item("ACKNO_IMAGE") = pic
                 .Item("ACKNO_PATH") = path
+            End With
+            SaveEntry(ds, False)
+        End Using
+
+    End Sub
+
+    Friend Sub ReceivedSave(irno As String, pic As Byte(), status As String, path As String)
+
+        Dim mysql As String = "Select * From IR_REPRIMAND where IRNO = '" & irno & "'"
+        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+
+            With ds.Tables(0).Rows(0)
+                .Item("RECEIVE_ACTION") = status
+                .Item("RECEIVE_IMAGE") = pic
+                .Item("RECEIVE_PATH") = path
             End With
             SaveEntry(ds, False)
         End Using

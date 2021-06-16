@@ -309,7 +309,7 @@ Module Selecting
 
     End Sub
 
-    Friend Sub PopulateACTION(datagrid As DataGridView)
+    Friend Sub PopulateRecords(datagrid As DataGridView)
         datagrid.Rows.Clear()
         Dim mysql As String
 
@@ -326,6 +326,51 @@ Module Selecting
 
             End If
         End Using
+
+    End Sub
+
+    Friend Sub PopulateReceive(datagrid As DataGridView)
+        datagrid.Rows.Clear()
+        Dim mysql As String
+
+        mysql = "Select * From IR_REPRIMAND A
+                                inner join TBL_EMPLOYEE B on B.id = A.emp_id 
+                                inner join SHOWCAUSE_RECORDS C on C.irno = A.irno where A.WRITTEN_STATUS = 'DONE'"
+
+        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    AddRowRECEIVE(dr, datagrid)
+                Next
+
+            End If
+        End Using
+
+    End Sub
+
+    Public Sub AddRowRECEIVE(ByVal dr As DataRow, datagrid As DataGridView)
+
+        With dr
+
+            Dim rowId As Integer = datagrid.Rows.Add()
+            Dim row As DataGridViewRow = datagrid.Rows(rowId)
+            row.Cells("IRNO_DVVV").Value = Format(.Item("IRNO"), "00000")
+            row.Cells("NAME_DGVVV").Value = .Item("LASTNAME") & ", " & .Item("FIRSTNAME") & " " & .Item("MIDDLENAME")
+            row.Cells("COMPANY_DGVVV").Value = .Item("COMPANY")
+
+            If .Item("RECEIVE_ACTION") = "DONE" Then
+                row.Cells("Receive_DGVVV").Value = "Open"
+                row.Cells("Receive_DGVVV").Tag = .Item("RECEIVE_PATH")
+
+            Else
+                row.Cells("Receive_DGVVV").Value = "Upload"
+
+            End If
+
+            row.Height = 35
+            'row.DefaultCellStyle.ForeColor = Color.BlueViolet
+
+        End With
 
     End Sub
 

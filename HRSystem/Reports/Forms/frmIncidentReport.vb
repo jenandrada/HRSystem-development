@@ -10,7 +10,7 @@ Public Class frmIncidentReport
     Dim dateIssued As String = Now.ToString("MMMM dd, yyyy")
     Dim imgData As Byte()
     Dim FolderPath, EvidencePAth As String
-    Dim ExpalanationPath As String
+    Dim ExpalanationPath, AcknowledgePath, ReceivedPath As String
     Dim NoOfDaysSuspend As Integer
 
     Private ReadOnly _incidentDate, _corrective As New RichTextBox
@@ -692,7 +692,7 @@ Public Class frmIncidentReport
             imgData = ImgToByteArray(PictureBox1.InitialImage, ImageFormat.Jpeg)
         End If
 
-        LoadUploadToReportViewer(Explain_datagrid.Item(0, i).Value, Explain_datagrid.Item(1, i).Value, RptViewer_Explanation, "Explanation")
+        LoadUploadToReportViewer(Explain_datagrid.Item(0, i).Value, Explain_datagrid.Item(1, i).Value, RptViewer_Explanation, "Explanation", ExpalanationPath)
 
         ToPDF("IR No. " & Explain_datagrid.Item(0, i).Value & " - " & Explain_datagrid.Item(1, i).Value, "Incident Report", RptViewer_Explanation, "Explanation")
 
@@ -722,12 +722,12 @@ Public Class frmIncidentReport
 
     End Sub
 
-    Private Sub LoadUploadToReportViewer(scnooo As String, name As String, report As ReportViewer, headerName As String)
+    Private Sub LoadUploadToReportViewer(scnooo As String, name As String, report As ReportViewer, headerName As String, ImagePath As String)
 
         Dim Datee As Date = Date.UtcNow
         Dim dateee As String = Datee.ToString("MMMM dd, yyyy")
 
-        Dim Path As String = "file:///" & ExpalanationPath & ""
+        Dim Path As String = "file:///" & ImagePath & ""
 
         report.LocalReport.DataSources.Clear()
 
@@ -1076,14 +1076,22 @@ Public Class frmIncidentReport
 
             PopulateAcknowledge(Ack_Datagrid)
 
-
         ElseIf CorrectiveWindow.SelectedIndex = 6 Then
+
+            ReceiveSearch_Combo.SelectedIndex = 0
+            Receive_Status_Combo.SelectedIndex = 0
+
+
+            PopulateReceive(Received_Datagrid)
+
+
+        ElseIf CorrectiveWindow.SelectedIndex = 7 Then
 
             Records_Search_CB.SelectedIndex = 0
             RecordsGroupby_Combo.SelectedIndex = 0
 
 
-            PopulateACTION(ACTION_Datagrid)
+            PopulateRecords(Records_Datagrid)
 
         End If
 
@@ -1518,7 +1526,7 @@ Public Class frmIncidentReport
                     PictureBox2.Tag = openF.FileName
                     PictureBox2.SizeMode = PictureBoxSizeMode.CenterImage
                 End If
-                ExpalanationPath = openF.FileName
+                AcknowledgePath = openF.FileName
             End If
 
         End Using
@@ -1577,7 +1585,7 @@ Public Class frmIncidentReport
             imgData = ImgToByteArray(PictureBox2.InitialImage, ImageFormat.Jpeg)
         End If
 
-        LoadUploadToReportViewer(Ack_Datagrid.Item(0, i).Value, Ack_Datagrid.Item(1, i).Value, RptViewer_Acknowledge, "Acknowledgment")
+        LoadUploadToReportViewer(Ack_Datagrid.Item(0, i).Value, Ack_Datagrid.Item(1, i).Value, RptViewer_Acknowledge, "Acknowledgment", AcknowledgePath)
 
         ToPDF("IR No. " & Ack_Datagrid.Item(0, i).Value & " - " & Ack_Datagrid.Item(1, i).Value, "Incident Report", RptViewer_Acknowledge, "Acknowledgment")
 
@@ -1658,10 +1666,10 @@ Public Class frmIncidentReport
         ClearCorrective()
     End Sub
 
-    Private Sub ACTION_Datagrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ACTION_Datagrid.CellContentClick
+    Private Sub ACTION_Datagrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Records_Datagrid.CellContentClick
 
         Dim grid = DirectCast(sender, DataGridView)
-        Dim row As DataGridViewRow = ACTION_Datagrid.Rows(e.RowIndex)
+        Dim row As DataGridViewRow = Records_Datagrid.Rows(e.RowIndex)
 
         If TypeOf grid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn Then
 
@@ -1698,9 +1706,9 @@ Public Class frmIncidentReport
         If IsEnter(e) Then
 
             If Records_Search_CB.SelectedIndex = 0 Then
-                LoadACTIONSearchName(Coo_Search_TXT.Text, ACTION_Datagrid)
+                LoadACTIONSearchName(Coo_Search_TXT.Text, Records_Datagrid)
             Else
-                LoadACTIONSearchIRNO(Coo_Search_TXT.Text, ACTION_Datagrid)
+                LoadACTIONSearchIRNO(Coo_Search_TXT.Text, Records_Datagrid)
             End If
 
         End If
@@ -2101,16 +2109,16 @@ Public Class frmIncidentReport
 
         If RecordsGroupby_Combo.SelectedIndex = 0 Then
 
-            PopulateACTION(ACTION_Datagrid)
+            PopulateRecords(Records_Datagrid)
         ElseIf RecordsGroupby_Combo.SelectedIndex = 1 Then
 
-            PopulateACTIONByECS(ACTION_Datagrid)
+            PopulateACTIONByECS(Records_Datagrid)
         ElseIf RecordsGroupby_Combo.SelectedIndex = 2 Then
 
-            PopulateACTIONByWrittenOnly(ACTION_Datagrid)
+            PopulateACTIONByWrittenOnly(Records_Datagrid)
         ElseIf RecordsGroupby_Combo.SelectedIndex = 3 Then
 
-            PopulateACTIONBySuspension(ACTION_Datagrid)
+            PopulateACTIONBySuspension(Records_Datagrid)
         End If
 
     End Sub
@@ -2130,6 +2138,96 @@ Public Class frmIncidentReport
         TwoDays_RBTN.Checked = False
         FourDays_RBTN.Checked = False
         SixDays_RBTN.Checked = False
+    End Sub
+
+    Private Sub Received_Datagrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Received_Datagrid.CellContentClick
+
+        Dim grid = DirectCast(sender, DataGridView)
+        Dim row As DataGridViewRow = Received_Datagrid.Rows(e.RowIndex)
+
+        If TypeOf grid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn Then
+
+            If grid.Columns(e.ColumnIndex).Name = "Receive_DGVVV" Then
+
+                If row.Cells("Receive_DGVVV").Value = "Upload" Then
+
+                    Received_Panel.Visible = True
+                    Received_Panel.Location = New Point(345, 115)
+
+                Else
+                    Process.Start(row.Cells("Receive_DGVVV").Tag)
+                End If
+
+
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub ReceiveSave_BTN_Click(sender As Object, e As EventArgs) Handles ReceiveSave_BTN.Click
+
+        Dim i As Integer = Received_Datagrid.CurrentRow.Index
+
+        If Not PictureBox3.Tag = Nothing Then
+            imgData = ImgToByteArray(Image.FromFile(PictureBox3.Tag), ImageFormat.Jpeg)
+        Else
+            imgData = ImgToByteArray(PictureBox3.InitialImage, ImageFormat.Jpeg)
+        End If
+
+        LoadUploadToReportViewer(Received_Datagrid.Item(0, i).Value, Received_Datagrid.Item(1, i).Value, RptViewer_Receive, "Received", ReceivedPath)
+
+        ToPDF("IR No. " & Received_Datagrid.Item(0, i).Value & " - " & Received_Datagrid.Item(1, i).Value, "Incident Report", RptViewer_Receive, "Received")
+
+        ReceivedSave(Received_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath)
+
+        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Received_Datagrid.Item(1, i).Value, "Received IR No. " & Received_Datagrid.Item(0, i).Value, "-", "-", "-")
+
+        Received_Panel.Visible = False
+        PictureBox3.Image = Nothing
+
+        PopulateReceive(Received_Datagrid)
+
+    End Sub
+
+    Private Sub ReceiveCancel_BTNn4_Click(sender As Object, e As EventArgs) Handles ReceiveCancel_BTNn4.Click
+        PictureBox3.Image = Nothing
+        Received_Panel.Visible = False
+    End Sub
+
+    Private Sub PictureBox3_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles PictureBox3.MouseDoubleClick
+
+        Using openF As New OpenFileDialog()
+            Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
+            Dim sep As String = String.Empty
+            With openF
+                .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+                .Title = "Save As Image"
+                .DefaultExt = ".JPG"
+                .Filter = ""
+                .FilterIndex = 2
+                .RestoreDirectory = True
+                .FileName = "*.JPG"
+            End With
+            For Each c As ImageCodecInfo In codecs
+                Dim codecName As String = c.CodecName.Substring(8).Replace("Codec", "Files").Trim()
+                openF.Filter = $"{openF.Filter }{sep }{codecName } ({c.FilenameExtension })|{c.FilenameExtension }"
+                sep = "|"
+            Next
+            If openF.ShowDialog = DialogResult.OK Then
+                If Not Image.FromFile(openF.FileName).Size = PictureBox3.InitialImage.Size Then
+                    PictureBox3.Image = Image.FromFile(openF.FileName)
+                    PictureBox3.Tag = openF.FileName
+                    PictureBox3.SizeMode = PictureBoxSizeMode.StretchImage
+                Else
+                    PictureBox3.Image = Image.FromFile(openF.FileName)
+                    PictureBox3.Tag = openF.FileName
+                    PictureBox3.SizeMode = PictureBoxSizeMode.CenterImage
+                End If
+                ReceivedPath = openF.FileName
+            End If
+
+        End Using
     End Sub
 
     Private Sub ClearEvidence_BTN_Click(sender As Object, e As EventArgs) Handles ClearEvidence_BTN.Click

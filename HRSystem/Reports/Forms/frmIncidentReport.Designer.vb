@@ -28,7 +28,7 @@ Partial Class frmIncidentReport
         Me.List_Page = New System.Windows.Forms.TabPage()
         Me.Label68 = New System.Windows.Forms.Label()
         Me.RecordsGroupby_Combo = New System.Windows.Forms.ComboBox()
-        Me.ACTION_Datagrid = New System.Windows.Forms.DataGridView()
+        Me.Records_Datagrid = New System.Windows.Forms.DataGridView()
         Me.IRNO_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NAME_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.COMPANY_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -131,6 +131,12 @@ Partial Class frmIncidentReport
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.WP_Incident_TXT = New System.Windows.Forms.RichTextBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.FourDays_RBTN = New System.Windows.Forms.RadioButton()
+        Me.WW_RBTN = New System.Windows.Forms.RadioButton()
+        Me.TwoDays_RBTN = New System.Windows.Forms.RadioButton()
+        Me.SixDays_RBTN = New System.Windows.Forms.RadioButton()
         Me.WR_ApprovedBy_BTN = New System.Windows.Forms.Button()
         Me.WR_NotedBy_BTN = New System.Windows.Forms.Button()
         Me.WR_ReviewedBy_BTN = New System.Windows.Forms.Button()
@@ -161,10 +167,6 @@ Partial Class frmIncidentReport
         Me.WP_Position2_TXT = New System.Windows.Forms.TextBox()
         Me.WP_Position3_TXT = New System.Windows.Forms.TextBox()
         Me.WP_Position1_TXT = New System.Windows.Forms.TextBox()
-        Me.SixDays_RBTN = New System.Windows.Forms.RadioButton()
-        Me.FourDays_RBTN = New System.Windows.Forms.RadioButton()
-        Me.TwoDays_RBTN = New System.Windows.Forms.RadioButton()
-        Me.WW_RBTN = New System.Windows.Forms.RadioButton()
         Me.WP_Officer_Incharge_TXT = New System.Windows.Forms.TextBox()
         Me.WP_HR_Sup_TXT = New System.Windows.Forms.TextBox()
         Me.WP_BusinessHead_TXT = New System.Windows.Forms.TextBox()
@@ -197,6 +199,14 @@ Partial Class frmIncidentReport
         Me.Check_BTN = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.Explain_datagrid = New System.Windows.Forms.DataGridView()
+        Me.IRNO_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Name_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Company_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Deadline_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IR_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.File_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Explain_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Remarks_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.RptViewer_Explanation = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.ShowCause_Page = New System.Windows.Forms.TabPage()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -296,19 +306,24 @@ Partial Class frmIncidentReport
         Me.IRNo_LBL = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.CorrectiveWindow = New System.Windows.Forms.TabControl()
-        Me.IRNO_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Name_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Company_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Deadline_DGV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IR_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.File_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Explain_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Remarks_DGV = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Action_Page = New System.Windows.Forms.TabPage()
+        Me.Receive_Status_Combo = New System.Windows.Forms.ComboBox()
+        Me.Label71 = New System.Windows.Forms.Label()
+        Me.ReceiveSearch_Combo = New System.Windows.Forms.ComboBox()
+        Me.ReceiveSerach_TXT = New System.Windows.Forms.TextBox()
+        Me.RptViewer_Receive = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.Received_Panel = New System.Windows.Forms.Panel()
+        Me.Label72 = New System.Windows.Forms.Label()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.ReceiveCancel_BTNn4 = New System.Windows.Forms.Button()
+        Me.ReceiveSave_BTN = New System.Windows.Forms.Button()
+        Me.Received_Datagrid = New System.Windows.Forms.DataGridView()
+        Me.IRNO_DVVV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Name_DGVVV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Company_DGVVV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Receive_DGVVV = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.List_Page.SuspendLayout()
-        CType(Me.ACTION_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Records_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Corrective_Page.SuspendLayout()
         CType(Me.SplitContainer4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer4.Panel1.SuspendLayout()
@@ -328,6 +343,7 @@ Partial Class frmIncidentReport
         Me.SplitContainer3.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.GroupBox10.SuspendLayout()
         Me.ECS_GB.SuspendLayout()
         CType(Me.NumberOfDays_TXT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
@@ -355,7 +371,10 @@ Partial Class frmIncidentReport
         CType(Me.Evidence_PB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox7.SuspendLayout()
         Me.CorrectiveWindow.SuspendLayout()
-        Me.GroupBox10.SuspendLayout()
+        Me.Action_Page.SuspendLayout()
+        Me.Received_Panel.SuspendLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Received_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label21
@@ -382,7 +401,7 @@ Partial Class frmIncidentReport
         '
         Me.List_Page.Controls.Add(Me.Label68)
         Me.List_Page.Controls.Add(Me.RecordsGroupby_Combo)
-        Me.List_Page.Controls.Add(Me.ACTION_Datagrid)
+        Me.List_Page.Controls.Add(Me.Records_Datagrid)
         Me.List_Page.Controls.Add(Me.Records_Search_CB)
         Me.List_Page.Controls.Add(Me.Coo_Search_TXT)
         Me.List_Page.Location = New System.Drawing.Point(4, 29)
@@ -413,20 +432,20 @@ Partial Class frmIncidentReport
         Me.RecordsGroupby_Combo.Size = New System.Drawing.Size(158, 28)
         Me.RecordsGroupby_Combo.TabIndex = 98
         '
-        'ACTION_Datagrid
+        'Records_Datagrid
         '
-        Me.ACTION_Datagrid.AllowUserToAddRows = False
-        Me.ACTION_Datagrid.AllowUserToResizeRows = False
-        Me.ACTION_Datagrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace
-        Me.ACTION_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ACTION_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ACTION_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IRNO_COO, Me.NAME_COO, Me.COMPANY_COO, Me.INCIDENT_COO, Me.SC_COO, Me.EXPLAIN_COO, Me.WR_COO, Me.ACKNO_COO, Me.ACTION_COO})
-        Me.ACTION_Datagrid.Location = New System.Drawing.Point(4, 91)
-        Me.ACTION_Datagrid.Name = "ACTION_Datagrid"
-        Me.ACTION_Datagrid.RowHeadersVisible = False
-        Me.ACTION_Datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.ACTION_Datagrid.Size = New System.Drawing.Size(1156, 567)
-        Me.ACTION_Datagrid.TabIndex = 95
+        Me.Records_Datagrid.AllowUserToAddRows = False
+        Me.Records_Datagrid.AllowUserToResizeRows = False
+        Me.Records_Datagrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace
+        Me.Records_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Records_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Records_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IRNO_COO, Me.NAME_COO, Me.COMPANY_COO, Me.INCIDENT_COO, Me.SC_COO, Me.EXPLAIN_COO, Me.WR_COO, Me.ACKNO_COO, Me.ACTION_COO})
+        Me.Records_Datagrid.Location = New System.Drawing.Point(4, 91)
+        Me.Records_Datagrid.Name = "Records_Datagrid"
+        Me.Records_Datagrid.RowHeadersVisible = False
+        Me.Records_Datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.Records_Datagrid.Size = New System.Drawing.Size(1156, 567)
+        Me.Records_Datagrid.TabIndex = 95
         '
         'IRNO_COO
         '
@@ -1059,7 +1078,7 @@ Partial Class frmIncidentReport
         Me.Acknowledg_Page.Padding = New System.Windows.Forms.Padding(3)
         Me.Acknowledg_Page.Size = New System.Drawing.Size(1167, 667)
         Me.Acknowledg_Page.TabIndex = 4
-        Me.Acknowledg_Page.Text = "Written Acknowledge   "
+        Me.Acknowledg_Page.Text = "Acknowledgment   "
         Me.Acknowledg_Page.UseVisualStyleBackColor = True
         '
         'Ack_Panel
@@ -1438,6 +1457,73 @@ Partial Class frmIncidentReport
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Action"
         '
+        'GroupBox10
+        '
+        Me.GroupBox10.Controls.Add(Me.Button3)
+        Me.GroupBox10.Controls.Add(Me.FourDays_RBTN)
+        Me.GroupBox10.Controls.Add(Me.WW_RBTN)
+        Me.GroupBox10.Controls.Add(Me.TwoDays_RBTN)
+        Me.GroupBox10.Controls.Add(Me.SixDays_RBTN)
+        Me.GroupBox10.Location = New System.Drawing.Point(32, 27)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(527, 129)
+        Me.GroupBox10.TabIndex = 40
+        Me.GroupBox10.TabStop = False
+        '
+        'Button3
+        '
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Tai Le", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Location = New System.Drawing.Point(223, 90)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(73, 27)
+        Me.Button3.TabIndex = 15
+        Me.Button3.Text = "Clear"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'FourDays_RBTN
+        '
+        Me.FourDays_RBTN.AutoSize = True
+        Me.FourDays_RBTN.Location = New System.Drawing.Point(328, 19)
+        Me.FourDays_RBTN.Name = "FourDays_RBTN"
+        Me.FourDays_RBTN.Size = New System.Drawing.Size(179, 25)
+        Me.FourDays_RBTN.TabIndex = 13
+        Me.FourDays_RBTN.TabStop = True
+        Me.FourDays_RBTN.Text = "4 DAYS SUSPENSION"
+        Me.FourDays_RBTN.UseVisualStyleBackColor = True
+        '
+        'WW_RBTN
+        '
+        Me.WW_RBTN.AutoSize = True
+        Me.WW_RBTN.Location = New System.Drawing.Point(23, 19)
+        Me.WW_RBTN.Name = "WW_RBTN"
+        Me.WW_RBTN.Size = New System.Drawing.Size(171, 25)
+        Me.WW_RBTN.TabIndex = 11
+        Me.WW_RBTN.TabStop = True
+        Me.WW_RBTN.Text = "WRITTEN WARNING"
+        Me.WW_RBTN.UseVisualStyleBackColor = True
+        '
+        'TwoDays_RBTN
+        '
+        Me.TwoDays_RBTN.AutoSize = True
+        Me.TwoDays_RBTN.Location = New System.Drawing.Point(23, 62)
+        Me.TwoDays_RBTN.Name = "TwoDays_RBTN"
+        Me.TwoDays_RBTN.Size = New System.Drawing.Size(183, 25)
+        Me.TwoDays_RBTN.TabIndex = 12
+        Me.TwoDays_RBTN.TabStop = True
+        Me.TwoDays_RBTN.Text = "2 DAYS SUSPENSION "
+        Me.TwoDays_RBTN.UseVisualStyleBackColor = True
+        '
+        'SixDays_RBTN
+        '
+        Me.SixDays_RBTN.AutoSize = True
+        Me.SixDays_RBTN.Location = New System.Drawing.Point(328, 62)
+        Me.SixDays_RBTN.Name = "SixDays_RBTN"
+        Me.SixDays_RBTN.Size = New System.Drawing.Size(179, 25)
+        Me.SixDays_RBTN.TabIndex = 14
+        Me.SixDays_RBTN.TabStop = True
+        Me.SixDays_RBTN.Text = "6 DAYS SUSPENSION"
+        Me.SixDays_RBTN.UseVisualStyleBackColor = True
+        '
         'WR_ApprovedBy_BTN
         '
         Me.WR_ApprovedBy_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1717,50 +1803,6 @@ Partial Class frmIncidentReport
         Me.WP_Position1_TXT.Size = New System.Drawing.Size(211, 28)
         Me.WP_Position1_TXT.TabIndex = 15
         Me.WP_Position1_TXT.Text = "HR Staff"
-        '
-        'SixDays_RBTN
-        '
-        Me.SixDays_RBTN.AutoSize = True
-        Me.SixDays_RBTN.Location = New System.Drawing.Point(328, 62)
-        Me.SixDays_RBTN.Name = "SixDays_RBTN"
-        Me.SixDays_RBTN.Size = New System.Drawing.Size(179, 25)
-        Me.SixDays_RBTN.TabIndex = 14
-        Me.SixDays_RBTN.TabStop = True
-        Me.SixDays_RBTN.Text = "6 DAYS SUSPENSION"
-        Me.SixDays_RBTN.UseVisualStyleBackColor = True
-        '
-        'FourDays_RBTN
-        '
-        Me.FourDays_RBTN.AutoSize = True
-        Me.FourDays_RBTN.Location = New System.Drawing.Point(328, 19)
-        Me.FourDays_RBTN.Name = "FourDays_RBTN"
-        Me.FourDays_RBTN.Size = New System.Drawing.Size(179, 25)
-        Me.FourDays_RBTN.TabIndex = 13
-        Me.FourDays_RBTN.TabStop = True
-        Me.FourDays_RBTN.Text = "4 DAYS SUSPENSION"
-        Me.FourDays_RBTN.UseVisualStyleBackColor = True
-        '
-        'TwoDays_RBTN
-        '
-        Me.TwoDays_RBTN.AutoSize = True
-        Me.TwoDays_RBTN.Location = New System.Drawing.Point(23, 62)
-        Me.TwoDays_RBTN.Name = "TwoDays_RBTN"
-        Me.TwoDays_RBTN.Size = New System.Drawing.Size(183, 25)
-        Me.TwoDays_RBTN.TabIndex = 12
-        Me.TwoDays_RBTN.TabStop = True
-        Me.TwoDays_RBTN.Text = "2 DAYS SUSPENSION "
-        Me.TwoDays_RBTN.UseVisualStyleBackColor = True
-        '
-        'WW_RBTN
-        '
-        Me.WW_RBTN.AutoSize = True
-        Me.WW_RBTN.Location = New System.Drawing.Point(23, 19)
-        Me.WW_RBTN.Name = "WW_RBTN"
-        Me.WW_RBTN.Size = New System.Drawing.Size(171, 25)
-        Me.WW_RBTN.TabIndex = 11
-        Me.WW_RBTN.TabStop = True
-        Me.WW_RBTN.Text = "WRITTEN WARNING"
-        Me.WW_RBTN.UseVisualStyleBackColor = True
         '
         'WP_Officer_Incharge_TXT
         '
@@ -2083,6 +2125,64 @@ Partial Class frmIncidentReport
         Me.Explain_datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.Explain_datagrid.Size = New System.Drawing.Size(1156, 567)
         Me.Explain_datagrid.TabIndex = 6
+        '
+        'IRNO_DGV
+        '
+        Me.IRNO_DGV.HeaderText = "IR No."
+        Me.IRNO_DGV.Name = "IRNO_DGV"
+        Me.IRNO_DGV.ReadOnly = True
+        Me.IRNO_DGV.Width = 110
+        '
+        'Name_DGV
+        '
+        Me.Name_DGV.HeaderText = "Name"
+        Me.Name_DGV.Name = "Name_DGV"
+        Me.Name_DGV.ReadOnly = True
+        Me.Name_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Name_DGV.Width = 300
+        '
+        'Company_DGV
+        '
+        Me.Company_DGV.HeaderText = "Company"
+        Me.Company_DGV.Name = "Company_DGV"
+        Me.Company_DGV.ReadOnly = True
+        Me.Company_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Company_DGV.Width = 180
+        '
+        'Deadline_DGV
+        '
+        Me.Deadline_DGV.HeaderText = "Deadline"
+        Me.Deadline_DGV.Name = "Deadline_DGV"
+        Me.Deadline_DGV.ReadOnly = True
+        Me.Deadline_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Deadline_DGV.Width = 200
+        '
+        'IR_DGV
+        '
+        Me.IR_DGV.HeaderText = "   IR"
+        Me.IR_DGV.Name = "IR_DGV"
+        Me.IR_DGV.Width = 75
+        '
+        'File_DGV
+        '
+        Me.File_DGV.HeaderText = "   SC"
+        Me.File_DGV.Name = "File_DGV"
+        Me.File_DGV.Width = 75
+        '
+        'Explain_DGV
+        '
+        Me.Explain_DGV.HeaderText = "   Explanation"
+        Me.Explain_DGV.Name = "Explain_DGV"
+        Me.Explain_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Explain_DGV.Width = 125
+        '
+        'Remarks_DGV
+        '
+        Me.Remarks_DGV.HeaderText = "Remarks"
+        Me.Remarks_DGV.Name = "Remarks_DGV"
+        Me.Remarks_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Remarks_DGV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Remarks_DGV.Width = 90
         '
         'RptViewer_Explanation
         '
@@ -3083,95 +3183,171 @@ Partial Class frmIncidentReport
         Me.CorrectiveWindow.Size = New System.Drawing.Size(1175, 700)
         Me.CorrectiveWindow.TabIndex = 11
         '
-        'IRNO_DGV
-        '
-        Me.IRNO_DGV.HeaderText = "IR No."
-        Me.IRNO_DGV.Name = "IRNO_DGV"
-        Me.IRNO_DGV.ReadOnly = True
-        Me.IRNO_DGV.Width = 110
-        '
-        'Name_DGV
-        '
-        Me.Name_DGV.HeaderText = "Name"
-        Me.Name_DGV.Name = "Name_DGV"
-        Me.Name_DGV.ReadOnly = True
-        Me.Name_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Name_DGV.Width = 300
-        '
-        'Company_DGV
-        '
-        Me.Company_DGV.HeaderText = "Company"
-        Me.Company_DGV.Name = "Company_DGV"
-        Me.Company_DGV.ReadOnly = True
-        Me.Company_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Company_DGV.Width = 180
-        '
-        'Deadline_DGV
-        '
-        Me.Deadline_DGV.HeaderText = "Deadline"
-        Me.Deadline_DGV.Name = "Deadline_DGV"
-        Me.Deadline_DGV.ReadOnly = True
-        Me.Deadline_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Deadline_DGV.Width = 200
-        '
-        'IR_DGV
-        '
-        Me.IR_DGV.HeaderText = "   IR"
-        Me.IR_DGV.Name = "IR_DGV"
-        Me.IR_DGV.Width = 75
-        '
-        'File_DGV
-        '
-        Me.File_DGV.HeaderText = "   SC"
-        Me.File_DGV.Name = "File_DGV"
-        Me.File_DGV.Width = 75
-        '
-        'Explain_DGV
-        '
-        Me.Explain_DGV.HeaderText = "   Explanation"
-        Me.Explain_DGV.Name = "Explain_DGV"
-        Me.Explain_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Explain_DGV.Width = 125
-        '
-        'Remarks_DGV
-        '
-        Me.Remarks_DGV.HeaderText = "Remarks"
-        Me.Remarks_DGV.Name = "Remarks_DGV"
-        Me.Remarks_DGV.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Remarks_DGV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Remarks_DGV.Width = 90
-        '
-        'GroupBox10
-        '
-        Me.GroupBox10.Controls.Add(Me.Button3)
-        Me.GroupBox10.Controls.Add(Me.FourDays_RBTN)
-        Me.GroupBox10.Controls.Add(Me.WW_RBTN)
-        Me.GroupBox10.Controls.Add(Me.TwoDays_RBTN)
-        Me.GroupBox10.Controls.Add(Me.SixDays_RBTN)
-        Me.GroupBox10.Location = New System.Drawing.Point(32, 27)
-        Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(527, 129)
-        Me.GroupBox10.TabIndex = 40
-        Me.GroupBox10.TabStop = False
-        '
-        'Button3
-        '
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Tai Le", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(223, 90)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(73, 27)
-        Me.Button3.TabIndex = 15
-        Me.Button3.Text = "Clear"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Action_Page
         '
+        Me.Action_Page.Controls.Add(Me.Received_Panel)
+        Me.Action_Page.Controls.Add(Me.Received_Datagrid)
+        Me.Action_Page.Controls.Add(Me.Receive_Status_Combo)
+        Me.Action_Page.Controls.Add(Me.Label71)
+        Me.Action_Page.Controls.Add(Me.ReceiveSearch_Combo)
+        Me.Action_Page.Controls.Add(Me.ReceiveSerach_TXT)
+        Me.Action_Page.Controls.Add(Me.RptViewer_Receive)
         Me.Action_Page.Location = New System.Drawing.Point(4, 29)
         Me.Action_Page.Name = "Action_Page"
         Me.Action_Page.Size = New System.Drawing.Size(1167, 667)
         Me.Action_Page.TabIndex = 7
-        Me.Action_Page.Text = "Action Acknowledge   "
+        Me.Action_Page.Text = "Action Received    "
         Me.Action_Page.UseVisualStyleBackColor = True
+        '
+        'Receive_Status_Combo
+        '
+        Me.Receive_Status_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Receive_Status_Combo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Receive_Status_Combo.FormattingEnabled = True
+        Me.Receive_Status_Combo.Items.AddRange(New Object() {"All", "Done", "Pending"})
+        Me.Receive_Status_Combo.Location = New System.Drawing.Point(973, 33)
+        Me.Receive_Status_Combo.Name = "Receive_Status_Combo"
+        Me.Receive_Status_Combo.Size = New System.Drawing.Size(174, 28)
+        Me.Receive_Status_Combo.TabIndex = 93
+        '
+        'Label71
+        '
+        Me.Label71.AutoSize = True
+        Me.Label71.Location = New System.Drawing.Point(911, 39)
+        Me.Label71.Name = "Label71"
+        Me.Label71.Size = New System.Drawing.Size(56, 20)
+        Me.Label71.TabIndex = 92
+        Me.Label71.Text = "Status"
+        '
+        'ReceiveSearch_Combo
+        '
+        Me.ReceiveSearch_Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ReceiveSearch_Combo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReceiveSearch_Combo.FormattingEnabled = True
+        Me.ReceiveSearch_Combo.Items.AddRange(New Object() {"Search by Name", "Search by IR No."})
+        Me.ReceiveSearch_Combo.Location = New System.Drawing.Point(367, 34)
+        Me.ReceiveSearch_Combo.Name = "ReceiveSearch_Combo"
+        Me.ReceiveSearch_Combo.Size = New System.Drawing.Size(158, 28)
+        Me.ReceiveSearch_Combo.TabIndex = 91
+        '
+        'ReceiveSerach_TXT
+        '
+        Me.ReceiveSerach_TXT.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ReceiveSerach_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.ReceiveSerach_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReceiveSerach_TXT.Location = New System.Drawing.Point(4, 35)
+        Me.ReceiveSerach_TXT.Name = "ReceiveSerach_TXT"
+        Me.ReceiveSerach_TXT.Size = New System.Drawing.Size(357, 27)
+        Me.ReceiveSerach_TXT.TabIndex = 89
+        '
+        'RptViewer_Receive
+        '
+        Me.RptViewer_Receive.LocalReport.EnableExternalImages = True
+        Me.RptViewer_Receive.LocalReport.ReportEmbeddedResource = "HRSystem.rpt_Explanation.rdlc"
+        Me.RptViewer_Receive.Location = New System.Drawing.Point(1008, 10)
+        Me.RptViewer_Receive.Name = "RptViewer_Receive"
+        Me.RptViewer_Receive.ServerReport.BearerToken = Nothing
+        Me.RptViewer_Receive.Size = New System.Drawing.Size(153, 51)
+        Me.RptViewer_Receive.TabIndex = 90
+        Me.RptViewer_Receive.Visible = False
+        '
+        'Received_Panel
+        '
+        Me.Received_Panel.AutoSize = True
+        Me.Received_Panel.BackColor = System.Drawing.Color.NavajoWhite
+        Me.Received_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Received_Panel.Controls.Add(Me.Label72)
+        Me.Received_Panel.Controls.Add(Me.PictureBox3)
+        Me.Received_Panel.Controls.Add(Me.ReceiveCancel_BTNn4)
+        Me.Received_Panel.Controls.Add(Me.ReceiveSave_BTN)
+        Me.Received_Panel.Location = New System.Drawing.Point(156, 133)
+        Me.Received_Panel.Name = "Received_Panel"
+        Me.Received_Panel.Size = New System.Drawing.Size(615, 492)
+        Me.Received_Panel.TabIndex = 95
+        Me.Received_Panel.Visible = False
+        '
+        'Label72
+        '
+        Me.Label72.AutoSize = True
+        Me.Label72.Location = New System.Drawing.Point(18, 6)
+        Me.Label72.Name = "Label72"
+        Me.Label72.Size = New System.Drawing.Size(309, 20)
+        Me.Label72.TabIndex = 81
+        Me.Label72.Text = "Double Click the box below to select image"
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox3.Location = New System.Drawing.Point(22, 28)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(575, 395)
+        Me.PictureBox3.TabIndex = 9
+        Me.PictureBox3.TabStop = False
+        '
+        'ReceiveCancel_BTNn4
+        '
+        Me.ReceiveCancel_BTNn4.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReceiveCancel_BTNn4.Location = New System.Drawing.Point(22, 438)
+        Me.ReceiveCancel_BTNn4.Name = "ReceiveCancel_BTNn4"
+        Me.ReceiveCancel_BTNn4.Size = New System.Drawing.Size(76, 31)
+        Me.ReceiveCancel_BTNn4.TabIndex = 80
+        Me.ReceiveCancel_BTNn4.Text = "Cancel"
+        Me.ReceiveCancel_BTNn4.UseVisualStyleBackColor = True
+        '
+        'ReceiveSave_BTN
+        '
+        Me.ReceiveSave_BTN.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReceiveSave_BTN.Location = New System.Drawing.Point(536, 438)
+        Me.ReceiveSave_BTN.Name = "ReceiveSave_BTN"
+        Me.ReceiveSave_BTN.Size = New System.Drawing.Size(61, 31)
+        Me.ReceiveSave_BTN.TabIndex = 79
+        Me.ReceiveSave_BTN.Text = "Save"
+        Me.ReceiveSave_BTN.UseVisualStyleBackColor = True
+        '
+        'Received_Datagrid
+        '
+        Me.Received_Datagrid.AllowUserToAddRows = False
+        Me.Received_Datagrid.AllowUserToResizeRows = False
+        Me.Received_Datagrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace
+        Me.Received_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Received_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Received_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IRNO_DVVV, Me.Name_DGVVV, Me.Company_DGVVV, Me.Receive_DGVVV})
+        Me.Received_Datagrid.Location = New System.Drawing.Point(5, 94)
+        Me.Received_Datagrid.Name = "Received_Datagrid"
+        Me.Received_Datagrid.RowHeadersVisible = False
+        Me.Received_Datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.Received_Datagrid.Size = New System.Drawing.Size(1156, 567)
+        Me.Received_Datagrid.TabIndex = 94
+        '
+        'IRNO_DVVV
+        '
+        Me.IRNO_DVVV.HeaderText = "IR No."
+        Me.IRNO_DVVV.Name = "IRNO_DVVV"
+        Me.IRNO_DVVV.ReadOnly = True
+        Me.IRNO_DVVV.Width = 150
+        '
+        'Name_DGVVV
+        '
+        Me.Name_DGVVV.HeaderText = "Name"
+        Me.Name_DGVVV.Name = "Name_DGVVV"
+        Me.Name_DGVVV.ReadOnly = True
+        Me.Name_DGVVV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Name_DGVVV.Width = 550
+        '
+        'Company_DGVVV
+        '
+        Me.Company_DGVVV.HeaderText = "Company"
+        Me.Company_DGVVV.Name = "Company_DGVVV"
+        Me.Company_DGVVV.ReadOnly = True
+        Me.Company_DGVVV.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Company_DGVVV.Width = 305
+        '
+        'Receive_DGVVV
+        '
+        Me.Receive_DGVVV.HeaderText = "   Action Receive"
+        Me.Receive_DGVVV.Name = "Receive_DGVVV"
+        Me.Receive_DGVVV.Width = 150
         '
         'frmIncidentReport
         '
@@ -3186,7 +3362,7 @@ Partial Class frmIncidentReport
         Me.Text = "frmIncidentReport"
         Me.List_Page.ResumeLayout(False)
         Me.List_Page.PerformLayout()
-        CType(Me.ACTION_Datagrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Records_Datagrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Corrective_Page.ResumeLayout(False)
         Me.Corrective_Page.PerformLayout()
         Me.SplitContainer4.Panel1.ResumeLayout(False)
@@ -3215,6 +3391,8 @@ Partial Class frmIncidentReport
         Me.GroupBox8.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.GroupBox10.ResumeLayout(False)
+        Me.GroupBox10.PerformLayout()
         Me.ECS_GB.ResumeLayout(False)
         Me.ECS_GB.PerformLayout()
         CType(Me.NumberOfDays_TXT, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3256,8 +3434,12 @@ Partial Class frmIncidentReport
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.CorrectiveWindow.ResumeLayout(False)
-        Me.GroupBox10.ResumeLayout(False)
-        Me.GroupBox10.PerformLayout()
+        Me.Action_Page.ResumeLayout(False)
+        Me.Action_Page.PerformLayout()
+        Me.Received_Panel.ResumeLayout(False)
+        Me.Received_Panel.PerformLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Received_Datagrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3266,7 +3448,7 @@ Partial Class frmIncidentReport
     Friend WithEvents Label21 As Label
     Friend WithEvents Close_BTN As Button
     Friend WithEvents List_Page As TabPage
-    Friend WithEvents ACTION_Datagrid As DataGridView
+    Friend WithEvents Records_Datagrid As DataGridView
     Friend WithEvents IRNO_COO As DataGridViewTextBoxColumn
     Friend WithEvents NAME_COO As DataGridViewTextBoxColumn
     Friend WithEvents COMPANY_COO As DataGridViewTextBoxColumn
@@ -3548,4 +3730,19 @@ Partial Class frmIncidentReport
     Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Action_Page As TabPage
+    Friend WithEvents Received_Panel As Panel
+    Friend WithEvents Label72 As Label
+    Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents ReceiveCancel_BTNn4 As Button
+    Friend WithEvents ReceiveSave_BTN As Button
+    Friend WithEvents Received_Datagrid As DataGridView
+    Friend WithEvents Receive_Status_Combo As ComboBox
+    Friend WithEvents Label71 As Label
+    Friend WithEvents ReceiveSearch_Combo As ComboBox
+    Friend WithEvents ReceiveSerach_TXT As TextBox
+    Friend WithEvents RptViewer_Receive As ReportViewer
+    Friend WithEvents IRNO_DVVV As DataGridViewTextBoxColumn
+    Friend WithEvents Name_DGVVV As DataGridViewTextBoxColumn
+    Friend WithEvents Company_DGVVV As DataGridViewTextBoxColumn
+    Friend WithEvents Receive_DGVVV As DataGridViewButtonColumn
 End Class
