@@ -225,7 +225,7 @@
 
                     frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
 
-                ElseIf tab = 4 Then
+                ElseIf tab = 4 Then '============================================= INCIDENT REPORT
 
                     If edit = "prepared" Then
 
@@ -239,7 +239,7 @@
 
                     frmIncidentReport.CorrectiveWindow.SelectedIndex = 0
 
-                ElseIf tab = 5 Then
+                ElseIf tab = 5 Then '============================================= SHOW CAUSE NOTICE
 
                     If edit = "prepared" Then
 
@@ -251,7 +251,7 @@
 
                     frmIncidentReport.CorrectiveWindow.SelectedIndex = 1
 
-                ElseIf tab = 6 Then
+                ElseIf tab = 6 Then '============================================= WRITTEN REPIMAND NOTICE
 
                     If edit = "prepared" Then
 
@@ -268,6 +268,24 @@
                     End If
 
                     frmIncidentReport.CorrectiveWindow.SelectedIndex = 3
+
+                ElseIf tab = 7 Then '============================================= CORRECTIVE ACTION NOTICE
+
+                    If edit = "prepared" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "coo-prepared")
+                    ElseIf edit = "reviewed1" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "coo-reviewed1")
+                    ElseIf edit = "reviewed2" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "coo-reviewed2")
+                    ElseIf edit = "noted" Then
+
+                        frmIncidentReport.LoadIRAuthorize(cus, "coo-noted")
+                    End If
+
+                    frmIncidentReport.CorrectiveWindow.SelectedIndex = 5
                 End If
 
                 frmIncidentReport.Dock = DockStyle.Fill

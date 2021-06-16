@@ -358,7 +358,28 @@
         ElseIf txtSearch.Tag = "WR-ApprovedBy" Then
 
             tmpEmp.LoadAuthorizePersonnel(idx)
-            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 6, "approved")
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 6, "approved")  '================ Corrective Action
+
+        ElseIf txtSearch.Tag = "Coo-PreparedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 7, "prepared")
+
+        ElseIf txtSearch.Tag = "Coo-ReviewedBy1" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 7, "reviewed1")
+
+        ElseIf txtSearch.Tag = "Coo-ReviewedBy2" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 7, "reviewed2")
+
+        ElseIf txtSearch.Tag = "Coo-NotedBy" Then
+
+            tmpEmp.LoadAuthorizePersonnel(idx)
+            ReloadFormFromSearch(FormName.incidentReport, tmpEmp, 7, "noted")
+
 
         End If
 

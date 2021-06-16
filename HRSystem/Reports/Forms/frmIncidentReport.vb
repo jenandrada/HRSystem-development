@@ -143,14 +143,14 @@ Public Class frmIncidentReport
             ElseIf authorize = "ir-received" Then
                 Received_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
             ElseIf authorize = "ir-reviewed" Then
-                ReviewedBy_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}") '====================
+                ReviewedBy_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
 
-            ElseIf authorize = "sc-prepared" Then
+            ElseIf authorize = "sc-prepared" Then '=========================================================
                 HRSupervisor_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
             ElseIf authorize = "sc-approved" Then
-                BusinessUnitHead_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}") ' =============
+                BusinessUnitHead_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
 
-            ElseIf authorize = "wr-prepared" Then
+            ElseIf authorize = "wr-prepared" Then '=========================================================
                 WP_Emp_Rel_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
             ElseIf authorize = "wr-reviewed" Then
                 WP_HR_Sup_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
@@ -158,6 +158,15 @@ Public Class frmIncidentReport
                 WP_Officer_Incharge_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
             ElseIf authorize = "wr-approved" Then
                 WP_BusinessHead_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+
+            ElseIf authorize = "coo-prepared" Then '=========================================================
+                Coo_Pre_Name_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "coo-reviewed1" Then
+                Coo_Rev_Name1_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "coo-reviewed2" Then
+                Coo_Rev_Name2_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
+            ElseIf authorize = "coo-noted" Then
+                Coo_Noted_Name_TXT.Text = String.Format($"{ .FirstName} { MI} { .LastName} { .Suffix}")
             End If
 
         End With
@@ -1078,18 +1087,8 @@ Public Class frmIncidentReport
 
         ElseIf CorrectiveWindow.SelectedIndex = 6 Then
 
-            ReceiveSearch_Combo.SelectedIndex = 0
-            Receive_Status_Combo.SelectedIndex = 0
-
-
-            PopulateReceive(Received_Datagrid)
-
-
-        ElseIf CorrectiveWindow.SelectedIndex = 7 Then
-
             Records_Search_CB.SelectedIndex = 0
             RecordsGroupby_Combo.SelectedIndex = 0
-
 
             PopulateRecords(Records_Datagrid)
 
@@ -1104,12 +1103,17 @@ Public Class frmIncidentReport
     End Sub
 
     Private Sub WP_OK_BTN_Click_1(sender As Object, e As EventArgs) Handles WP_OK_BTN.Click
+        If Not WP_Name_TXT.Text = "" Then
 
-        If AmountCharges_CB.Checked = True Then
-            If Not isValid() Then Exit Sub
-            LoadWrittenReprimandReport()
+            If AmountCharges_CB.Checked = True Then
+                If Not isValid() Then Exit Sub
+                LoadWrittenReprimandReport()
+            Else
+                LoadWrittenReprimandReport()
+            End If
         Else
-            LoadWrittenReprimandReport()
+
+            MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
 
@@ -1121,11 +1125,7 @@ Public Class frmIncidentReport
         Dim num3 = Val(AmountPerPayroll_TXT.Text)
         Dim num4 = Val(NoOFPayroll_TXT.Text)
 
-        If String.IsNullOrEmpty(WP_Name_TXT.Text) Then
-            MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Return False
-
-        ElseIf Not Double.TryParse(Charges_Numeric.Text, num2) Or String.IsNullOrEmpty(Charges_Numeric.Text) Then
+        If Not Double.TryParse(Charges_Numeric.Text, num2) Or String.IsNullOrEmpty(Charges_Numeric.Text) Then
             Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
             MessageBox.Show($"Please indicate Total Amount of ECS.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return False
@@ -1404,7 +1404,7 @@ Public Class frmIncidentReport
 
     Private Sub DateIncident_DTP_CloseUp(sender As Object, e As EventArgs) Handles DateIncident_DTP.CloseUp
         '_incidentDate.AppendText(DateIncident_DTP.Value.ToString("MMMM dd, yyyy") & ", ")
-
+        DateIncident_RichB.AppendText(DateIncident_DTP.Value.ToString("MMMM dd, yyyy") & vbNewLine)
         _incidentDate.AppendText(DateIncident_DTP.Value.ToString("M") & ", ")
     End Sub
 
@@ -1652,14 +1652,20 @@ Public Class frmIncidentReport
 
     Private Sub ClearDateSuspension_BTN_Click(sender As Object, e As EventArgs) Handles ClearDateSuspension_BTN.Click
         _corrective.Clear()
+        DateSuspend_RichB.Clear()
     End Sub
 
     Private Sub DateSuspension_DPT_CloseUp(sender As Object, e As EventArgs) Handles DateSuspension_DPT.CloseUp
+        DateSuspend_RichB.AppendText(DateSuspension_DPT.Value.ToString("MMMM dd, yyyy") & vbNewLine)
         _corrective.AppendText(DateSuspension_DPT.Value.ToString("M") & ", ")
     End Sub
 
     Private Sub PreviewCOR_BTN_Click(sender As Object, e As EventArgs) Handles PreviewCOR_BTN.Click
-        LoadCorrectiveAction()
+        If Not Coo_Name_TXT.Text = "" Then
+            LoadCorrectiveAction()
+        Else
+            MessageBox.Show($"Please Select Employee's name", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
     End Sub
 
     Private Sub Coo_Clear_BTN_Click(sender As Object, e As EventArgs) Handles Coo_Clear_BTN.Click
@@ -1694,6 +1700,25 @@ Public Class frmIncidentReport
                     Process.Start(row.Cells("ACTION_COO").Tag)
                 End If
 
+            ElseIf grid.Columns(e.ColumnIndex).Name = "Receive_COO" Then
+
+                If row.Cells("Receive_COO").Value = "Upload" Then
+
+                    Records_Panel.Visible = True
+                    Records_Panel.Location = New Point(345, 115)
+
+                Else
+                    Process.Start(row.Cells("Receive_COO").Tag)
+                End If
+
+            ElseIf grid.Columns(e.ColumnIndex).Name = "REMARKS_COO" Then
+
+                If row.Cells("REMARKS_COO").Value = "View" Then
+
+                    RecordsRemarks_RichB.Text = row.Cells("REMARKS_COO").Tag
+                    RecordsRemaks_Panel.Visible = True
+                    RecordsRemaks_Panel.Location = New Point(Cursor.Position.X - 600, Cursor.Position.Y - 130)
+                End If
 
             End If
 
@@ -2140,62 +2165,121 @@ Public Class frmIncidentReport
         SixDays_RBTN.Checked = False
     End Sub
 
-    Private Sub Received_Datagrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Received_Datagrid.CellContentClick
+    Private Sub SearchAck_Combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SearchAck_Combo.SelectedIndexChanged
 
-        Dim grid = DirectCast(sender, DataGridView)
-        Dim row As DataGridViewRow = Received_Datagrid.Rows(e.RowIndex)
-
-        If TypeOf grid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn Then
-
-            If grid.Columns(e.ColumnIndex).Name = "Receive_DGVVV" Then
-
-                If row.Cells("Receive_DGVVV").Value = "Upload" Then
-
-                    Received_Panel.Visible = True
-                    Received_Panel.Location = New Point(345, 115)
-
-                Else
-                    Process.Start(row.Cells("Receive_DGVVV").Tag)
-                End If
-
-
-            End If
-
-        End If
-
-    End Sub
-
-    Private Sub ReceiveSave_BTN_Click(sender As Object, e As EventArgs) Handles ReceiveSave_BTN.Click
-
-        Dim i As Integer = Received_Datagrid.CurrentRow.Index
-
-        If Not PictureBox3.Tag = Nothing Then
-            imgData = ImgToByteArray(Image.FromFile(PictureBox3.Tag), ImageFormat.Jpeg)
+        If SearchAck_Combo.SelectedIndex = 0 Then
+            LoadACKNOWSearchName(SearchAck_TXT.Text, Ack_Datagrid)
         Else
-            imgData = ImgToByteArray(PictureBox3.InitialImage, ImageFormat.Jpeg)
+            LoadACKNOWSearchIRNO(SearchAck_TXT.Text, Ack_Datagrid)
         End If
 
-        LoadUploadToReportViewer(Received_Datagrid.Item(0, i).Value, Received_Datagrid.Item(1, i).Value, RptViewer_Receive, "Received", ReceivedPath)
+    End Sub
 
-        ToPDF("IR No. " & Received_Datagrid.Item(0, i).Value & " - " & Received_Datagrid.Item(1, i).Value, "Incident Report", RptViewer_Receive, "Received")
+    Private Sub Change1_BTN_Click(sender As Object, e As EventArgs) Handles Change1_BTN.Click
+        Coo_Pre_Pos_TXT.ReadOnly = False
+    End Sub
 
-        ReceivedSave(Received_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath)
+    Private Sub Change2_BTN_Click(sender As Object, e As EventArgs) Handles Change2_BTN.Click
+        Coo_Rev_Pos1_TXT.ReadOnly = False
+    End Sub
 
-        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Received_Datagrid.Item(1, i).Value, "Received IR No. " & Received_Datagrid.Item(0, i).Value, "-", "-", "-")
+    Private Sub Change3_BTN_Click(sender As Object, e As EventArgs) Handles Change3_BTN.Click
+        Coo_Rev_Pos2_TXT.ReadOnly = False
+    End Sub
 
-        Received_Panel.Visible = False
-        PictureBox3.Image = Nothing
+    Private Sub Change4_BTN_Click(sender As Object, e As EventArgs) Handles Change4_BTN.Click
+        Coo_Noted_Pos_TXT.ReadOnly = False
+    End Sub
 
-        PopulateReceive(Received_Datagrid)
+    Private Sub Coo_PreparedBy_BTN_Click(sender As Object, e As EventArgs) Handles Coo_PreparedBy_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "Coo-PreparedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
 
     End Sub
 
-    Private Sub ReceiveCancel_BTNn4_Click(sender As Object, e As EventArgs) Handles ReceiveCancel_BTNn4.Click
-        PictureBox3.Image = Nothing
-        Received_Panel.Visible = False
+    Private Sub Coo_ReviewdBy1_BTN_Click(sender As Object, e As EventArgs) Handles Coo_ReviewdBy1_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "Coo-ReviewedBy1"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
     End Sub
 
-    Private Sub PictureBox3_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles PictureBox3.MouseDoubleClick
+    Private Sub Coo_ReviewBy2_BTN_Click(sender As Object, e As EventArgs) Handles Coo_ReviewBy2_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "Coo-ReviewedBy2"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub Coo_NotedBy_BTN_Click(sender As Object, e As EventArgs) Handles Coo_NotedBy_BTN.Click
+
+        If frmEmployeeList Is Nothing Then
+            Dim frm As New frmEmployeeList With {
+                .MdiParent = frmMainForm
+            }
+            frmMainForm.pNavigate.Controls.Add(frm)
+            frmMainForm.pNavigate.Tag = frm
+            frm.Show()
+            frm.btnView.Visible = False
+            frm.btnAdd.Visible = False
+            frm.btnSelect.Visible = True
+            frm.txtSearch.Tag = "Coo-NotedBy"
+            frm.Dock = DockStyle.Fill
+            frm.BringToFront()
+
+        Else
+            frmEmployeeList.BringToFront()
+        End If
+
+    End Sub
+
+    Private Sub Received_Picture_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Received_Picture.MouseDoubleClick
 
         Using openF As New OpenFileDialog()
             Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
@@ -2215,19 +2299,61 @@ Public Class frmIncidentReport
                 sep = "|"
             Next
             If openF.ShowDialog = DialogResult.OK Then
-                If Not Image.FromFile(openF.FileName).Size = PictureBox3.InitialImage.Size Then
-                    PictureBox3.Image = Image.FromFile(openF.FileName)
-                    PictureBox3.Tag = openF.FileName
-                    PictureBox3.SizeMode = PictureBoxSizeMode.StretchImage
+                If Not Image.FromFile(openF.FileName).Size = Received_Picture.InitialImage.Size Then
+                    Received_Picture.Image = Image.FromFile(openF.FileName)
+                    Received_Picture.Tag = openF.FileName
+                    Received_Picture.SizeMode = PictureBoxSizeMode.StretchImage
                 Else
-                    PictureBox3.Image = Image.FromFile(openF.FileName)
-                    PictureBox3.Tag = openF.FileName
-                    PictureBox3.SizeMode = PictureBoxSizeMode.CenterImage
+                    Received_Picture.Image = Image.FromFile(openF.FileName)
+                    Received_Picture.Tag = openF.FileName
+                    Received_Picture.SizeMode = PictureBoxSizeMode.CenterImage
                 End If
                 ReceivedPath = openF.FileName
             End If
 
         End Using
+    End Sub
+
+    Private Sub Remarks_LABEL_MouseEnter(sender As Object, e As EventArgs) Handles Remarks_LABEL.MouseEnter
+        Remarks_LABEL.ForeColor = Color.Red
+    End Sub
+
+    Private Sub Remarks_LABEL_MouseLeave(sender As Object, e As EventArgs) Handles Remarks_LABEL.MouseLeave
+        Remarks_LABEL.ForeColor = Color.Black
+    End Sub
+
+    Private Sub Remarks_LABEL_Click(sender As Object, e As EventArgs) Handles Remarks_LABEL.Click
+        RecordsRemaks_Panel.Visible = False
+    End Sub
+
+    Private Sub RecordsSave_BTN_Click(sender As Object, e As EventArgs) Handles RecordsSave_BTN.Click
+
+        Dim i As Integer = Records_Datagrid.CurrentRow.Index
+
+        If Not Received_Picture.Tag = Nothing Then
+            imgData = ImgToByteArray(Image.FromFile(Received_Picture.Tag), ImageFormat.Jpeg)
+        Else
+            imgData = ImgToByteArray(Received_Picture.InitialImage, ImageFormat.Jpeg)
+        End If
+
+        LoadUploadToReportViewer(Records_Datagrid.Item(0, i).Value, Records_Datagrid.Item(1, i).Value, RptViewer_Records, "Received", ReceivedPath)
+
+        ToPDF("IR No. " & Records_Datagrid.Item(0, i).Value & " - " & Records_Datagrid.Item(1, i).Value, "Incident Report", RptViewer_Records, "Received")
+
+        ReceivedSave(Records_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath)
+
+        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Records_Datagrid.Item(1, i).Value, "Received IR No. " & Records_Datagrid.Item(0, i).Value, "-", "-", "-")
+
+        Records_Panel.Visible = False
+        Received_Picture.Image = Nothing
+
+        PopulateRecords(Records_Datagrid)
+
+    End Sub
+
+    Private Sub RecordsCancel_BTN_Click(sender As Object, e As EventArgs) Handles RecordsCancel_BTN.Click
+        Records_Panel.Visible = False
+        Received_Picture.Image = Nothing
     End Sub
 
     Private Sub ClearEvidence_BTN_Click(sender As Object, e As EventArgs) Handles ClearEvidence_BTN.Click

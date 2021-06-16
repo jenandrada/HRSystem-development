@@ -329,51 +329,6 @@ Module Selecting
 
     End Sub
 
-    Friend Sub PopulateReceive(datagrid As DataGridView)
-        datagrid.Rows.Clear()
-        Dim mysql As String
-
-        mysql = "Select * From IR_REPRIMAND A
-                                inner join TBL_EMPLOYEE B on B.id = A.emp_id 
-                                inner join SHOWCAUSE_RECORDS C on C.irno = A.irno where A.WRITTEN_STATUS = 'DONE'"
-
-        Using ds As DataSet = LoadSQL(mysql, "IR_REPRIMAND")
-            If ds.Tables(0).Rows.Count > 0 Then
-                For Each dr In ds.Tables(0).Rows
-                    AddRowRECEIVE(dr, datagrid)
-                Next
-
-            End If
-        End Using
-
-    End Sub
-
-    Public Sub AddRowRECEIVE(ByVal dr As DataRow, datagrid As DataGridView)
-
-        With dr
-
-            Dim rowId As Integer = datagrid.Rows.Add()
-            Dim row As DataGridViewRow = datagrid.Rows(rowId)
-            row.Cells("IRNO_DVVV").Value = Format(.Item("IRNO"), "00000")
-            row.Cells("NAME_DGVVV").Value = .Item("LASTNAME") & ", " & .Item("FIRSTNAME") & " " & .Item("MIDDLENAME")
-            row.Cells("COMPANY_DGVVV").Value = .Item("COMPANY")
-
-            If .Item("RECEIVE_ACTION") = "DONE" Then
-                row.Cells("Receive_DGVVV").Value = "Open"
-                row.Cells("Receive_DGVVV").Tag = .Item("RECEIVE_PATH")
-
-            Else
-                row.Cells("Receive_DGVVV").Value = "Upload"
-
-            End If
-
-            row.Height = 35
-            'row.DefaultCellStyle.ForeColor = Color.BlueViolet
-
-        End With
-
-    End Sub
-
     Public Sub AddRowACTION(ByVal dr As DataRow, datagrid As DataGridView)
 
         With dr
@@ -395,7 +350,7 @@ Module Selecting
             row.Cells("ACKNO_COO").Value = "Open"
             row.Cells("ACKNO_COO").Tag = .Item("ACKNO_PATH")
 
-            If .Item("CORRECTIVE_ACTION") = "DONE" Then
+            If .Item("CORRECTIVE_ACTION") = "DONE" Then  '============================== CORRECTIVE ACTION NOTICE
                 row.Cells("ACTION_COO").Value = "Open"
                 row.Cells("ACTION_COO").Tag = .Item("CORRECTIVE_PATH")
 
@@ -405,6 +360,23 @@ Module Selecting
             ElseIf .Item("CORRECTIVE_ACTION") = "ECS" Then
                 row.Cells("ACTION_COO").Value = ""
 
+            End If
+
+            If .Item("RECEIVE_ACTION") = "DONE" Then '============================== RECEIVED ANY WRITTEN REPRIMAND (WRITTEN, ECS, SUSPENSION)
+                row.Cells("Receive_COO").Value = "Open"
+                row.Cells("Receive_COO").Tag = .Item("RECEIVE_PATH")
+
+            Else
+                row.Cells("Receive_COO").Value = "Upload"
+
+            End If
+
+            If .Item("EXPLAIN_REMARKS").Equals(DBNull.Value) Or .Item("EXPLAIN_REMARKS").Equals("") Then '========= EXPLANATION REMARKS
+                row.Cells("REMARKS_COO").Value = ""
+
+            Else
+                row.Cells("REMARKS_COO").Value = "View"
+                row.Cells("REMARKS_COO").Tag = .Item("EXPLAIN_REMARKS")
             End If
 
             row.Height = 35
@@ -624,7 +596,7 @@ Module Selecting
         datagrid.Rows.Clear()
         Dim mysql As String
 
-        mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno where A.STATUS = '" & status & "'"
+        'mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno where A.STATUS = '" & status & "'"
 
         mysql = "Select * From IR_REPRIMAND A 
                             inner join TBL_EMPLOYEE B on B.id = A.emp_id 
