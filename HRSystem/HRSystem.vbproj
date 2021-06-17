@@ -205,6 +205,12 @@
     <Compile Include="Forms\frmECS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmManpower.Designer.vb">
+      <DependentUpon>frmManpower.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmManpower.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmWRList.Designer.vb">
       <DependentUpon>frmWRList.vb</DependentUpon>
     </Compile>
@@ -402,12 +408,6 @@
     <Compile Include="Forms\frmMainForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmManpower.Designer.vb">
-      <DependentUpon>frmManpower.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmManpower.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\frmnotify.Designer.vb">
       <DependentUpon>frmnotify.vb</DependentUpon>
     </Compile>
@@ -601,6 +601,9 @@
     <EmbeddedResource Include="Forms\frmECS.resx">
       <DependentUpon>frmECS.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmManpower.resx">
+      <DependentUpon>frmManpower.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmWRList.resx">
       <DependentUpon>frmWRList.vb</DependentUpon>
     </EmbeddedResource>
@@ -695,9 +698,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMainForm.resx">
       <DependentUpon>frmMainForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmManpower.resx">
-      <DependentUpon>frmManpower.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmnotify.resx">
       <DependentUpon>frmnotify.vb</DependentUpon>

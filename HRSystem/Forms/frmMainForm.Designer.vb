@@ -600,7 +600,7 @@ Partial Class frmMainForm
         Me.Charges_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Charges_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Charges_BTN.ForeColor = System.Drawing.Color.White
-        Me.Charges_BTN.Image = Global.HRSystem.My.Resources.Resources.attendance_mark_50px
+        Me.Charges_BTN.Image = Global.HRSystem.My.Resources.Resources.receive_cash_50px1
         Me.Charges_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Charges_BTN.Location = New System.Drawing.Point(0, 458)
         Me.Charges_BTN.Name = "Charges_BTN"
@@ -617,13 +617,13 @@ Partial Class frmMainForm
         Me.Compensation_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Compensation_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Compensation_BTN.ForeColor = System.Drawing.Color.White
-        Me.Compensation_BTN.Image = Global.HRSystem.My.Resources.Resources.receive_cash_50px1
+        Me.Compensation_BTN.Image = Global.HRSystem.My.Resources.Resources.attendance_mark_50px
         Me.Compensation_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Compensation_BTN.Location = New System.Drawing.Point(0, 534)
         Me.Compensation_BTN.Name = "Compensation_BTN"
         Me.Compensation_BTN.Size = New System.Drawing.Size(177, 75)
         Me.Compensation_BTN.TabIndex = 8
-        Me.Compensation_BTN.Text = "               Under Deve.."
+        Me.Compensation_BTN.Text = "               Manpower"
         Me.Compensation_BTN.UseVisualStyleBackColor = False
         '
         'RateEMP_BTN

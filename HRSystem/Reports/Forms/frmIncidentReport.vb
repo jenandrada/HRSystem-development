@@ -11,7 +11,7 @@ Public Class frmIncidentReport
     Dim imgData As Byte()
     Dim FolderPath, EvidencePAth As String
     Dim ExpalanationPath, AcknowledgePath, ReceivedPath As String
-    Dim NoOfDaysSuspend As Integer
+    Dim NoOfDaysSuspend, countSuspensionDate As Integer
 
     Private ReadOnly _incidentDate, _corrective As New RichTextBox
 
@@ -1670,8 +1670,17 @@ Public Class frmIncidentReport
     End Sub
 
     Private Sub DateSuspension_DPT_CloseUp(sender As Object, e As EventArgs) Handles DateSuspension_DPT.CloseUp
-        DateSuspend_RichB.AppendText(DateSuspension_DPT.Value.ToString("MMMM dd, yyyy") & vbNewLine)
-        _corrective.AppendText(DateSuspension_DPT.Value.ToString("M") & ", ")
+        countSuspensionDate = countSuspensionDate + 1
+
+        If countSuspensionDate <= Convert.ToInt32(Coo_NoOfDays_Numeric.Text) Then
+
+            DateSuspend_RichB.AppendText(DateSuspension_DPT.Value.ToString("MMMM dd, yyyy") & vbNewLine)
+            _corrective.AppendText(DateSuspension_DPT.Value.ToString("M") & ", ")
+
+        Else
+            MessageBox.Show($"Exceeded number of date!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
     End Sub
 
     Private Sub PreviewCOR_BTN_Click(sender As Object, e As EventArgs) Handles PreviewCOR_BTN.Click
