@@ -25,42 +25,6 @@ Module Selecting
         Return False
     End Function
 
-    'Public Function IREvidence(irno As String, path As String)
-    '    Dim mysql As String = "Select * FROM  IR_RECORDS WEHRE "
-    '    Dim ds As DataSet = LoadSQL(mysql, table)
-    '    If ds.Tables(0).Rows.Count > 0 Then
-    '        Return True
-    '    End If
-    '    Return False
-    'End Function
-
-    'Public Sub LoadListviewWritten(irno As String, listRule As ListView, listSection As ListView)
-    '    Dim mysql As String = "Select * From SHOWCAUSE_COUNT WHERE IRNo = '" & irno & "'"
-    '    Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_COUNT")
-
-    '        For Each dr As DataRow In ds.Tables(0).Rows
-    '            With dr
-    '                For x = 0 To listRule.Items.Count - 1
-    '                    If listRule.Items(x).Text = .Item("RULENO") Then
-    '                        listRule.Items(x).Selected = True
-    '                        'listRule.Select()
-    '                    End If
-
-    '                    For ii As Integer = 0 To listSection.Items.Count - 1
-    '                        If listSection.Items(ii).Text = .Item("SECTIONNO") Then
-    '                            listSection.Items(ii).Selected = True
-    '                            listSection.Select()
-    '                        End If
-    '                    Next
-    '                Next
-
-
-    '            End With
-    '        Next
-
-    '    End Using
-    'End Sub
-
     Public Sub LoadListviewWritten(irno As String, listSection As ListView, rule As Label)
         Dim mysql As String = "Select * From SHOWCAUSE_COUNT INNER JOIN TBL_RULESECTIONLIST ON TBL_RULESECTIONLIST.SECTION = SHOWCAUSE_COUNT.SECTIONNO  WHERE SHOWCAUSE_COUNT.IRNo = '" & irno & "'"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_COUNT")
@@ -174,9 +138,7 @@ Module Selecting
 
     Friend Sub PopulateExplaination(datagrid As DataGridView)
         datagrid.Rows.Clear()
-        Dim mysql As String
-
-        mysql = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
+        Dim mysql As String = "Select * From SHOWCAUSE_RECORDS A inner join TBL_EMPLOYEE B on B.id = A.emp_id inner join IR_RECORDS C on C.irno = A.irno"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")
             If ds.Tables(0).Rows.Count > 0 Then
                 For Each dr In ds.Tables(0).Rows
@@ -221,7 +183,6 @@ Module Selecting
                 row.Cells("Remarks_DGV").Value = "View"
                 row.Cells("Remarks_DGV").Tag = .Item("EXPLAIN_REMARKS")
             End If
-
 
             row.Height = 35
 
@@ -323,7 +284,6 @@ Module Selecting
                 For Each dr In ds.Tables(0).Rows
                     AddRowACTION(dr, datagrid)
                 Next
-
             End If
         End Using
 
@@ -350,26 +310,29 @@ Module Selecting
             row.Cells("ACKNO_COO").Value = "Open"
             row.Cells("ACKNO_COO").Tag = .Item("ACKNO_PATH")
 
-            If .Item("CORRECTIVE_ACTION") = "DONE" Then  '============================== CORRECTIVE ACTION NOTICE
+            If .Item("RECEIVE_ACTION").Equals(DBNull.Value) Or .Item("RECEIVE_ACTION").Equals("") Then '============================== RECEIVED ANY WRITTEN REPRIMAND (WRITTEN, ECS, SUSPENSION)
+
+                row.Cells("Receive_COO").Value = "Upload"
+            Else
+                row.Cells("Receive_COO").Value = "Open"
+                row.Cells("Receive_COO").Tag = .Item("RECEIVE_PATH")
+
+            End If
+
+            If .Item("CORRECTIVE_ACTION") = "DONE" Then  '============================== CORRECTIVE ACTION NOTICE - Must come second to override RECEIVE Button
                 row.Cells("ACTION_COO").Value = "Open"
                 row.Cells("ACTION_COO").Tag = .Item("CORRECTIVE_PATH")
 
             ElseIf .Item("CORRECTIVE_ACTION") = "WRITTEN" Then
                 row.Cells("ACTION_COO").Value = ""
+                row.Cells("Receive_COO").Value = ""
 
             ElseIf .Item("CORRECTIVE_ACTION") = "ECS" Then
                 row.Cells("ACTION_COO").Value = ""
+                row.Cells("Receive_COO").Value = ""
 
             End If
 
-            If .Item("RECEIVE_ACTION") = "DONE" Then '============================== RECEIVED ANY WRITTEN REPRIMAND (WRITTEN, ECS, SUSPENSION)
-                row.Cells("Receive_COO").Value = "Open"
-                row.Cells("Receive_COO").Tag = .Item("RECEIVE_PATH")
-
-            Else
-                row.Cells("Receive_COO").Value = "Upload"
-
-            End If
 
             If .Item("EXPLAIN_REMARKS").Equals(DBNull.Value) Or .Item("EXPLAIN_REMARKS").Equals("") Then '========= EXPLANATION REMARKS
                 row.Cells("REMARKS_COO").Value = ""
@@ -380,11 +343,108 @@ Module Selecting
             End If
 
             row.Height = 35
-            'row.DefaultCellStyle.ForeColor = Color.BlueViolet
-
         End With
 
     End Sub
+
+    Friend Sub FETCH_PDF_FROM_DATABASE()
+        Dim mysql As String
+
+        mysql = "Select * From IR_PDF"
+
+        Using ds As DataSet = LoadSQL(mysql, "IR_PDF")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    With dr
+
+                        Dim name As String = "IR No. " & Format(.Item("IRNO"), "00000") & " - " & .Item("EMP_NAME")
+                        Console.WriteLine("NAAAME " & name)
+
+                        If .Item("IR_PATH").Equals(DBNull.Value) Or .Item("IR_PATH").Equals("") Then
+                        Else
+                            SavePDF_IfNotExist(.Item("IR_PATH"), name, .Item("INCIDENTREPORT"))
+                        End If
+
+                        If .Item("SC_PATH").Equals(DBNull.Value) Or .Item("SC_PATH").Equals("") Then
+                        Else
+                            SavePDF_IfNotExist(.Item("SC_PATH"), name, .Item("SHOWCAUSE"))
+                        End If
+
+                        If .Item("EXPLAIN_PATH").Equals(DBNull.Value) Or .Item("EXPLAIN_PATH").Equals("") Then
+                        Else
+                            SavePDF_IfNotExist(.Item("EXPLAIN_PATH"), name, .Item("EXPLANATION"))
+                        End If
+
+                        If .Item("WRITTEN_PATH").Equals(DBNull.Value) Or .Item("WRITTEN_PATH").Equals("") Then
+                        Else
+                            SavePDF_IfNotExist(.Item("WRITTEN_PATH"), name, .Item("WRITTENREPRIMAND"))
+                        End If
+
+                        If .Item("ACKNOW_PATH").Equals(DBNull.Value) Or .Item("ACKNOW_PATH").Equals("") Then
+                        Else
+                            SavePDF_IfNotExist(.Item("ACKNOW_PATH"), name, .Item("ACKNOWLEDGMENT"))
+                        End If
+
+                        If .Item("CORRECTIVE_PATH").Equals(DBNull.Value) Or .Item("CORRECTIVE_PATH").Equals("") Then
+                        Else
+                            SavePDF_IfNotExist(.Item("CORRECTIVE_PATH"), name, .Item("CORRECTIVEACTION"))
+                        End If
+
+                        If .Item("RECEIVED_PATH").Equals(DBNull.Value) Or .Item("RECEIVED_PATH").Equals("") Then
+                        Else
+                            SavePDF_IfNotExist(.Item("RECEIVED_PATH"), name, .Item("RECEIVED"))
+                        End If
+                    End With
+
+                Next
+            End If
+        End Using
+
+    End Sub
+
+    Public Sub SavePDF_IfNotExist(path As String, name As String, pdf As Byte())
+
+        name = name.ToString.TrimEnd()
+
+        Dim DirFolderToCreate As String = "D:\HR Records\Incident Report" & ""
+        Dim folderName As DirectoryInfo = New DirectoryInfo(DirFolderToCreate)
+
+        Dim DirEmployeeToCreate As String = "D:\HR Records\Incident Report\" & name & ""
+        Dim employee As DirectoryInfo = New DirectoryInfo(DirEmployeeToCreate)
+
+
+        If folderName.Exists Then
+
+            If employee.Exists Then
+
+                Dim databseToFolder As Byte() = pdf
+                System.IO.File.WriteAllBytes(path, databseToFolder)
+
+            Else
+                employee.Create()
+                Dim databseToFolder As Byte() = pdf
+                System.IO.File.WriteAllBytes(path, databseToFolder)
+
+            End If
+
+        Else
+
+            folderName.Create()
+            If employee.Exists Then
+                Dim databseToFolder As Byte() = pdf
+                System.IO.File.WriteAllBytes(path, databseToFolder)
+
+            Else
+                employee.Create()
+                Dim databseToFolder As Byte() = pdf
+                System.IO.File.WriteAllBytes(path, databseToFolder)
+
+            End If
+
+        End If
+
+    End Sub
+
 
     Public Sub AddRowAckno(ByVal dr As DataRow, datagrid As DataGridView)
 
@@ -698,5 +758,167 @@ Module Selecting
         End If
 
     End Sub
+
+    Public Sub LoadECSSearchName(search As String, listview As ListView)
+
+        listview.Items.Clear()
+        Dim secured_str = DreadKnight(search)
+        Dim mysql As String
+        Dim strWords As String() = secured_str.Split(New Char() {" "c})
+
+
+        If secured_str.Length <> 0 Then
+
+            mysql = "Select * From IR_ECS A inner join TBL_EMPLOYEE B on B.id = A.PERSON_ID Where"
+
+            For Each name In strWords
+                mysql &= $"{vbCr} UPPER(B.LastName ||' '|| B.FirstName ||' '|| B.MiddleName) LIKE UPPER('%{name}%') or "
+                mysql &= $"{vbCr} UPPER(B.FirstName ||' '|| B.MiddleName ||' '|| B.LastName) LIKE UPPER('%{name}%') or "
+
+                If name Is strWords.Last Then
+                    mysql &= $"{vbCr} UPPER(B.FirstName ||' '|| B.LastName ||' '|| B.MiddleName) LIKE UPPER('%{name}%')"
+                    Exit For
+                End If
+            Next
+        Else
+
+            mysql = "Select * From IR_ECS A inner join TBL_EMPLOYEE B on B.id = A.PERSON_ID"
+        End If
+
+        Using ds As DataSet = LoadSQL(mysql, "IR_ECS")
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                For Each dr In ds.Tables(0).Rows
+                    AddRowECS(dr, listview)
+                Next
+
+            End If
+        End Using
+    End Sub
+
+    Public Sub LoadECSSearchIRNO(irno As String, listview As ListView)
+
+        Dim int As Integer
+
+        If Double.TryParse(irno, int) Then
+
+            listview.Items.Clear()
+            Dim secured_str = DreadKnight(irno)
+            Dim mysql As String
+            Dim strWords As String() = secured_str.Split(New Char() {" "c})
+
+
+            If secured_str.Length <> 0 Then
+
+                mysql = "Select * From IR_ECS A inner join TBL_EMPLOYEE B on B.id = A.PERSON_ID Where A.irno = '" & irno & "'"
+
+            Else
+
+                mysql = "Select * From IR_ECS A inner join TBL_EMPLOYEE B on B.id = A.PERSON_ID"
+
+            End If
+
+            Using ds As DataSet = LoadSQL(mysql, "IR_ECS")
+                If ds.Tables(0).Rows.Count > 0 Then
+
+                    For Each dr In ds.Tables(0).Rows
+                        AddRowECS(dr, listview)
+                    Next
+                End If
+            End Using
+
+        Else
+            MsgBox("Invalid! You entered a Nonnumerical data.", MsgBoxStyle.Critical, "Error")
+        End If
+
+    End Sub
+
+    Public Sub LoadECSSearchECSNO(ecsNo As String, listview As ListView)
+
+        Dim int As Integer
+
+        If Double.TryParse(ecsNo, int) Then
+
+            listview.Items.Clear()
+            Dim secured_str = DreadKnight(ecsNo)
+            Dim mysql As String
+            Dim strWords As String() = secured_str.Split(New Char() {" "c})
+
+
+            If secured_str.Length <> 0 Then
+
+                mysql = "Select * From IR_ECS A inner join TBL_EMPLOYEE B on B.id = A.PERSON_ID Where A.ecsno = '" & ecsNo & "'"
+
+            Else
+
+                mysql = "Select * From IR_ECS A inner join TBL_EMPLOYEE B on B.id = A.PERSON_ID"
+
+            End If
+
+            Using ds As DataSet = LoadSQL(mysql, "IR_ECS")
+                If ds.Tables(0).Rows.Count > 0 Then
+
+                    For Each dr In ds.Tables(0).Rows
+                        AddRowECS(dr, listview)
+                    Next
+                End If
+            End Using
+
+        Else
+            MsgBox("Invalid! You entered a Nonnumerical data.", MsgBoxStyle.Critical, "Error")
+        End If
+
+    End Sub
+
+    Public Sub LoadECS(listview As ListView)
+
+        Try
+            Dim mysql As String = "Select * From IR_ECS inner join tbl_Employee on tbl_Employee.id = IR_ECS.PERSON_ID "
+            Console.WriteLine("2222")
+            Dim rowCount As Integer
+            Using ds As DataSet = LoadSQL(mysql, "IR_ECS")
+                rowCount = ds.Tables(0).Rows.Count
+                Dim maxEntries As Integer = ds.Tables(0).Rows.Count
+                frmMainForm.AppProgressBar.Maximum = maxEntries
+                frmMainForm.AppProgressBar.Visible = True
+                listview.Items.Clear()
+                For Each dr In ds.Tables(0).Rows
+                    AddRowECS(dr, listview)
+                    frmMainForm.AppProgressBar.Value += 1
+                Next
+            End Using
+
+            frmMainForm.AppProgressBar.Value = 0
+            frmMainForm.AppProgressBar.Maximum = 1000
+            frmMainForm.AppProgressBar.Visible = False
+        Catch ex As Exception
+            Log_Report(ex.ToString())
+        End Try
+    End Sub
+
+    Private Sub AddRowECS(ByVal dr As DataRow, listview As ListView)
+
+        If listview.Items.Count <= 20 Then
+            With dr
+                Dim datee As DateTime = CDate(.Item("DATE_CREATED"))
+                Dim amount As Double = CDbl(.Item("AMOUNT"))
+                Dim perPayroll As Double = CDbl(.Item("AMOUNT_PER_PAYROLL"))
+
+
+                Dim lv As ListViewItem = listview.Items.Add(Format(.Item("IRNO"), "00000"))
+                lv.SubItems.Add(.Item("ECSNO"))
+                lv.SubItems.Add(String.Format("{0}, {1} {2}", .Item("LastName"), .Item("FirstName"), .Item("MiddleName")))
+                lv.SubItems.Add(datee.ToString("D"))
+                lv.SubItems.Add(Decimal.Parse(amount).ToString("##,###0.00"))
+                lv.SubItems.Add(.Item("NO_OF_MONTHS"))
+                lv.SubItems.Add(Decimal.Parse(perPayroll).ToString("##,###0.00"))
+
+            End With
+        Else
+            Exit Sub
+        End If
+
+    End Sub
+
 
 End Module

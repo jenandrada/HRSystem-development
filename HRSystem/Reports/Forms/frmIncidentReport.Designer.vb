@@ -24,8 +24,10 @@ Partial Class frmIncidentReport
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmIncidentReport))
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.Close_BTN = New System.Windows.Forms.Button()
         Me.List_Page = New System.Windows.Forms.TabPage()
+        Me.RecordsRemaks_Panel = New System.Windows.Forms.Panel()
+        Me.Remarks_LABEL = New System.Windows.Forms.Label()
+        Me.RecordsRemarks_RichB = New System.Windows.Forms.RichTextBox()
         Me.Records_Panel = New System.Windows.Forms.Panel()
         Me.Label73 = New System.Windows.Forms.Label()
         Me.Received_Picture = New System.Windows.Forms.PictureBox()
@@ -35,6 +37,17 @@ Partial Class frmIncidentReport
         Me.Label68 = New System.Windows.Forms.Label()
         Me.RecordsGroupby_Combo = New System.Windows.Forms.ComboBox()
         Me.Records_Datagrid = New System.Windows.Forms.DataGridView()
+        Me.IRNO_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NAME_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COMPANY_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.INCIDENT_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.SC_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.EXPLAIN_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.REMARKS_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.WR_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ACKNO_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ACTION_COO = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Receive_COO = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Records_Search_CB = New System.Windows.Forms.ComboBox()
         Me.Coo_Search_TXT = New System.Windows.Forms.TextBox()
         Me.Corrective_Page = New System.Windows.Forms.TabPage()
@@ -309,21 +322,10 @@ Partial Class frmIncidentReport
         Me.IRNo_LBL = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.CorrectiveWindow = New System.Windows.Forms.TabControl()
-        Me.IRNO_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NAME_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COMPANY_COO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.INCIDENT_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.SC_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.EXPLAIN_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.REMARKS_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.WR_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.ACKNO_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.ACTION_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Receive_COO = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.RecordsRemaks_Panel = New System.Windows.Forms.Panel()
-        Me.RecordsRemarks_RichB = New System.Windows.Forms.RichTextBox()
-        Me.Remarks_LABEL = New System.Windows.Forms.Label()
+        Me.Close_BTN = New System.Windows.Forms.Button()
+        Me.Update_BTN = New System.Windows.Forms.Button()
         Me.List_Page.SuspendLayout()
+        Me.RecordsRemaks_Panel.SuspendLayout()
         Me.Records_Panel.SuspendLayout()
         CType(Me.Received_Picture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Records_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -374,7 +376,6 @@ Partial Class frmIncidentReport
         CType(Me.Evidence_PB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox7.SuspendLayout()
         Me.CorrectiveWindow.SuspendLayout()
-        Me.RecordsRemaks_Panel.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label21
@@ -386,16 +387,6 @@ Partial Class frmIncidentReport
         Me.Label21.Size = New System.Drawing.Size(123, 32)
         Me.Label21.TabIndex = 12
         Me.Label21.Text = "Corrective"
-        '
-        'Close_BTN
-        '
-        Me.Close_BTN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Close_BTN.Image = CType(resources.GetObject("Close_BTN.Image"), System.Drawing.Image)
-        Me.Close_BTN.Location = New System.Drawing.Point(1150, 2)
-        Me.Close_BTN.Name = "Close_BTN"
-        Me.Close_BTN.Size = New System.Drawing.Size(30, 30)
-        Me.Close_BTN.TabIndex = 10
-        Me.Close_BTN.UseVisualStyleBackColor = True
         '
         'List_Page
         '
@@ -410,10 +401,40 @@ Partial Class frmIncidentReport
         Me.List_Page.Location = New System.Drawing.Point(4, 29)
         Me.List_Page.Name = "List_Page"
         Me.List_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.List_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.List_Page.Size = New System.Drawing.Size(1167, 647)
         Me.List_Page.TabIndex = 6
-        Me.List_Page.Text = "Records      "
+        Me.List_Page.Text = "        Records        "
         Me.List_Page.UseVisualStyleBackColor = True
+        '
+        'RecordsRemaks_Panel
+        '
+        Me.RecordsRemaks_Panel.BackColor = System.Drawing.Color.PapayaWhip
+        Me.RecordsRemaks_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.RecordsRemaks_Panel.Controls.Add(Me.Remarks_LABEL)
+        Me.RecordsRemaks_Panel.Controls.Add(Me.RecordsRemarks_RichB)
+        Me.RecordsRemaks_Panel.Location = New System.Drawing.Point(828, 150)
+        Me.RecordsRemaks_Panel.Name = "RecordsRemaks_Panel"
+        Me.RecordsRemaks_Panel.Size = New System.Drawing.Size(310, 169)
+        Me.RecordsRemaks_Panel.TabIndex = 102
+        Me.RecordsRemaks_Panel.Visible = False
+        '
+        'Remarks_LABEL
+        '
+        Me.Remarks_LABEL.AutoSize = True
+        Me.Remarks_LABEL.Location = New System.Drawing.Point(288, 1)
+        Me.Remarks_LABEL.Name = "Remarks_LABEL"
+        Me.Remarks_LABEL.Size = New System.Drawing.Size(20, 20)
+        Me.Remarks_LABEL.TabIndex = 2
+        Me.Remarks_LABEL.Text = "X"
+        '
+        'RecordsRemarks_RichB
+        '
+        Me.RecordsRemarks_RichB.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RecordsRemarks_RichB.Location = New System.Drawing.Point(13, 27)
+        Me.RecordsRemarks_RichB.Name = "RecordsRemarks_RichB"
+        Me.RecordsRemarks_RichB.Size = New System.Drawing.Size(283, 122)
+        Me.RecordsRemarks_RichB.TabIndex = 0
+        Me.RecordsRemarks_RichB.Text = ""
         '
         'Records_Panel
         '
@@ -507,12 +528,90 @@ Partial Class frmIncidentReport
         Me.Records_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Records_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Records_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IRNO_COO, Me.NAME_COO, Me.COMPANY_COO, Me.INCIDENT_COO, Me.SC_COO, Me.EXPLAIN_COO, Me.REMARKS_COO, Me.WR_COO, Me.ACKNO_COO, Me.ACTION_COO, Me.Receive_COO})
-        Me.Records_Datagrid.Location = New System.Drawing.Point(4, 91)
+        Me.Records_Datagrid.Location = New System.Drawing.Point(4, 83)
         Me.Records_Datagrid.Name = "Records_Datagrid"
         Me.Records_Datagrid.RowHeadersVisible = False
         Me.Records_Datagrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.Records_Datagrid.Size = New System.Drawing.Size(1156, 567)
+        Me.Records_Datagrid.Size = New System.Drawing.Size(1156, 560)
         Me.Records_Datagrid.TabIndex = 95
+        '
+        'IRNO_COO
+        '
+        Me.IRNO_COO.HeaderText = "IR No."
+        Me.IRNO_COO.Name = "IRNO_COO"
+        Me.IRNO_COO.ReadOnly = True
+        Me.IRNO_COO.Width = 80
+        '
+        'NAME_COO
+        '
+        Me.NAME_COO.HeaderText = "Name"
+        Me.NAME_COO.Name = "NAME_COO"
+        Me.NAME_COO.ReadOnly = True
+        Me.NAME_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.NAME_COO.Width = 280
+        '
+        'COMPANY_COO
+        '
+        Me.COMPANY_COO.HeaderText = "Company"
+        Me.COMPANY_COO.Name = "COMPANY_COO"
+        Me.COMPANY_COO.ReadOnly = True
+        Me.COMPANY_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.COMPANY_COO.Width = 170
+        '
+        'INCIDENT_COO
+        '
+        Me.INCIDENT_COO.HeaderText = "  IR"
+        Me.INCIDENT_COO.Name = "INCIDENT_COO"
+        Me.INCIDENT_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.INCIDENT_COO.Width = 55
+        '
+        'SC_COO
+        '
+        Me.SC_COO.HeaderText = "  SC"
+        Me.SC_COO.Name = "SC_COO"
+        Me.SC_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SC_COO.Width = 55
+        '
+        'EXPLAIN_COO
+        '
+        Me.EXPLAIN_COO.HeaderText = "Explanation"
+        Me.EXPLAIN_COO.Name = "EXPLAIN_COO"
+        Me.EXPLAIN_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
+        'REMARKS_COO
+        '
+        Me.REMARKS_COO.HeaderText = "Remarks"
+        Me.REMARKS_COO.Name = "REMARKS_COO"
+        Me.REMARKS_COO.Width = 80
+        '
+        'WR_COO
+        '
+        Me.WR_COO.HeaderText = "  WR"
+        Me.WR_COO.Name = "WR_COO"
+        Me.WR_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.WR_COO.Width = 65
+        '
+        'ACKNO_COO
+        '
+        Me.ACKNO_COO.HeaderText = "Acknowledge"
+        Me.ACKNO_COO.Name = "ACKNO_COO"
+        Me.ACKNO_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ACKNO_COO.Width = 115
+        '
+        'ACTION_COO
+        '
+        Me.ACTION_COO.HeaderText = "  Action"
+        Me.ACTION_COO.Name = "ACTION_COO"
+        Me.ACTION_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ACTION_COO.Width = 75
+        '
+        'Receive_COO
+        '
+        Me.Receive_COO.HeaderText = "Received"
+        Me.Receive_COO.Name = "Receive_COO"
+        Me.Receive_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Receive_COO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Receive_COO.Width = 80
         '
         'Records_Search_CB
         '
@@ -544,9 +643,9 @@ Partial Class frmIncidentReport
         Me.Corrective_Page.Location = New System.Drawing.Point(4, 29)
         Me.Corrective_Page.Name = "Corrective_Page"
         Me.Corrective_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.Corrective_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.Corrective_Page.Size = New System.Drawing.Size(1167, 647)
         Me.Corrective_Page.TabIndex = 5
-        Me.Corrective_Page.Text = "Corrective Action   "
+        Me.Corrective_Page.Text = "  Corrective Action Notice   "
         Me.Corrective_Page.UseVisualStyleBackColor = True
         '
         'SplitContainer4
@@ -1055,6 +1154,7 @@ Partial Class frmIncidentReport
         '
         Me.Coo_Branch_TXT.Location = New System.Drawing.Point(367, 99)
         Me.Coo_Branch_TXT.Name = "Coo_Branch_TXT"
+        Me.Coo_Branch_TXT.ReadOnly = True
         Me.Coo_Branch_TXT.Size = New System.Drawing.Size(160, 28)
         Me.Coo_Branch_TXT.TabIndex = 6
         '
@@ -1071,6 +1171,7 @@ Partial Class frmIncidentReport
         '
         Me.Coo_Company_TXT.Location = New System.Drawing.Point(125, 99)
         Me.Coo_Company_TXT.Name = "Coo_Company_TXT"
+        Me.Coo_Company_TXT.ReadOnly = True
         Me.Coo_Company_TXT.Size = New System.Drawing.Size(171, 28)
         Me.Coo_Company_TXT.TabIndex = 4
         '
@@ -1087,6 +1188,7 @@ Partial Class frmIncidentReport
         '
         Me.Coo_Position_TXT.Location = New System.Drawing.Point(125, 61)
         Me.Coo_Position_TXT.Name = "Coo_Position_TXT"
+        Me.Coo_Position_TXT.ReadOnly = True
         Me.Coo_Position_TXT.Size = New System.Drawing.Size(402, 28)
         Me.Coo_Position_TXT.TabIndex = 2
         '
@@ -1103,6 +1205,7 @@ Partial Class frmIncidentReport
         '
         Me.Coo_Name_TXT.Location = New System.Drawing.Point(125, 23)
         Me.Coo_Name_TXT.Name = "Coo_Name_TXT"
+        Me.Coo_Name_TXT.ReadOnly = True
         Me.Coo_Name_TXT.Size = New System.Drawing.Size(402, 28)
         Me.Coo_Name_TXT.TabIndex = 0
         '
@@ -1138,9 +1241,9 @@ Partial Class frmIncidentReport
         Me.Acknowledg_Page.Location = New System.Drawing.Point(4, 29)
         Me.Acknowledg_Page.Name = "Acknowledg_Page"
         Me.Acknowledg_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.Acknowledg_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.Acknowledg_Page.Size = New System.Drawing.Size(1167, 647)
         Me.Acknowledg_Page.TabIndex = 4
-        Me.Acknowledg_Page.Text = "Acknowledgment   "
+        Me.Acknowledg_Page.Text = "    Acknowledgment     "
         Me.Acknowledg_Page.UseVisualStyleBackColor = True
         '
         'Ack_Panel
@@ -1326,9 +1429,9 @@ Partial Class frmIncidentReport
         Me.WrittenReprimand_Page.Location = New System.Drawing.Point(4, 29)
         Me.WrittenReprimand_Page.Name = "WrittenReprimand_Page"
         Me.WrittenReprimand_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.WrittenReprimand_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.WrittenReprimand_Page.Size = New System.Drawing.Size(1167, 647)
         Me.WrittenReprimand_Page.TabIndex = 1
-        Me.WrittenReprimand_Page.Text = "Written Notice    "
+        Me.WrittenReprimand_Page.Text = "    Written Reprimand Notice    "
         Me.WrittenReprimand_Page.UseVisualStyleBackColor = True
         '
         'Label25
@@ -1957,6 +2060,7 @@ Partial Class frmIncidentReport
         '
         Me.WP_Branch_TXT.Location = New System.Drawing.Point(367, 99)
         Me.WP_Branch_TXT.Name = "WP_Branch_TXT"
+        Me.WP_Branch_TXT.ReadOnly = True
         Me.WP_Branch_TXT.Size = New System.Drawing.Size(160, 28)
         Me.WP_Branch_TXT.TabIndex = 6
         '
@@ -1973,6 +2077,7 @@ Partial Class frmIncidentReport
         '
         Me.WP_Company_TXT.Location = New System.Drawing.Point(125, 99)
         Me.WP_Company_TXT.Name = "WP_Company_TXT"
+        Me.WP_Company_TXT.ReadOnly = True
         Me.WP_Company_TXT.Size = New System.Drawing.Size(171, 28)
         Me.WP_Company_TXT.TabIndex = 4
         '
@@ -1989,6 +2094,7 @@ Partial Class frmIncidentReport
         '
         Me.WP_Position_TXT.Location = New System.Drawing.Point(125, 61)
         Me.WP_Position_TXT.Name = "WP_Position_TXT"
+        Me.WP_Position_TXT.ReadOnly = True
         Me.WP_Position_TXT.Size = New System.Drawing.Size(402, 28)
         Me.WP_Position_TXT.TabIndex = 2
         '
@@ -2005,6 +2111,7 @@ Partial Class frmIncidentReport
         '
         Me.WP_Name_TXT.Location = New System.Drawing.Point(125, 23)
         Me.WP_Name_TXT.Name = "WP_Name_TXT"
+        Me.WP_Name_TXT.ReadOnly = True
         Me.WP_Name_TXT.Size = New System.Drawing.Size(402, 28)
         Me.WP_Name_TXT.TabIndex = 0
         '
@@ -2021,9 +2128,9 @@ Partial Class frmIncidentReport
         Me.Explanation_Page.Location = New System.Drawing.Point(4, 29)
         Me.Explanation_Page.Name = "Explanation_Page"
         Me.Explanation_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.Explanation_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.Explanation_Page.Size = New System.Drawing.Size(1167, 647)
         Me.Explanation_Page.TabIndex = 2
-        Me.Explanation_Page.Text = "Explanation   "
+        Me.Explanation_Page.Text = "   Explanation   "
         Me.Explanation_Page.UseVisualStyleBackColor = True
         '
         'Remarks_Panel
@@ -2259,16 +2366,15 @@ Partial Class frmIncidentReport
         '
         'ShowCause_Page
         '
-        Me.ShowCause_Page.AutoScroll = True
         Me.ShowCause_Page.Controls.Add(Me.Label17)
         Me.ShowCause_Page.Controls.Add(Me.SCNo_LBL)
         Me.ShowCause_Page.Controls.Add(Me.SplitContainer2)
         Me.ShowCause_Page.Location = New System.Drawing.Point(4, 29)
         Me.ShowCause_Page.Name = "ShowCause_Page"
         Me.ShowCause_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.ShowCause_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.ShowCause_Page.Size = New System.Drawing.Size(1167, 647)
         Me.ShowCause_Page.TabIndex = 0
-        Me.ShowCause_Page.Text = "Show Cause Notice   "
+        Me.ShowCause_Page.Text = "  Show Cause Notice      "
         Me.ShowCause_Page.UseVisualStyleBackColor = True
         '
         'Label17
@@ -2355,6 +2461,7 @@ Partial Class frmIncidentReport
         Me.EmpName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EmpName_TXT.Location = New System.Drawing.Point(4, 9)
         Me.EmpName_TXT.Name = "EmpName_TXT"
+        Me.EmpName_TXT.ReadOnly = True
         Me.EmpName_TXT.Size = New System.Drawing.Size(409, 26)
         Me.EmpName_TXT.TabIndex = 1
         '
@@ -2372,6 +2479,7 @@ Partial Class frmIncidentReport
         Me.Position_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Position_TXT.Location = New System.Drawing.Point(120, 76)
         Me.Position_TXT.Name = "Position_TXT"
+        Me.Position_TXT.ReadOnly = True
         Me.Position_TXT.Size = New System.Drawing.Size(409, 26)
         Me.Position_TXT.TabIndex = 3
         '
@@ -2398,6 +2506,7 @@ Partial Class frmIncidentReport
         Me.Branch_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Branch_TXT.Location = New System.Drawing.Point(351, 121)
         Me.Branch_TXT.Name = "Branch_TXT"
+        Me.Branch_TXT.ReadOnly = True
         Me.Branch_TXT.Size = New System.Drawing.Size(177, 26)
         Me.Branch_TXT.TabIndex = 8
         '
@@ -2406,6 +2515,7 @@ Partial Class frmIncidentReport
         Me.Company_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Company_TXT.Location = New System.Drawing.Point(120, 121)
         Me.Company_TXT.Name = "Company_TXT"
+        Me.Company_TXT.ReadOnly = True
         Me.Company_TXT.Size = New System.Drawing.Size(158, 26)
         Me.Company_TXT.TabIndex = 5
         '
@@ -2757,7 +2867,7 @@ Partial Class frmIncidentReport
         Me.IR_Page.Location = New System.Drawing.Point(4, 29)
         Me.IR_Page.Name = "IR_Page"
         Me.IR_Page.Padding = New System.Windows.Forms.Padding(3)
-        Me.IR_Page.Size = New System.Drawing.Size(1167, 667)
+        Me.IR_Page.Size = New System.Drawing.Size(1167, 647)
         Me.IR_Page.TabIndex = 3
         Me.IR_Page.Text = "Incident Report   "
         Me.IR_Page.UseVisualStyleBackColor = True
@@ -3084,6 +3194,7 @@ Partial Class frmIncidentReport
         Me.Supervisor_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Supervisor_TXT.Location = New System.Drawing.Point(206, 40)
         Me.Supervisor_TXT.Name = "Supervisor_TXT"
+        Me.Supervisor_TXT.ReadOnly = True
         Me.Supervisor_TXT.Size = New System.Drawing.Size(354, 26)
         Me.Supervisor_TXT.TabIndex = 17
         '
@@ -3119,6 +3230,7 @@ Partial Class frmIncidentReport
         Me.PositionS_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PositionS_TXT.Location = New System.Drawing.Point(206, 88)
         Me.PositionS_TXT.Name = "PositionS_TXT"
+        Me.PositionS_TXT.ReadOnly = True
         Me.PositionS_TXT.Size = New System.Drawing.Size(354, 26)
         Me.PositionS_TXT.TabIndex = 20
         '
@@ -3146,6 +3258,7 @@ Partial Class frmIncidentReport
         Me.Person_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Person_TXT.Location = New System.Drawing.Point(206, 155)
         Me.Person_TXT.Name = "Person_TXT"
+        Me.Person_TXT.ReadOnly = True
         Me.Person_TXT.Size = New System.Drawing.Size(354, 26)
         Me.Person_TXT.TabIndex = 22
         '
@@ -3180,6 +3293,7 @@ Partial Class frmIncidentReport
         Me.PositionP_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PositionP_TXT.Location = New System.Drawing.Point(206, 209)
         Me.PositionP_TXT.Name = "PositionP_TXT"
+        Me.PositionP_TXT.ReadOnly = True
         Me.PositionP_TXT.Size = New System.Drawing.Size(354, 26)
         Me.PositionP_TXT.TabIndex = 25
         '
@@ -3206,6 +3320,7 @@ Partial Class frmIncidentReport
         Me.Department_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Department_TXT.Location = New System.Drawing.Point(206, 259)
         Me.Department_TXT.Name = "Department_TXT"
+        Me.Department_TXT.ReadOnly = True
         Me.Department_TXT.Size = New System.Drawing.Size(354, 26)
         Me.Department_TXT.TabIndex = 28
         '
@@ -3249,126 +3364,41 @@ Partial Class frmIncidentReport
         Me.CorrectiveWindow.Controls.Add(Me.Corrective_Page)
         Me.CorrectiveWindow.Controls.Add(Me.List_Page)
         Me.CorrectiveWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CorrectiveWindow.Location = New System.Drawing.Point(1, 36)
+        Me.CorrectiveWindow.Location = New System.Drawing.Point(1, 52)
         Me.CorrectiveWindow.Name = "CorrectiveWindow"
         Me.CorrectiveWindow.SelectedIndex = 0
-        Me.CorrectiveWindow.Size = New System.Drawing.Size(1175, 700)
+        Me.CorrectiveWindow.Size = New System.Drawing.Size(1175, 680)
         Me.CorrectiveWindow.TabIndex = 11
         '
-        'IRNO_COO
+        'Close_BTN
         '
-        Me.IRNO_COO.HeaderText = "IR No."
-        Me.IRNO_COO.Name = "IRNO_COO"
-        Me.IRNO_COO.ReadOnly = True
-        Me.IRNO_COO.Width = 80
+        Me.Close_BTN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Close_BTN.Image = CType(resources.GetObject("Close_BTN.Image"), System.Drawing.Image)
+        Me.Close_BTN.Location = New System.Drawing.Point(1150, 2)
+        Me.Close_BTN.Name = "Close_BTN"
+        Me.Close_BTN.Size = New System.Drawing.Size(30, 30)
+        Me.Close_BTN.TabIndex = 10
+        Me.Close_BTN.UseVisualStyleBackColor = True
         '
-        'NAME_COO
+        'Update_BTN
         '
-        Me.NAME_COO.HeaderText = "Name"
-        Me.NAME_COO.Name = "NAME_COO"
-        Me.NAME_COO.ReadOnly = True
-        Me.NAME_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.NAME_COO.Width = 280
-        '
-        'COMPANY_COO
-        '
-        Me.COMPANY_COO.HeaderText = "Company"
-        Me.COMPANY_COO.Name = "COMPANY_COO"
-        Me.COMPANY_COO.ReadOnly = True
-        Me.COMPANY_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.COMPANY_COO.Width = 155
-        '
-        'INCIDENT_COO
-        '
-        Me.INCIDENT_COO.HeaderText = "  IR"
-        Me.INCIDENT_COO.Name = "INCIDENT_COO"
-        Me.INCIDENT_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.INCIDENT_COO.Width = 55
-        '
-        'SC_COO
-        '
-        Me.SC_COO.HeaderText = "  SC"
-        Me.SC_COO.Name = "SC_COO"
-        Me.SC_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SC_COO.Width = 55
-        '
-        'EXPLAIN_COO
-        '
-        Me.EXPLAIN_COO.HeaderText = "Explanation"
-        Me.EXPLAIN_COO.Name = "EXPLAIN_COO"
-        Me.EXPLAIN_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.EXPLAIN_COO.Width = 115
-        '
-        'REMARKS_COO
-        '
-        Me.REMARKS_COO.HeaderText = "Remarks"
-        Me.REMARKS_COO.Name = "REMARKS_COO"
-        Me.REMARKS_COO.Width = 80
-        '
-        'WR_COO
-        '
-        Me.WR_COO.HeaderText = "  WR"
-        Me.WR_COO.Name = "WR_COO"
-        Me.WR_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.WR_COO.Width = 65
-        '
-        'ACKNO_COO
-        '
-        Me.ACKNO_COO.HeaderText = "Acknowledge"
-        Me.ACKNO_COO.Name = "ACKNO_COO"
-        Me.ACKNO_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.ACKNO_COO.Width = 115
-        '
-        'ACTION_COO
-        '
-        Me.ACTION_COO.HeaderText = "  Action"
-        Me.ACTION_COO.Name = "ACTION_COO"
-        Me.ACTION_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.ACTION_COO.Width = 75
-        '
-        'Receive_COO
-        '
-        Me.Receive_COO.HeaderText = "Received"
-        Me.Receive_COO.Name = "Receive_COO"
-        Me.Receive_COO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Receive_COO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Receive_COO.Width = 80
-        '
-        'RecordsRemaks_Panel
-        '
-        Me.RecordsRemaks_Panel.BackColor = System.Drawing.Color.PapayaWhip
-        Me.RecordsRemaks_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.RecordsRemaks_Panel.Controls.Add(Me.Remarks_LABEL)
-        Me.RecordsRemaks_Panel.Controls.Add(Me.RecordsRemarks_RichB)
-        Me.RecordsRemaks_Panel.Location = New System.Drawing.Point(828, 150)
-        Me.RecordsRemaks_Panel.Name = "RecordsRemaks_Panel"
-        Me.RecordsRemaks_Panel.Size = New System.Drawing.Size(310, 169)
-        Me.RecordsRemaks_Panel.TabIndex = 102
-        Me.RecordsRemaks_Panel.Visible = False
-        '
-        'RecordsRemarks_RichB
-        '
-        Me.RecordsRemarks_RichB.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.RecordsRemarks_RichB.Location = New System.Drawing.Point(13, 27)
-        Me.RecordsRemarks_RichB.Name = "RecordsRemarks_RichB"
-        Me.RecordsRemarks_RichB.Size = New System.Drawing.Size(283, 122)
-        Me.RecordsRemarks_RichB.TabIndex = 0
-        Me.RecordsRemarks_RichB.Text = ""
-        '
-        'Remarks_LABEL
-        '
-        Me.Remarks_LABEL.AutoSize = True
-        Me.Remarks_LABEL.Location = New System.Drawing.Point(288, 1)
-        Me.Remarks_LABEL.Name = "Remarks_LABEL"
-        Me.Remarks_LABEL.Size = New System.Drawing.Size(20, 20)
-        Me.Remarks_LABEL.TabIndex = 2
-        Me.Remarks_LABEL.Text = "X"
+        Me.Update_BTN.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.Update_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Update_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Update_BTN.ForeColor = System.Drawing.Color.Black
+        Me.Update_BTN.Location = New System.Drawing.Point(131, 12)
+        Me.Update_BTN.Name = "Update_BTN"
+        Me.Update_BTN.Size = New System.Drawing.Size(75, 23)
+        Me.Update_BTN.TabIndex = 13
+        Me.Update_BTN.Text = "Update"
+        Me.Update_BTN.UseVisualStyleBackColor = False
         '
         'frmIncidentReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1181, 749)
+        Me.Controls.Add(Me.Update_BTN)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.Close_BTN)
         Me.Controls.Add(Me.CorrectiveWindow)
@@ -3377,6 +3407,8 @@ Partial Class frmIncidentReport
         Me.Text = "frmIncidentReport"
         Me.List_Page.ResumeLayout(False)
         Me.List_Page.PerformLayout()
+        Me.RecordsRemaks_Panel.ResumeLayout(False)
+        Me.RecordsRemaks_Panel.PerformLayout()
         Me.Records_Panel.ResumeLayout(False)
         Me.Records_Panel.PerformLayout()
         CType(Me.Received_Picture, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3452,8 +3484,6 @@ Partial Class frmIncidentReport
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.CorrectiveWindow.ResumeLayout(False)
-        Me.RecordsRemaks_Panel.ResumeLayout(False)
-        Me.RecordsRemaks_Panel.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3748,6 +3778,7 @@ Partial Class frmIncidentReport
     Friend WithEvents RecordsSave_BTN As Button
     Friend WithEvents RecordsRemaks_Panel As Panel
     Friend WithEvents RecordsRemarks_RichB As RichTextBox
+    Friend WithEvents Remarks_LABEL As Label
     Friend WithEvents IRNO_COO As DataGridViewTextBoxColumn
     Friend WithEvents NAME_COO As DataGridViewTextBoxColumn
     Friend WithEvents COMPANY_COO As DataGridViewTextBoxColumn
@@ -3759,5 +3790,5 @@ Partial Class frmIncidentReport
     Friend WithEvents ACKNO_COO As DataGridViewButtonColumn
     Friend WithEvents ACTION_COO As DataGridViewButtonColumn
     Friend WithEvents Receive_COO As DataGridViewButtonColumn
-    Friend WithEvents Remarks_LABEL As Label
+    Friend WithEvents Update_BTN As Button
 End Class

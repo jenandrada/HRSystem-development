@@ -186,10 +186,6 @@ Public Class frmMainForm
         frmGenerate.Show()
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs)
-        OpenWindowsForm("frmappointment")
-    End Sub
-
     Private Sub MontlyAggreeAssignToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MontlyAggreeAssignToolStripMenuItem.Click
         frmGenerate.FormType = frmGenerate.ReportType.monthaggreeassigned
         frmGenerate.Show()
@@ -226,6 +222,10 @@ Public Class frmMainForm
 
     Private Sub BHouseAllowance_BTN_Click(sender As Object, e As EventArgs) Handles Compensation_BTN.Click
         'OpenWindowsForm("frmCompensation")
+    End Sub
+
+    Private Sub Charges_BTN_Click(sender As Object, e As EventArgs) Handles Charges_BTN.Click
+        OpenWindowsForm("frmECS")
     End Sub
 
     Private Sub AppTimer_Tick(sender As Object, e As EventArgs) Handles AppTimer.Tick
@@ -303,10 +303,6 @@ Public Class frmMainForm
         mpr.Show()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Monitoring_BTN.Click
-        'OpenWindowsForm("FrmMonitoring")
-    End Sub
-
     Private Sub ImportEployeeFromFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportEployeeFromFileToolStripMenuItem.Click
         Dim f As New ImportEmpFromFile
         f.Show()
@@ -345,13 +341,13 @@ Public Class frmMainForm
         btnWorkManage.BackColor = Color.Black
     End Sub
 
-    Private Sub Button2_MouseEnter(sender As Object, e As EventArgs) Handles Monitoring_BTN.MouseEnter
-        Monitoring_BTN.BackColor = Color.DimGray
+    Private Sub Button2_MouseEnter(sender As Object, e As EventArgs) Handles Charges_BTN.MouseEnter
+        Charges_BTN.BackColor = Color.DimGray
         Panel_Maintenance.Visible = False
     End Sub
 
-    Private Sub Button2_MouseLeave(sender As Object, e As EventArgs) Handles Monitoring_BTN.MouseLeave
-        Monitoring_BTN.BackColor = Color.Black
+    Private Sub Button2_MouseLeave(sender As Object, e As EventArgs) Handles Charges_BTN.MouseLeave
+        Charges_BTN.BackColor = Color.Black
     End Sub
 
     Private Sub BHouseAllowance_BTN_MouseEnter(sender As Object, e As EventArgs) Handles Compensation_BTN.MouseEnter

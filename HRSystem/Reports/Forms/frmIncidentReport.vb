@@ -568,7 +568,7 @@ Public Class frmIncidentReport
 
         End If
 
-        Dim STR As String = "D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf"
+        Dim IRPath As String = "D:\HR Records\" & Folder & "\" & Name & "\IR No. " & IRNo & ".pdf"
 
         If Not Evidence_PB.Tag = Nothing Then
             imgData = ImgToByteArray(Image.FromFile(Evidence_PB.Tag), ImageFormat.Jpeg)
@@ -576,11 +576,11 @@ Public Class frmIncidentReport
             imgData = ImgToByteArray(Evidence_PB.InitialImage, ImageFormat.Jpeg)
         End If
 
-        Console.WriteLine("BBBBBBB " & EvidencePAth)
-
-        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, _incidentDate.Text, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, STR, imgData, EvidencePAth)
+        SaveIncidentReport(IRNo_LBL.Text, Supervisor_TXT.Tag, Person_TXT.Tag, IncidentLoc_TXT.Text, _incidentDate.Text, DateReceive_DTP.Value, Action_CB.Tag, Description_RichText.Text, PreparedBy_TXT.Text, Received_TXT.Text, ReviewedBy_TXT.Text, IRPath, imgData, EvidencePAth)
 
         SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Person_TXT.Text, "Incident Report IR No. " & IRNo_LBL.Text, Department_TXT.Text, Department_TXT.Tag, PositionP_TXT.Text)
+
+        SaveToPDF(IRNo_LBL.Text, Person_TXT.Text, IO.File.ReadAllBytes(IRPath), IRPath, "INCIDENTREPORT", "IR_PATH")
 
         MessageBox.Show($"{Name} successfully saved to D:\HR Records\{Folder}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -701,13 +701,15 @@ Public Class frmIncidentReport
             imgData = ImgToByteArray(PictureBox1.InitialImage, ImageFormat.Jpeg)
         End If
 
-        LoadUploadToReportViewer(Explain_datagrid.Item(0, i).Value, Explain_datagrid.Item(1, i).Value, RptViewer_Explanation, "Explanation", ExpalanationPath)
+        LoadUploadToReportViewer(Explain_datagrid.Item(0, i).Value, Explain_datagrid.Item(1, i).Value, RptViewer_Explanation, "Show Cause Explanation", ExpalanationPath)
 
         ToPDF("IR No. " & Explain_datagrid.Item(0, i).Value & " - " & Explain_datagrid.Item(1, i).Value, "Incident Report", RptViewer_Explanation, "Explanation")
 
         ExplainationSave(Explain_datagrid.Item(0, i).Value, imgData, "DONE", FolderPath)
 
-        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Explain_datagrid.Item(1, i).Value, "Uploaded Explanation for IR No. " & Explain_datagrid.Item(0, i).Value, "-", "-", "-")
+        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Explain_datagrid.Item(1, i).Value, "Show Cause Explanation for IR No. " & Explain_datagrid.Item(0, i).Value, "-", "-", "-")
+
+        SaveToPDF(Explain_datagrid.Item(0, i).Value, Explain_datagrid.Item(1, i).Value, IO.File.ReadAllBytes(FolderPath), FolderPath, "EXPLANATION", "EXPLAIN_PATH")
 
         Modify_Panel.Visible = False
         PictureBox1.Image = Nothing
@@ -1052,6 +1054,8 @@ Public Class frmIncidentReport
 
             SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, EmpName_TXT.Text, "Show Cause Notice IR No. " & SCNo_LBL.Text, Branch_TXT.Text, Position_TXT.Tag, Position_TXT.Text)
 
+            SaveToPDF(SCNo_LBL.Text, EmpName_TXT.Text, IO.File.ReadAllBytes(FolderPath), FolderPath, "SHOWCAUSE", "SC_PATH")
+
             ClearShowCause()
 
             'SCPendings(frmMainForm.PendingNo_LBL)
@@ -1092,6 +1096,11 @@ Public Class frmIncidentReport
 
             PopulateRecords(Records_Datagrid)
 
+            'ElseIf CorrectiveWindow.SelectedIndex = 7 Then
+
+            '    ECS_Search_Combo.SelectedIndex = 0
+
+            '    LoadECS(lvECS)
         End If
 
     End Sub
@@ -1165,6 +1174,8 @@ Public Class frmIncidentReport
 
                 SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, NoOFMonths_TXT.Text, AmountPerPayroll_TXT.Text)
             End If
+
+            SaveToPDF(IRNoWritten_LBL.Text, WP_Name_TXT.Text, IO.File.ReadAllBytes(FolderPath), FolderPath, "WRITTENREPRIMAND", "WRITTEN_PATH")
 
             ClearWRITTEN()
 
@@ -1585,13 +1596,16 @@ Public Class frmIncidentReport
             imgData = ImgToByteArray(PictureBox2.InitialImage, ImageFormat.Jpeg)
         End If
 
-        LoadUploadToReportViewer(Ack_Datagrid.Item(0, i).Value, Ack_Datagrid.Item(1, i).Value, RptViewer_Acknowledge, "Acknowledgment", AcknowledgePath)
+        LoadUploadToReportViewer(Ack_Datagrid.Item(0, i).Value, Ack_Datagrid.Item(1, i).Value, RptViewer_Acknowledge, "Written Reprimand Acknowledged", AcknowledgePath)
 
         ToPDF("IR No. " & Ack_Datagrid.Item(0, i).Value & " - " & Ack_Datagrid.Item(1, i).Value, "Incident Report", RptViewer_Acknowledge, "Acknowledgment")
 
         AcknowledgeSave(Ack_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath)
 
-        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Ack_Datagrid.Item(1, i).Value, "Acknowledgment IR No. " & Ack_Datagrid.Item(0, i).Value, "-", "-", "-")
+        SaveToPDF(Ack_Datagrid.Item(0, i).Value, Ack_Datagrid.Item(1, i).Value, IO.File.ReadAllBytes(FolderPath), FolderPath, "ACKNOWLEDGMENT", "ACKNOW_PATH")
+
+        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Ack_Datagrid.Item(1, i).Value, "Written Acknowledged for IR No. " & Ack_Datagrid.Item(0, i).Value, "-", "-", "-")
+
 
         Ack_Panel.Visible = False
         PictureBox2.Image = Nothing
@@ -1661,10 +1675,12 @@ Public Class frmIncidentReport
     End Sub
 
     Private Sub PreviewCOR_BTN_Click(sender As Object, e As EventArgs) Handles PreviewCOR_BTN.Click
-        If Not Coo_Name_TXT.Text = "" Then
-            LoadCorrectiveAction()
-        Else
+        If Coo_Name_TXT.Text = "" Then
             MessageBox.Show($"Please Select Employee's name", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf DateSuspend_RichB.Text = "" Then
+            MessageBox.Show($"Please Select Suspension date", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            LoadCorrectiveAction()
         End If
     End Sub
 
@@ -1739,17 +1755,6 @@ Public Class frmIncidentReport
         End If
     End Sub
 
-    'Private Sub AmountPerPayroll_TXT_KeyPress(sender As Object, e As KeyPressEventArgs)
-
-    '    If e.KeyChar <> ChrW(Keys.Back) Then
-
-    '        If Char.IsNumber(e.KeyChar) Or e.KeyChar = "." Then
-    '        Else
-    '            e.Handled = True
-    '        End If
-    '    End If
-
-    'End Sub
 
     Private Sub NoOFPayroll_TXT_TextChanged(sender As Object, e As EventArgs) Handles NoOFPayroll_TXT.TextChanged
 
@@ -2326,6 +2331,10 @@ Public Class frmIncidentReport
         RecordsRemaks_Panel.Visible = False
     End Sub
 
+    Private Sub Update_BTN_Click(sender As Object, e As EventArgs) Handles Update_BTN.Click
+        FETCH_PDF_FROM_DATABASE()
+    End Sub
+
     Private Sub RecordsSave_BTN_Click(sender As Object, e As EventArgs) Handles RecordsSave_BTN.Click
 
         Dim i As Integer = Records_Datagrid.CurrentRow.Index
@@ -2336,13 +2345,15 @@ Public Class frmIncidentReport
             imgData = ImgToByteArray(Received_Picture.InitialImage, ImageFormat.Jpeg)
         End If
 
-        LoadUploadToReportViewer(Records_Datagrid.Item(0, i).Value, Records_Datagrid.Item(1, i).Value, RptViewer_Records, "Received", ReceivedPath)
+        LoadUploadToReportViewer(Records_Datagrid.Item(0, i).Value, Records_Datagrid.Item(1, i).Value, RptViewer_Records, "Corrective Action Acknowledged", ReceivedPath)
 
         ToPDF("IR No. " & Records_Datagrid.Item(0, i).Value & " - " & Records_Datagrid.Item(1, i).Value, "Incident Report", RptViewer_Records, "Received")
 
         ReceivedSave(Records_Datagrid.Item(0, i).Value, imgData, "DONE", FolderPath)
 
-        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Records_Datagrid.Item(1, i).Value, "Received IR No. " & Records_Datagrid.Item(0, i).Value, "-", "-", "-")
+        SaveToPDF(Records_Datagrid.Item(0, i).Value, Records_Datagrid.Item(1, i).Value, IO.File.ReadAllBytes(FolderPath), FolderPath, "RECEIVED", "RECEIVED_PATH")
+
+        SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Records_Datagrid.Item(1, i).Value, "Corrective Acknowledged for IR No. " & Records_Datagrid.Item(0, i).Value, "-", "-", "-")
 
         Records_Panel.Visible = False
         Received_Picture.Image = Nothing
@@ -2369,6 +2380,8 @@ Public Class frmIncidentReport
             SaveCorrectiveAction(IRNoCOO_LBL.Text, "DONE", FolderPath, Date.Now)
 
             SaveTRANSACTIONHistory(frmMainForm.UserName_LBL.Text, Coo_Name_TXT.Text, "Corrective Action for IR No. " & IRNoCOO_LBL.Text, Coo_Branch_TXT.Text, Coo_Position_TXT.Tag, Coo_Position_TXT.Text)
+
+            SaveToPDF(IRNoCOO_LBL.Text, Coo_Name_TXT.Text, IO.File.ReadAllBytes(FolderPath), FolderPath, "CORRECTIVEACTION", "CORRECTIVE_PATH")
 
             ClearCorrective()
 

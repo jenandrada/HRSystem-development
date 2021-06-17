@@ -84,8 +84,8 @@
 
     End Sub
     'SaveECS(IRNoWritten_LBL.Text, WP_Name_TXT.Tag, Date.Now, ECSNo_TXT.Text, Charges_Numeric.Text, NoOFMonths_TXT.Text, AmountPerPayroll_TXT.Text)
-    Friend Sub SaveECS(IRNo As String, person_ID As String, dateCreated As String, ecsno As String, amount As String, noOfMonths As Integer, perPayroll As String)
-
+    Friend Sub SaveECS(IRNo As String, person_ID As String, dateCreated As String, ecsno As String, amount As String, noOfMonths As String, perPayroll As String)
+        Console.WriteLine("AAAAAAA " & noOfMonths)
         Dim mysql As String = "Select * From IR_ECS Rows 1"
         Using ds As DataSet = LoadSQL(mysql, "IR_ECS")
 
@@ -136,6 +136,41 @@
             ds.Tables(0).Rows.Add(dsNewRow)
             SaveEntry(ds)
         End Using
+
+    End Sub
+
+    Friend Sub SaveToPDF(irno As String, empid As String, pdf As Byte(), path As String, column As String, columnPath As String)
+
+        Dim mysql As String = "Select * FROM IR_PDF where IRNO = '" & irno & "'"
+        Dim dss As DataSet = LoadSQL(mysql, "IR_PDF")
+        If dss.Tables(0).Rows.Count > 0 Then
+            With dss.Tables(0).Rows(0)
+                .Item("EMP_NAME") = empid
+                .Item(column) = pdf
+                .Item(columnPath) = path
+            End With
+            SaveEntry(dss, False)
+
+        Else
+
+            mysql = "Select * From IR_PDF Rows 1"
+            Using ds As DataSet = LoadSQL(mysql, "IR_PDF")
+
+                Dim dsNewRow As DataRow = ds.Tables(0).NewRow
+                With dsNewRow
+
+                    .Item("IRNO") = irno
+                    .Item("EMP_NAME") = empid
+                    .Item(column) = pdf
+                    .Item(columnPath) = path
+
+                End With
+                ds.Tables(0).Rows.Add(dsNewRow)
+                SaveEntry(ds)
+            End Using
+
+        End If
+
 
     End Sub
 

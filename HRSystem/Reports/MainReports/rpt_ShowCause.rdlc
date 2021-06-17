@@ -1604,8 +1604,11 @@ parameters!paramCompany.Value = "PCOM", "PCOM")</Value>
                 <Top>0.78062in</Top>
                 <Left>0.22049in</Left>
                 <Height>0.25in</Height>
-                <Width>3.91667in</Width>
+                <Width>1.30209in</Width>
                 <ZIndex>20</ZIndex>
+                <Visibility>
+                  <Hidden>true</Hidden>
+                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>

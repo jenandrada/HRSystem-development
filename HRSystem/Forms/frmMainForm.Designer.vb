@@ -78,7 +78,7 @@ Partial Class frmMainForm
         Me.btnWorkManage = New System.Windows.Forms.Button()
         Me.btn_Maintenance_Panel = New System.Windows.Forms.Button()
         Me.btnManageEmployee = New System.Windows.Forms.Button()
-        Me.Monitoring_BTN = New System.Windows.Forms.Button()
+        Me.Charges_BTN = New System.Windows.Forms.Button()
         Me.Compensation_BTN = New System.Windows.Forms.Button()
         Me.RateEMP_BTN = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
@@ -437,7 +437,7 @@ Partial Class frmMainForm
         Me.NavagationPanel.Controls.Add(Me.btnWorkManage)
         Me.NavagationPanel.Controls.Add(Me.btn_Maintenance_Panel)
         Me.NavagationPanel.Controls.Add(Me.btnManageEmployee)
-        Me.NavagationPanel.Controls.Add(Me.Monitoring_BTN)
+        Me.NavagationPanel.Controls.Add(Me.Charges_BTN)
         Me.NavagationPanel.Controls.Add(Me.Compensation_BTN)
         Me.NavagationPanel.Controls.Add(Me.RateEMP_BTN)
         Me.NavagationPanel.Location = New System.Drawing.Point(0, 2)
@@ -592,22 +592,22 @@ Partial Class frmMainForm
         Me.btnManageEmployee.Text = "       &Records"
         Me.btnManageEmployee.UseVisualStyleBackColor = False
         '
-        'Monitoring_BTN
+        'Charges_BTN
         '
-        Me.Monitoring_BTN.BackColor = System.Drawing.Color.Black
-        Me.Monitoring_BTN.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Monitoring_BTN.FlatAppearance.BorderSize = 0
-        Me.Monitoring_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Monitoring_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Monitoring_BTN.ForeColor = System.Drawing.Color.White
-        Me.Monitoring_BTN.Image = Global.HRSystem.My.Resources.Resources.attendance_mark_50px
-        Me.Monitoring_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Monitoring_BTN.Location = New System.Drawing.Point(0, 458)
-        Me.Monitoring_BTN.Name = "Monitoring_BTN"
-        Me.Monitoring_BTN.Size = New System.Drawing.Size(177, 75)
-        Me.Monitoring_BTN.TabIndex = 13
-        Me.Monitoring_BTN.Text = "               Under Deve.."
-        Me.Monitoring_BTN.UseVisualStyleBackColor = False
+        Me.Charges_BTN.BackColor = System.Drawing.Color.Black
+        Me.Charges_BTN.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Charges_BTN.FlatAppearance.BorderSize = 0
+        Me.Charges_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Charges_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Charges_BTN.ForeColor = System.Drawing.Color.White
+        Me.Charges_BTN.Image = Global.HRSystem.My.Resources.Resources.attendance_mark_50px
+        Me.Charges_BTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Charges_BTN.Location = New System.Drawing.Point(0, 458)
+        Me.Charges_BTN.Name = "Charges_BTN"
+        Me.Charges_BTN.Size = New System.Drawing.Size(177, 75)
+        Me.Charges_BTN.TabIndex = 13
+        Me.Charges_BTN.Text = "        Charges"
+        Me.Charges_BTN.UseVisualStyleBackColor = False
         '
         'Compensation_BTN
         '
@@ -688,7 +688,7 @@ Partial Class frmMainForm
     Friend WithEvents Dashboard_BTN As System.Windows.Forms.Button
     Friend WithEvents Coorective_BTN As System.Windows.Forms.Button
     Friend WithEvents AppTimer As System.Windows.Forms.Timer
-    Friend WithEvents Monitoring_BTN As Button
+    Friend WithEvents Charges_BTN As Button
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoginToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConnectToDatabaseToolStripMenuItem As ToolStripMenuItem
