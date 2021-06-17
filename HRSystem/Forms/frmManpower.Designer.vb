@@ -26,7 +26,7 @@ Partial Class frmManpower
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmManpower))
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Close_BTN = New System.Windows.Forms.Button()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.City_TabControl = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
@@ -34,28 +34,30 @@ Partial Class frmManpower
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
-        Me.TabControl2 = New System.Windows.Forms.TabControl()
-        Me.TabPage8 = New System.Windows.Forms.TabPage()
-        Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
         Me.TabPage12 = New System.Windows.Forms.TabPage()
         Me.TabPage13 = New System.Windows.Forms.TabPage()
-        Me.TabPage14 = New System.Windows.Forms.TabPage()
-        Me.TabPage15 = New System.Windows.Forms.TabPage()
-        Me.TabPage16 = New System.Windows.Forms.TabPage()
-        Me.TabPage17 = New System.Windows.Forms.TabPage()
-        Me.TabPage18 = New System.Windows.Forms.TabPage()
-        Me.TabPage19 = New System.Windows.Forms.TabPage()
-        Me.TabPage20 = New System.Windows.Forms.TabPage()
-        Me.TabPage21 = New System.Windows.Forms.TabPage()
-        Me.TabPage22 = New System.Windows.Forms.TabPage()
-        Me.TabPage23 = New System.Windows.Forms.TabPage()
-        Me.TabPage24 = New System.Windows.Forms.TabPage()
         Me.TabBranches_Context = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.TabControl1.SuspendLayout()
+        Me.BadBranch_ToolStrip = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GoodBranch_ToolStrip = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckingBranch_ToolStrip = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GensanBranch_Datagrid = New System.Windows.Forms.DataGridView()
+        Me.GensanBranch_Combo = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Gensan_Panel = New System.Windows.Forms.Panel()
+        Me.Gensan_DGV_Company = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gensan_DGV_Pos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gensan_DGV_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gensan_DGV_Started = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gensa_DGV_Appointed = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gensan_DGV_LOS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gensan_DGV_Remarks = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.City_TabControl.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.TabControl2.SuspendLayout()
+        Me.TabBranches_Context.SuspendLayout()
+        CType(Me.GensanBranch_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Gensan_Panel.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label21
@@ -78,30 +80,30 @@ Partial Class frmManpower
         Me.Close_BTN.TabIndex = 13
         Me.Close_BTN.UseVisualStyleBackColor = True
         '
-        'TabControl1
+        'City_TabControl
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage4)
-        Me.TabControl1.Controls.Add(Me.TabPage5)
-        Me.TabControl1.Controls.Add(Me.TabPage6)
-        Me.TabControl1.Controls.Add(Me.TabPage7)
-        Me.TabControl1.Controls.Add(Me.TabPage10)
-        Me.TabControl1.Controls.Add(Me.TabPage11)
-        Me.TabControl1.Controls.Add(Me.TabPage12)
-        Me.TabControl1.Controls.Add(Me.TabPage13)
-        Me.TabControl1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(9, 41)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1162, 677)
-        Me.TabControl1.TabIndex = 15
+        Me.City_TabControl.Controls.Add(Me.TabPage1)
+        Me.City_TabControl.Controls.Add(Me.TabPage2)
+        Me.City_TabControl.Controls.Add(Me.TabPage3)
+        Me.City_TabControl.Controls.Add(Me.TabPage4)
+        Me.City_TabControl.Controls.Add(Me.TabPage5)
+        Me.City_TabControl.Controls.Add(Me.TabPage6)
+        Me.City_TabControl.Controls.Add(Me.TabPage7)
+        Me.City_TabControl.Controls.Add(Me.TabPage10)
+        Me.City_TabControl.Controls.Add(Me.TabPage11)
+        Me.City_TabControl.Controls.Add(Me.TabPage12)
+        Me.City_TabControl.Controls.Add(Me.TabPage13)
+        Me.City_TabControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.City_TabControl.Location = New System.Drawing.Point(9, 41)
+        Me.City_TabControl.Name = "City_TabControl"
+        Me.City_TabControl.SelectedIndex = 0
+        Me.City_TabControl.Size = New System.Drawing.Size(1162, 677)
+        Me.City_TabControl.TabIndex = 15
         '
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.Transparent
-        Me.TabPage1.Controls.Add(Me.TabControl2)
+        Me.TabPage1.Controls.Add(Me.Gensan_Panel)
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -164,47 +166,6 @@ Partial Class frmManpower
         Me.TabPage7.Text = "    North Cotabato  "
         Me.TabPage7.UseVisualStyleBackColor = True
         '
-        'TabControl2
-        '
-        Me.TabControl2.Controls.Add(Me.TabPage8)
-        Me.TabControl2.Controls.Add(Me.TabPage9)
-        Me.TabControl2.Controls.Add(Me.TabPage14)
-        Me.TabControl2.Controls.Add(Me.TabPage15)
-        Me.TabControl2.Controls.Add(Me.TabPage16)
-        Me.TabControl2.Controls.Add(Me.TabPage17)
-        Me.TabControl2.Controls.Add(Me.TabPage18)
-        Me.TabControl2.Controls.Add(Me.TabPage19)
-        Me.TabControl2.Controls.Add(Me.TabPage20)
-        Me.TabControl2.Controls.Add(Me.TabPage21)
-        Me.TabControl2.Controls.Add(Me.TabPage22)
-        Me.TabControl2.Controls.Add(Me.TabPage23)
-        Me.TabControl2.Controls.Add(Me.TabPage24)
-        Me.TabControl2.Location = New System.Drawing.Point(6, 19)
-        Me.TabControl2.Name = "TabControl2"
-        Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(1145, 624)
-        Me.TabControl2.TabIndex = 0
-        '
-        'TabPage8
-        '
-        Me.TabPage8.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage8.Name = "TabPage8"
-        Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage8.TabIndex = 0
-        Me.TabPage8.Text = "  Robinsons (ROG)  "
-        Me.TabPage8.UseVisualStyleBackColor = True
-        '
-        'TabPage9
-        '
-        Me.TabPage9.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage9.Name = "TabPage9"
-        Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage9.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage9.TabIndex = 1
-        Me.TabPage9.Text = "  KCC (KCG)  "
-        Me.TabPage9.UseVisualStyleBackColor = True
-        '
         'TabPage10
         '
         Me.TabPage10.Location = New System.Drawing.Point(4, 25)
@@ -241,124 +202,135 @@ Partial Class frmManpower
         Me.TabPage13.Text = "   Misamis   "
         Me.TabPage13.UseVisualStyleBackColor = True
         '
-        'TabPage14
-        '
-        Me.TabPage14.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage14.Name = "TabPage14"
-        Me.TabPage14.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage14.TabIndex = 2
-        Me.TabPage14.Text = "  Lagao (LAG)  "
-        Me.TabPage14.UseVisualStyleBackColor = True
-        '
-        'TabPage15
-        '
-        Me.TabPage15.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage15.Name = "TabPage15"
-        Me.TabPage15.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage15.TabIndex = 3
-        Me.TabPage15.Text = "  J.Cat 2 (JC2)  "
-        Me.TabPage15.UseVisualStyleBackColor = True
-        '
-        'TabPage16
-        '
-        Me.TabPage16.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage16.Name = "TabPage16"
-        Me.TabPage16.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage16.TabIndex = 4
-        Me.TabPage16.Text = "  Pioneer (PIO)  "
-        Me.TabPage16.UseVisualStyleBackColor = True
-        '
-        'TabPage17
-        '
-        Me.TabPage17.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage17.Name = "TabPage17"
-        Me.TabPage17.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage17.TabIndex = 5
-        Me.TabPage17.Text = "  Cagampang (CAG)  "
-        Me.TabPage17.UseVisualStyleBackColor = True
-        '
-        'TabPage18
-        '
-        Me.TabPage18.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage18.Name = "TabPage18"
-        Me.TabPage18.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage18.TabIndex = 6
-        Me.TabPage18.Text = "  Santiago (SAN)  "
-        Me.TabPage18.UseVisualStyleBackColor = True
-        '
-        'TabPage19
-        '
-        Me.TabPage19.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage19.Name = "TabPage19"
-        Me.TabPage19.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage19.TabIndex = 7
-        Me.TabPage19.Text = "  Roxas (ROX)  "
-        Me.TabPage19.UseVisualStyleBackColor = True
-        '
-        'TabPage20
-        '
-        Me.TabPage20.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage20.Name = "TabPage20"
-        Me.TabPage20.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage20.TabIndex = 8
-        Me.TabPage20.Text = "  Pendatun (PEN)  "
-        Me.TabPage20.UseVisualStyleBackColor = True
-        '
-        'TabPage21
-        '
-        Me.TabPage21.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage21.Name = "TabPage21"
-        Me.TabPage21.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage21.TabIndex = 9
-        Me.TabPage21.Text = "  PG Bldg Nat'l HW (PGN)  "
-        Me.TabPage21.UseVisualStyleBackColor = True
-        '
-        'TabPage22
-        '
-        Me.TabPage22.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage22.Name = "TabPage22"
-        Me.TabPage22.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage22.TabIndex = 10
-        Me.TabPage22.Text = "  Prk. Malakas (PMA)  "
-        Me.TabPage22.UseVisualStyleBackColor = True
-        '
-        'TabPage23
-        '
-        Me.TabPage23.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage23.Name = "TabPage23"
-        Me.TabPage23.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage23.TabIndex = 11
-        Me.TabPage23.Text = "  Nuñes (NUZ)  "
-        Me.TabPage23.UseVisualStyleBackColor = True
-        '
-        'TabPage24
-        '
-        Me.TabPage24.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage24.Name = "TabPage24"
-        Me.TabPage24.Size = New System.Drawing.Size(1137, 595)
-        Me.TabPage24.TabIndex = 12
-        Me.TabPage24.Text = "  Fatima Uhaw (UHA)    "
-        Me.TabPage24.UseVisualStyleBackColor = True
-        '
         'TabBranches_Context
         '
+        Me.TabBranches_Context.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BadBranch_ToolStrip, Me.GoodBranch_ToolStrip, Me.CheckingBranch_ToolStrip})
         Me.TabBranches_Context.Name = "TabBranches_Context"
-        Me.TabBranches_Context.Size = New System.Drawing.Size(61, 4)
+        Me.TabBranches_Context.Size = New System.Drawing.Size(145, 70)
+        '
+        'BadBranch_ToolStrip
+        '
+        Me.BadBranch_ToolStrip.Name = "BadBranch_ToolStrip"
+        Me.BadBranch_ToolStrip.Size = New System.Drawing.Size(144, 22)
+        Me.BadBranch_ToolStrip.Text = "Bad"
+        '
+        'GoodBranch_ToolStrip
+        '
+        Me.GoodBranch_ToolStrip.Name = "GoodBranch_ToolStrip"
+        Me.GoodBranch_ToolStrip.Size = New System.Drawing.Size(144, 22)
+        Me.GoodBranch_ToolStrip.Text = "Good"
+        '
+        'CheckingBranch_ToolStrip
+        '
+        Me.CheckingBranch_ToolStrip.Name = "CheckingBranch_ToolStrip"
+        Me.CheckingBranch_ToolStrip.Size = New System.Drawing.Size(144, 22)
+        Me.CheckingBranch_ToolStrip.Text = "For Checking"
+        '
+        'GensanBranch_Datagrid
+        '
+        Me.GensanBranch_Datagrid.AllowUserToAddRows = False
+        Me.GensanBranch_Datagrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight
+        Me.GensanBranch_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.GensanBranch_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GensanBranch_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Gensan_DGV_Company, Me.Gensan_DGV_Pos, Me.Gensan_DGV_Name, Me.Gensan_DGV_Started, Me.Gensa_DGV_Appointed, Me.Gensan_DGV_LOS, Me.Gensan_DGV_Remarks})
+        Me.GensanBranch_Datagrid.Location = New System.Drawing.Point(37, 63)
+        Me.GensanBranch_Datagrid.Name = "GensanBranch_Datagrid"
+        Me.GensanBranch_Datagrid.RowHeadersVisible = False
+        Me.GensanBranch_Datagrid.Size = New System.Drawing.Size(1085, 551)
+        Me.GensanBranch_Datagrid.TabIndex = 0
+        '
+        'GensanBranch_Combo
+        '
+        Me.GensanBranch_Combo.FormattingEnabled = True
+        Me.GensanBranch_Combo.Items.AddRange(New Object() {"Robinsons (ROG)", "KCC (KCG)", "Lagao (LAG)", "J.Cat 2 (JC2)", "Pioneer (PIO)", "Cagampang (CAG)", "Santiago (SAN)", "Roxas (ROX)", "Pendatun (PEN)", "PG Bldg Nat'l HW (PGN)", "Prk. Malakas (PMA)", "Nuñes (NUZ)", "Fatima Uhaw (UHA)"})
+        Me.GensanBranch_Combo.Location = New System.Drawing.Point(92, 21)
+        Me.GensanBranch_Combo.Name = "GensanBranch_Combo"
+        Me.GensanBranch_Combo.Size = New System.Drawing.Size(230, 24)
+        Me.GensanBranch_Combo.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(36, 25)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(50, 16)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Branch"
+        '
+        'Gensan_Panel
+        '
+        Me.Gensan_Panel.Controls.Add(Me.GensanBranch_Combo)
+        Me.Gensan_Panel.Controls.Add(Me.GensanBranch_Datagrid)
+        Me.Gensan_Panel.Controls.Add(Me.Label1)
+        Me.Gensan_Panel.Location = New System.Drawing.Point(1, 1)
+        Me.Gensan_Panel.Name = "Gensan_Panel"
+        Me.Gensan_Panel.Size = New System.Drawing.Size(1153, 647)
+        Me.Gensan_Panel.TabIndex = 3
+        '
+        'Gensan_DGV_Company
+        '
+        Me.Gensan_DGV_Company.HeaderText = "Company"
+        Me.Gensan_DGV_Company.Name = "Gensan_DGV_Company"
+        Me.Gensan_DGV_Company.ReadOnly = True
+        Me.Gensan_DGV_Company.Width = 70
+        '
+        'Gensan_DGV_Pos
+        '
+        Me.Gensan_DGV_Pos.HeaderText = "   Position"
+        Me.Gensan_DGV_Pos.Name = "Gensan_DGV_Pos"
+        Me.Gensan_DGV_Pos.ReadOnly = True
+        '
+        'Gensan_DGV_Name
+        '
+        Me.Gensan_DGV_Name.HeaderText = "Name"
+        Me.Gensan_DGV_Name.Name = "Gensan_DGV_Name"
+        Me.Gensan_DGV_Name.ReadOnly = True
+        Me.Gensan_DGV_Name.Width = 300
+        '
+        'Gensan_DGV_Started
+        '
+        Me.Gensan_DGV_Started.HeaderText = "Date Started"
+        Me.Gensan_DGV_Started.Name = "Gensan_DGV_Started"
+        Me.Gensan_DGV_Started.ReadOnly = True
+        Me.Gensan_DGV_Started.Width = 180
+        '
+        'Gensa_DGV_Appointed
+        '
+        Me.Gensa_DGV_Appointed.HeaderText = "Date Appointed"
+        Me.Gensa_DGV_Appointed.Name = "Gensa_DGV_Appointed"
+        Me.Gensa_DGV_Appointed.Width = 180
+        '
+        'Gensan_DGV_LOS
+        '
+        Me.Gensan_DGV_LOS.HeaderText = "LOS"
+        Me.Gensan_DGV_LOS.Name = "Gensan_DGV_LOS"
+        Me.Gensan_DGV_LOS.ReadOnly = True
+        '
+        'Gensan_DGV_Remarks
+        '
+        Me.Gensan_DGV_Remarks.HeaderText = "Remarks"
+        Me.Gensan_DGV_Remarks.Name = "Gensan_DGV_Remarks"
+        Me.Gensan_DGV_Remarks.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Gensan_DGV_Remarks.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Gensan_DGV_Remarks.Width = 150
         '
         'frmManpower
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1179, 730)
-        Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.City_TabControl)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.Close_BTN)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmManpower"
         Me.Text = "frmManpower"
-        Me.TabControl1.ResumeLayout(False)
+        Me.City_TabControl.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.TabControl2.ResumeLayout(False)
+        Me.TabBranches_Context.ResumeLayout(False)
+        CType(Me.GensanBranch_Datagrid, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Gensan_Panel.ResumeLayout(False)
+        Me.Gensan_Panel.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -366,22 +338,8 @@ Partial Class frmManpower
 
     Friend WithEvents Label21 As Label
     Friend WithEvents Close_BTN As Button
-    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents City_TabControl As TabControl
     Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabControl2 As TabControl
-    Friend WithEvents TabPage8 As TabPage
-    Friend WithEvents TabPage9 As TabPage
-    Friend WithEvents TabPage14 As TabPage
-    Friend WithEvents TabPage15 As TabPage
-    Friend WithEvents TabPage16 As TabPage
-    Friend WithEvents TabPage17 As TabPage
-    Friend WithEvents TabPage18 As TabPage
-    Friend WithEvents TabPage19 As TabPage
-    Friend WithEvents TabPage20 As TabPage
-    Friend WithEvents TabPage21 As TabPage
-    Friend WithEvents TabPage22 As TabPage
-    Friend WithEvents TabPage23 As TabPage
-    Friend WithEvents TabPage24 As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents TabPage4 As TabPage
@@ -393,4 +351,18 @@ Partial Class frmManpower
     Friend WithEvents TabPage12 As TabPage
     Friend WithEvents TabPage13 As TabPage
     Friend WithEvents TabBranches_Context As ContextMenuStrip
+    Friend WithEvents BadBranch_ToolStrip As ToolStripMenuItem
+    Friend WithEvents GoodBranch_ToolStrip As ToolStripMenuItem
+    Friend WithEvents CheckingBranch_ToolStrip As ToolStripMenuItem
+    Friend WithEvents GensanBranch_Datagrid As DataGridView
+    Friend WithEvents GensanBranch_Combo As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Gensan_Panel As Panel
+    Friend WithEvents Gensan_DGV_Company As DataGridViewTextBoxColumn
+    Friend WithEvents Gensan_DGV_Pos As DataGridViewTextBoxColumn
+    Friend WithEvents Gensan_DGV_Name As DataGridViewTextBoxColumn
+    Friend WithEvents Gensan_DGV_Started As DataGridViewTextBoxColumn
+    Friend WithEvents Gensa_DGV_Appointed As DataGridViewTextBoxColumn
+    Friend WithEvents Gensan_DGV_LOS As DataGridViewTextBoxColumn
+    Friend WithEvents Gensan_DGV_Remarks As DataGridViewButtonColumn
 End Class

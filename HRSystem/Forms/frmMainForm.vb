@@ -221,7 +221,8 @@ Public Class frmMainForm
     End Sub
 
     Private Sub BHouseAllowance_BTN_Click(sender As Object, e As EventArgs) Handles Compensation_BTN.Click
-        'OpenWindowsForm("frmCompensation")
+        'OpenWindowsForm("frmCompensation") 
+        OpenWindowsForm("frmManpower")
     End Sub
 
     Private Sub Charges_BTN_Click(sender As Object, e As EventArgs) Handles Charges_BTN.Click

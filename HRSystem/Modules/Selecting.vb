@@ -270,6 +270,78 @@ Module Selecting
 
     End Sub
 
+    Friend Sub Populate_MANPOWER(datagrid As DataGridView, branchCode As String, branchArea As String)
+        datagrid.Rows.Clear()
+
+        'Dim mysql As String = "Select A.id as emp_id, A.EMP_POSITION, A.LASTNAME, A.FIRSTNAME, A.MIDDLENAME, A.DATEHIRED 
+        '                                From tbl_Employee A INNER JOIN TBL_BRANCH B ON A.BRANCH_ID = B.ID  
+        '                                    WHERE B.BRANCHCODE= '" & branchCode & "' and BRANCHAREA = '" & branchArea & "'
+        '                                        and A.EMP_POSITION = 'TELLER'
+        '                                        or A.EMP_POSITION = 'APPRAISER'
+        '                                        or A.EMP_POSITION = 'BRANCH MANAGER'
+        '                                        or A.EMP_POSITION = 'OIC'"
+
+        'Dim mysql As String = "Select A.id as emp_id, A.EMP_POSITION, A.LASTNAME, A.FIRSTNAME, A.MIDDLENAME, A.DATEHIRED 
+        '                                From tbl_Employee A INNER JOIN TBL_BRANCH B ON A.BRANCH_ID = B.ID  
+        '                                    WHERE (A.EMP_POSITION = 'OIC'
+        '                                        or A.EMP_POSITION = 'APPRAISER'
+        '                                        or A.EMP_POSITION = 'BRANCH MANAGER'
+        '                                        or A.EMP_POSITION = 'TELLER')
+        '                                        and B.BRANCHCODE= '" & branchCode & "' and BRANCHAREA = '" & branchArea & "' ORDER BY B.COMPANYNAME" 'CORRECT (APPRAISER,OIC,BM,TELLER ONLY)
+
+        Dim mysql As String = "Select A.id as emp_id, A.EMP_POSITION, A.LASTNAME, A.FIRSTNAME, A.MIDDLENAME, A.DATEHIRED, B.COMPANYNAME
+                                        From tbl_Employee A INNER JOIN TBL_BRANCH B ON A.BRANCH_ID = B.ID  
+                                            WHERE (A.STATUS <> 'TERMINATED' 
+                                                or A.STATUS <> 'AWOL' 
+                                                or A.STATUS <> 'END OF PROBATIONARY' 
+                                                or A.STATUS <> 'RESIGNED' )
+                                                and B.BRANCHCODE= '" & branchCode & "' and BRANCHAREA = '" & branchArea & "' ORDER BY B.COMPANYNAME"
+
+        Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")
+            If ds.Tables(0).Rows.Count > 0 Then
+                For Each dr In ds.Tables(0).Rows
+                    AddRowMANPOWER(dr, datagrid)
+                Next
+            End If
+        End Using
+
+    End Sub
+
+    Public Sub AddRowMANPOWER(ByVal dr As DataRow, datagrid As DataGridView)
+
+        With dr
+
+            Dim datee As DateTime = CDate(.Item("DATEHIRED"))
+
+            Dim rowId As Integer = datagrid.Rows.Add()
+            Dim row As DataGridViewRow = datagrid.Rows(rowId)
+
+            row.Cells("Gensan_DGV_Company").Value = .Item("COMPANYNAME")
+            row.Cells("Gensan_DGV_Pos").Value = .Item("EMP_POSITION")
+            row.Cells("Gensan_DGV_Name").Value = .Item("LASTNAME") & ", " & .Item("FIRSTNAME") & " " & .Item("MIDDLENAME")
+            row.Cells("Gensan_DGV_Name").Tag = .Item("emp_id")
+            row.Cells("Gensan_DGV_Started").Value = datee.ToString("MMMM dd, yyyy")
+            row.Cells("Gensa_DGV_Appointed").Value = ""
+            row.Cells("Gensan_DGV_LOS").Value = ""
+
+            'row.Cells("Gensan_DGV_Remarks").Value = "Open"
+
+            If .Item("EMP_POSITION") = "TELLER" Then
+                row.DefaultCellStyle.BackColor = Color.Gray
+            ElseIf .Item("EMP_POSITION") = "APPRAISER" Then
+                row.DefaultCellStyle.BackColor = Color.LightGreen
+            ElseIf .Item("EMP_POSITION") = "BRANCH MANAGER" Then
+                row.DefaultCellStyle.BackColor = Color.Brown
+            ElseIf .Item("EMP_POSITION") = "OIC" Then
+                row.DefaultCellStyle.BackColor = Color.DodgerBlue
+            End If
+
+            row.Height = 30
+
+        End With
+
+    End Sub
+
     Friend Sub PopulateRecords(datagrid As DataGridView)
         datagrid.Rows.Clear()
         Dim mysql As String
@@ -288,6 +360,7 @@ Module Selecting
         End Using
 
     End Sub
+
 
     Public Sub AddRowACTION(ByVal dr As DataRow, datagrid As DataGridView)
 
