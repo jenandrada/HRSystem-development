@@ -269,6 +269,7 @@
         End Using
     End Sub
 
+
     Friend Sub RemarksSave(irno As String, remarks As String)
         Dim mysql As String = "Select * From SHOWCAUSE_RECORDS where IRNO = '" & irno & "'"
         Using ds As DataSet = LoadSQL(mysql, "SHOWCAUSE_RECORDS")

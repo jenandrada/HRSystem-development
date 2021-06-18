@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing.Imaging
 Imports System.IO
+Imports FirebirdSql.Data.FirebirdClient
 
 Public Class Employee
 
@@ -578,10 +579,114 @@ Public Class Employee
         End Using
     End Sub
 
+    Friend Sub ImagesSaveEmployeeDetails(EMP_ID As String, requireID As String, profile As Byte(), sss As Byte(), philheath As Byte(),
+                                         pagibig As Byte(), tin As Byte(), barangay As Byte(), cedula As Byte(),
+                                         police As Byte(), nbi As Byte(), healthCard As Byte(), mayors As Byte(),
+                                         pds As Byte(), proba As Byte(), moa As Byte(), idform As Byte(), aLetter As Byte(), eLetter As Byte())
+
+        Dim mysql As String = "Select * FROM TBL_REQARCHIVE where REQ_ID = '" & requireID & "'"
+        Dim dss As DataSet = LoadSQL(mysql, "TBL_REQARCHIVE")
+        If dss.Tables(0).Rows.Count > 0 Then
+            With dss.Tables(0).Rows(0)
+
+                .Item("SSS") = sss
+                .Item("PHILHEALTH") = philheath
+                .Item("PAGIBIG") = pagibig
+                .Item("TIN") = tin
+                .Item("BARANGAYCLEARANCE") = barangay
+                .Item("CEDULA") = cedula
+                .Item("POLICECLEARANCE") = police
+                .Item("NBICLEARANCE") = nbi
+                .Item("HEALTHCARD") = healthCard
+                .Item("MAYORSPERMIT") = mayors
+                .Item("PDS") = pds
+                .Item("PROBA") = proba
+                .Item("MOA") = moa
+                .Item("IDFORM") = idform
+                .Item("ACKNOWLEDGEMENTLETTER") = aLetter
+                .Item("ENDORSEMENTLETTER") = eLetter
+
+            End With
+            SaveEntry(dss, False)
+
+        Else
+
+            Dim sql As String = "select MAX(REQ_ID) from TBL_REQ rows 1"
+            DbReaderOpen()
+            Using dr As FbDataReader = LoadSQL_byDataReader(sql)
+                While dr.Read()
+                    If dr.HasRows Then
+                        With dr
+                            ReqID = .Item(0).ToString
+                        End With
+                    End If
+                End While
+            End Using
+
+            mysql = "Select * From TBL_REQARCHIVE Rows 1"
+            Using ds As DataSet = LoadSQL(mysql, "TBL_REQARCHIVE")
+
+                Dim dsNewRow As DataRow = ds.Tables(0).NewRow
+                With dsNewRow
+
+                    .Item("REQ_ID") = ReqID
+                    .Item("SSS") = sss
+                    .Item("PHILHEALTH") = philheath
+                    .Item("PAGIBIG") = pagibig
+                    .Item("TIN") = tin
+                    .Item("BARANGAYCLEARANCE") = barangay
+                    .Item("CEDULA") = cedula
+                    .Item("POLICECLEARANCE") = police
+                    .Item("NBICLEARANCE") = nbi
+                    .Item("HEALTHCARD") = healthCard
+                    .Item("MAYORSPERMIT") = mayors
+                    .Item("PDS") = pds
+                    .Item("PROBA") = proba
+                    .Item("MOA") = moa
+                    .Item("IDFORM") = idform
+                    .Item("ACKNOWLEDGEMENTLETTER") = aLetter
+                    .Item("ENDORSEMENTLETTER") = eLetter
+
+                End With
+                ds.Tables(0).Rows.Add(dsNewRow)
+                SaveEntry(ds)
+            End Using
+
+        End If
+
+        'Profile pic "select * from TBL_PROFILEPIC rows 1" ====================================
+
+        mysql = "Select * FROM TBL_PROFILEPIC where EMP_ID = '" & EMP_ID & "'"
+        Dim dsss As DataSet = LoadSQL(mysql, "TBL_PROFILEPIC")
+        If dsss.Tables(0).Rows.Count > 0 Then
+            With dsss.Tables(0).Rows(0)
+                .Item("PROFILE_PIC") = profile
+            End With
+            SaveEntry(dsss, False)
+
+        Else
+
+            mysql = "Select * From TBL_PROFILEPIC Rows 1"
+            Using ds As DataSet = LoadSQL(mysql, "TBL_PROFILEPIC")
+
+                Dim dsNewRow As DataRow = ds.Tables(0).NewRow
+                With dsNewRow
+                    .Item("EMP_ID") = EMP_ID
+                    .Item("PROFILE_PIC") = profile
+                End With
+                ds.Tables(0).Rows.Add(dsNewRow)
+                SaveEntry(ds)
+            End Using
+
+        End If
+    End Sub
+
+
     Private Sub LoadByRows(ByVal dr As DataRow)
 
         With dr
             ID = .Item("ID")
+            ReqID = .Item("REQ_ID")
             FirstName = .Item("FirstName")
             MiddleName = .Item("Middlename")
             LastName = .Item("LastName")
@@ -757,7 +862,7 @@ Public Class Employee
     End Sub
 
     Friend Sub LoadEmployee(ByVal idx As Integer)
-        Dim mysql As String = "Select * From tbl_Employee WHERE tbl_Employee.id= '" & idx & "'"
+        Dim mysql As String = "Select * From tbl_Employee LEFT JOIN TBL_REQ ON tbl_Employee.id=TBL_REQ.EMPLOYEE_ID WHERE tbl_Employee.id= '" & idx & "'"
         Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")
             If ds.Tables(0).Rows.Count > 0 Then
                 LoadByRows(ds.Tables(0).Rows(0))
