@@ -47,8 +47,8 @@ Public Class frmMainForm
     End Sub
 
     Private Sub ManPowerToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ManPowerToolStripMenuItem.Click
-        frmGenerate.FormType = frmGenerate.ReportType.Manpower
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.Manpower
+        'frmGenerate.Show()
     End Sub
 
     Friend Sub NotYetLogin(ByVal st As Boolean, Optional idx As String = "", Optional username As String = "")
@@ -157,63 +157,63 @@ Public Class frmMainForm
     End Sub
 
     Private Sub ManPowerToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ManPowerToolStripMenuItem1.Click
-        frmGenerate.FormType = frmGenerate.ReportType.ManpowerMonthly
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.ManpowerMonthly
+        'frmGenerate.Show()
     End Sub
 
     Private Sub ManPowerActiveListToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ManPowerActiveListToolStripMenuItem.Click
-        frmGenerate.FormType = frmGenerate.ReportType.ActiveList
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.ActiveList
+        'frmGenerate.Show()
     End Sub
 
     Private Sub RelieverToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles RelieverToolStripMenuItem.Click
-        frmrelieverreport.FormType = frmrelieverreport.ReportType.reliever
-        frmrelieverreport.Show()
+        'frmrelieverreport.FormType = frmrelieverreport.ReportType.reliever
+        'frmrelieverreport.Show()
     End Sub
 
     Private Sub RelieverToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles RelieverToolStripMenuItem1.Click
-        frmrelieverreport.FormType = frmrelieverreport.ReportType.monthlyreliev
-        frmrelieverreport.Show()
+        'frmrelieverreport.FormType = frmrelieverreport.ReportType.monthlyreliev
+        'frmrelieverreport.Show()
     End Sub
 
     Private Sub DeclinedToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeclinedToolStripMenuItem.Click
-        frmGenerate.FormType = frmGenerate.ReportType.aggreeassigned
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.aggreeassigned
+        'frmGenerate.Show()
     End Sub
 
     Private Sub DeclinedToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles DeclinedToolStripMenuItem1.Click
-        frmGenerate.FormType = frmGenerate.ReportType.relieveaggree
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.relieveaggree
+        'frmGenerate.Show()
     End Sub
 
     Private Sub MontlyAggreeAssignToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MontlyAggreeAssignToolStripMenuItem.Click
-        frmGenerate.FormType = frmGenerate.ReportType.monthaggreeassigned
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.monthaggreeassigned
+        'frmGenerate.Show()
     End Sub
 
     Private Sub RelievedAgreementToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles RelievedAgreementToolStripMenuItem.Click
-        frmGenerate.FormType = frmGenerate.ReportType.monthaggreeagrrement
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.monthaggreeagrrement
+        'frmGenerate.Show()
     End Sub
 
     Private Sub AssesmentToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AssesmentToolStripMenuItem1.Click
-        frmGenerate.FormType = frmGenerate.ReportType.rating
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.rating
+        'frmGenerate.Show()
     End Sub
 
     Private Sub AssesmentToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AssesmentToolStripMenuItem.Click
-        frmGenerate.FormType = frmGenerate.ReportType.ratingmontly
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.ratingmontly
+        'frmGenerate.Show()
     End Sub
 
     Private Sub AppointmentToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AppointmentToolStripMenuItem.Click
-        frmGenerate.FormType = frmGenerate.ReportType.appointment
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.appointment
+        'frmGenerate.Show()
     End Sub
 
     Private Sub AppointmentToolStripMenuItem1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles AppointmentToolStripMenuItem1.Click
-        frmGenerate.FormType = frmGenerate.ReportType.appointmentmonthly
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.appointmentmonthly
+        'frmGenerate.Show()
     End Sub
 
     Private Sub RateEMP_BTN_Click(sender As Object, e As EventArgs) Handles RateEMP_BTN.Click
@@ -222,6 +222,7 @@ Public Class frmMainForm
 
     Private Sub BHouseAllowance_BTN_Click(sender As Object, e As EventArgs) Handles Compensation_BTN.Click
         'OpenWindowsForm("frmCompensation") 
+
         OpenWindowsForm("frmManpower")
     End Sub
 
@@ -239,8 +240,8 @@ Public Class frmMainForm
     End Sub
 
     Private Sub BhouseAllowanceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BhouseAllowanceToolStripMenuItem.Click
-        frmGenerate.FormType = frmGenerate.ReportType.bhouseallowanceMonthly
-        frmGenerate.Show()
+        'frmGenerate.FormType = frmGenerate.ReportType.bhouseallowanceMonthly
+        'frmGenerate.Show()
     End Sub
 
     Private Sub ConnectToDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConnectToDatabaseToolStripMenuItem.Click
@@ -300,8 +301,8 @@ Public Class frmMainForm
     End Sub
 
     Private Sub ManPowerReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManPowerReportToolStripMenuItem.Click
-        Dim mpr As New ManPowerRV
-        mpr.Show()
+        'Dim mpr As New ManPowerRV
+        'mpr.Show()
     End Sub
 
     Private Sub ImportEployeeFromFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportEployeeFromFileToolStripMenuItem.Click

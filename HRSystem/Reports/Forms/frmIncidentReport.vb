@@ -1117,11 +1117,9 @@ Public Class frmIncidentReport
             If AmountCharges_CB.Checked = True Then
                 If Not isValid() Then Exit Sub
                 LoadWrittenReprimandReport()
-            Else
-                LoadWrittenReprimandReport()
             End If
-        Else
 
+        Else
             MessageBox.Show($"Please select employee name.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
@@ -1258,7 +1256,6 @@ Public Class frmIncidentReport
         Else
             NumberOfDays_TXT.Text = 0
             NumberOfDays_TXT.Enabled = False
-
         End If
     End Sub
 
@@ -1362,7 +1359,7 @@ Public Class frmIncidentReport
                 Else
                     Dim year As String = Date.Now.ToString("yy")
                     Dim month As String = Date.Now.ToString("MM")
-                    ECSNo_TXT.Text = year & "0" & month & "001"
+                    ECSNo_TXT.Text = year & "" & month & "1"
                 End If
 
                 Charges_Numeric.Region = New Region(New Rectangle(2, 2, Charges_Numeric.Width - 4, Charges_Numeric.Height - 4))
