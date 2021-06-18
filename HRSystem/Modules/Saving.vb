@@ -174,6 +174,67 @@
 
     End Sub
 
+    Friend Sub ManpowerSave_AppointedDate(emp_id As String, datee As String)
+
+        Dim mysql As String = "Select * FROM MANPOwER where emp_id = '" & emp_id & "'"
+        Dim dss As DataSet = LoadSQL(mysql, "MANPOwER")
+        If dss.Tables(0).Rows.Count > 0 Then
+            With dss.Tables(0).Rows(0)
+                .Item("DATE_APPOINTED") = datee
+            End With
+            SaveEntry(dss, False)
+
+        Else
+
+            mysql = "Select * From MANPOwER Rows 1"
+            Using ds As DataSet = LoadSQL(mysql, "MANPOwER")
+
+                Dim dsNewRow As DataRow = ds.Tables(0).NewRow
+                With dsNewRow
+
+                    .Item("emp_id") = emp_id
+                    .Item("DATE_APPOINTED") = datee
+
+                End With
+                ds.Tables(0).Rows.Add(dsNewRow)
+                SaveEntry(ds)
+            End Using
+
+        End If
+
+    End Sub
+
+    Friend Sub ManpowerSave_BranchColor(branchCode As String, color As String)
+
+        Dim mysql As String = "Select * FROM MANPOwER_COLOR where BRANCHCODE = '" & branchCode & "'"
+        Dim dss As DataSet = LoadSQL(mysql, "MANPOwER_COLOR")
+        If dss.Tables(0).Rows.Count > 0 Then
+            With dss.Tables(0).Rows(0)
+                .Item("BRANCHCOLOR") = color
+            End With
+            SaveEntry(dss, False)
+
+        Else
+
+            mysql = "Select * From MANPOwER_COLOR Rows 1"
+            Using ds As DataSet = LoadSQL(mysql, "MANPOwER_COLOR")
+
+                Dim dsNewRow As DataRow = ds.Tables(0).NewRow
+                With dsNewRow
+
+                    .Item("BRANCHCOLOR") = color
+                    .Item("BRANCHCODE") = branchCode
+
+                End With
+                ds.Tables(0).Rows.Add(dsNewRow)
+                SaveEntry(ds)
+            End Using
+
+        End If
+
+    End Sub
+
+
     Friend Sub SaveRuleNoSectionnO(emp_id As String, rule As String, section As String, irno As String)
 
         Dim mysql As String = "Select * From SHOWCAUSE_COUNT Rows 1"

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmManpower
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,14 +20,22 @@ Partial Class frmManpower
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmManpower))
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Close_BTN = New System.Windows.Forms.Button()
         Me.City_TabControl = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Gensan_Panel = New System.Windows.Forms.Panel()
+        Me.DateAppointed_DTP = New System.Windows.Forms.DateTimePicker()
+        Me.GensanBranch_Combo = New System.Windows.Forms.ComboBox()
+        Me.GensanBranch_Datagrid = New System.Windows.Forms.DataGridView()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -42,22 +50,18 @@ Partial Class frmManpower
         Me.BadBranch_ToolStrip = New System.Windows.Forms.ToolStripMenuItem()
         Me.GoodBranch_ToolStrip = New System.Windows.Forms.ToolStripMenuItem()
         Me.CheckingBranch_ToolStrip = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GensanBranch_Datagrid = New System.Windows.Forms.DataGridView()
-        Me.GensanBranch_Combo = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Gensan_Panel = New System.Windows.Forms.Panel()
         Me.Gensan_DGV_Company = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Gensan_DGV_Pos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Gensan_DGV_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Gensan_DGV_Started = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gensa_DGV_Appointed = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gensa_DGV_Appointed = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Gensan_DGV_LOS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Gensan_DGV_Remarks = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.City_TabControl.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.TabBranches_Context.SuspendLayout()
-        CType(Me.GensanBranch_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Gensan_Panel.SuspendLayout()
+        CType(Me.GensanBranch_Datagrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabBranches_Context.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label21
@@ -110,6 +114,58 @@ Partial Class frmManpower
         Me.TabPage1.Size = New System.Drawing.Size(1154, 648)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "  Gensan City  "
+        '
+        'Gensan_Panel
+        '
+        Me.Gensan_Panel.Controls.Add(Me.DateAppointed_DTP)
+        Me.Gensan_Panel.Controls.Add(Me.GensanBranch_Combo)
+        Me.Gensan_Panel.Controls.Add(Me.GensanBranch_Datagrid)
+        Me.Gensan_Panel.Controls.Add(Me.Label1)
+        Me.Gensan_Panel.Location = New System.Drawing.Point(1, 1)
+        Me.Gensan_Panel.Name = "Gensan_Panel"
+        Me.Gensan_Panel.Size = New System.Drawing.Size(1153, 647)
+        Me.Gensan_Panel.TabIndex = 3
+        '
+        'DateAppointed_DTP
+        '
+        Me.DateAppointed_DTP.Location = New System.Drawing.Point(595, 147)
+        Me.DateAppointed_DTP.Name = "DateAppointed_DTP"
+        Me.DateAppointed_DTP.Size = New System.Drawing.Size(158, 22)
+        Me.DateAppointed_DTP.TabIndex = 3
+        Me.DateAppointed_DTP.Visible = False
+        '
+        'GensanBranch_Combo
+        '
+        Me.GensanBranch_Combo.FormattingEnabled = True
+        Me.GensanBranch_Combo.Items.AddRange(New Object() {"Robinsons (ROG)", "KCC (KCG)", "Lagao (LAG)", "J.Cat 2 (JC2)", "Pioneer (PIO)", "Cagampang (CAG)", "Santiago (SAN)", "Roxas (ROX)", "Pendatun (PEN)", "PG Bldg Nat'l HW (PGN)", "Prk. Malakas (PMA)", "Nuñes (NUZ)", "Fatima Uhaw (UHA)"})
+        Me.GensanBranch_Combo.Location = New System.Drawing.Point(92, 14)
+        Me.GensanBranch_Combo.Name = "GensanBranch_Combo"
+        Me.GensanBranch_Combo.Size = New System.Drawing.Size(230, 24)
+        Me.GensanBranch_Combo.TabIndex = 1
+        '
+        'GensanBranch_Datagrid
+        '
+        Me.GensanBranch_Datagrid.AllowUserToAddRows = False
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GensanBranch_Datagrid.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.GensanBranch_Datagrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight
+        Me.GensanBranch_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.GensanBranch_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GensanBranch_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Gensan_DGV_Company, Me.Gensan_DGV_Pos, Me.Gensan_DGV_Name, Me.Gensan_DGV_Started, Me.Gensa_DGV_Appointed, Me.Gensan_DGV_LOS, Me.Gensan_DGV_Remarks})
+        Me.GensanBranch_Datagrid.Location = New System.Drawing.Point(14, 44)
+        Me.GensanBranch_Datagrid.Name = "GensanBranch_Datagrid"
+        Me.GensanBranch_Datagrid.RowHeadersVisible = False
+        Me.GensanBranch_Datagrid.Size = New System.Drawing.Size(1125, 582)
+        Me.GensanBranch_Datagrid.TabIndex = 0
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(36, 18)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(50, 16)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Branch"
         '
         'TabPage2
         '
@@ -226,47 +282,6 @@ Partial Class frmManpower
         Me.CheckingBranch_ToolStrip.Size = New System.Drawing.Size(144, 22)
         Me.CheckingBranch_ToolStrip.Text = "For Checking"
         '
-        'GensanBranch_Datagrid
-        '
-        Me.GensanBranch_Datagrid.AllowUserToAddRows = False
-        Me.GensanBranch_Datagrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight
-        Me.GensanBranch_Datagrid.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.GensanBranch_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GensanBranch_Datagrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Gensan_DGV_Company, Me.Gensan_DGV_Pos, Me.Gensan_DGV_Name, Me.Gensan_DGV_Started, Me.Gensa_DGV_Appointed, Me.Gensan_DGV_LOS, Me.Gensan_DGV_Remarks})
-        Me.GensanBranch_Datagrid.Location = New System.Drawing.Point(37, 63)
-        Me.GensanBranch_Datagrid.Name = "GensanBranch_Datagrid"
-        Me.GensanBranch_Datagrid.RowHeadersVisible = False
-        Me.GensanBranch_Datagrid.Size = New System.Drawing.Size(1085, 551)
-        Me.GensanBranch_Datagrid.TabIndex = 0
-        '
-        'GensanBranch_Combo
-        '
-        Me.GensanBranch_Combo.FormattingEnabled = True
-        Me.GensanBranch_Combo.Items.AddRange(New Object() {"Robinsons (ROG)", "KCC (KCG)", "Lagao (LAG)", "J.Cat 2 (JC2)", "Pioneer (PIO)", "Cagampang (CAG)", "Santiago (SAN)", "Roxas (ROX)", "Pendatun (PEN)", "PG Bldg Nat'l HW (PGN)", "Prk. Malakas (PMA)", "Nuñes (NUZ)", "Fatima Uhaw (UHA)"})
-        Me.GensanBranch_Combo.Location = New System.Drawing.Point(92, 21)
-        Me.GensanBranch_Combo.Name = "GensanBranch_Combo"
-        Me.GensanBranch_Combo.Size = New System.Drawing.Size(230, 24)
-        Me.GensanBranch_Combo.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(36, 25)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(50, 16)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Branch"
-        '
-        'Gensan_Panel
-        '
-        Me.Gensan_Panel.Controls.Add(Me.GensanBranch_Combo)
-        Me.Gensan_Panel.Controls.Add(Me.GensanBranch_Datagrid)
-        Me.Gensan_Panel.Controls.Add(Me.Label1)
-        Me.Gensan_Panel.Location = New System.Drawing.Point(1, 1)
-        Me.Gensan_Panel.Name = "Gensan_Panel"
-        Me.Gensan_Panel.Size = New System.Drawing.Size(1153, 647)
-        Me.Gensan_Panel.TabIndex = 3
-        '
         'Gensan_DGV_Company
         '
         Me.Gensan_DGV_Company.HeaderText = "Company"
@@ -296,15 +311,22 @@ Partial Class frmManpower
         '
         'Gensa_DGV_Appointed
         '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Gensa_DGV_Appointed.DefaultCellStyle = DataGridViewCellStyle5
         Me.Gensa_DGV_Appointed.HeaderText = "Date Appointed"
         Me.Gensa_DGV_Appointed.Name = "Gensa_DGV_Appointed"
+        Me.Gensa_DGV_Appointed.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Gensa_DGV_Appointed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.Gensa_DGV_Appointed.Width = 180
         '
         'Gensan_DGV_LOS
         '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Gensan_DGV_LOS.DefaultCellStyle = DataGridViewCellStyle6
         Me.Gensan_DGV_LOS.HeaderText = "LOS"
         Me.Gensan_DGV_LOS.Name = "Gensan_DGV_LOS"
         Me.Gensan_DGV_LOS.ReadOnly = True
+        Me.Gensan_DGV_LOS.Width = 142
         '
         'Gensan_DGV_Remarks
         '
@@ -327,10 +349,10 @@ Partial Class frmManpower
         Me.Text = "frmManpower"
         Me.City_TabControl.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.TabBranches_Context.ResumeLayout(False)
-        CType(Me.GensanBranch_Datagrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Gensan_Panel.ResumeLayout(False)
         Me.Gensan_Panel.PerformLayout()
+        CType(Me.GensanBranch_Datagrid, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabBranches_Context.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -358,11 +380,12 @@ Partial Class frmManpower
     Friend WithEvents GensanBranch_Combo As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Gensan_Panel As Panel
+    Friend WithEvents DateAppointed_DTP As DateTimePicker
     Friend WithEvents Gensan_DGV_Company As DataGridViewTextBoxColumn
     Friend WithEvents Gensan_DGV_Pos As DataGridViewTextBoxColumn
     Friend WithEvents Gensan_DGV_Name As DataGridViewTextBoxColumn
     Friend WithEvents Gensan_DGV_Started As DataGridViewTextBoxColumn
-    Friend WithEvents Gensa_DGV_Appointed As DataGridViewTextBoxColumn
+    Friend WithEvents Gensa_DGV_Appointed As DataGridViewButtonColumn
     Friend WithEvents Gensan_DGV_LOS As DataGridViewTextBoxColumn
     Friend WithEvents Gensan_DGV_Remarks As DataGridViewButtonColumn
 End Class

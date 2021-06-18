@@ -275,27 +275,24 @@ Module Selecting
 
         'Dim mysql As String = "Select A.id as emp_id, A.EMP_POSITION, A.LASTNAME, A.FIRSTNAME, A.MIDDLENAME, A.DATEHIRED 
         '                                From tbl_Employee A INNER JOIN TBL_BRANCH B ON A.BRANCH_ID = B.ID  
-        '                                    WHERE B.BRANCHCODE= '" & branchCode & "' and BRANCHAREA = '" & branchArea & "'
-        '                                        and A.EMP_POSITION = 'TELLER'
-        '                                        or A.EMP_POSITION = 'APPRAISER'
-        '                                        or A.EMP_POSITION = 'BRANCH MANAGER'
-        '                                        or A.EMP_POSITION = 'OIC'"
-
-        'Dim mysql As String = "Select A.id as emp_id, A.EMP_POSITION, A.LASTNAME, A.FIRSTNAME, A.MIDDLENAME, A.DATEHIRED 
-        '                                From tbl_Employee A INNER JOIN TBL_BRANCH B ON A.BRANCH_ID = B.ID  
         '                                    WHERE (A.EMP_POSITION = 'OIC'
         '                                        or A.EMP_POSITION = 'APPRAISER'
         '                                        or A.EMP_POSITION = 'BRANCH MANAGER'
         '                                        or A.EMP_POSITION = 'TELLER')
         '                                        and B.BRANCHCODE= '" & branchCode & "' and BRANCHAREA = '" & branchArea & "' ORDER BY B.COMPANYNAME" 'CORRECT (APPRAISER,OIC,BM,TELLER ONLY)
 
-        Dim mysql As String = "Select A.id as emp_id, A.EMP_POSITION, A.LASTNAME, A.FIRSTNAME, A.MIDDLENAME, A.DATEHIRED, B.COMPANYNAME
+        Dim mysql As String = "Select A.id as emp_id, A.STATUS, A.EMP_POSITION, A.LASTNAME, A.FIRSTNAME, A.MIDDLENAME, A.DATEHIRED, B.COMPANYNAME, C.DATE_APPOINTED, C.REMARKS, C.LOS
                                         From tbl_Employee A INNER JOIN TBL_BRANCH B ON A.BRANCH_ID = B.ID  
-                                            WHERE (A.STATUS <> 'TERMINATED' 
-                                                or A.STATUS <> 'AWOL' 
-                                                or A.STATUS <> 'END OF PROBATIONARY' 
-                                                or A.STATUS <> 'RESIGNED' )
-                                                and B.BRANCHCODE= '" & branchCode & "' and BRANCHAREA = '" & branchArea & "' ORDER BY B.COMPANYNAME"
+                                                            Left JOIN MANPOWER C ON C.EMP_ID = A.ID  
+                                                                WHERE (A.STATUS = 'PROBATIONARY'
+                                                                    or A.STATUS = 'REGULAR'
+                                                                    or A.STATUS = 'SUSPENDED'
+                                                                    or A.STATUS = 'APPOINTED' )
+                                                                    and ( A.EMP_POSITION = 'OIC'
+                                                                    or A.EMP_POSITION = 'APPRAISER'
+                                                                    or A.EMP_POSITION = 'BRANCH MANAGER'
+                                                                    or A.EMP_POSITION = 'TELLER')
+                                                                    and B.BRANCHCODE= '" & branchCode & "' and B.BRANCHAREA = '" & branchArea & "' ORDER BY B.COMPANYNAME"
 
         Using ds As DataSet = LoadSQL(mysql, "tbl_Employee")
             If ds.Tables(0).Rows.Count > 0 Then
@@ -304,7 +301,6 @@ Module Selecting
                 Next
             End If
         End Using
-
     End Sub
 
     Public Sub AddRowMANPOWER(ByVal dr As DataRow, datagrid As DataGridView)
@@ -312,7 +308,8 @@ Module Selecting
         With dr
 
             Dim datee As DateTime = CDate(.Item("DATEHIRED"))
-
+            Dim appoint As DateTime
+            Dim dateNow As DateTime = Date.Now
             Dim rowId As Integer = datagrid.Rows.Add()
             Dim row As DataGridViewRow = datagrid.Rows(rowId)
 
@@ -321,10 +318,7 @@ Module Selecting
             row.Cells("Gensan_DGV_Name").Value = .Item("LASTNAME") & ", " & .Item("FIRSTNAME") & " " & .Item("MIDDLENAME")
             row.Cells("Gensan_DGV_Name").Tag = .Item("emp_id")
             row.Cells("Gensan_DGV_Started").Value = datee.ToString("MMMM dd, yyyy")
-            row.Cells("Gensa_DGV_Appointed").Value = ""
-            row.Cells("Gensan_DGV_LOS").Value = ""
-
-            'row.Cells("Gensan_DGV_Remarks").Value = "Open"
+            row.Cells("Gensan_DGV_Remarks").Value = .Item("REMARKS")
 
             If .Item("EMP_POSITION") = "TELLER" Then
                 row.DefaultCellStyle.BackColor = Color.Gray
@@ -336,11 +330,48 @@ Module Selecting
                 row.DefaultCellStyle.BackColor = Color.DodgerBlue
             End If
 
+            If .Item("DATE_APPOINTED").Equals(DBNull.Value) Or .Item("DATE_APPOINTED").Equals("") Then '============================== RECEIVED ANY WRITTEN REPRIMAND (WRITTEN, ECS, SUSPENSION)
+
+                row.Cells("Gensa_DGV_Appointed").Value = ""
+            Else
+                appoint = CDate(.Item("DATE_APPOINTED"))
+                row.Cells("Gensa_DGV_Appointed").Value = appoint.ToString("MMMM dd, yyyy")
+            End If
+
+            row.Cells("Gensan_DGV_LOS").Value = GetDateSpanText(appoint, dateNow)
+
             row.Height = 30
 
         End With
 
     End Sub
+
+
+    Public Function GetDateSpanText(fromDate As DateTime, Optional toDate As DateTime = Nothing) As String
+        Try
+            Dim years As Integer = 0, months As Integer = 0, days As Integer = 0
+            If toDate = Nothing Then toDate = DateTime.Now
+
+            Do Until toDate.AddYears(-1) < fromDate
+                years += 1
+                toDate = toDate.AddYears(-1)
+            Loop
+
+            Do Until toDate.AddMonths(-1) < fromDate
+                months += 1
+                toDate = toDate.AddMonths(-1)
+            Loop
+
+            Do Until toDate.AddDays(-1) < fromDate
+                days += 1
+                toDate = toDate.AddDays(-1)
+            Loop
+
+            Return String.Format("{0} Y {1}M {2}D", years, months, days)
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
 
     Friend Sub PopulateRecords(datagrid As DataGridView)
         datagrid.Rows.Clear()
@@ -564,6 +595,29 @@ Module Selecting
                     AddItem(dr, datagrid)
                 Next
 
+            End If
+        End Using
+    End Sub
+
+    Friend Sub GetBranchColor(branchCode As String, panel As Panel)
+        Dim mysql As String
+
+        mysql = "Select * From MANPOwER_COLOR where BRANCHCODE = '" & branchCode & "'"
+        Using ds As DataSet = LoadSQL(mysql, "MANPOwER_COLOR")
+            If ds.Tables(0).Rows.Count > 0 Then
+                Dim dr As DataRow = ds.Tables(0).Rows(0)
+                With dr
+
+                    If .Item("BRANCHCOLOR") = "Maroon" Then
+                        panel.BackColor = Color.Maroon
+                    ElseIf .Item("BRANCHCOLOR") = "Green" Then
+                        panel.BackColor = Color.Green
+                    ElseIf .Item("BRANCHCOLOR") = "Yellow" Then
+                        panel.BackColor = Color.Yellow
+                    End If
+                End With
+            Else
+                panel.BackColor = Color.Transparent
             End If
         End Using
     End Sub
