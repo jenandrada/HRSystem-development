@@ -9,7 +9,8 @@ Public Class frmEmployeeDetails
     Private tmpPresentAdd As Address
     Private tmpEmployee As Employee
     Private BI_Remarks As String = ""
-    Dim namee, reqID As String
+    Dim namee, LoadreqID As String
+    Dim profile, sss, philheath, pagibig, tin, barangay, cedula, police, nbi, healthCard, mayors, pds, proba, moa, idform, aLetter, eLetter As Byte()
 
     Private Sub LoadAddressPro()
         Dim source As New AutoCompleteStringCollection()
@@ -157,7 +158,6 @@ Public Class frmEmployeeDetails
 
     End Sub
 
-
     Private Sub EmpProfile_Pic_DoubleClick(sender As Object, e As EventArgs) Handles EmpProfile_Pic.DoubleClick
 
         Using openF As New OpenFileDialog()
@@ -193,7 +193,10 @@ Public Class frmEmployeeDetails
     End Sub
 
     Friend Sub LoadEmployees(emp As Employee)
-        reqID = emp.ReqID
+
+        LoadreqID = emp.ReqID
+        Console.WriteLine("REQID " & LoadreqID)
+
         CivilStatus_CB.Enabled = False
         ChangeStatus_CHK.Enabled = True
         FirstName_TXT.Tag = emp.ID
@@ -324,6 +327,8 @@ Public Class frmEmployeeDetails
         Disable(False)
         Save_BTN.Text = "&Update"
     End Sub
+
+
 
     Private Sub ClearText()
         FirstName_TXT.Clear()
@@ -657,7 +662,6 @@ Public Class frmEmployeeDetails
     End Sub
 
     Private Sub CheckImagesToDatabase()
-        Dim profile, sss, philheath, pagibig, tin, barangay, cedula, police, nbi, healthCard, mayors, pds, proba, moa, idform, aLetter, eLetter As Byte()
 
         If Not EmpProfile_Pic.Tag = Nothing Then
             profile = ImgToByteArray(Image.FromFile(EmpProfile_Pic.Tag), ImageFormat.Jpeg)
@@ -761,9 +765,7 @@ Public Class frmEmployeeDetails
             eLetter = ImgToByteArray(ELetter_PB.InitialImage, ImageFormat.Jpeg)
         End If
 
-        ImagesSaveEmployeeDetails(FirstName_TXT.Tag, reqID, profile, sss, philheath, pagibig, tin, barangay, cedula, police, nbi, healthCard, mayors, pds, proba, moa, idform, aLetter, eLetter)
     End Sub
-
 
     Private Sub Save_BTN_Click(sender As Object, e As EventArgs) Handles Save_BTN.Click
         Dim tmpStatus As String = String.Empty
@@ -800,6 +802,7 @@ Public Class frmEmployeeDetails
                 .Status = Status_CB.Text
                 .BIRate = IIf(Passed_RBTN.Checked = True, 1, 0)
                 .BIRemarks = BI_Remarks
+                '.Company_Name = Company_Combo.Text
 
                 .Position = Position_combo.SelectedItem
                 .BranchID = Branch_combo.Tag
@@ -833,8 +836,115 @@ Public Class frmEmployeeDetails
                 .TIN = 1 = IIf(TIN_TXT.Text.Length <> 0, 1, 0)
                 .endorsement = IIf(ELetter_CHK.Checked = True, 1, 0)
 
-
                 '=============================== SAVE CHECK REQ LIST ================================================='
+
+                .SAVE_REQUIREMENTS()
+
+                'CheckImagesToDatabase()
+
+                If Not EmpProfile_Pic.Tag = Nothing Then
+                    profile = ImgToByteArray(Image.FromFile(EmpProfile_Pic.Tag), ImageFormat.Jpeg)
+                Else
+                    profile = ImgToByteArray(EmpProfile_Pic.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not SSSID_PB.Tag = Nothing Then
+                    sss = ImgToByteArray(Image.FromFile(SSSID_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    sss = ImgToByteArray(SSSID_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PhilHealth_PB.Tag = Nothing Then
+                    philheath = ImgToByteArray(Image.FromFile(PhilHealth_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    philheath = ImgToByteArray(PhilHealth_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PagIbig_PB.Tag = Nothing Then
+                    pagibig = ImgToByteArray(Image.FromFile(PagIbig_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    pagibig = ImgToByteArray(PagIbig_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not TIN_PB.Tag = Nothing Then
+                    tin = ImgToByteArray(Image.FromFile(TIN_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    tin = ImgToByteArray(TIN_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not BClearance_PB.Tag = Nothing Then
+                    barangay = ImgToByteArray(Image.FromFile(BClearance_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    barangay = ImgToByteArray(BClearance_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not Cedula_PB.Tag = Nothing Then
+                    cedula = ImgToByteArray(Image.FromFile(Cedula_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    cedula = ImgToByteArray(Cedula_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PClearance_PB.Tag = Nothing Then
+                    police = ImgToByteArray(Image.FromFile(PClearance_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    police = ImgToByteArray(PClearance_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not NBIClearance_PB.Tag = Nothing Then
+                    nbi = ImgToByteArray(Image.FromFile(NBIClearance_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    nbi = ImgToByteArray(NBIClearance_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not HealthCard_PB.Tag = Nothing Then
+                    healthCard = ImgToByteArray(Image.FromFile(HealthCard_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    healthCard = ImgToByteArray(HealthCard_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not MayorsPermit_PB.Tag = Nothing Then
+                    mayors = ImgToByteArray(Image.FromFile(MayorsPermit_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    mayors = ImgToByteArray(MayorsPermit_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PDS_PB.Tag = Nothing Then
+                    pds = ImgToByteArray(Image.FromFile(PDS_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    pds = ImgToByteArray(PDS_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PROBA_PB.Tag = Nothing Then
+                    proba = ImgToByteArray(Image.FromFile(PROBA_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    proba = ImgToByteArray(PROBA_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not MOA_PB.Tag = Nothing Then
+                    moa = ImgToByteArray(Image.FromFile(MOA_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    moa = ImgToByteArray(MOA_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not IDForm_PB.Tag = Nothing Then
+                    idform = ImgToByteArray(Image.FromFile(IDForm_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    idform = ImgToByteArray(IDForm_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not ALetter_PB.Tag = Nothing Then
+                    aLetter = ImgToByteArray(Image.FromFile(ALetter_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    aLetter = ImgToByteArray(ALetter_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not ELetter_PB.Tag = Nothing Then
+                    eLetter = ImgToByteArray(Image.FromFile(ELetter_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    eLetter = ImgToByteArray(ELetter_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                ImagesSaveEmployeeDetails(.employid, profile, sss, philheath, pagibig, tin, barangay, cedula, police, nbi, healthCard, mayors, pds, proba, moa, idform, aLetter, eLetter)
 
                 Dim ChkBox As CheckBox = Nothing
                 ' to unchecked all
@@ -853,7 +963,6 @@ Public Class frmEmployeeDetails
                     End If
                 Next
 
-                .SAVE_REQUIREMENTS()
                 '.SaveReqArchive() '------------------jen
             End With
 
@@ -928,6 +1037,112 @@ Public Class frmEmployeeDetails
                 .endorsement = IIf(ELetter_CHK.Checked = True, 1, 0)
 
                 .UPDATE_REQ()
+
+                'CheckImagesToDatabase()
+
+                If Not EmpProfile_Pic.Tag = Nothing Then
+                    profile = ImgToByteArray(Image.FromFile(EmpProfile_Pic.Tag), ImageFormat.Jpeg)
+                Else
+                    profile = ImgToByteArray(EmpProfile_Pic.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not SSSID_PB.Tag = Nothing Then
+                    sss = ImgToByteArray(Image.FromFile(SSSID_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    sss = ImgToByteArray(SSSID_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PhilHealth_PB.Tag = Nothing Then
+                    philheath = ImgToByteArray(Image.FromFile(PhilHealth_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    philheath = ImgToByteArray(PhilHealth_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PagIbig_PB.Tag = Nothing Then
+                    pagibig = ImgToByteArray(Image.FromFile(PagIbig_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    pagibig = ImgToByteArray(PagIbig_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not TIN_PB.Tag = Nothing Then
+                    tin = ImgToByteArray(Image.FromFile(TIN_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    tin = ImgToByteArray(TIN_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not BClearance_PB.Tag = Nothing Then
+                    barangay = ImgToByteArray(Image.FromFile(BClearance_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    barangay = ImgToByteArray(BClearance_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not Cedula_PB.Tag = Nothing Then
+                    cedula = ImgToByteArray(Image.FromFile(Cedula_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    cedula = ImgToByteArray(Cedula_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PClearance_PB.Tag = Nothing Then
+                    police = ImgToByteArray(Image.FromFile(PClearance_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    police = ImgToByteArray(PClearance_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not NBIClearance_PB.Tag = Nothing Then
+                    nbi = ImgToByteArray(Image.FromFile(NBIClearance_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    nbi = ImgToByteArray(NBIClearance_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not HealthCard_PB.Tag = Nothing Then
+                    healthCard = ImgToByteArray(Image.FromFile(HealthCard_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    healthCard = ImgToByteArray(HealthCard_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not MayorsPermit_PB.Tag = Nothing Then
+                    mayors = ImgToByteArray(Image.FromFile(MayorsPermit_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    mayors = ImgToByteArray(MayorsPermit_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PDS_PB.Tag = Nothing Then
+                    pds = ImgToByteArray(Image.FromFile(PDS_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    pds = ImgToByteArray(PDS_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not PROBA_PB.Tag = Nothing Then
+                    proba = ImgToByteArray(Image.FromFile(PROBA_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    proba = ImgToByteArray(PROBA_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not MOA_PB.Tag = Nothing Then
+                    moa = ImgToByteArray(Image.FromFile(MOA_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    moa = ImgToByteArray(MOA_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not IDForm_PB.Tag = Nothing Then
+                    idform = ImgToByteArray(Image.FromFile(IDForm_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    idform = ImgToByteArray(IDForm_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not ALetter_PB.Tag = Nothing Then
+                    aLetter = ImgToByteArray(Image.FromFile(ALetter_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    aLetter = ImgToByteArray(ALetter_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                If Not ELetter_PB.Tag = Nothing Then
+                    eLetter = ImgToByteArray(Image.FromFile(ELetter_PB.Tag), ImageFormat.Jpeg)
+                Else
+                    eLetter = ImgToByteArray(ELetter_PB.InitialImage, ImageFormat.Jpeg)
+                End If
+
+                ImagesSaveEmployeeDetails(FirstName_TXT.Tag, profile, sss, philheath, pagibig, tin, barangay, cedula, police, nbi, healthCard, mayors, pds, proba, moa, idform, aLetter, eLetter)
 
                 saveImage()
 

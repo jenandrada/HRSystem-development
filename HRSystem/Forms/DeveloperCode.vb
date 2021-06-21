@@ -1,7 +1,9 @@
-﻿Imports System.IO
+﻿Imports System.Drawing.Imaging
+Imports System.IO
+Imports FirebirdSql.Data.FirebirdClient
 
 Public Class DeveloperCode
-
+    Dim reqID As Integer
     Private Sub Exit_code_Click(sender As Object, e As EventArgs) Handles Exit_code.Click
         Close()
     End Sub
@@ -15,17 +17,279 @@ Public Class DeveloperCode
                 TableManningToEmployee()
                 Close()
 
-
-            ElseIf Code_TXT.Text = "picture" Then
+            ElseIf Code_TXT.Text = "picture" Then ' DATABASE TO FOLDER
 
                 Timer1.Start()
                 frmMainForm.AppProgressBar.Visible = True
                 Code_TXT.Region = Nothing
 
+            ElseIf Code_TXT.Text = "pictureToDatabase" Then ' DATABASE TO FOLDER
+
+                FOLDER201_TO_DATABASE()
+                Console.WriteLine("Finish")
             Else
                 Code_TXT.Region = New Region(New Rectangle(2, 2, Code_TXT.Width - 4, Code_TXT.Height - 4))
             End If
         End If
+    End Sub
+
+    Private Sub FOLDER201_TO_DATABASE()
+
+        Dim mysql = "select * from tbl_employee "
+
+        Using ds As DataSet = LoadSQL(mysql)
+
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                For Each dr As DataRow In ds.Tables(0).Rows
+                    With dr
+
+                        Dim EMPID As String = .Item("ID")
+                        Dim name As String = .Item("Lastname") & ", " & .Item("Firstname") & " " & .Item("Middlename")
+                        name = name.ToString.TrimEnd()
+
+                        checkREQID(EMPID)
+
+                        Dim imageName() As String = {"Profile", "SSS", "PhilHealth", "PagIbig", "TIN", "Barangay Clearance",
+                                                "Cedula", "Police Clearance", "NBI Clearance", "Health Card", "Mayors Permit", "PDS",
+                                                "PROBA", "MOA", "ID Form", "Acknowledgment Letter", "Endorsement Letter"}
+
+                        Dim employeefOLDER As DirectoryInfo = New DirectoryInfo("D: \HR Records\201\" & name)
+
+                        If employeefOLDER.Exists Then
+
+                            For Each value As String In imageName
+
+                                Dim directory As DirectoryInfo = New DirectoryInfo("D:\HR Records\201\" & name & "\" & value & ".jpeg")
+
+                                Console.WriteLine(name & " - " & value)
+
+                                checkIFExist_ImageNAme(EMPID, directory, value)
+
+                            Next
+
+                        End If
+
+                    End With
+                Next
+            Else
+                Console.WriteLine("No Match")
+            End If
+
+        End Using
+
+    End Sub
+
+    Private Sub checkIFExist_ImageNAme(EMPID As String, imageE As DirectoryInfo, imageName As String)
+
+        Dim mysql As String
+
+        If imageE.Exists Then
+
+            Dim picture As Byte() = ImgToByteArray(Image.FromFile(imageE.ToString), ImageFormat.Jpeg)
+
+            Console.WriteLine("IMAGE NAME NOT EXIST")
+
+            If imageName = "Profile" Then '======================================================= PROFILE PICTURE ONLY=============================================
+
+                mysql = "Select * From TBL_PROFILEPIC Where EMP_ID = '" & EMPID & "'"
+                Using ds As DataSet = LoadSQL(mysql, "TBL_PROFILEPIC")
+                    If ds.Tables(0).Rows.Count > 0 Then
+
+                        Dim dr As DataRow = ds.Tables(0).Rows(0)
+                        With dr
+                            .Item("PROFILE_PIC") = picture
+                        End With
+
+                        Console.WriteLine(imageName & " UPDATE TBL_PROFILEPIC")
+                    Else
+                        mysql = "Select * From TBL_PROFILEPIC Rows 1"
+                        Using dsS As DataSet = LoadSQL(mysql, "TBL_PROFILEPIC")
+
+                            Dim dsNewRow As DataRow = dsS.Tables(0).NewRow
+                            With dsNewRow
+
+                                .Item("EMP_ID") = EMPID
+                                .Item("PROFILE_PIC") = picture
+
+                            End With
+                            ds.Tables(0).Rows.Add(dsNewRow)
+                            SaveEntry(dsS)
+                        End Using
+
+                        Console.WriteLine(imageName & " SAVE NEW TBL_PROFILEPIC")
+                    End If
+                End Using
+
+            Else  '======================================================= REQUIREMENTS IMAGES =============================================
+
+                mysql = "Select * From TBL_REQARCHiVE Where EMP_ID = '" & EMPID & "'"
+                Using ds As DataSet = LoadSQL(mysql, "TBL_REQARCHiVE")
+
+                    If ds.Tables(0).Rows.Count > 0 Then '==================== EXISTING ======================
+
+                        For Each drr As DataRow In ds.Tables(0).Rows
+                            With drr
+
+                                If imageName = "SSS" Then
+                                    .Item("SSS") = picture
+
+                                ElseIf imageName = "PhilHealth" Then
+                                    .Item("PHILHEALTH") = picture
+
+                                ElseIf imageName = "PagIbig" Then
+                                    .Item("PAGIBIG") = picture
+
+                                ElseIf imageName = "TIN" Then
+                                    .Item("TIN") = picture
+
+                                ElseIf imageName = "Barangay Clearance" Then
+                                    .Item("BARANGAYCLEARANCE") = picture
+
+                                ElseIf imageName = "Cedula" Then
+                                    .Item("CEDULA") = picture
+
+                                ElseIf imageName = "Police Clearance" Then
+                                    .Item("POLICECLEARANCE") = picture
+
+                                ElseIf imageName = "NBI Clearance" Then
+                                    .Item("NBICLEARANCE") = picture
+
+                                ElseIf imageName = "Health Card" Then
+                                    .Item("HEALTHCARD") = picture
+
+                                ElseIf imageName = "Mayors Permit" Then
+                                    .Item("MAYORSPERMIT") = picture
+
+                                ElseIf imageName = "PDS" Then
+                                    .Item("PDS") = picture
+
+                                ElseIf imageName = "PROBA" Then
+                                    .Item("PROBA") = picture
+
+                                ElseIf imageName = "MOA" Then
+                                    .Item("MOA") = picture
+
+                                ElseIf imageName = "ID Form" Then
+                                    .Item("IDFORM") = picture
+
+                                ElseIf imageName = "Acknowledgment Letter" Then
+                                    .Item("ACKNOWLEDGEMENTLETTER") = picture
+
+                                ElseIf imageName = "Endorsement Letter" Then
+                                    .Item("ENDORSEMENTLETTER") = picture
+                                End If
+
+                                SaveEntry(ds, False)
+                            End With
+
+                            Console.WriteLine(imageName & " UPDATE TBL_REQARCHIVE")
+                        Next
+
+                    Else '========================================= NEW EMPID SAVE ====================================
+
+                        mysql = "Select * From TBL_PROFILEPIC Rows 1"
+                        Using dsS As DataSet = LoadSQL(mysql, "TBL_PROFILEPIC")
+
+                            Dim dsNewRow As DataRow = dsS.Tables(0).NewRow
+                            With dsNewRow
+
+                                If imageName = "SSS" Then
+                                    .Item("SSS") = picture
+
+                                ElseIf imageName = "PhilHealth" Then
+                                    .Item("PHILHEALTH") = picture
+
+                                ElseIf imageName = "PagIbig" Then
+                                    .Item("PAGIBIG") = picture
+
+                                ElseIf imageName = "TIN" Then
+                                    .Item("TIN") = picture
+
+                                ElseIf imageName = "Barangay Clearance" Then
+                                    .Item("BARANGAYCLEARANCE") = picture
+
+                                ElseIf imageName = "Cedula" Then
+                                    .Item("CEDULA") = picture
+
+                                ElseIf imageName = "Police Clearance" Then
+                                    .Item("POLICECLEARANCE") = picture
+
+                                ElseIf imageName = "NBI Clearance" Then
+                                    .Item("NBICLEARANCE") = picture
+
+                                ElseIf imageName = "Health Card" Then
+                                    .Item("HEALTHCARD") = picture
+
+                                ElseIf imageName = "Mayors Permit" Then
+                                    .Item("MAYORSPERMIT") = picture
+
+                                ElseIf imageName = "PDS" Then
+                                    .Item("PDS") = picture
+
+                                ElseIf imageName = "PROBA" Then
+                                    .Item("PROBA") = picture
+
+                                ElseIf imageName = "MOA" Then
+                                    .Item("MOA") = picture
+
+                                ElseIf imageName = "ID Form" Then
+                                    .Item("IDFORM") = picture
+
+                                ElseIf imageName = "Acknowledgment Letter" Then
+                                    .Item("ACKNOWLEDGEMENTLETTER") = picture
+
+                                ElseIf imageName = "Endorsement Letter" Then
+                                    .Item("ENDORSEMENTLETTER") = picture
+                                End If
+
+
+                            End With
+                            ds.Tables(0).Rows.Add(dsNewRow)
+                            SaveEntry(dsS)
+                        End Using
+
+                        Console.WriteLine(imageName & " SAVE NEW TBL_REQARCHIVE")
+
+                    End If
+                End Using
+            End If
+        Else
+
+            Console.WriteLine("IMAGE NAME NOT EXIST")
+
+        End If
+
+    End Sub
+
+    Private Sub checkREQID(empid As String)
+
+        Dim mysqll As String = "Select * FROM TBL_REQ where EMPLOYEE_ID = '" & empid & "'"
+        Dim ds As DataSet = LoadSQL(mysqll, "TBL_REQ")
+        If ds.Tables(0).Rows.Count > 0 Then
+            Dim dr As DataRow = ds.Tables(0).Rows(0)
+            With dr
+                reqID = .Item("REQ_ID")
+            End With
+
+            Console.WriteLine("REQID SAve NAA SA TB_REQ " & reqID)
+        Else
+
+            Dim sql As String = "select MAX(REQ_ID) + 1 AS GREATEST from TBL_REQ rows 1"
+            DbReaderOpen()
+            Using dr As FbDataReader = LoadSQL_byDataReader(sql)
+                While dr.Read()
+                    If dr.HasRows Then
+                        With dr
+                            reqID = .Item("GREATEST").ToString
+                        End With
+                    End If
+                End While
+            End Using
+
+            Console.WriteLine("REQID SAve NEW the Greates " & reqID)
+        End If
+
     End Sub
 
     Private Sub TableManningToEmployee()
@@ -46,8 +310,7 @@ Public Class DeveloperCode
         '==========================TBL_EMPLOYEE UPDATE(STATUS LENGTH OF VARCHAR)=========================
         'RunCommand(" ALTER TABLE TBL_EMPLOYEE ALTER COLUMN STATUS Type VARCHAR(25);")
 
-        '==========================TBL_EMPLOYEE UPDATE(POSITION FROM TBLMANNING)=========================
-
+        '==========================TBL_EMPLOYEE UPDATE(POSITION FROM TBLMANNING)========================= 
         'Dim mysql = "Select * From TBLMANNING INNER JOIN TBL_EMPLOYEE ON TBLMANNING.EMP_ID = TBL_EMPLOYEE.ID"
         'Using ds As DataSet = LoadSQL(mysql)
 
@@ -99,6 +362,40 @@ Public Class DeveloperCode
         '    End If
         'End Using
 
+
+        '==========================TBL_REQARCHiVE FETCH/UPDATE(EMP_ID FROM TBL_REQ)========================= 
+        Dim mysql = "Select TBL_REQ.REQ_ID as req_REQID, TBL_REQ.EMPLOYEE_ID From TBL_REQ INNER JOIN TBL_REQARCHiVE ON TBL_REQ.REQ_ID = TBL_REQARCHiVE.REQ_ID"
+        Using ds As DataSet = LoadSQL(mysql)
+
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                For Each dr As DataRow In ds.Tables(0).Rows
+                    With dr
+
+                        Console.WriteLine("EMP_ID " & .Item("req_REQID"))
+
+                        Dim mysqlL As String = "Select * From TBL_REQARCHiVE Where REQ_ID = '" & dr.Item("req_REQID") & "'"
+                        Using dsS As DataSet = LoadSQL(mysqlL, "TBL_REQARCHiVE")
+
+                            For Each drr As DataRow In dsS.Tables(0).Rows
+                                With drr
+                                    .Item("EMP_ID") = dr.Item("EMPLOYEE_ID")
+
+                                    Console.WriteLine("EMP_ID " & .Item("EMP_ID"))
+
+                                    SaveEntry(dsS, False)
+                                End With
+                            Next
+
+                        End Using
+                    End With
+                Next
+            Else
+                Console.WriteLine("No Match")
+            End If
+
+        End Using
+
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -128,12 +425,20 @@ Public Class DeveloperCode
             frmMainForm.AppProgressBar.Visible = False
         End If
     End Sub
-    Friend Sub LoadREquirementsPictures()
+
+    Public Sub LoadREquirementsPictures()
 
         Dim mysql As String = "select A.*, c.Lastname, c.Firstname, c.Middlename, c.id as emp_id, d.PROFILE_PIC from TBL_REQARCHIVE A 
                                 inner join tbl_req B on A.REQ_ID = B.REQ_ID 
                                 inner join tbl_employee C on B.EMPLOYEE_ID = C.ID
-                                inner join TBL_Profilepic D on C.ID = D.Emp_ID"
+                                inner join TBL_Profilepic D on C.ID = D.Emp_ID"  '=============================ORIGINAL
+
+
+        'Dim mysql As String = "select A.*, c.Lastname, c.Firstname, c.Middlename, c.id as emp_id, d.PROFILE_PIC from TBL_REQARCHIVE A 
+        '                        inner join tbl_req B on A.REQ_ID = B.REQ_ID 
+        '                        inner join tbl_employee C on B.EMPLOYEE_ID = C.ID
+        '                        inner join TBL_Profilepic D on C.ID = D.Emp_ID 
+        '                      WHERE C.ID = '185' OR  C.ID = '214' OR C.ID = '183' OR C.ID = '44' OR C.ID = '154'"
 
         Dim emptyByte() = New Byte() {1}
         Using ds As DataSet = LoadSQL(mysql)

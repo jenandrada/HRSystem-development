@@ -29,7 +29,6 @@ Partial Class frmEmployeeDetails
         Me.Status_LBL = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Group_firstName = New System.Windows.Forms.GroupBox()
-        Me.FirstName_TXT = New HRSystem.WaterMarkTextBox()
         Me.Group_gender = New System.Windows.Forms.GroupBox()
         Me.Gender_CB = New System.Windows.Forms.ComboBox()
         Me.ChangeStatus_CHK = New System.Windows.Forms.CheckBox()
@@ -39,29 +38,16 @@ Partial Class frmEmployeeDetails
         Me.Age_TXT = New System.Windows.Forms.TextBox()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.Group_Mobile = New System.Windows.Forms.GroupBox()
-        Me.MobileNum_TXT = New HRSystem.WaterMarkTextBox()
         Me.Group_email = New System.Windows.Forms.GroupBox()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
-        Me.EmailAddress_TXT = New HRSystem.WaterMarkTextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Groupbox_Permanent = New System.Windows.Forms.GroupBox()
-        Me.PerA_StBlkLot_TXT = New HRSystem.WaterMarkTextBox()
-        Me.PerA_Barangay_TXT = New HRSystem.WaterMarkTextBox()
-        Me.PerA_CityMun_TXT = New HRSystem.WaterMarkTextBox()
-        Me.PerA_Province_TXT = New HRSystem.WaterMarkTextBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.PreA_StBlkLot_TXT = New HRSystem.WaterMarkTextBox()
-        Me.PreA_Barangay_TXT = New HRSystem.WaterMarkTextBox()
-        Me.PreA_CityMun_TXT = New HRSystem.WaterMarkTextBox()
-        Me.PreA_Province_TXT = New HRSystem.WaterMarkTextBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.DateOfBirth_DTP = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Group_Lastname = New System.Windows.Forms.GroupBox()
-        Me.LastName_TXT = New HRSystem.WaterMarkTextBox()
         Me.labelImage = New System.Windows.Forms.Label()
-        Me.MiddleName_TXT = New HRSystem.WaterMarkTextBox()
-        Me.Extension_TXT = New HRSystem.WaterMarkTextBox()
         Me.EmpProfile_Pic = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -139,15 +125,33 @@ Partial Class frmEmployeeDetails
         Me.PIbigID_BTN = New System.Windows.Forms.Button()
         Me.PHealthID_BTN = New System.Windows.Forms.Button()
         Me.SSSID_BTN = New System.Windows.Forms.Button()
-        Me.TIN_TXT = New HRSystem.WaterMarkTextBox()
-        Me.PIbigID_TXT = New HRSystem.WaterMarkTextBox()
-        Me.PHealthID_TXT = New HRSystem.WaterMarkTextBox()
-        Me.SSSID_TXT = New HRSystem.WaterMarkTextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox_Bio = New System.Windows.Forms.GroupBox()
         Me.BioNumber_TXT = New System.Windows.Forms.TextBox()
         Me.CloseWindow_BTN = New System.Windows.Forms.Button()
         Me.TimerEmpDetails = New System.Windows.Forms.Timer(Me.components)
+        Me.TIN_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PIbigID_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PHealthID_TXT = New HRSystem.WaterMarkTextBox()
+        Me.SSSID_TXT = New HRSystem.WaterMarkTextBox()
+        Me.FirstName_TXT = New HRSystem.WaterMarkTextBox()
+        Me.MobileNum_TXT = New HRSystem.WaterMarkTextBox()
+        Me.EmailAddress_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PerA_StBlkLot_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PerA_Barangay_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PerA_CityMun_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PerA_Province_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PreA_StBlkLot_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PreA_Barangay_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PreA_CityMun_TXT = New HRSystem.WaterMarkTextBox()
+        Me.PreA_Province_TXT = New HRSystem.WaterMarkTextBox()
+        Me.LastName_TXT = New HRSystem.WaterMarkTextBox()
+        Me.MiddleName_TXT = New HRSystem.WaterMarkTextBox()
+        Me.Extension_TXT = New HRSystem.WaterMarkTextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Group_firstName.SuspendLayout()
@@ -258,16 +262,6 @@ Partial Class frmEmployeeDetails
         Me.Group_firstName.TabIndex = 7
         Me.Group_firstName.TabStop = False
         '
-        'FirstName_TXT
-        '
-        Me.FirstName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FirstName_TXT.Location = New System.Drawing.Point(4, 13)
-        Me.FirstName_TXT.Name = "FirstName_TXT"
-        Me.FirstName_TXT.Size = New System.Drawing.Size(274, 26)
-        Me.FirstName_TXT.TabIndex = 2
-        Me.FirstName_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.FirstName_TXT.WaterMarkText = "First Name"
-        '
         'Group_gender
         '
         Me.Group_gender.Controls.Add(Me.Gender_CB)
@@ -358,17 +352,6 @@ Partial Class frmEmployeeDetails
         Me.Group_Mobile.TabIndex = 26
         Me.Group_Mobile.TabStop = False
         '
-        'MobileNum_TXT
-        '
-        Me.MobileNum_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.MobileNum_TXT.Location = New System.Drawing.Point(4, 1)
-        Me.MobileNum_TXT.MaxLength = 11
-        Me.MobileNum_TXT.Name = "MobileNum_TXT"
-        Me.MobileNum_TXT.Size = New System.Drawing.Size(163, 24)
-        Me.MobileNum_TXT.TabIndex = 11
-        Me.MobileNum_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.MobileNum_TXT.WaterMarkText = "Mobile Number"
-        '
         'Group_email
         '
         Me.Group_email.Controls.Add(Me.GroupBox17)
@@ -386,16 +369,6 @@ Partial Class frmEmployeeDetails
         Me.GroupBox17.Size = New System.Drawing.Size(282, 43)
         Me.GroupBox17.TabIndex = 8
         Me.GroupBox17.TabStop = False
-        '
-        'EmailAddress_TXT
-        '
-        Me.EmailAddress_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.EmailAddress_TXT.Location = New System.Drawing.Point(3, 1)
-        Me.EmailAddress_TXT.Name = "EmailAddress_TXT"
-        Me.EmailAddress_TXT.Size = New System.Drawing.Size(283, 24)
-        Me.EmailAddress_TXT.TabIndex = 10
-        Me.EmailAddress_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.EmailAddress_TXT.WaterMarkText = "Email Address"
         '
         'GroupBox3
         '
@@ -422,46 +395,6 @@ Partial Class frmEmployeeDetails
         Me.Groupbox_Permanent.Text = "Permanent Address(Double Click Street/Block/Lot if the same with Present Address)" &
     ""
         '
-        'PerA_StBlkLot_TXT
-        '
-        Me.PerA_StBlkLot_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PerA_StBlkLot_TXT.Location = New System.Drawing.Point(474, 32)
-        Me.PerA_StBlkLot_TXT.Name = "PerA_StBlkLot_TXT"
-        Me.PerA_StBlkLot_TXT.Size = New System.Drawing.Size(190, 24)
-        Me.PerA_StBlkLot_TXT.TabIndex = 9
-        Me.PerA_StBlkLot_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PerA_StBlkLot_TXT.WaterMarkText = "Street / Block / Lot"
-        '
-        'PerA_Barangay_TXT
-        '
-        Me.PerA_Barangay_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PerA_Barangay_TXT.Location = New System.Drawing.Point(315, 32)
-        Me.PerA_Barangay_TXT.Name = "PerA_Barangay_TXT"
-        Me.PerA_Barangay_TXT.Size = New System.Drawing.Size(153, 24)
-        Me.PerA_Barangay_TXT.TabIndex = 8
-        Me.PerA_Barangay_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PerA_Barangay_TXT.WaterMarkText = "Barangay"
-        '
-        'PerA_CityMun_TXT
-        '
-        Me.PerA_CityMun_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PerA_CityMun_TXT.Location = New System.Drawing.Point(157, 32)
-        Me.PerA_CityMun_TXT.Name = "PerA_CityMun_TXT"
-        Me.PerA_CityMun_TXT.Size = New System.Drawing.Size(152, 24)
-        Me.PerA_CityMun_TXT.TabIndex = 7
-        Me.PerA_CityMun_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PerA_CityMun_TXT.WaterMarkText = "City/Municipality"
-        '
-        'PerA_Province_TXT
-        '
-        Me.PerA_Province_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PerA_Province_TXT.Location = New System.Drawing.Point(6, 32)
-        Me.PerA_Province_TXT.Name = "PerA_Province_TXT"
-        Me.PerA_Province_TXT.Size = New System.Drawing.Size(145, 24)
-        Me.PerA_Province_TXT.TabIndex = 6
-        Me.PerA_Province_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PerA_Province_TXT.WaterMarkText = "Province"
-        '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.PreA_StBlkLot_TXT)
@@ -474,46 +407,6 @@ Partial Class frmEmployeeDetails
         Me.GroupBox4.TabIndex = 0
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Present Address"
-        '
-        'PreA_StBlkLot_TXT
-        '
-        Me.PreA_StBlkLot_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PreA_StBlkLot_TXT.Location = New System.Drawing.Point(474, 32)
-        Me.PreA_StBlkLot_TXT.Name = "PreA_StBlkLot_TXT"
-        Me.PreA_StBlkLot_TXT.Size = New System.Drawing.Size(190, 24)
-        Me.PreA_StBlkLot_TXT.TabIndex = 9
-        Me.PreA_StBlkLot_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PreA_StBlkLot_TXT.WaterMarkText = "Street / Block / Lot"
-        '
-        'PreA_Barangay_TXT
-        '
-        Me.PreA_Barangay_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PreA_Barangay_TXT.Location = New System.Drawing.Point(315, 32)
-        Me.PreA_Barangay_TXT.Name = "PreA_Barangay_TXT"
-        Me.PreA_Barangay_TXT.Size = New System.Drawing.Size(153, 24)
-        Me.PreA_Barangay_TXT.TabIndex = 8
-        Me.PreA_Barangay_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PreA_Barangay_TXT.WaterMarkText = "Barangay"
-        '
-        'PreA_CityMun_TXT
-        '
-        Me.PreA_CityMun_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PreA_CityMun_TXT.Location = New System.Drawing.Point(157, 32)
-        Me.PreA_CityMun_TXT.Name = "PreA_CityMun_TXT"
-        Me.PreA_CityMun_TXT.Size = New System.Drawing.Size(152, 24)
-        Me.PreA_CityMun_TXT.TabIndex = 7
-        Me.PreA_CityMun_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PreA_CityMun_TXT.WaterMarkText = "City/Municipality"
-        '
-        'PreA_Province_TXT
-        '
-        Me.PreA_Province_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PreA_Province_TXT.Location = New System.Drawing.Point(6, 32)
-        Me.PreA_Province_TXT.Name = "PreA_Province_TXT"
-        Me.PreA_Province_TXT.Size = New System.Drawing.Size(145, 24)
-        Me.PreA_Province_TXT.TabIndex = 6
-        Me.PreA_Province_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PreA_Province_TXT.WaterMarkText = "Province"
         '
         'GroupBox5
         '
@@ -557,16 +450,6 @@ Partial Class frmEmployeeDetails
         Me.Group_Lastname.TabIndex = 8
         Me.Group_Lastname.TabStop = False
         '
-        'LastName_TXT
-        '
-        Me.LastName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LastName_TXT.Location = New System.Drawing.Point(6, 12)
-        Me.LastName_TXT.Name = "LastName_TXT"
-        Me.LastName_TXT.Size = New System.Drawing.Size(274, 26)
-        Me.LastName_TXT.TabIndex = 4
-        Me.LastName_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.LastName_TXT.WaterMarkText = "Last Name"
-        '
         'labelImage
         '
         Me.labelImage.AutoSize = True
@@ -577,26 +460,6 @@ Partial Class frmEmployeeDetails
         Me.labelImage.Size = New System.Drawing.Size(48, 42)
         Me.labelImage.TabIndex = 6
         Me.labelImage.Text = "   "
-        '
-        'MiddleName_TXT
-        '
-        Me.MiddleName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MiddleName_TXT.Location = New System.Drawing.Point(165, 70)
-        Me.MiddleName_TXT.Name = "MiddleName_TXT"
-        Me.MiddleName_TXT.Size = New System.Drawing.Size(274, 26)
-        Me.MiddleName_TXT.TabIndex = 3
-        Me.MiddleName_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.MiddleName_TXT.WaterMarkText = "Middle Name"
-        '
-        'Extension_TXT
-        '
-        Me.Extension_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Extension_TXT.Location = New System.Drawing.Point(165, 164)
-        Me.Extension_TXT.Name = "Extension_TXT"
-        Me.Extension_TXT.Size = New System.Drawing.Size(274, 26)
-        Me.Extension_TXT.TabIndex = 5
-        Me.Extension_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.Extension_TXT.WaterMarkText = "Extension"
         '
         'EmpProfile_Pic
         '
@@ -666,9 +529,9 @@ Partial Class frmEmployeeDetails
         Me.GroupBox6.Controls.Add(Me.DateHired_DTP)
         Me.GroupBox6.Controls.Add(Me.Label6)
         Me.GroupBox6.Controls.Add(Me.GroupBox7)
-        Me.GroupBox6.Location = New System.Drawing.Point(12, 350)
+        Me.GroupBox6.Location = New System.Drawing.Point(3, 350)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1156, 363)
+        Me.GroupBox6.Size = New System.Drawing.Size(1165, 363)
         Me.GroupBox6.TabIndex = 3
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Other Information"
@@ -676,7 +539,7 @@ Partial Class frmEmployeeDetails
         'GroupBox16
         '
         Me.GroupBox16.Controls.Add(Me.Branch_combo)
-        Me.GroupBox16.Location = New System.Drawing.Point(675, 13)
+        Me.GroupBox16.Location = New System.Drawing.Point(686, 11)
         Me.GroupBox16.Name = "GroupBox16"
         Me.GroupBox16.Size = New System.Drawing.Size(206, 41)
         Me.GroupBox16.TabIndex = 37
@@ -695,7 +558,7 @@ Partial Class frmEmployeeDetails
         'GroupBox15
         '
         Me.GroupBox15.Controls.Add(Me.Position_combo)
-        Me.GroupBox15.Location = New System.Drawing.Point(368, 11)
+        Me.GroupBox15.Location = New System.Drawing.Point(377, 7)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(217, 45)
         Me.GroupBox15.TabIndex = 36
@@ -705,7 +568,6 @@ Partial Class frmEmployeeDetails
         '
         Me.Position_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Position_combo.FormattingEnabled = True
-        Me.Position_combo.Items.AddRange(New Object() {"-Select-", "Probationary", "Regular", "Suspended", "Appointed", "Resigned", "Awol", "Terminated", "End of Probationary"})
         Me.Position_combo.Location = New System.Drawing.Point(2, 15)
         Me.Position_combo.Name = "Position_combo"
         Me.Position_combo.Size = New System.Drawing.Size(211, 26)
@@ -789,7 +651,7 @@ Partial Class frmEmployeeDetails
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(300, 30)
+        Me.Label10.Location = New System.Drawing.Point(309, 26)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(62, 18)
         Me.Label10.TabIndex = 30
@@ -798,7 +660,7 @@ Partial Class frmEmployeeDetails
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(610, 27)
+        Me.Label5.Location = New System.Drawing.Point(611, 25)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(55, 18)
         Me.Label5.TabIndex = 28
@@ -1102,9 +964,9 @@ Partial Class frmEmployeeDetails
         Me.Requirements_GB.Controls.Add(Me.Cedula_CHK)
         Me.Requirements_GB.Controls.Add(Me.BrgClearance_BTN)
         Me.Requirements_GB.Controls.Add(Me.BrgClearance_CHK)
-        Me.Requirements_GB.Location = New System.Drawing.Point(240, 93)
+        Me.Requirements_GB.Location = New System.Drawing.Point(240, 80)
         Me.Requirements_GB.Name = "Requirements_GB"
-        Me.Requirements_GB.Size = New System.Drawing.Size(588, 190)
+        Me.Requirements_GB.Size = New System.Drawing.Size(588, 199)
         Me.Requirements_GB.TabIndex = 19
         Me.Requirements_GB.TabStop = False
         Me.Requirements_GB.Text = "Requirements"
@@ -1112,7 +974,7 @@ Partial Class frmEmployeeDetails
         'SelectAll_CHK
         '
         Me.SelectAll_CHK.AutoSize = True
-        Me.SelectAll_CHK.Location = New System.Drawing.Point(474, 169)
+        Me.SelectAll_CHK.Location = New System.Drawing.Point(482, 161)
         Me.SelectAll_CHK.Name = "SelectAll_CHK"
         Me.SelectAll_CHK.Size = New System.Drawing.Size(87, 22)
         Me.SelectAll_CHK.TabIndex = 24
@@ -1131,7 +993,7 @@ Partial Class frmEmployeeDetails
         'NBIClearance_CHK
         '
         Me.NBIClearance_CHK.AutoSize = True
-        Me.NBIClearance_CHK.Location = New System.Drawing.Point(6, 128)
+        Me.NBIClearance_CHK.Location = New System.Drawing.Point(6, 127)
         Me.NBIClearance_CHK.Name = "NBIClearance_CHK"
         Me.NBIClearance_CHK.Size = New System.Drawing.Size(15, 14)
         Me.NBIClearance_CHK.TabIndex = 22
@@ -1139,7 +1001,7 @@ Partial Class frmEmployeeDetails
         '
         'ELetter_BTN
         '
-        Me.ELetter_BTN.Location = New System.Drawing.Point(397, 55)
+        Me.ELetter_BTN.Location = New System.Drawing.Point(396, 56)
         Me.ELetter_BTN.Name = "ELetter_BTN"
         Me.ELetter_BTN.Size = New System.Drawing.Size(181, 27)
         Me.ELetter_BTN.TabIndex = 21
@@ -1149,7 +1011,7 @@ Partial Class frmEmployeeDetails
         'ELetter_CHK
         '
         Me.ELetter_CHK.AutoSize = True
-        Me.ELetter_CHK.Location = New System.Drawing.Point(376, 57)
+        Me.ELetter_CHK.Location = New System.Drawing.Point(375, 58)
         Me.ELetter_CHK.Name = "ELetter_CHK"
         Me.ELetter_CHK.Size = New System.Drawing.Size(15, 14)
         Me.ELetter_CHK.TabIndex = 20
@@ -1157,7 +1019,7 @@ Partial Class frmEmployeeDetails
         '
         'ALetter_BTN
         '
-        Me.ALetter_BTN.Location = New System.Drawing.Point(397, 22)
+        Me.ALetter_BTN.Location = New System.Drawing.Point(396, 23)
         Me.ALetter_BTN.Name = "ALetter_BTN"
         Me.ALetter_BTN.Size = New System.Drawing.Size(181, 27)
         Me.ALetter_BTN.TabIndex = 19
@@ -1167,7 +1029,7 @@ Partial Class frmEmployeeDetails
         'ALetter_CHK
         '
         Me.ALetter_CHK.AutoSize = True
-        Me.ALetter_CHK.Location = New System.Drawing.Point(376, 24)
+        Me.ALetter_CHK.Location = New System.Drawing.Point(375, 25)
         Me.ALetter_CHK.Name = "ALetter_CHK"
         Me.ALetter_CHK.Size = New System.Drawing.Size(15, 14)
         Me.ALetter_CHK.TabIndex = 18
@@ -1175,7 +1037,7 @@ Partial Class frmEmployeeDetails
         '
         'IDForm_BTN
         '
-        Me.IDForm_BTN.Location = New System.Drawing.Point(210, 154)
+        Me.IDForm_BTN.Location = New System.Drawing.Point(210, 155)
         Me.IDForm_BTN.Name = "IDForm_BTN"
         Me.IDForm_BTN.Size = New System.Drawing.Size(156, 27)
         Me.IDForm_BTN.TabIndex = 17
@@ -1185,7 +1047,7 @@ Partial Class frmEmployeeDetails
         'IDForm_CHK
         '
         Me.IDForm_CHK.AutoSize = True
-        Me.IDForm_CHK.Location = New System.Drawing.Point(189, 168)
+        Me.IDForm_CHK.Location = New System.Drawing.Point(189, 161)
         Me.IDForm_CHK.Name = "IDForm_CHK"
         Me.IDForm_CHK.Size = New System.Drawing.Size(15, 14)
         Me.IDForm_CHK.TabIndex = 16
@@ -1193,7 +1055,7 @@ Partial Class frmEmployeeDetails
         '
         'MOA_BTN
         '
-        Me.MOA_BTN.Location = New System.Drawing.Point(210, 121)
+        Me.MOA_BTN.Location = New System.Drawing.Point(210, 122)
         Me.MOA_BTN.Name = "MOA_BTN"
         Me.MOA_BTN.Size = New System.Drawing.Size(156, 27)
         Me.MOA_BTN.TabIndex = 15
@@ -1203,7 +1065,7 @@ Partial Class frmEmployeeDetails
         'MOA_CHK
         '
         Me.MOA_CHK.AutoSize = True
-        Me.MOA_CHK.Location = New System.Drawing.Point(189, 135)
+        Me.MOA_CHK.Location = New System.Drawing.Point(189, 128)
         Me.MOA_CHK.Name = "MOA_CHK"
         Me.MOA_CHK.Size = New System.Drawing.Size(15, 14)
         Me.MOA_CHK.TabIndex = 14
@@ -1211,7 +1073,7 @@ Partial Class frmEmployeeDetails
         '
         'PROBA_BTN
         '
-        Me.PROBA_BTN.Location = New System.Drawing.Point(210, 88)
+        Me.PROBA_BTN.Location = New System.Drawing.Point(210, 89)
         Me.PROBA_BTN.Name = "PROBA_BTN"
         Me.PROBA_BTN.Size = New System.Drawing.Size(156, 27)
         Me.PROBA_BTN.TabIndex = 13
@@ -1221,7 +1083,7 @@ Partial Class frmEmployeeDetails
         'PROBA_CHK
         '
         Me.PROBA_CHK.AutoSize = True
-        Me.PROBA_CHK.Location = New System.Drawing.Point(189, 102)
+        Me.PROBA_CHK.Location = New System.Drawing.Point(189, 95)
         Me.PROBA_CHK.Name = "PROBA_CHK"
         Me.PROBA_CHK.Size = New System.Drawing.Size(15, 14)
         Me.PROBA_CHK.TabIndex = 12
@@ -1229,7 +1091,7 @@ Partial Class frmEmployeeDetails
         '
         'PDS_BTN
         '
-        Me.PDS_BTN.Location = New System.Drawing.Point(210, 55)
+        Me.PDS_BTN.Location = New System.Drawing.Point(210, 56)
         Me.PDS_BTN.Name = "PDS_BTN"
         Me.PDS_BTN.Size = New System.Drawing.Size(156, 27)
         Me.PDS_BTN.TabIndex = 11
@@ -1239,7 +1101,7 @@ Partial Class frmEmployeeDetails
         'PDS_CHK
         '
         Me.PDS_CHK.AutoSize = True
-        Me.PDS_CHK.Location = New System.Drawing.Point(189, 69)
+        Me.PDS_CHK.Location = New System.Drawing.Point(189, 62)
         Me.PDS_CHK.Name = "PDS_CHK"
         Me.PDS_CHK.Size = New System.Drawing.Size(15, 14)
         Me.PDS_CHK.TabIndex = 10
@@ -1247,7 +1109,7 @@ Partial Class frmEmployeeDetails
         '
         'MPermit_BTN
         '
-        Me.MPermit_BTN.Location = New System.Drawing.Point(210, 22)
+        Me.MPermit_BTN.Location = New System.Drawing.Point(210, 23)
         Me.MPermit_BTN.Name = "MPermit_BTN"
         Me.MPermit_BTN.Size = New System.Drawing.Size(156, 27)
         Me.MPermit_BTN.TabIndex = 9
@@ -1257,7 +1119,7 @@ Partial Class frmEmployeeDetails
         'MPermit_CHK
         '
         Me.MPermit_CHK.AutoSize = True
-        Me.MPermit_CHK.Location = New System.Drawing.Point(189, 36)
+        Me.MPermit_CHK.Location = New System.Drawing.Point(189, 29)
         Me.MPermit_CHK.Name = "MPermit_CHK"
         Me.MPermit_CHK.Size = New System.Drawing.Size(15, 14)
         Me.MPermit_CHK.TabIndex = 8
@@ -1265,7 +1127,7 @@ Partial Class frmEmployeeDetails
         '
         'HealthCard_BTN
         '
-        Me.HealthCard_BTN.Location = New System.Drawing.Point(27, 154)
+        Me.HealthCard_BTN.Location = New System.Drawing.Point(27, 155)
         Me.HealthCard_BTN.Name = "HealthCard_BTN"
         Me.HealthCard_BTN.Size = New System.Drawing.Size(156, 27)
         Me.HealthCard_BTN.TabIndex = 7
@@ -1275,7 +1137,7 @@ Partial Class frmEmployeeDetails
         'HealthCard_CHK
         '
         Me.HealthCard_CHK.AutoSize = True
-        Me.HealthCard_CHK.Location = New System.Drawing.Point(6, 161)
+        Me.HealthCard_CHK.Location = New System.Drawing.Point(6, 162)
         Me.HealthCard_CHK.Name = "HealthCard_CHK"
         Me.HealthCard_CHK.Size = New System.Drawing.Size(15, 14)
         Me.HealthCard_CHK.TabIndex = 6
@@ -1293,7 +1155,7 @@ Partial Class frmEmployeeDetails
         'PClearance_CHK
         '
         Me.PClearance_CHK.AutoSize = True
-        Me.PClearance_CHK.Location = New System.Drawing.Point(6, 95)
+        Me.PClearance_CHK.Location = New System.Drawing.Point(6, 94)
         Me.PClearance_CHK.Name = "PClearance_CHK"
         Me.PClearance_CHK.Size = New System.Drawing.Size(15, 14)
         Me.PClearance_CHK.TabIndex = 4
@@ -1311,7 +1173,7 @@ Partial Class frmEmployeeDetails
         'Cedula_CHK
         '
         Me.Cedula_CHK.AutoSize = True
-        Me.Cedula_CHK.Location = New System.Drawing.Point(6, 62)
+        Me.Cedula_CHK.Location = New System.Drawing.Point(6, 60)
         Me.Cedula_CHK.Name = "Cedula_CHK"
         Me.Cedula_CHK.Size = New System.Drawing.Size(15, 14)
         Me.Cedula_CHK.TabIndex = 2
@@ -1355,6 +1217,10 @@ Partial Class frmEmployeeDetails
         '
         'GroupBox7
         '
+        Me.GroupBox7.Controls.Add(Me.Label15)
+        Me.GroupBox7.Controls.Add(Me.Label14)
+        Me.GroupBox7.Controls.Add(Me.Label13)
+        Me.GroupBox7.Controls.Add(Me.Label12)
         Me.GroupBox7.Controls.Add(Me.TIN_BTN)
         Me.GroupBox7.Controls.Add(Me.PIbigID_BTN)
         Me.GroupBox7.Controls.Add(Me.PHealthID_BTN)
@@ -1363,9 +1229,9 @@ Partial Class frmEmployeeDetails
         Me.GroupBox7.Controls.Add(Me.PIbigID_TXT)
         Me.GroupBox7.Controls.Add(Me.PHealthID_TXT)
         Me.GroupBox7.Controls.Add(Me.SSSID_TXT)
-        Me.GroupBox7.Location = New System.Drawing.Point(9, 80)
+        Me.GroupBox7.Location = New System.Drawing.Point(2, 80)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(225, 199)
+        Me.GroupBox7.Size = New System.Drawing.Size(231, 199)
         Me.GroupBox7.TabIndex = 16
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Benefits"
@@ -1373,82 +1239,42 @@ Partial Class frmEmployeeDetails
         'TIN_BTN
         '
         Me.TIN_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIN_BTN.Location = New System.Drawing.Point(180, 149)
+        Me.TIN_BTN.Location = New System.Drawing.Point(196, 149)
         Me.TIN_BTN.Name = "TIN_BTN"
-        Me.TIN_BTN.Size = New System.Drawing.Size(34, 30)
+        Me.TIN_BTN.Size = New System.Drawing.Size(30, 28)
         Me.TIN_BTN.TabIndex = 19
-        Me.TIN_BTN.Text = "..."
+        Me.TIN_BTN.Text = ".."
         Me.TIN_BTN.UseVisualStyleBackColor = True
         '
         'PIbigID_BTN
         '
         Me.PIbigID_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PIbigID_BTN.Location = New System.Drawing.Point(180, 110)
+        Me.PIbigID_BTN.Location = New System.Drawing.Point(196, 110)
         Me.PIbigID_BTN.Name = "PIbigID_BTN"
-        Me.PIbigID_BTN.Size = New System.Drawing.Size(34, 30)
+        Me.PIbigID_BTN.Size = New System.Drawing.Size(30, 28)
         Me.PIbigID_BTN.TabIndex = 18
-        Me.PIbigID_BTN.Text = "..."
+        Me.PIbigID_BTN.Text = ".."
         Me.PIbigID_BTN.UseVisualStyleBackColor = True
         '
         'PHealthID_BTN
         '
         Me.PHealthID_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PHealthID_BTN.Location = New System.Drawing.Point(180, 70)
+        Me.PHealthID_BTN.Location = New System.Drawing.Point(196, 70)
         Me.PHealthID_BTN.Name = "PHealthID_BTN"
-        Me.PHealthID_BTN.Size = New System.Drawing.Size(34, 30)
+        Me.PHealthID_BTN.Size = New System.Drawing.Size(30, 28)
         Me.PHealthID_BTN.TabIndex = 17
-        Me.PHealthID_BTN.Text = "..."
+        Me.PHealthID_BTN.Text = ".."
         Me.PHealthID_BTN.UseVisualStyleBackColor = True
         '
         'SSSID_BTN
         '
         Me.SSSID_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SSSID_BTN.Location = New System.Drawing.Point(180, 29)
+        Me.SSSID_BTN.Location = New System.Drawing.Point(196, 29)
         Me.SSSID_BTN.Name = "SSSID_BTN"
-        Me.SSSID_BTN.Size = New System.Drawing.Size(34, 30)
+        Me.SSSID_BTN.Size = New System.Drawing.Size(30, 28)
         Me.SSSID_BTN.TabIndex = 16
-        Me.SSSID_BTN.Text = "..."
+        Me.SSSID_BTN.Text = ".."
         Me.SSSID_BTN.UseVisualStyleBackColor = True
-        '
-        'TIN_TXT
-        '
-        Me.TIN_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.TIN_TXT.Location = New System.Drawing.Point(11, 152)
-        Me.TIN_TXT.Name = "TIN_TXT"
-        Me.TIN_TXT.Size = New System.Drawing.Size(163, 24)
-        Me.TIN_TXT.TabIndex = 15
-        Me.TIN_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.TIN_TXT.WaterMarkText = "TIN"
-        '
-        'PIbigID_TXT
-        '
-        Me.PIbigID_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PIbigID_TXT.Location = New System.Drawing.Point(11, 113)
-        Me.PIbigID_TXT.Name = "PIbigID_TXT"
-        Me.PIbigID_TXT.Size = New System.Drawing.Size(163, 24)
-        Me.PIbigID_TXT.TabIndex = 14
-        Me.PIbigID_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PIbigID_TXT.WaterMarkText = "Pag-ibig Number"
-        '
-        'PHealthID_TXT
-        '
-        Me.PHealthID_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.PHealthID_TXT.Location = New System.Drawing.Point(11, 73)
-        Me.PHealthID_TXT.Name = "PHealthID_TXT"
-        Me.PHealthID_TXT.Size = New System.Drawing.Size(163, 24)
-        Me.PHealthID_TXT.TabIndex = 13
-        Me.PHealthID_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.PHealthID_TXT.WaterMarkText = "PhilHealth Number"
-        '
-        'SSSID_TXT
-        '
-        Me.SSSID_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.SSSID_TXT.Location = New System.Drawing.Point(11, 32)
-        Me.SSSID_TXT.Name = "SSSID_TXT"
-        Me.SSSID_TXT.Size = New System.Drawing.Size(163, 24)
-        Me.SSSID_TXT.TabIndex = 12
-        Me.SSSID_TXT.WaterMarkColor = System.Drawing.Color.Gray
-        Me.SSSID_TXT.WaterMarkText = "SSS ID Number"
         '
         'Panel1
         '
@@ -1493,6 +1319,227 @@ Partial Class frmEmployeeDetails
         Me.CloseWindow_BTN.Size = New System.Drawing.Size(40, 40)
         Me.CloseWindow_BTN.TabIndex = 4
         Me.CloseWindow_BTN.UseVisualStyleBackColor = True
+        '
+        'TIN_TXT
+        '
+        Me.TIN_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.TIN_TXT.Location = New System.Drawing.Point(47, 152)
+        Me.TIN_TXT.Name = "TIN_TXT"
+        Me.TIN_TXT.Size = New System.Drawing.Size(146, 24)
+        Me.TIN_TXT.TabIndex = 15
+        Me.TIN_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.TIN_TXT.WaterMarkText = "TIN"
+        '
+        'PIbigID_TXT
+        '
+        Me.PIbigID_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PIbigID_TXT.Location = New System.Drawing.Point(47, 113)
+        Me.PIbigID_TXT.Name = "PIbigID_TXT"
+        Me.PIbigID_TXT.Size = New System.Drawing.Size(146, 24)
+        Me.PIbigID_TXT.TabIndex = 14
+        Me.PIbigID_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PIbigID_TXT.WaterMarkText = "Pag-ibig Number"
+        '
+        'PHealthID_TXT
+        '
+        Me.PHealthID_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PHealthID_TXT.Location = New System.Drawing.Point(47, 73)
+        Me.PHealthID_TXT.Name = "PHealthID_TXT"
+        Me.PHealthID_TXT.Size = New System.Drawing.Size(146, 24)
+        Me.PHealthID_TXT.TabIndex = 13
+        Me.PHealthID_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PHealthID_TXT.WaterMarkText = "PhilHealth Number"
+        '
+        'SSSID_TXT
+        '
+        Me.SSSID_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.SSSID_TXT.Location = New System.Drawing.Point(47, 32)
+        Me.SSSID_TXT.Name = "SSSID_TXT"
+        Me.SSSID_TXT.Size = New System.Drawing.Size(146, 24)
+        Me.SSSID_TXT.TabIndex = 12
+        Me.SSSID_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.SSSID_TXT.WaterMarkText = "SSS ID Number"
+        '
+        'FirstName_TXT
+        '
+        Me.FirstName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FirstName_TXT.Location = New System.Drawing.Point(4, 13)
+        Me.FirstName_TXT.Name = "FirstName_TXT"
+        Me.FirstName_TXT.Size = New System.Drawing.Size(274, 26)
+        Me.FirstName_TXT.TabIndex = 2
+        Me.FirstName_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.FirstName_TXT.WaterMarkText = "First Name"
+        '
+        'MobileNum_TXT
+        '
+        Me.MobileNum_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.MobileNum_TXT.Location = New System.Drawing.Point(4, 1)
+        Me.MobileNum_TXT.MaxLength = 11
+        Me.MobileNum_TXT.Name = "MobileNum_TXT"
+        Me.MobileNum_TXT.Size = New System.Drawing.Size(163, 24)
+        Me.MobileNum_TXT.TabIndex = 11
+        Me.MobileNum_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.MobileNum_TXT.WaterMarkText = "Mobile Number"
+        '
+        'EmailAddress_TXT
+        '
+        Me.EmailAddress_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.EmailAddress_TXT.Location = New System.Drawing.Point(3, 1)
+        Me.EmailAddress_TXT.Name = "EmailAddress_TXT"
+        Me.EmailAddress_TXT.Size = New System.Drawing.Size(283, 24)
+        Me.EmailAddress_TXT.TabIndex = 10
+        Me.EmailAddress_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.EmailAddress_TXT.WaterMarkText = "Email Address"
+        '
+        'PerA_StBlkLot_TXT
+        '
+        Me.PerA_StBlkLot_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PerA_StBlkLot_TXT.Location = New System.Drawing.Point(474, 32)
+        Me.PerA_StBlkLot_TXT.Name = "PerA_StBlkLot_TXT"
+        Me.PerA_StBlkLot_TXT.Size = New System.Drawing.Size(190, 24)
+        Me.PerA_StBlkLot_TXT.TabIndex = 9
+        Me.PerA_StBlkLot_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PerA_StBlkLot_TXT.WaterMarkText = "Street / Block / Lot"
+        '
+        'PerA_Barangay_TXT
+        '
+        Me.PerA_Barangay_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PerA_Barangay_TXT.Location = New System.Drawing.Point(315, 32)
+        Me.PerA_Barangay_TXT.Name = "PerA_Barangay_TXT"
+        Me.PerA_Barangay_TXT.Size = New System.Drawing.Size(153, 24)
+        Me.PerA_Barangay_TXT.TabIndex = 8
+        Me.PerA_Barangay_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PerA_Barangay_TXT.WaterMarkText = "Barangay"
+        '
+        'PerA_CityMun_TXT
+        '
+        Me.PerA_CityMun_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PerA_CityMun_TXT.Location = New System.Drawing.Point(157, 32)
+        Me.PerA_CityMun_TXT.Name = "PerA_CityMun_TXT"
+        Me.PerA_CityMun_TXT.Size = New System.Drawing.Size(152, 24)
+        Me.PerA_CityMun_TXT.TabIndex = 7
+        Me.PerA_CityMun_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PerA_CityMun_TXT.WaterMarkText = "City/Municipality"
+        '
+        'PerA_Province_TXT
+        '
+        Me.PerA_Province_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PerA_Province_TXT.Location = New System.Drawing.Point(6, 32)
+        Me.PerA_Province_TXT.Name = "PerA_Province_TXT"
+        Me.PerA_Province_TXT.Size = New System.Drawing.Size(145, 24)
+        Me.PerA_Province_TXT.TabIndex = 6
+        Me.PerA_Province_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PerA_Province_TXT.WaterMarkText = "Province"
+        '
+        'PreA_StBlkLot_TXT
+        '
+        Me.PreA_StBlkLot_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PreA_StBlkLot_TXT.Location = New System.Drawing.Point(474, 32)
+        Me.PreA_StBlkLot_TXT.Name = "PreA_StBlkLot_TXT"
+        Me.PreA_StBlkLot_TXT.Size = New System.Drawing.Size(190, 24)
+        Me.PreA_StBlkLot_TXT.TabIndex = 9
+        Me.PreA_StBlkLot_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PreA_StBlkLot_TXT.WaterMarkText = "Street / Block / Lot"
+        '
+        'PreA_Barangay_TXT
+        '
+        Me.PreA_Barangay_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PreA_Barangay_TXT.Location = New System.Drawing.Point(315, 32)
+        Me.PreA_Barangay_TXT.Name = "PreA_Barangay_TXT"
+        Me.PreA_Barangay_TXT.Size = New System.Drawing.Size(153, 24)
+        Me.PreA_Barangay_TXT.TabIndex = 8
+        Me.PreA_Barangay_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PreA_Barangay_TXT.WaterMarkText = "Barangay"
+        '
+        'PreA_CityMun_TXT
+        '
+        Me.PreA_CityMun_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PreA_CityMun_TXT.Location = New System.Drawing.Point(157, 32)
+        Me.PreA_CityMun_TXT.Name = "PreA_CityMun_TXT"
+        Me.PreA_CityMun_TXT.Size = New System.Drawing.Size(152, 24)
+        Me.PreA_CityMun_TXT.TabIndex = 7
+        Me.PreA_CityMun_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PreA_CityMun_TXT.WaterMarkText = "City/Municipality"
+        '
+        'PreA_Province_TXT
+        '
+        Me.PreA_Province_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.PreA_Province_TXT.Location = New System.Drawing.Point(6, 32)
+        Me.PreA_Province_TXT.Name = "PreA_Province_TXT"
+        Me.PreA_Province_TXT.Size = New System.Drawing.Size(145, 24)
+        Me.PreA_Province_TXT.TabIndex = 6
+        Me.PreA_Province_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.PreA_Province_TXT.WaterMarkText = "Province"
+        '
+        'LastName_TXT
+        '
+        Me.LastName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LastName_TXT.Location = New System.Drawing.Point(6, 12)
+        Me.LastName_TXT.Name = "LastName_TXT"
+        Me.LastName_TXT.Size = New System.Drawing.Size(274, 26)
+        Me.LastName_TXT.TabIndex = 4
+        Me.LastName_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.LastName_TXT.WaterMarkText = "Last Name"
+        '
+        'MiddleName_TXT
+        '
+        Me.MiddleName_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MiddleName_TXT.Location = New System.Drawing.Point(165, 70)
+        Me.MiddleName_TXT.Name = "MiddleName_TXT"
+        Me.MiddleName_TXT.Size = New System.Drawing.Size(274, 26)
+        Me.MiddleName_TXT.TabIndex = 3
+        Me.MiddleName_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.MiddleName_TXT.WaterMarkText = "Middle Name"
+        '
+        'Extension_TXT
+        '
+        Me.Extension_TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Extension_TXT.Location = New System.Drawing.Point(165, 164)
+        Me.Extension_TXT.Name = "Extension_TXT"
+        Me.Extension_TXT.Size = New System.Drawing.Size(274, 26)
+        Me.Extension_TXT.TabIndex = 5
+        Me.Extension_TXT.WaterMarkColor = System.Drawing.Color.Gray
+        Me.Extension_TXT.WaterMarkText = "Extension"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(3, 34)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(31, 15)
+        Me.Label12.TabIndex = 20
+        Me.Label12.Text = "SSS"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(3, 77)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(35, 15)
+        Me.Label13.TabIndex = 21
+        Me.Label13.Text = "PHIC"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(2, 116)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(43, 15)
+        Me.Label14.TabIndex = 22
+        Me.Label14.Text = "HDMF"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(3, 155)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(26, 15)
+        Me.Label15.TabIndex = 23
+        Me.Label15.Text = "TIN"
         '
         'frmEmployeeDetails
         '
@@ -1694,4 +1741,8 @@ Partial Class frmEmployeeDetails
     Friend WithEvents GroupBox15 As GroupBox
     Friend WithEvents Label8 As Label
     Friend WithEvents GroupBox_Bio As GroupBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label12 As Label
 End Class

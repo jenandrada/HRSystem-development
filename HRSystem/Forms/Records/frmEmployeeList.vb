@@ -496,4 +496,34 @@
         If IsEnter(e) Then btnSearch.PerformClick()
     End Sub
 
+    Private Sub Update_BTN_Click(sender As Object, e As EventArgs) Handles Update_BTN.Click
+
+        Dim result As DialogResult = MessageBox.Show("The process will take time to complete, do you want to proceed?", "Saving Images to ‪D:\HR Records\201", MessageBoxButtons.YesNo)
+
+        If result = DialogResult.Yes Then
+            TimerUpdate.Start()
+            frmMainForm.AppProgressBar.Visible = True
+        Else
+        End If
+
+    End Sub
+
+    Private Sub TimerUpdate_Tick(sender As Object, e As EventArgs) Handles TimerUpdate.Tick
+
+        frmMainForm.AppProgressBar.Increment(50)
+
+        If frmMainForm.AppProgressBar.Value = 750 Then
+
+
+            DeveloperCode.LoadREquirementsPictures()  'THIS IS TO FETCH IMAGES REQUIREMENTS FROM TBL_REQARCHIVE  
+            MessageBox.Show("Images Succesfully save to ‪D:\HR Records\201.")
+
+            frmMainForm.AppProgressBar.Value = frmMainForm.AppProgressBar.Maximum
+
+        ElseIf frmMainForm.AppProgressBar.Value = frmMainForm.AppProgressBar.Maximum Then
+            TimerUpdate.Stop()
+            frmMainForm.AppProgressBar.Value = 0
+            frmMainForm.AppProgressBar.Visible = False
+        End If
+    End Sub
 End Class

@@ -49,6 +49,8 @@ Partial Class frmEmployeeList
         Me.AppProgressBar = New System.Windows.Forms.ProgressBar()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.Update_BTN = New System.Windows.Forms.Button()
+        Me.TimerUpdate = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -81,7 +83,7 @@ Partial Class frmEmployeeList
         '
         Me.btnView.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnView.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnView.Location = New System.Drawing.Point(849, 628)
+        Me.btnView.Location = New System.Drawing.Point(1059, 628)
         Me.btnView.Name = "btnView"
         Me.btnView.Size = New System.Drawing.Size(99, 52)
         Me.btnView.TabIndex = 56
@@ -242,6 +244,7 @@ Partial Class frmEmployeeList
         'Panel1
         '
         Me.Panel1.AutoScroll = True
+        Me.Panel1.Controls.Add(Me.Update_BTN)
         Me.Panel1.Controls.Add(Me.AppProgressBar)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Status_CB)
@@ -271,6 +274,22 @@ Partial Class frmEmployeeList
         Me.btnClose.Size = New System.Drawing.Size(36, 35)
         Me.btnClose.TabIndex = 52
         Me.btnClose.UseVisualStyleBackColor = True
+        '
+        'Update_BTN
+        '
+        Me.Update_BTN.BackColor = System.Drawing.Color.PaleGoldenrod
+        Me.Update_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Update_BTN.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Update_BTN.ForeColor = System.Drawing.Color.Black
+        Me.Update_BTN.Location = New System.Drawing.Point(223, 23)
+        Me.Update_BTN.Name = "Update_BTN"
+        Me.Update_BTN.Size = New System.Drawing.Size(98, 23)
+        Me.Update_BTN.TabIndex = 66
+        Me.Update_BTN.Text = "Update 201 Folder"
+        Me.Update_BTN.UseVisualStyleBackColor = False
+        '
+        'TimerUpdate
+        '
         '
         'frmEmployeeList
         '
@@ -312,4 +331,6 @@ Partial Class frmEmployeeList
     Friend WithEvents AppProgressBar As ProgressBar
     Friend WithEvents Panel1 As Panel
     Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents Update_BTN As Button
+    Friend WithEvents TimerUpdate As Timer
 End Class
